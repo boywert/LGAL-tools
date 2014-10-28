@@ -4,7 +4,7 @@ import pylab
 import sys
 import os
 import matplotlib.pyplot as plt
-os.system("cp dummy_dtype.py LGalaxyStruct")
+os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
 
 sys.path.append("../python/")
