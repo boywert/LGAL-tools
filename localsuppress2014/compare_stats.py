@@ -15,8 +15,8 @@ def loadfilter(structfile):
     structdir = os.path.dirname(structfile)
     structfilename = os.path.basename(structfile).replace(".py","")
     os.system("cp "+structfile+" LGalaxyStruct.py")
-    reload(LGalaxyStruct)
-    print structfile,"len(struct_dtype)",len(LGalaxyStruct.struct_dtype)
+    execfile(structfile)
+    print structfile,"len(struct_dtype)",len(struct_dtype)
     print LGalaxyStruct.struct_dtype
     filter = LGalaxyStruct.properties_used
     filter['Sfr'] = True
