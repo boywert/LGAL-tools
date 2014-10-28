@@ -1,6 +1,6 @@
 import numpy
-import read_lgal
-import LGalaxyStruct
+sys.path.append("../python/")
+import read_lgal_advance as read_lgal
 
 gadget2msun=10.e10
 boxsize = 47.0
