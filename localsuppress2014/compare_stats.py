@@ -53,6 +53,7 @@ except NameError:
     nGals = {}
     nTreeGals = {}
     star = {}
+    totsfr = {}
     #hotgas = {}
     #coldgas = {}
     #Blackhole = {}
@@ -61,13 +62,14 @@ except NameError:
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
-        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i])
+        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+        totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
         star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         sfr[index] = sfr_fn(gal[index])
 
 for i in range(len(model_names)):
     index = model_names[i]
-    print nTrees[index],nGals[index]
+    print nTrees[index],nGals[index],totsfr[index]
 
 pylab.rc('text', usetex=True)
 

@@ -4,7 +4,7 @@ import os
 import sys
 # This function return (nTrees,nHalos,nTreeHalos,Galaxy)
 # The input are (folder,file_prefix,firstfile,lastfile [,filter_arr])
-def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt):
+def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose):
     nTrees = 0
     nHalos = 0
     nTreeHalos = numpy.array([],dtype=numpy.int32)
@@ -23,7 +23,8 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt):
         dummy = numpy.fromfile(f,numpy.int32,1)
         this_nHalos = dummy[0]
         nHalos += this_nHalos
-        print "File ", ifile," nGals = ",this_nHalos
+        if(verbose):
+            print "File ", ifile," nGals = ",this_nHalos
         addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
         nTreeHalos = numpy.append(nTreeHalos,addednTreeHalos)
         this_addedGalaxy = numpy.fromfile(f,dt,this_nHalos)
