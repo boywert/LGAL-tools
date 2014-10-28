@@ -8,6 +8,8 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,struc
     os.system("cp "+structfile+" LGalaxyStruct.py")
     os.system("rm LGalaxyStruct.pyc")
     import LGalaxyStruct
+    print filter_arr
+    print LGalaxyStruct.struct_dtype
     nTrees = 0
     nHalos = 0
     nTreeHalos = numpy.array([],dtype=numpy.int32)
