@@ -12,8 +12,9 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 
 def loadfilter(structfile):
-    os.system("cp "+structfile+" LGalaxyStruct.py")
-    os.system("rm LGalaxyStruct.pyc")
+    sys.path.insert(0,"../tmp/")
+    os.system("cp "+structfile+" ../tmp/LGalaxyStruct.py")
+    os.system("rm -f ../tmp/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
     filter['Sfr'] = True
