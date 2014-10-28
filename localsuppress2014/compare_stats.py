@@ -41,7 +41,7 @@ except NameError:
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
-        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal(model_paths[i],file_prefix,firstfile,lastfile,filter,struct_file[index])
+        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal_advance.readsnap_lgal(model_paths[i],file_prefix,firstfile,lastfile,filter,struct_file[index])
         star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         sfr[index] = sfr_fn(gal[index])
 
