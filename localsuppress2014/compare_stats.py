@@ -1,6 +1,6 @@
 from mass_fn import *
 import matplotlib
-matplotlib.use('GTKAgg') 
+matplotlib.use('pdf') 
 import pylab
 import sys
 import os
