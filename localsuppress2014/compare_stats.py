@@ -20,7 +20,8 @@ def loadfilter(structfile):
     filter['Sfr'] = True
     filter['DiskMass'] = True
     filter['BulgeMass'] = True
-    return filter
+    dt = LGalaxyStruct.struct_dtype
+    return (filter,dt)
 
 
 
@@ -33,10 +34,11 @@ lastfile = 127
 config = {}
 model_names = ["okamoto","noreionization","patchy_I"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/LGalaxyStruct.py"]
-
+dt = []
 filter = []
 for i in range(len(struct_file)):
-    filter.append(loadfilter(struct_file[i]))
+    filter.append(loadfilter(struct_file[i])[0])
+    dt.append(loadfilter(struct_file[i])[1])
     print len(filter[i])
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
@@ -59,7 +61,7 @@ except NameError:
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
-        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],struct_file[i])
+        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i])
         star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         sfr[index] = sfr_fn(gal[index])
 

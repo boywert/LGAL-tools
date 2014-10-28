@@ -4,20 +4,14 @@ import os
 import sys
 # This function return (nTrees,nHalos,nTreeHalos,Galaxy)
 # The input are (folder,file_prefix,firstfile,lastfile [,filter_arr])
-def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,structfile):
-    sys.path.insert(0,"../tmp/")
-    os.system("cp "+structfile+" ../tmp/LGalaxyStruct.py")
-    os.system("rm -f ../tmp/LGalaxyStruct.pyc")
-    import LGalaxyStruct
-    print filter_arr
-    print LGalaxyStruct.struct_dtype
+def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt):
     nTrees = 0
     nHalos = 0
     nTreeHalos = numpy.array([],dtype=numpy.int32)
     filter_tuple = []
-    for prop in LGalaxyStruct.struct_dtype.names:
+    for prop in dt.names:
         if(filter_arr[prop] is True):
-            filter_tuple.append((prop,LGalaxyStruct.struct_dtype[prop]))
+            filter_tuple.append((prop,dt[prop]))
     filter_dtype = numpy.dtype(filter_tuple)
     output_Galaxy = numpy.array([],dtype=filter_dtype)
     for ifile in range(firstfile,lastfile+1):
@@ -32,9 +26,9 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,struc
         print "File ", ifile," nGals = ",this_nHalos
         addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
         nTreeHalos = numpy.append(nTreeHalos,addednTreeHalos)
-        this_addedGalaxy = numpy.fromfile(f,LGalaxyStruct.struct_dtype,this_nHalos)
+        this_addedGalaxy = numpy.fromfile(f,dt,this_nHalos)
         addedGalaxy = numpy.zeros(this_nHalos,dtype=filter_dtype)
-        for prop in LGalaxyStruct.struct_dtype.names:
+        for prop in dt.names:
             if(filter_arr[prop] is True):
                 addedGalaxy[prop] = this_addedGalaxy[prop]
         output_Galaxy = numpy.append(output_Galaxy,addedGalaxy)
