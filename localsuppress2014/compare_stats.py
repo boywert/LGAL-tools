@@ -4,7 +4,8 @@ import pylab
 import sys
 import os
 import matplotlib.pyplot as plt
-LGalaxyStruct = __import__("dummy_dtype")
+import dummy_dtype as LGalaxyStruct
+
 sys.path.append("../python/")
 
 import read_lgal_advance as read_lgal
