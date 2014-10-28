@@ -12,8 +12,6 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 
 def loadfilter(structfile):
-    structdir = os.path.dirname(structfile)
-    structfilename = os.path.basename(structfile).replace(".py","")
     os.system("cp "+structfile+" LGalaxyStruct.py")
     os.system("rm LGalaxyStruct.pyc")
     reload(LGalaxyStruct)

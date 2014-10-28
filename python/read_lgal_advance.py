@@ -5,10 +5,9 @@ import sys
 # This function return (nTrees,nHalos,nTreeHalos,Galaxy)
 # The input are (folder,file_prefix,firstfile,lastfile [,filter_arr])
 def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,structfile):
-    structdir = os.path.dirname(structfile)
-    structfilename = os.path.basename(structfile).replace(".py","")
-    sys.path.append(structdir)
-    LGalaxyStruct = __import__(structfilename)
+    os.system("cp "+structfile+" LGalaxyStruct.py")
+    os.system("rm LGalaxyStruct.pyc")
+    import LGalaxyStruct
     nTrees = 0
     nHalos = 0
     nTreeHalos = numpy.array([],dtype=numpy.int32)
