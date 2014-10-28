@@ -15,6 +15,7 @@ def loadfilter(structfile):
     sys.path.append(structdir)
     LGalaxyStruct = __import__(structfilename)
     print structfile,"len(struct_dtype)",len(LGalaxyStruct.struct_dtype)
+    print LGalaxyStruct.struct_dtype
     filter = LGalaxyStruct.properties_used
     filter['Sfr'] = True
     filter['DiskMass'] = True
