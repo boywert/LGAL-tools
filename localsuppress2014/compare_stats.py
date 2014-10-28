@@ -1,5 +1,6 @@
 from mass_fn import *
-
+import matplotlib
+matplotlib.use('GTKAgg') 
 import pylab
 import sys
 import os
@@ -32,8 +33,8 @@ lastfile = 127
 
 
 config = {}
-model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/LGalaxyStruct.py"]
+model_names = ["okamoto","noreionization","no_infall","patchy_I"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_infall/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/LGalaxyStruct.py"]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -41,9 +42,9 @@ for i in range(len(struct_file)):
     dt.append(loadfilter(struct_file[i])[1])
     print len(filter[i])
 
-model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/"]
-model_plot_patterns = ['r--','g--','b--']
+model_labels = ["Okamoto et al. (2008)","No Reionization","No Infall","Patchy Reionization (Gradual)"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_infall/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/"]
+model_plot_patterns = ['r--','g--','b--','c--']
 
 try:
     gal
