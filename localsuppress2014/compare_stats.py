@@ -2,6 +2,7 @@ from mass_fn import *
 
 import pylab
 import sys
+import os
 import matplotlib.pyplot as plt
 
 sys.path.append("../python/")
