@@ -13,7 +13,7 @@ def loadfilter(structfile):
     structdir = os.path.dirname(structfile)
     structfilename = os.path.basename(structfile).replace(".py","")
     sys.path.insert(1,structdir)
-    LGalaxyStruct = reload(structfilename)
+    LGalaxyStruct = reload(LGalaxyStruct)
     print structfile,"len(struct_dtype)",len(LGalaxyStruct.struct_dtype)
     print LGalaxyStruct.struct_dtype
     filter = LGalaxyStruct.properties_used
