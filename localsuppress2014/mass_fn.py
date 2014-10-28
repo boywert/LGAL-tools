@@ -1,6 +1,5 @@
 import numpy
 
-
 gadget2msun=10.e10
 boxsize = 47.0
 hubble_h = 0.7

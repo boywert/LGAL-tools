@@ -35,6 +35,7 @@ struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxySt
 filter = []
 for i in range(len(struct_file)):
     filter.append(loadfilter(struct_file[i]))
+    print len(filter[i])
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
 model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/"]
