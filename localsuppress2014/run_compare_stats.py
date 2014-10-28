@@ -1,3 +1,4 @@
+import subprocess
 import os
 zlist = {}
 zlist[0] = "6.00"
@@ -12,4 +13,5 @@ zlist[8] = "6.48"
 
 for i in range(len(zlist)):
     z = zlist[i]
-    os.system("python compare_stats.py "+z)
+    subprocess.call(["python", "compare_stats.py", z])
+    #os.system("python compare_stats.py "+z)
