@@ -7,7 +7,7 @@ import sys
 def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,structfile):
     structdir = os.path.dir(structfile)
     structfile = os.path.basename(structfile).replace(".py","")
-    sys.path.insert(0,structdir)
+    sys.path.append(structdir)
     import structfile as LGalaxyStruct
     nTrees = 0
     nHalos = 0
