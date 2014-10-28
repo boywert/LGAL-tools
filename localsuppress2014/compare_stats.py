@@ -4,7 +4,8 @@ import pylab
 import sys
 import os
 import matplotlib.pyplot as plt
-import dummy_dtype as LGalaxyStruct
+os.system("cp dummy_dtype.py LGalaxyStruct")
+import LGalaxyStruct
 
 sys.path.append("../python/")
 
@@ -13,7 +14,7 @@ import read_lgal_advance as read_lgal
 def loadfilter(structfile):
     structdir = os.path.dirname(structfile)
     structfilename = os.path.basename(structfile).replace(".py","")
-    sys.path.insert(1,structdir)
+    os.system("cp "+structfile+" LGalaxyStruct.py")
     LGalaxyStruct = reload(LGalaxyStruct)
     print structfile,"len(struct_dtype)",len(LGalaxyStruct.struct_dtype)
     print LGalaxyStruct.struct_dtype
