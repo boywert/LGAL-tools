@@ -27,7 +27,7 @@ def loadfilter(structfile):
 
 
 z = sys.argv[1]
-
+z = '6.00'
 
 file_prefix = "SA_z"+z
 firstfile = 0
@@ -114,7 +114,7 @@ pylab.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pd
 
 sfr_tree = {}
 
-for i in range(len(model_names)))
+for i in range(len(model_names))
     index = model_names[i]
     cumsumntrees = numpy.cumsum(nTreeGals[index])
     sfr_tree[index] = numpy.zeros(nTrees[index])
