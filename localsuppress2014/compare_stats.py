@@ -112,14 +112,18 @@ pylab.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pd
 
 # histogram tree by tree since the number of trees must be identcal
 
-sfr_tree = {}
+try:
+    sfr_tree
+except NameError:
+    sfr_tree = {}
 
 for i in range(len(model_names)):
     index = model_names[i]
-    cumsumntrees = numpy.cumsum(nTreeGals[index])
-    sfr_tree[index] = numpy.zeros(nTrees[index],dtype=numpy.float64)
-    for j in range(nTrees[index]):
-        sfr_tree[index][j] = numpy.sum(gal[index]["Sfr"][cumsumntrees[j]:cumsumntrees[j]+nTreeGals[index][j]],dtype=numpy.float64)
+    if not index in sfr_tree:
+        cumsumntrees = numpy.cumsum(nTreeGals[index])
+        sfr_tree[index] = numpy.zeros(nTrees[index],dtype=numpy.float64)
+        for j in range(nTrees[index]):
+            sfr_tree[index][j] = numpy.sum(gal[index]["Sfr"][cumsumntrees[j]:cumsumntrees[j]+nTreeGals[index][j]],dtype=numpy.float64)
 
 
 
