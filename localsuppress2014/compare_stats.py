@@ -137,5 +137,5 @@ for i in range(len(model_names)):
         ax.scatter(sfr_tree[model_i],sfr_tree[model_j])
         ax.plot(x,x,"k-")
         fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
-        pylab.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".png',bbox_inches='tight')
+        pylab.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".png",bbox_inches='tight')
         
