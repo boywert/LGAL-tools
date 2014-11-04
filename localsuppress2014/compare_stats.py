@@ -1,6 +1,6 @@
 from mass_fn import *
 import matplotlib
-matplotlib.use('pdf') 
+matplotlib.use('Agg') 
 import pylab
 import sys
 import os
@@ -139,5 +139,5 @@ for i in range(len(model_names)):
         ax.set_yscale("log")
         ax.set_xscale("log")
         fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
-        fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".jpg",bbox_inches='tight')
+        fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".png",bbox_inches='tight')
         pylab.close(fig)
