@@ -90,8 +90,8 @@ ax.set_ylabel(r"$N$")
 fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
 
 
-pylab.savefig('reion_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-
+fig.savefig('reion_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
 
 fig = pylab.figure()
 ax = fig.add_subplot(111)
@@ -107,8 +107,8 @@ ax.set_xlabel(r"$\log(Sfr/M_\odot yrs)$")
 ax.set_ylabel(r"$N$")
 fig.suptitle("Stellar formation rate z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
 
-pylab.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-
+fig.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
 
 # histogram tree by tree since the number of trees must be identcal
 
@@ -140,4 +140,4 @@ for i in range(len(model_names)):
         ax.set_xscale("log")
         fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
         fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".pdf",bbox_inches='tight')
-        
+        pylab.close(fig)
