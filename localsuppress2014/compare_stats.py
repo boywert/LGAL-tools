@@ -1,6 +1,6 @@
 from mass_fn import *
 import matplotlib
-matplotlib.use('pdf') 
+matplotlib.use('Agg') 
 import pylab
 import sys
 import os
