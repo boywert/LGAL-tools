@@ -132,9 +132,10 @@ for i in range(len(model_names)):
         minval = min(min(sfr_tree[model_i]),min(sfr_tree[model_j]))
         maxval = min(max(sfr_tree[model_i]),max(sfr_tree[model_j]))
         x = numpy.linspace(minval,maxval,num=5)
-        ax = pylab.subplots()
+        fig = pylab.figure()
+        ax = fig.add_subplot(111)
         ax.scatter(sfr_tree[model_i],sfr_tree[model_j])
         ax.plot(x,x,"k-")
-        ax.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
+        fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
         pylab.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".png",bbox_inches='tight')
         
