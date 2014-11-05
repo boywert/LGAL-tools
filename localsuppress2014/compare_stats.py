@@ -110,8 +110,15 @@ fig.suptitle("Stellar formation rate z = "+z+" file "+str(firstfile)+"-"+str(las
 fig.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
 pylab.close(fig)
 
-# histogram tree by tree since the number of trees must be identcal
 
+
+gal_type0 = {}
+gal_type1 = {}
+gal_type2 = {}
+
+
+
+# histogram tree by tree since the number of trees must be identcal
 try:
     sfr_tree
 except NameError:
@@ -139,8 +146,8 @@ for i in range(len(model_names)):
         ax = fig.add_subplot(111)
         ax.scatter(sfr_tree[model_i],sfr_tree[model_j], s =1.0)
         ax.plot(x,x,"k-")
-        ax.set_yscale("log")
-        ax.set_xscale("log")
+        #ax.set_yscale("log")
+        #ax.set_xscale("log")
         fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
         fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".pdf",bbox_inches='tight')
         pylab.close(fig)
