@@ -124,9 +124,9 @@ for i in range(len(model_names)):
         sfr_tree[index] = numpy.zeros(nTrees[index],dtype=numpy.float64)
         for j in range(nTrees[index]):
             sfr_tree[index][j] = numpy.sum(gal[index]["Sfr"][cumsumntrees[j]:cumsumntrees[j]+nTreeGals[index][j]],dtype=numpy.float64)
-        a =numpy.where(sfr_tree[index] > 0.)[0]
+        a = numpy.where(sfr_tree[index] > 0.)[0]
         print len(a)
-        print a
+        print sfr_tree[index][a]
 
 for i in range(len(model_names)):
     model_i = model_names[i]
