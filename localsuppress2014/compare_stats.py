@@ -124,9 +124,9 @@ for i in range(len(model_names)):
         sfr_tree[index] = numpy.zeros(nTrees[index],dtype=numpy.float64)
         for j in range(nTrees[index]):
             sfr_tree[index][j] = numpy.sum(gal[index]["Sfr"][cumsumntrees[j]:cumsumntrees[j]+nTreeGals[index][j]],dtype=numpy.float64)
-        a =numpy.where(sfr_tree[index] > 0.)
-        print len(a[0])
-        print a[0]
+        a =numpy.where(sfr_tree[index] > 0.)[0]
+        print len(a)
+        print a
 
 for i in range(len(model_names)):
     model_i = model_names[i]
@@ -137,10 +137,10 @@ for i in range(len(model_names)):
         x = numpy.linspace(0.0,maxval,num=5)
         fig = pylab.figure()
         ax = fig.add_subplot(111)
-        ax.scatter(sfr_tree[model_i],sfr_tree[model_j])
+        ax.scatter(sfr_tree[model_i],sfr_tree[model_j], s =1.0)
         ax.plot(x,x,"k-")
         ax.set_yscale("log")
         ax.set_xscale("log")
-        fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j],s = 1.0)
+        fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
         fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".pdf",bbox_inches='tight')
         pylab.close(fig)
