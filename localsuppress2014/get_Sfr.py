@@ -96,7 +96,9 @@ for i in range(len(model_names)):
     star_type1[index] = stellar_mass_fn(gal_type1[index],1.,1.e10,50)
     star_type2[index] = stellar_mass_fn(gal_type2[index],1.,1.e10,50)
 
-
+print star_type0
+print star_type1
+print star_type2
 
 
 fig = pylab.figure()
