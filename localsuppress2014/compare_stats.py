@@ -44,7 +44,7 @@ for i in range(len(struct_file)):
     dt.append(t)
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
 try:
