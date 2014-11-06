@@ -116,8 +116,12 @@ gal_type0 = {}
 gal_type1 = {}
 gal_type2 = {}
 
-
-
+for i in range(len(model_names)):
+    index = model_names[i]
+    gal_type0[index] = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
+    gal_type1[index] = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
+    gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
+    
 # histogram tree by tree since the number of trees must be identcal
 try:
     sfr_tree
@@ -135,19 +139,19 @@ for i in range(len(model_names)):
         print len(a)
         print sfr_tree[index][a]
 
-for i in range(len(model_names)):
-    model_i = model_names[i]
-    for j in range(i+1,len(model_names)):
-        model_j = model_names[j]
-        minval = min(min(sfr_tree[model_i]),min(sfr_tree[model_j]))
-        maxval = min(max(sfr_tree[model_i]),max(sfr_tree[model_j]))
-        x = numpy.linspace(0.0,maxval,num=5)
-        fig = pylab.figure()
-        ax = fig.add_subplot(111)
-        ax.scatter(sfr_tree[model_i],sfr_tree[model_j], s =1.0)
-        ax.plot(x,x,"k-")
-        #ax.set_yscale("log")
-        #ax.set_xscale("log")
-        fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
-        fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".pdf",bbox_inches='tight')
-        pylab.close(fig)
+# for i in range(len(model_names)): 
+#     model_i = model_names[i]
+#     for j in range(i+1,len(model_names)):
+#         model_j = model_names[j]
+#         minval = min(min(sfr_tree[model_i]),min(sfr_tree[model_j]))
+#         maxval = min(max(sfr_tree[model_i]),max(sfr_tree[model_j]))
+#         x = numpy.linspace(0.0,maxval,num=5)
+#         fig = pylab.figure()
+#         ax = fig.add_subplot(111)
+#         ax.scatter(sfr_tree[model_i],sfr_tree[model_j], s=1.0)
+#         ax.plot(x,x,"k-")
+#         #ax.set_yscale("log")
+#         #ax.set_xscale("log")
+#         fig.suptitle("SFR-SFR tree by tree, "+model_labels[i]+" vs "+model_labels[j])
+#         fig.savefig('sfr_vs_sfr_'+model_names[i]+"_vs_"+model_names[j]+".pdf",bbox_inches='tight')
+#         pylab.close(fig)
