@@ -3,7 +3,6 @@ import matplotlib
 matplotlib.use('Agg') 
 import pylab
 import sys
-import numpy
 import os
 import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
@@ -48,7 +47,7 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-    model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
 model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
