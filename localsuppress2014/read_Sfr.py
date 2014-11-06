@@ -44,7 +44,7 @@ for i in range(len(model_names)):
     ax.plot(zlist,sfr_t1[index],color[i]+pattern[1],label=model_labels[i]+",Type 1")
     ax.plot(zlist,sfr_t2[index],color[i]+pattern[2],label=model_labels[i]+",Type 2")
 
-ax.set_xscale("log")
+ax.set_yscale("log")
 fig.suptitle("SFR")
 fig.savefig("SFR_history.pdf",bbox_inches='tight')
 pylab.close(fig)
