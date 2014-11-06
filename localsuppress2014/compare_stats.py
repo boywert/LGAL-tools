@@ -133,11 +133,10 @@ ax = fig.add_subplot(111)
 
 for i in range(len(model_names)):
     index = model_names[i]
-    ax.plot(star[index][0],star[index][1],model_plot_patterns[i],label=model_labels[i])
+    ax.plot(star_type0[index][0],star_type0[index][1],model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
-
 ax.set_xlabel(r"$\log(M/M_\odot h)$")
 ax.set_ylabel(r"$N$")
 fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
