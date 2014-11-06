@@ -95,7 +95,7 @@ for i in range(len(model_names)):
     sfr_type1[index] = numpy.sum(gal_type1[index]["Sfr"],dtype = numpy.float64)
     sfr_type2[index] = numpy.sum(gal_type2[index]["Sfr"],dtype = numpy.float64)
 
-folder = "sfr/"+rank
+folder = "sfr/"
 os.system("mkdir -p "+folder)
 f = open(folder+"/"+z+".dat","w+")
 for i in range(len(model_names)):
