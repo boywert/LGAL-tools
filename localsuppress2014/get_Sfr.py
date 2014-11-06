@@ -27,7 +27,9 @@ def loadfilter(structfile):
 
 
 #z = sys.argv[1]
-z = '6.00'
+zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
+zlist = open(zlistfile,"r").readlines()
+z = zlist[sys.argv[1]]
 
 file_prefix = "SA_z"+z
 firstfile = 0
@@ -90,7 +92,10 @@ for i in range(len(model_names)):
     sfr_type1[index] = numpy.sum(gal_type1[index]["Sfr"],dtype = numpy.float64)
     sfr_type2[index] = numpy.sum(gal_type2[index]["Sfr"],dtype = numpy.float64)
 
-
-print sfr_type0
-print sfr_type1
-print sfr_type2
+folder = "sfr/"
+os.system("mkdir -p "+folder)
+f = open(folder+"/"+z+".dat","w+")
+for i in range(len(model_names)):
+    index = model_names[i]
+    print >> f,sfr_type0[index], sfr_type1[index],sfr_type2[index]
+    f.close()
