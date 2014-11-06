@@ -29,7 +29,7 @@ def loadfilter(structfile):
 #z = sys.argv[1]
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
-z = zlist[int(sys.argv[1])]
+z = zlist[int(sys.argv[1])].strip()
 
 file_prefix = "SA_z"+z
 firstfile = 0
