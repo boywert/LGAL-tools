@@ -15,8 +15,8 @@ rank = sys.argv[1]
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+rank)
-    os.system("cp "+structfile+" ../tmp/"+rank+"LGalaxyStruct.py")
-    os.system("rm -f ../tmp/"+rank+"LGalaxyStruct.pyc")
+    os.system("cp "+structfile+" ../tmp/"+rank+"/LGalaxyStruct.py")
+    os.system("rm -f ../tmp/"+rank+"/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
     filter['Type'] = True
