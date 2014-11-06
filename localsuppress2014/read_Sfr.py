@@ -45,7 +45,7 @@ for i in range(len(model_names)):
     #ax.plot(zlist,sfr_t2[index],color[i]+pattern[2],label=model_labels[i]+",Type 2")
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
-ax.set_yscale("log")
+#ax.set_yscale("log")
 fig.suptitle("SFR")
 fig.savefig("SFR_history.pdf",bbox_inches='tight')
 pylab.close(fig)
