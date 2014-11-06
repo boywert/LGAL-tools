@@ -11,10 +11,12 @@ import LGalaxyStruct
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 
+rank = sys.argv[1]
+os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
-    sys.path.insert(0,"../tmp/")
-    os.system("cp "+structfile+" ../tmp/LGalaxyStruct.py")
-    os.system("rm -f ../tmp/LGalaxyStruct.pyc")
+    sys.path.insert(0,"../tmp/"+rank)
+    os.system("cp "+structfile+" ../tmp/"+rank+"LGalaxyStruct.py")
+    os.system("rm -f ../tmp/"+rank+"LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
     filter['Type'] = True
@@ -76,7 +78,6 @@ gal_type0 = {}
 gal_type1 = {}
 gal_type2 = {}
 
-print gal
 
 for i in range(len(model_names)):
     index = model_names[i]
