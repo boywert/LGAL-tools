@@ -124,16 +124,13 @@ for i in range(len(model_names)):
 
 
 star_type0 = {}
-star_type1 = {}
-star_type2 = {}
 for i in range(len(model_names)):
     index = model_names[i]
     star_type0[index] = stellar_mass_fn(gal_type0[index],1.,1.e10,50)
-    star_type1[index] = stellar_mass_fn(gal_type1[index],1.,1.e10,50)
-    star_type2[index] = stellar_mass_fn(gal_type2[index],1.,1.e10,50)
 
 fig = pylab.figure()
 ax = fig.add_subplot(111)
+
 for i in range(len(model_names)):
     index = model_names[i]
     ax.plot(star_type0[index][0],star_type0[index][1],model_plot_patterns[i],label=model_labels[i])
@@ -145,35 +142,6 @@ ax.set_ylabel(r"$N$")
 fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
 fig.savefig('star_type0_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
 pylab.close(fig)
-
-fig = pylab.figure()
-ax = fig.add_subplot(111)
-for i in range(len(model_names)):
-    index = model_names[i]
-    ax.plot(star_type1[index][0],star_type1[index][1],model_plot_patterns[i],label=model_labels[i])
-ax.set_yscale("log")
-leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-leg.get_frame().set_linewidth(0)
-ax.set_xlabel(r"$\log(M/M_\odot h)$")
-ax.set_ylabel(r"$N$")
-fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
-fig.savefig('star_type1_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-pylab.close(fig)
-
-fig = pylab.figure()
-ax = fig.add_subplot(111)
-for i in range(len(model_names)):
-    index = model_names[i]
-    ax.plot(star_type2[index][0],star_type2[index][1],model_plot_patterns[i],label=model_labels[i])
-ax.set_yscale("log")
-leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-leg.get_frame().set_linewidth(0)
-ax.set_xlabel(r"$\log(M/M_\odot h)$")
-ax.set_ylabel(r"$N$")
-fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
-fig.savefig('star_type2_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-pylab.close(fig)
-
 
     
 # histogram tree by tree since the number of trees must be identcal
