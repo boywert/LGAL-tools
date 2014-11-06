@@ -87,6 +87,25 @@ for i in range(len(model_names)):
     gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
 
 
+
+sfr_type0 = {}
+sfr_type1 = {}
+sfr_type2 = {}
+for i in range(len(model_names)):
+    index = model_names[i]
+    sfr_type0[index] = numpy.sum(gal_type0[index]["Sfr"],dtype = numpy.float64)
+    sfr_type1[index] = numpy.sum(gal_type1[index]["Sfr"],dtype = numpy.float64)
+    sfr_type2[index] = numpy.sum(gal_type2[index]["Sfr"],dtype = numpy.float64)
+
+folder = "sfr/"
+os.system("mkdir -p "+folder)
+f = open(folder+"/"+z+".dat","w+")
+for i in range(len(model_names)):
+    index = model_names[i]
+    print >> f,sfr_type0[index], sfr_type1[index],sfr_type2[index]
+f.close()
+
+
 star_type0 = {}
 star_type1 = {}
 star_type2 = {}
@@ -95,10 +114,6 @@ for i in range(len(model_names)):
     star_type0[index] = stellar_mass_fn(gal_type0[index],1.,1.e10,50)
     star_type1[index] = stellar_mass_fn(gal_type1[index],1.,1.e10,50)
     star_type2[index] = stellar_mass_fn(gal_type2[index],1.,1.e10,50)
-
-print star_type0
-print star_type1
-print star_type2
 
 
 fig = pylab.figure()
@@ -145,20 +160,3 @@ fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(last
 fig.savefig('star_type2_'+z+'.pdf',bbox_inches='tight')
 pylab.close(fig)
 
-
-sfr_type0 = {}
-sfr_type1 = {}
-sfr_type2 = {}
-for i in range(len(model_names)):
-    index = model_names[i]
-    sfr_type0[index] = numpy.sum(gal_type0[index]["Sfr"],dtype = numpy.float64)
-    sfr_type1[index] = numpy.sum(gal_type1[index]["Sfr"],dtype = numpy.float64)
-    sfr_type2[index] = numpy.sum(gal_type2[index]["Sfr"],dtype = numpy.float64)
-
-folder = "sfr/"
-os.system("mkdir -p "+folder)
-f = open(folder+"/"+z+".dat","w+")
-for i in range(len(model_names)):
-    index = model_names[i]
-    print >> f,sfr_type0[index], sfr_type1[index],sfr_type2[index]
-f.close()
