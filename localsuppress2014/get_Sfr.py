@@ -28,7 +28,7 @@ def loadfilter(structfile):
     return (filter,dt)
 
 
-
+pylab.rc('text', usetex=True)
 #z = sys.argv[1]
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
