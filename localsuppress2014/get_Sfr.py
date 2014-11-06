@@ -76,6 +76,8 @@ gal_type0 = {}
 gal_type1 = {}
 gal_type2 = {}
 
+print gal
+
 for i in range(len(model_names)):
     index = model_names[i]
     gal_type0[index] = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
