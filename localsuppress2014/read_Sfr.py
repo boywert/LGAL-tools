@@ -41,8 +41,8 @@ ax = fig.add_subplot(111)
 for i in range(len(model_names)):
     index = model_names[i]
     ax.plot(zlist,sfr_t0[index],color[i]+pattern[0],label=model_labels[i]+",Type 0")
-    ax.plot(zlist,sfr_t1[index],color[i]+pattern[1],label=model_labels[i]+",Type 1")
-    ax.plot(zlist,sfr_t2[index],color[i]+pattern[2],label=model_labels[i]+",Type 2")
+    #ax.plot(zlist,sfr_t1[index],color[i]+pattern[1],label=model_labels[i]+",Type 1")
+    #ax.plot(zlist,sfr_t2[index],color[i]+pattern[2],label=model_labels[i]+",Type 2")
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
 ax.set_yscale("log")
