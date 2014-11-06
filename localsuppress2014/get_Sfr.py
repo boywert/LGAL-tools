@@ -98,4 +98,4 @@ f = open(folder+"/"+z+".dat","w+")
 for i in range(len(model_names)):
     index = model_names[i]
     print >> f,sfr_type0[index], sfr_type1[index],sfr_type2[index]
-    f.close()
+f.close()
