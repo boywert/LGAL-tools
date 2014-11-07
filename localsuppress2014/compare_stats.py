@@ -21,6 +21,9 @@ def loadfilter(structfile):
     filter['Sfr'] = True
     filter['DiskMass'] = True
     filter['BulgeMass'] = True
+    filter['ICM'] = True
+    filter['HotGas'] = True
+    filter['ColdGas'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -31,7 +34,7 @@ z = '6.00'
 
 file_prefix = "SA_z"+z
 firstfile = 0
-lastfile = 127
+lastfile = 0
 config = {}
 model_names = ["okamoto","noreionization","patchy_I"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_001/sams/5500.00/LGalaxyStruct.py"]
