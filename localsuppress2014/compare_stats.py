@@ -18,6 +18,7 @@ def loadfilter(structfile):
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
     filter['Type'] = True
+    filter['HaloIndex'] = True
     filter['Sfr'] = True
     filter['DiskMass'] = True
     filter['BulgeMass'] = True
