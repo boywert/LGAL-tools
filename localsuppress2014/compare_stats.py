@@ -28,6 +28,7 @@ def loadfilter(structfile):
     filter['sfh_numbins'] = True
     filter['sfh_BulgeMass'] = True
     filter['sfh_DiskMass'] = True
+    filter['GasDiskRadius'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
