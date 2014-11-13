@@ -1,6 +1,6 @@
 from mass_fn import *
 import matplotlib
-#matplotlib.use('Agg') 
+matplotlib.use('Agg') 
 import pylab
 import sys
 import os
@@ -47,10 +47,9 @@ file_prefix = "SA_"
 firstfile = 0
 lastfile = 0
 config = {}
-#model_names = ["okamoto","noreionization","patchy_I"]
-model_names = ["okamoto","patchy_I"]
+model_names = ["okamoto","noreionization","patchy_I"]
 #struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/lgaltree/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/lgaltree/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/lgaltree/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -58,11 +57,9 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-#model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_labels = ["Okamoto et al. (2008)","Patchy Reionization (Gradual)"]
-#model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/lgaltree/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/lgaltree","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
-model_plot_patterns = ['r--',"g--"]
+model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/lgaltree","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/lgaltree","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+model_plot_patterns = ['r--',"g--","b--"]
 
 
 
@@ -139,7 +136,7 @@ ax.set_xlabel(r"$\log(SFR)$")
 ax.set_ylabel("snap")
 fig.suptitle("SFR file "+str(firstfile)+"-"+str(lastfile))
 
-fig.show()
+#fig.show()
 fig.savefig('cmp_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
 #pylab.close(fig)
 
