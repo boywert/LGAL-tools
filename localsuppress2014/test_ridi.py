@@ -48,9 +48,9 @@ firstfile = 100
 lastfile = 100
 config = {}
 #model_names = ["okamoto","noreionization","patchy_I"]
-model_names = ["patchy_I"]
+model_names = ["okamoto","patchy_I"]
 #struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -59,10 +59,10 @@ for i in range(len(struct_file)):
     dt.append(t)
 
 #model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_labels = ["Patchy Reionization (Gradual)"]
+model_labels = ["Okamoto et al. (2008)","Patchy Reionization (Gradual)"]
 #model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
-model_plot_patterns = ['r--']
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+model_plot_patterns = ['r--',"g--"]
 
 
 
@@ -89,17 +89,20 @@ for i in range(len(model_names)):
         # sfr[index] = sfr_fn(gal[index])
 
 
-id = 2
-nextid = id
-while nextid > -1:
-    print id
-    print gal["patchy_I"][id]["Sfr"],gal["patchy_I"][id]["ColdGas"],gal["patchy_I"][id]["HotGas"],gal["patchy_I"][id]["EjectedMass"] 
-    nextgalid = gal["patchy_I"][id]["FirstProgGal"]
-    nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0]
-    if len(nextid) > 0:
-        id = nextid[0]
-    else:
-        id = -1
+for i in range(len(model_names)):
+    index = model_names[i]
+    haloid = 100000000000002
+    id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
+    nextid = id
+    while nextid > -1:
+        print id
+        print gal["patchy_I"][id]["Sfr"],gal["patchy_I"][id]["ColdGas"],gal["patchy_I"][id]["HotGas"],gal["patchy_I"][id]["EjectedMass"] 
+        nextgalid = gal["patchy_I"][id]["FirstProgGal"]
+        nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0]
+        if len(nextid) > 0:
+            id = nextid[0]
+        else:
+            id = -1
     
 
 # for i in range(len(model_names)):
@@ -145,18 +148,18 @@ while nextid > -1:
 
 
 
-gal_type0 = {}
-gal_type1 = {}
-gal_type2 = {}
+# gal_type0 = {}
+# gal_type1 = {}
+# gal_type2 = {}
 
-for i in range(len(model_names)):
-    index = model_names[i]
-    gal_type0[index] = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
-    gal_type1[index] = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
-    gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
+# for i in range(len(model_names)):
+#     index = model_names[i]
+#     gal_type0[index] = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
+#     gal_type1[index] = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
+#     gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
 
 
-# star_type0 = {}
+# # star_type0 = {}
 # for i in range(len(model_names)):
 #     index = model_names[i]
 #     star_type0[index] = stellar_mass_fn(gal_type0[index],1.,1.e10,50)
