@@ -123,7 +123,10 @@ ax = fig.add_subplot(111)
 
 for i in range(len(model_names)):
    index = model_names[i]
-   ax.plot(cmp_sfr[index][:][0],cmp_sfr[index][:][1],model_plot_patterns[i],label=model_labels[i])
+   x = cmp_sfr[index][:][0]
+   y = cmp_sfr[index][:][1]
+   print x,y
+   ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
 #ax.set_xscale("log")
 #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
