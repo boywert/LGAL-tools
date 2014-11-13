@@ -92,7 +92,7 @@ cmp_sfr = {}
 for i in range(len(model_names)):
     index = model_names[i]
     cmp_sfr[index] = []
-    haloid = 100000000000001
+    haloid = 100000000000000
     id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
     nextid = id
     while nextid > -1:
