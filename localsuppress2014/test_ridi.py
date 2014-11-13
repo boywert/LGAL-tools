@@ -47,9 +47,10 @@ file_prefix = "SA_"
 firstfile = 0
 lastfile = 0
 config = {}
-model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
-
+#model_names = ["okamoto","noreionization","patchy_I"]
+model_names = ["patchy_I"]
+#struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -57,8 +58,10 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+#model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+model_labels = ["Patchy Reionization (Gradual)"]
+#model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
 try:
