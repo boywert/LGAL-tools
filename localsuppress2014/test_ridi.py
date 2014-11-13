@@ -88,15 +88,17 @@ for i in range(len(model_names)):
         # star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         # sfr[index] = sfr_fn(gal[index])
 
-
+cmp_sfr = {}
 for i in range(len(model_names)):
     index = model_names[i]
+    cmp_sfr[index] = []
     haloid = 100000000000002
     id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
     nextid = id
     while nextid > -1:
-        print id
-        print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
+        #print id
+        #print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
+        cmp_sfr[index].append(gal[index][id]["Sfr"])
         nextgalid = gal[index][id]["FirstProgGal"]
         nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
@@ -104,7 +106,7 @@ for i in range(len(model_names)):
         else:
             id = -1
     
-
+print cmp_sfr
 # for i in range(len(model_names)):
 #     index = model_names[i]
 #     print nTrees[index],nGals[index],totsfr[index]
