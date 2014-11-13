@@ -1,6 +1,6 @@
 from mass_fn import *
 import matplotlib
-matplotlib.use('Agg') 
+#matplotlib.use('Agg') 
 import pylab
 import sys
 import os
@@ -139,7 +139,7 @@ ax.set_xlabel(r"$\log(SFR)$")
 ax.set_ylabel("snap")
 fig.suptitle("SFR file "+str(firstfile)+"-"+str(lastfile))
 
-#fig.show()
+fig.show()
 fig.savefig('cmp_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
 #pylab.close(fig)
 
