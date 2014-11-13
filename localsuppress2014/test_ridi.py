@@ -43,7 +43,7 @@ def loadfilter(structfile):
 z = '6.00'
 
 file_prefix = "SA_z"+z
-file_prefix = "SA_"
+file_prefix = "SA_galtree_"
 firstfile = 0
 lastfile = 0
 config = {}
