@@ -123,8 +123,8 @@ ax = fig.add_subplot(111)
 
 for i in range(len(model_names)):
    index = model_names[i]
-   x = cmp_sfr[index][:][0]
-   y = cmp_sfr[index][:][1]
+   x = cmp_sfr[index][:,0]
+   y = cmp_sfr[index][:,1]
    print x,y
    ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
