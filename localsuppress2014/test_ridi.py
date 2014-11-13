@@ -127,7 +127,7 @@ for i in range(len(model_names)):
     y = []
     for j in cmp_sfr[index]:
         x.append(j[0])
-        y.append(1.+j[1])
+        y.append(j[1])
     print x,y
     ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
@@ -136,7 +136,7 @@ leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size
 leg.get_frame().set_linewidth(0)
 
 ax.set_xlabel(r"$\log(SFR)$")
-ax.set_ylabel(r"$\log(SFR)$")
+ax.set_ylabel("snap")
 fig.suptitle("SFR file "+str(firstfile)+"-"+str(lastfile))
 
 #fig.show()
