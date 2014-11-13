@@ -96,9 +96,9 @@ for i in range(len(model_names)):
     nextid = id
     while nextid > -1:
         print id
-        print gal["patchy_I"][id]["Sfr"],gal["patchy_I"][id]["ColdGas"],gal["patchy_I"][id]["HotGas"],gal["patchy_I"][id]["EjectedMass"] 
-        nextgalid = gal["patchy_I"][id]["FirstProgGal"]
-        nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0]
+        print gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
+        nextgalid = gal[index][id]["FirstProgGal"]
+        nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
             id = nextid[0]
         else:
