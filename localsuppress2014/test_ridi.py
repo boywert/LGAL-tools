@@ -107,6 +107,8 @@ for i in range(len(model_names)):
             id = -1
     
 print cmp_sfr
+for i in range(len(cmp_sfr['okamoto'])):
+    print i,cmp_sfr['okamoto'][i],cmp_sfr['patchy_I'][i]
 # for i in range(len(model_names)):
 #     index = model_names[i]
 #     print nTrees[index],nGals[index],totsfr[index]
