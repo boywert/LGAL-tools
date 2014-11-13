@@ -44,8 +44,8 @@ z = '6.00'
 
 file_prefix = "SA_z"+z
 file_prefix = "SA_"
-firstfile = 10
-lastfile = 10
+firstfile = 100
+lastfile = 100
 config = {}
 #model_names = ["okamoto","noreionization","patchy_I"]
 model_names = ["patchy_I"]
