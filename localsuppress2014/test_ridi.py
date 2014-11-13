@@ -92,7 +92,7 @@ for i in range(len(model_names)):
 gal_type0 = {}
 for i in range(len(model_names)):
     index = model_names[i]
-    gal_type0[index] = gal[index][numpy.where((gal[index]["Type"] == 0) && (gal[index]["SnapNum"] == 75))[0]]
+    gal_type0[index] = gal[index][numpy.where((gal[index]["Type"] == 0) & (gal[index]["SnapNum"] == 75))[0]]
 
 cmp_sfr = {}
 
