@@ -117,6 +117,27 @@ for i in range(len(model_names)):
 print cmp_sfr
 for i in range(len(cmp_sfr['okamoto'])):
     print i,cmp_sfr['okamoto'][i],cmp_sfr['patchy_I'][i]
+
+fig = pylab.figure()
+ax = fig.add_subplot(111)
+
+#for i in range(len(model_names)):
+#    index = model_names[i]
+
+ax.scatter(cmp_sfr["patchy_I"][:][1],cmp_sfr["okamoto"][:][1])
+ax.set_yscale("log")
+ax.set_xscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
+
+ax.set_xlabel(r"$\log(SFR)$")
+ax.set_ylabel(r"$\log(SFR)$")
+fig.suptitle("SFR file "+str(firstfile)+"-"+str(lastfile))
+
+fig.show()
+#fig.savefig('reion_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+#pylab.close(fig)
+
 # for i in range(len(model_names)):
 #     index = model_names[i]
 #     print nTrees[index],nGals[index],totsfr[index]
