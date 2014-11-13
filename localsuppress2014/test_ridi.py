@@ -106,7 +106,7 @@ for i in range(len(model_names)):
     while nextid > -1:
         #print id
         #print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
-        cmp_sfr[index].append([gal[index][id]["HaloID"],gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["BulgeMass"]+gal[index][id]["DiskMass"]])
+        cmp_sfr[index].append([gal[index][id]["SnapNum"],gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["BulgeMass"]+gal[index][id]["DiskMass"]])
         nextgalid = gal[index][id]["FirstProgGal"]
         nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
@@ -121,12 +121,11 @@ for i in range(len(cmp_sfr['okamoto'])):
 fig = pylab.figure()
 ax = fig.add_subplot(111)
 
-#for i in range(len(model_names)):
-#    index = model_names[i]
-
-ax.scatter(cmp_sfr["patchy_I"][:][1],cmp_sfr["okamoto"][:][1])
+for i in range(len(model_names)):
+   index = model_names[i]
+   ax.plot(cmp_sfr[index][:][0],cmp_sfr[index][:][1],model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
-ax.set_xscale("log")
+#ax.set_xscale("log")
 #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 #leg.get_frame().set_linewidth(0)
 
