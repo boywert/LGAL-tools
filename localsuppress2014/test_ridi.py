@@ -106,7 +106,7 @@ for i in range(len(model_names)):
     while nextid > -1:
         #print id
         #print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
-        cmp_sfr[index].append([gal[index][id]["HaloID"],gal[index][id]["Sfr"]])
+        cmp_sfr[index].append([gal[index][id]["HaloID"],gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["BulgeMass"]+gal[index][id]["DiskMass"]])
         nextgalid = gal[index][id]["FirstProgGal"]
         nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
