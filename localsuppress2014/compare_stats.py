@@ -17,9 +17,6 @@ def loadfilter(structfile):
     os.system("rm -f ../tmp/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
-    for index in filter.keys():
-        filter[index] = True
-
     filter['Type'] = True
     filter['HaloIndex'] = True
     filter['Sfr'] = True
@@ -43,12 +40,11 @@ def loadfilter(structfile):
 z = '6.00'
 
 file_prefix = "SA_z"+z
-file_prefix = "SA_"
 firstfile = 0
 lastfile = 0
 config = {}
 model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py"]
 
 dt = []
 filter = []
@@ -58,7 +54,7 @@ for i in range(len(struct_file)):
     dt.append(t)
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
 try:
@@ -78,51 +74,51 @@ except NameError:
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
-        (nGals[index],gal[index]) = read_lgal.readsnap_lgaltree_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        # totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
-        # star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
-        # sfr[index] = sfr_fn(gal[index])
+        (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+        totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
+        star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
+        sfr[index] = sfr_fn(gal[index])
 
-# for i in range(len(model_names)):
-#     index = model_names[i]
-#     print nTrees[index],nGals[index],totsfr[index]
+for i in range(len(model_names)):
+    index = model_names[i]
+    print nTrees[index],nGals[index],totsfr[index]
 
-# pylab.rc('text', usetex=True)
+pylab.rc('text', usetex=True)
 
-# fig = pylab.figure()
-# ax = fig.add_subplot(111)
+fig = pylab.figure()
+ax = fig.add_subplot(111)
 
-# for i in range(len(model_names)):
-#     index = model_names[i]
-#     ax.plot(star[index][0],star[index][1],model_plot_patterns[i],label=model_labels[i])
-# ax.set_yscale("log")
-# leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-# leg.get_frame().set_linewidth(0)
+for i in range(len(model_names)):
+    index = model_names[i]
+    ax.plot(star[index][0],star[index][1],model_plot_patterns[i],label=model_labels[i])
+ax.set_yscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
 
-# ax.set_xlabel(r"$\log(M/M_\odot h)$")
-# ax.set_ylabel(r"$N$")
-# fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
+ax.set_xlabel(r"$\log(M/M_\odot h)$")
+ax.set_ylabel(r"$N$")
+fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
 
 
-# fig.savefig('reion_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-# pylab.close(fig)
+fig.savefig('reion_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
 
-# fig = pylab.figure()
-# ax = fig.add_subplot(111)
+fig = pylab.figure()
+ax = fig.add_subplot(111)
 
-# for i in range(len(model_names)):
-#     index = model_names[i]
-#     ax.plot(sfr[index][0],sfr[index][1],model_plot_patterns[i],label=model_labels[i])
-# ax.set_yscale("log")
-# leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-# leg.get_frame().set_linewidth(0)
+for i in range(len(model_names)):
+    index = model_names[i]
+    ax.plot(sfr[index][0],sfr[index][1],model_plot_patterns[i],label=model_labels[i])
+ax.set_yscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
 
-# ax.set_xlabel(r"$\log(Sfr/M_\odot yrs)$")
-# ax.set_ylabel(r"$N$")
-# fig.suptitle("Stellar formation rate z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
+ax.set_xlabel(r"$\log(Sfr/M_\odot yrs)$")
+ax.set_ylabel(r"$N$")
+fig.suptitle("Stellar formation rate z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
 
-# fig.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-# pylab.close(fig)
+fig.savefig('reion_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
 
 
 
@@ -137,43 +133,43 @@ for i in range(len(model_names)):
     gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
 
 
-# star_type0 = {}
-# for i in range(len(model_names)):
-#     index = model_names[i]
-#     star_type0[index] = stellar_mass_fn(gal_type0[index],1.,1.e10,50)
+star_type0 = {}
+for i in range(len(model_names)):
+    index = model_names[i]
+    star_type0[index] = stellar_mass_fn(gal_type0[index],1.,1.e10,50)
 
-# fig = pylab.figure()
-# ax = fig.add_subplot(111)
+fig = pylab.figure()
+ax = fig.add_subplot(111)
 
-# for i in range(len(model_names)):
-#     index = model_names[i]
-#     ax.plot(star_type0[index][0],star_type0[index][1],model_plot_patterns[i],label=model_labels[i])
-# ax.set_yscale("log")
-# leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-# leg.get_frame().set_linewidth(0)
-# ax.set_xlabel(r"$\log(M/M_\odot h)$")
-# ax.set_ylabel(r"$N$")
-# fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
-# fig.savefig('star_type0_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-# pylab.close(fig)
+for i in range(len(model_names)):
+    index = model_names[i]
+    ax.plot(star_type0[index][0],star_type0[index][1],model_plot_patterns[i],label=model_labels[i])
+ax.set_yscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
+ax.set_xlabel(r"$\log(M/M_\odot h)$")
+ax.set_ylabel(r"$N$")
+fig.suptitle("Stellar Mass Function z = "+z+" file "+str(firstfile)+"-"+str(lastfile))
+fig.savefig('star_type0_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
 
     
-# # histogram tree by tree since the number of trees must be identcal
-# try:
-#     sfr_tree
-# except NameError:
-#     sfr_tree = {}
+# histogram tree by tree since the number of trees must be identcal
+try:
+    sfr_tree
+except NameError:
+    sfr_tree = {}
 
-# for i in range(len(model_names)):
-#     index = model_names[i]
-#     if not index in sfr_tree:
-#         cumsumntrees = numpy.cumsum(nTreeGals[index])
-#         sfr_tree[index] = numpy.zeros(nTrees[index],dtype=numpy.float64)
-#         for j in range(nTrees[index]):
-#             sfr_tree[index][j] = numpy.sum(gal[index]["Sfr"][cumsumntrees[j]:cumsumntrees[j]+nTreeGals[index][j]],dtype=numpy.float64)
-#         a = numpy.where(sfr_tree[index] > 0.)[0]
-#         print len(a)
-#         print sfr_tree[index][a]
+for i in range(len(model_names)):
+    index = model_names[i]
+    if not index in sfr_tree:
+        cumsumntrees = numpy.cumsum(nTreeGals[index])
+        sfr_tree[index] = numpy.zeros(nTrees[index],dtype=numpy.float64)
+        for j in range(nTrees[index]):
+            sfr_tree[index][j] = numpy.sum(gal[index]["Sfr"][cumsumntrees[j]:cumsumntrees[j]+nTreeGals[index][j]],dtype=numpy.float64)
+        a = numpy.where(sfr_tree[index] > 0.)[0]
+        print len(a)
+        print sfr_tree[index][a]
 
 # for i in range(len(model_names)): 
 #     model_i = model_names[i]
