@@ -62,7 +62,9 @@ for i in range(len(struct_file)):
 model_labels = ["Patchy Reionization (Gradual)"]
 #model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
 model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
-model_plot_patterns = ['r--','g--','b--']
+model_plot_patterns = ['r--']
+
+
 
 try:
     gal
@@ -85,6 +87,15 @@ for i in range(len(model_names)):
         # totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
         # star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         # sfr[index] = sfr_fn(gal[index])
+
+
+id = 2
+nextid = id
+while nextid > -1:
+    print gal["patchy_I"][id]
+    nextgalid = gal["patchy_I"][id]["NextProgGal"]
+    nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0]
+    
 
 # for i in range(len(model_names)):
 #     index = model_names[i]
