@@ -3,7 +3,6 @@ import numpy
 import os
 import sys
 
-
 def read_lgaltree_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose):
     nHalos = 0
     filter_tuple = []
