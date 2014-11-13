@@ -92,11 +92,14 @@ for i in range(len(model_names)):
 id = 2
 nextid = id
 while nextid > -1:
+    print id
     #print gal["patchy_I"][id]
     nextgalid = gal["patchy_I"][id]["FirstProgGal"]
-    nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0][0]
-    print nextid
-    id = nextid
+    nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0]
+    if len(nextid) > 0:
+        id = nextid[0]
+    else:
+        id = -1
     
 
 # for i in range(len(model_names)):
