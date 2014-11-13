@@ -43,8 +43,8 @@ def loadfilter(structfile):
 z = '6.00'
 
 file_prefix = "SA_z"+z
-firstfile = 0
-lastfile = 0
+firstfile = 100
+lastfile = 100
 config = {}
 model_names = ["okamoto","noreionization","patchy_I"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py"]
