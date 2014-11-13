@@ -93,7 +93,7 @@ id = 2
 nextid = id
 while nextid > -1:
     print id
-    #print gal["patchy_I"][id]
+    print gal["patchy_I"][id]["Sfr"],gal["patchy_I"][id]["ColdGas"],gal["patchy_I"][id]["HotGas"],gal["patchy_I"][id]["EjectedMass"] 
     nextgalid = gal["patchy_I"][id]["FirstProgGal"]
     nextid = numpy.where(gal["patchy_I"]["GalID"] == nextgalid)[0]
     if len(nextid) > 0:
