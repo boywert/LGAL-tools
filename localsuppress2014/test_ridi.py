@@ -44,8 +44,8 @@ z = '6.00'
 
 file_prefix = "SA_z"+z
 file_prefix = "SA_"
-firstfile = 100
-lastfile = 100
+firstfile = 0
+lastfile = 0
 config = {}
 #model_names = ["okamoto","noreionization","patchy_I"]
 model_names = ["okamoto","patchy_I"]
@@ -99,7 +99,7 @@ cmp_sfr = {}
 for i in range(len(model_names)):
     index = model_names[i]
     cmp_sfr[index] = []
-    haloid = 100000000000067
+    haloid = 100000000000001
 
     id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
     nextid = id
