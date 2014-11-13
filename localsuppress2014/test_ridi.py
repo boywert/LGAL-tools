@@ -96,7 +96,7 @@ for i in range(len(model_names)):
     nextid = id
     while nextid > -1:
         print id
-        print gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
+        print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
         nextgalid = gal[index][id]["FirstProgGal"]
         nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
