@@ -134,8 +134,8 @@ ax.set_xlabel(r"$\log(SFR)$")
 ax.set_ylabel(r"$\log(SFR)$")
 fig.suptitle("SFR file "+str(firstfile)+"-"+str(lastfile))
 
-fig.show()
-#fig.savefig('reion_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+#fig.show()
+fig.savefig('cmp_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
 #pylab.close(fig)
 
 # for i in range(len(model_names)):
