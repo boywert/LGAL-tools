@@ -17,8 +17,8 @@ def loadfilter(structfile):
     os.system("rm -f ../tmp/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
-    for index in filter:
-        index = True
+    for index in filter.keys():
+        filter[index] = True
 
     filter['Type'] = True
     filter['HaloIndex'] = True
