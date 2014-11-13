@@ -44,12 +44,13 @@ z = '6.00'
 
 file_prefix = "SA_z"+z
 file_prefix = "SA_"
-firstfile = 0
-lastfile = 0
+firstfile = 100
+lastfile = 100
 config = {}
-model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
-
+#model_names = ["okamoto","noreionization","patchy_I"]
+model_names = ["okamoto","patchy_I"]
+#struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py"]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -57,9 +58,13 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
-model_plot_patterns = ['r--','g--','b--']
+#model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+model_labels = ["Okamoto et al. (2008)","Patchy Reionization (Gradual)"]
+#model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/"]
+model_plot_patterns = ['r--',"g--"]
+
+
 
 try:
     gal
@@ -78,11 +83,33 @@ except NameError:
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
-        (nGals[index],gal[index]) = read_lgal.readsnap_lgaltree_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+        (nGals[index],gal[index]) = read_lgal.read_lgaltree_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         # totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
         # star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         # sfr[index] = sfr_fn(gal[index])
 
+cmp_sfr = {}
+
+for i in range(len(model_names)):
+    index = model_names[i]
+    cmp_sfr[index] = []
+    haloid = 100000000000067
+    id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
+    nextid = id
+    while nextid > -1:
+        #print id
+        #print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
+        cmp_sfr[index].append([gal[index][id]["HaloID"],gal[index][id]["Sfr"]])
+        nextgalid = gal[index][id]["FirstProgGal"]
+        nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
+        if len(nextid) > 0:
+            id = nextid[0]
+        else:
+            id = -1
+    
+print cmp_sfr
+for i in range(len(cmp_sfr['okamoto'])):
+    print i,cmp_sfr['okamoto'][i],cmp_sfr['patchy_I'][i]
 # for i in range(len(model_names)):
 #     index = model_names[i]
 #     print nTrees[index],nGals[index],totsfr[index]
@@ -126,18 +153,18 @@ for i in range(len(model_names)):
 
 
 
-gal_type0 = {}
-gal_type1 = {}
-gal_type2 = {}
+# gal_type0 = {}
+# gal_type1 = {}
+# gal_type2 = {}
 
-for i in range(len(model_names)):
-    index = model_names[i]
-    gal_type0[index] = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
-    gal_type1[index] = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
-    gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
+# for i in range(len(model_names)):
+#     index = model_names[i]
+#     gal_type0[index] = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
+#     gal_type1[index] = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
+#     gal_type2[index] = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
 
 
-# star_type0 = {}
+# # star_type0 = {}
 # for i in range(len(model_names)):
 #     index = model_names[i]
 #     star_type0[index] = stellar_mass_fn(gal_type0[index],1.,1.e10,50)
