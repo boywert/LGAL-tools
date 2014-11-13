@@ -80,6 +80,7 @@ except NameError:
     #Blackhole = {}
     sfr = {}
 
+
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
@@ -87,6 +88,11 @@ for i in range(len(model_names)):
         # totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
         # star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
         # sfr[index] = sfr_fn(gal[index])
+
+gal_type0 = {}
+for i in range(len(model_names)):
+    index = model_names[i]
+    gal_type0[index] = gal[index][numpy.where((gal[index]["Type"] == 0) && (gal[index]["SnapNum"] == 75))[0]]
 
 cmp_sfr = {}
 
