@@ -96,7 +96,7 @@ cmp_sfr = {}
 for i in range(len(model_names)):
     index = model_names[i]
     cmp_sfr[index] = []
-    haloid = 50
+    haloid = 54
 
     id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
     nextid = id
