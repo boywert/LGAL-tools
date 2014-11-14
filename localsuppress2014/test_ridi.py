@@ -124,7 +124,7 @@ for i in range(len(model_names)):
     y = []
     for j in cmp_sfr[index]:
         x.append(j[0])
-        y.append(j[3])
+        y.append(j[1])
     print x,y
     ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
