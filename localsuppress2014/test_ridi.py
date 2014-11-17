@@ -104,7 +104,7 @@ for i in range(len(model_names)):
         #print id
         #print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
         cmp_sfr[index].append([gal[index][id]["SnapNum"],gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["BulgeMass"]+gal[index][id]["DiskMass"]])
-        print cmp_sfr[index]
+        #print cmp_sfr[index]
         nextgalid = gal[index][id]["FirstProgGal"]
         nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
@@ -136,10 +136,81 @@ leg.get_frame().set_linewidth(0)
 ax.set_xlabel(r"$\log(SFR)$")
 ax.set_ylabel("snap")
 fig.suptitle("SFR file "+str(firstfile)+"-"+str(lastfile))
-
-#fig.show()
 fig.savefig('cmp_sfr_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
-#pylab.close(fig)
+pylab.close(fig)
+
+
+fig = pylab.figure()
+ax = fig.add_subplot(111)
+
+for i in range(len(model_names)):
+    index = model_names[i]
+    x = []
+    y = []
+    for j in cmp_sfr[index]:
+        x.append(j[0])
+        y.append(j[2])
+    print x,y
+    ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
+ax.set_yscale("log")
+#ax.set_xscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
+
+ax.set_xlabel(r"$\log(SFR)$")
+ax.set_ylabel("snap")
+fig.suptitle("Cold gas file "+str(firstfile)+"-"+str(lastfile))
+fig.savefig('cmp_coldgas_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
+
+
+fig = pylab.figure()
+ax = fig.add_subplot(111)
+
+for i in range(len(model_names)):
+    index = model_names[i]
+    x = []
+    y = []
+    for j in cmp_sfr[index]:
+        x.append(j[0])
+        y.append(j[3])
+    print x,y
+    ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
+ax.set_yscale("log")
+#ax.set_xscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
+
+ax.set_xlabel(r"$\log(SFR)$")
+ax.set_ylabel("snap")
+fig.suptitle("Hotgas file "+str(firstfile)+"-"+str(lastfile))
+fig.savefig('cmp_hotgas_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
+
+
+fig = pylab.figure()
+ax = fig.add_subplot(111)
+
+for i in range(len(model_names)):
+    index = model_names[i]
+    x = []
+    y = []
+    for j in cmp_sfr[index]:
+        x.append(j[0])
+        y.append(j[4])
+    print x,y
+    ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
+ax.set_yscale("log")
+#ax.set_xscale("log")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+leg.get_frame().set_linewidth(0)
+
+ax.set_xlabel(r"$\log(SFR)$")
+ax.set_ylabel("snap")
+fig.suptitle("Star file "+str(firstfile)+"-"+str(lastfile))
+fig.savefig('cmp_star_'+str(firstfile)+'-'+str(lastfile)+'_'+file_prefix+'.pdf',bbox_inches='tight')
+pylab.close(fig)
+
 
 # for i in range(len(model_names)):
 #     index = model_names[i]
