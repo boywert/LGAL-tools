@@ -96,7 +96,7 @@ cmp_sfr = {}
 for i in range(len(model_names)):
     index = model_names[i]
     cmp_sfr[index] = []
-    haloid = 106
+    haloid = 65238
 
     id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
     nextid = id
@@ -126,7 +126,7 @@ for i in range(len(model_names)):
     for j in cmp_sfr[index]:
         x.append(j[0])
         y.append(j[1])
-    print x,y
+    #print x,y
     ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
 #ax.set_xscale("log")
@@ -150,7 +150,7 @@ for i in range(len(model_names)):
     for j in cmp_sfr[index]:
         x.append(j[0])
         y.append(j[2])
-    print x,y
+    #print x,y
     ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
 #ax.set_xscale("log")
@@ -174,7 +174,7 @@ for i in range(len(model_names)):
     for j in cmp_sfr[index]:
         x.append(j[0])
         y.append(j[3])
-    print x,y
+    #print x,y
     ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
 #ax.set_xscale("log")
@@ -198,7 +198,7 @@ for i in range(len(model_names)):
     for j in cmp_sfr[index]:
         x.append(j[0])
         y.append(j[4])
-    print x,y
+    #print x,y
     ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
 ax.set_yscale("log")
 #ax.set_xscale("log")
