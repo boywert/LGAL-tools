@@ -93,7 +93,9 @@ for i in range(len(model_names)):
     gal_type0[index] = gal[index][numpy.where((gal[index]["Type"] == 0) & (gal[index]["SnapNum"] == 75))[0]]
 
 for i in range(76):
-    gal_snap[index] = gal[index][numpy.where((gal[index]["SnapNum"] == i))[0]]
+    for j in range(len(model_names)):
+        index = model_names[j]
+        gal_snap[index] = gal[index][numpy.where((gal[index]["SnapNum"] == i))[0]]
     print i, numpy.sum(gal_snap[model_names[0]]["Sfr"], dtype=numpy.float64), numpy.sum(gal_snap[model_names[2]]["Sfr"], dtype=numpy.float64), numpy.sum(gal_snap[model_names[2]]["Sfr"], dtype=numpy.float64)
 
 for i in range(len(model_names)):
