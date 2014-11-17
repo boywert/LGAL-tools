@@ -96,7 +96,7 @@ cmp_sfr = {}
 for i in range(len(model_names)):
     index = model_names[i]
     cmp_sfr[index] = []
-    haloid = 54
+    haloid = 106
 
     id = numpy.where(gal[index]["HaloID"] == haloid)[0][0]
     nextid = id
@@ -104,6 +104,7 @@ for i in range(len(model_names)):
         #print id
         #print index,gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["EjectedMass"] 
         cmp_sfr[index].append([gal[index][id]["SnapNum"],gal[index][id]["Sfr"],gal[index][id]["ColdGas"],gal[index][id]["HotGas"],gal[index][id]["BulgeMass"]+gal[index][id]["DiskMass"]])
+        print cmp_sfr[index]
         nextgalid = gal[index][id]["FirstProgGal"]
         nextid = numpy.where(gal[index]["GalID"] == nextgalid)[0]
         if len(nextid) > 0:
