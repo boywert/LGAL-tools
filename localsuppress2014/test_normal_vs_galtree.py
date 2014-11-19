@@ -40,14 +40,22 @@ def loadfilter(structfile):
 firstfile = 1
 lastfile = 1
 # read galtree
-
+filelist = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
+zlist = open(filelist,"r").readlines()
 (f1,t1) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py")
 (nGals_gt,galtree) = read_lgal.read_lgaltree_advance("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/","SA_",firstfile,lastfile,f1,t1,0)
+i = 0
+for z in zlist:
+    z = z.strip()
+    gal1 = galtree[numpy.where(galtree["SnapNum"] == i)[0]]
+    (f2,t2) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py")
+    (nTrees_g,nGals_g,nTreeGals_g,gal2) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/","SA_z"+z,firstfile,lastfile,f2,t2,0)
 
-gal1 = galtree[numpy.where(galtree["SnapNum"] == 75)[0]]
-(f2,t2) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py")
-(nTrees_g,nGals_g,nTreeGals_g,gal2) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/","SA_z6.00",firstfile,lastfile,f2,t2,0)
-
-
-
-
+    (f3,t3) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py")
+    (nTrees_g,nGals_g,nTreeGals_g,gal3) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","SA_z"+z,firstfile,lastfile,f3,t3,0)
+    
+    (f4,t4) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/sams/inputs/LGalaxyStruct.py")
+    (nTrees_g,nGals_g,nTreeGals_g,gal4) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","SA_z"+z,firstfile,lastfile,f4,t4,0)
+    i += 1
+    print numpy.sum(gal1["Sfr"],dtype=numpy.float64),numpy.sum(gal2["Sfr"],dtype=numpy.float64),numpy.sum(gal3["Sfr"],dtype=numpy.float64),numpy.sum(gal4["Sfr"],dtype=numpy.float64)
+    
