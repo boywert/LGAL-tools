@@ -54,7 +54,7 @@ for z in zlist:
     (f3,t3) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py")
     (nTrees_g,nGals_g,nTreeGals_g,gal3) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","SA_z"+z,firstfile,lastfile,f3,t3,0)
     
-    (f4,t4) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/sams/inputs/LGalaxyStruct.py")
+    (f4,t4) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py")
     (nTrees_g,nGals_g,nTreeGals_g,gal4) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","SA_z"+z,firstfile,lastfile,f4,t4,0)
     i += 1
     print numpy.sum(gal1["Sfr"],dtype=numpy.float64),numpy.sum(gal2["Sfr"],dtype=numpy.float64),numpy.sum(gal3["Sfr"],dtype=numpy.float64),numpy.sum(gal4["Sfr"],dtype=numpy.float64)
