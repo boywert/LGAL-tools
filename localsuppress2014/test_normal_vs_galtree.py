@@ -41,12 +41,14 @@ firstfile = 1
 lastfile = 1
 # read galtree
 filelist = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
-zlist = open(filelist,"r").readlines()
+zf = open(filelist,"r")
+zlist = zf.readlines()
 (f1,t1) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py")
 (nGals_gt,galtree) = read_lgal.read_lgaltree_advance("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/","SA_",firstfile,lastfile,f1,t1,0)
 i = 0
 for z in zlist:
     z = z.strip()
+    print z
     gal1 = galtree[numpy.where(galtree["SnapNum"] == i)[0]]
     (f2,t2) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py")
     (nTrees_g,nGals_g,nTreeGals_g,gal2) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/","SA_z"+z,firstfile,lastfile,f2,t2,0)
