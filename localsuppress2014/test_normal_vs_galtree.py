@@ -37,8 +37,8 @@ def loadfilter(structfile):
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
-firstfile = 10
-lastfile = 10
+firstfile = 0
+lastfile = 0
 # read galtree
 
 (f1,t1) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/fullgaltree/43000.00/LGalaxyStruct.py")
