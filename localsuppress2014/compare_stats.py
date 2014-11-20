@@ -76,6 +76,7 @@ except NameError:
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
+        print "reading",index
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         totsfr[index] = numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
         star[index] = stellar_mass_fn(gal[index],1.,1.e10,50)
