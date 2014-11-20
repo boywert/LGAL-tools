@@ -58,6 +58,6 @@ for z in zlist:
     # (f4,t4) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py")
     # (nTrees_g,nGals_g,nTreeGals_g,gal4) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","SA_z"+z,firstfile,lastfile,f4,t4,0)
     i += 1
-    print numpy.sum(gal1["Sfr"],dtype=numpy.float64),numpy.sum(gal2["Sfr"],dtype=numpy.float64),numpy.sum(gal3["Sfr"],dtype=numpy.float64)#,numpy.sum(gal4["Sfr"],dtype=numpy.float64)
+    print numpy.sum(gal1["DiskMass"],dtype=numpy.float64),numpy.sum(gal2["DiskMass"],dtype=numpy.float64),numpy.sum(gal3["DiskMass"],dtype=numpy.float64)#,numpy.sum(gal4["Sfr"],dtype=numpy.float64)
     print len(gal1),len(gal2),len(gal3)#,len(gal4)
     
