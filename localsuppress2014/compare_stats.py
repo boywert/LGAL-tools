@@ -38,8 +38,8 @@ def loadfilter(structfile):
     return (filter,dt)
 
 
-z = sys.argv[1]
-#z = '6.00'
+#z = sys.argv[1]
+z = '6.00'
 
 file_prefix = "SA_z"+z
 firstfile = 0
