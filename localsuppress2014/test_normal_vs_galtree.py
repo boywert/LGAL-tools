@@ -52,7 +52,7 @@ for z in zlist:
     gal1 = galtree[numpy.where(galtree["SnapNum"] == i)[0]]
     (f2,t2) = loadfilter("/mnt/lustre/scratch/cs390/codes/47Mpc/L-Galaxies_development/gal/LGalaxyStruct.py")
     (nTrees_g,nGals_g,nTreeGals_g,gal2) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","SA_z"+z,firstfile,lastfile,f2,t2,0)
-    print gal2["DiskMass"][numpy.where(gal2["Sfr"] > 100.)[0]]
+    print gal2["Sfr"][numpy.where(gal2["Sfr"] > 100.)[0]]
     # (f3,t3) = loadfilter("/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py")
     # (nTrees_g,nGals_g,nTreeGals_g,gal3) = read_lgal.readsnap_lgal_advance("/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","SA_z"+z,firstfile,lastfile,f3,t3,0)
     
