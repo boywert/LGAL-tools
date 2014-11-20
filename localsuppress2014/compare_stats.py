@@ -46,7 +46,7 @@ firstfile = 100
 lastfile = 100
 config = {}
 model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/codes/47Mpc/L-Galaxies_development/gal/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/codes/47Mpc/L-Galaxies_development/gal/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/codes/47Mpc/L-Galaxies_development/galnoxfrac/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/codes/47Mpc/L-Galaxies_development/galnoxfrac/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/LGalaxyStruct.py"]
 
 dt = []
 filter = []
