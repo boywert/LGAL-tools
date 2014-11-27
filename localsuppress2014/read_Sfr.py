@@ -47,6 +47,8 @@ for i in range(len(model_names)):
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
 ax.set_yscale("log")
+ax.set_ylabel(r"$SFR(M_\odot/year)$")
+ax.set_xlabel(r"$z$")
 fig.suptitle("SFR")
 fig.savefig("SFR_history.pdf",bbox_inches='tight')
 pylab.close(fig)
