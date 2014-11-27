@@ -40,7 +40,9 @@ fig = pylab.figure()
 ax = fig.add_subplot(111)
 for i in range(len(model_names)):
     index = model_names[i]
-    ax.plot(zlist,sfr_t0[index]+sfr_t1[index]+sfr_t2[index],color[i]+pattern[0],label=model_labels[i])
+    x = zlist
+    y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
+    ax.plot(x,y,color[i]+pattern[0],label=model_labels[i])
 
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
