@@ -1,11 +1,11 @@
 from mass_fn import *
-import matplotlib
-matplotlib.use('Agg') 
+#import matplotlib
+#matplotlib.use('Agg') 
 import pylab
 import sys
 import numpy
 import os
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
 
@@ -72,7 +72,6 @@ for i in range(len(model_names)):
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
 
-pylab.rc('text', usetex=True)
 
 
 gal_type0 = {}
