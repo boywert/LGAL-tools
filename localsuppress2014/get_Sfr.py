@@ -44,7 +44,7 @@ config = {}
 h0 = 0.7
 gadgetmass = 1.e10
 model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.0/inputs/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.00/LGalaxyStruct.py"]
 
 dt = []
 filter = []
