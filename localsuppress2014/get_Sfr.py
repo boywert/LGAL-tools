@@ -44,7 +44,7 @@ config = {}
 h0 = 0.7
 gadgetmass = 1.e10
 model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/codes/47Mpc/L-Galaxies_development/gal/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.0/inputs/LGalaxyStruct.py"]
 
 dt = []
 filter = []
@@ -53,8 +53,8 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-    model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_002/sams/43000.00/"]
+model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
 try:
