@@ -27,7 +27,7 @@ for i in range(len(model_names)):
     sfr_lm[index] = []
     sfr_hm[index] = []
 j = 0
-for z in zlist(0:len(zlist)-1):
+for z in zlist[0:len(zlist)-1]:
     z = z.strip()
     zlist[j] = float(z)
     file = folder+"/"+z+".dat"
