@@ -11,9 +11,9 @@ zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 folder = "sfr/"
 model_names = ["okamoto","noreionization","patchy_I"]
-model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+model_labels = ["AS","NS","LS"]
 color = ["r","g","b"]
-pattern = ["-","--","-."]
+pattern = [".","--","-."]
 sfr_t0 = {}
 sfr_t1 = {}
 sfr_t2 = {}
@@ -49,13 +49,11 @@ for i in range(len(model_names)):
     x = zlist
     y = numpy.array(sfr_lm[index])/47.**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,y,color[i]+pattern[0],label="low mass "+model_labels[i])
+    ax.plot(x,y,color[i]+pattern[0],label="LMACH"+model_labels[i])
     y = numpy.array(sfr_hm[index])/47.**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,y,color[i]+pattern[1],label="high mass "+model_labels[i])
-    y = (numpy.array(sfr_lm[index])+numpy.array(sfr_hm[index]))/47.**3
-    #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,y,color[i]+pattern[2],label="Total "+model_labels[i])
+    ax.plot(x,y,color[i]+pattern[1],label="HMACH-"+model_labels[i])
+  
 
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
