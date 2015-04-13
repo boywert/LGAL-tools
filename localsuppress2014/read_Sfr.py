@@ -13,7 +13,7 @@ folder = "sfr/"
 model_names = ["okamoto","noreionization","patchy_I"]
 model_labels = ["AS","NS","LS"]
 color = ["r","g","b"]
-pattern = [".","--","-."]
+pattern = ["..","--","-."]
 sfr_t0 = {}
 sfr_t1 = {}
 sfr_t2 = {}
@@ -58,6 +58,6 @@ for i in range(len(model_names)):
 leg = ax.legend(loc='best', handlelength = 9,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
 ax.set_ylabel(r"log$_{\mathrm{10}}$(SFRD)[$\mathrm{M_\odot yr^{-1} Mpc^{-3}}$]")
-ax.set_xlabel(r"$z$")
+ax.set_xlabel(r"z")
 fig.savefig("SFR_history.pdf",bbox_inches='tight')
 pylab.close(fig)
