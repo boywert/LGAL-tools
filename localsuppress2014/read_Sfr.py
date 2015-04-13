@@ -58,7 +58,7 @@ for i in range(len(model_names)):
 leg = ax.legend(loc='best', handlelength = 9,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
 ax.set_yscale("log")
-ax.set_ylabel(r"log(SFRD)[$\mathrm{M_\odot yr^{-1} Mpc^{-3}}$]")
+ax.set_ylabel(r"log(SFRD)[$\text{M}_\text{\odot} \text{yr}^{\text{-1}} \text{Mpc}^{\text{-3}}$]")
 ax.set_xlabel(r"$z$")
 fig.suptitle("SFR")
 fig.savefig("SFR_history.pdf",bbox_inches='tight')
