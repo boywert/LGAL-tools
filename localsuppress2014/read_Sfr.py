@@ -53,6 +53,9 @@ for i in range(len(model_names)):
     y = numpy.array(sfr_hm[index])/47.**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
     ax.plot(x,y,color[i]+pattern[1],label="high mass "+model_labels[i])
+    y = (numpy.array(sfr_lm[index])+numpy.array(sfr_hm[index]))/47.**3
+    #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
+    ax.plot(x,y,color[i]+pattern[2],label="Total "+model_labels[i])
 
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
