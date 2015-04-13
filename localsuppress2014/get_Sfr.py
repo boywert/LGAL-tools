@@ -54,7 +54,7 @@ for i in range(len(struct_file)):
     dt.append(t)
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.00/"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/inputs/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
 try:
@@ -90,9 +90,7 @@ for i in range(len(model_names)):
     gal_type1[index]  = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
     gal_type2[index]  = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
     gal_lomass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] < 0.1*h0)[0]]
-    print gal_lomass[index]
     gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1*h0)[0]]
-    print gal_himass[index]
 sfr_type0 = {}
 sfr_type1 = {}
 sfr_type2 = {}
@@ -112,7 +110,7 @@ f = open(folder+"/"+z+".dat","w+")
 print >> f,"#type0 type1 type2 Lo-Mass Hi-Mass"
 for i in range(len(model_names)):
     index = model_names[i]
-    print >> f,index, sfr_type0[index], sfr_type1[index],sfr_type2[index],sfr_lomass[index],sfr_himass[index]
+    print >> f, sfr_type0[index], sfr_type1[index],sfr_type2[index],sfr_lomass[index],sfr_himass[index]
 f.close()
 
 
