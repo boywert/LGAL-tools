@@ -41,7 +41,7 @@ for z in zlist:
         sfr_hm[index].append(data[i][4])
     j += 1
 
-
+pylab.rc('text', usetex=True)
 fig = pylab.figure()
 ax = fig.add_subplot(111)
 for i in range(len(model_names)):
@@ -49,10 +49,10 @@ for i in range(len(model_names)):
     x = zlist
     y = numpy.array(sfr_lm[index])/47.**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,numpy.log10(y),color[i]+pattern[0],label="LMACH -"+model_labels[i])
+    ax.plot(x,numpy.log10(y),color[i]+pattern[0],label="LMACH - "+model_labels[i])
     y = numpy.array(sfr_hm[index])/47.**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,numpy.log10(y),color[i]+pattern[1],label="HMACH -"+model_labels[i])
+    ax.plot(x,numpy.log10(y),color[i]+pattern[1],label="HMACH - "+model_labels[i])
   
 
 leg = ax.legend(loc='best', handlelength = 9,ncol=1, fancybox=True, prop={'size':10})
