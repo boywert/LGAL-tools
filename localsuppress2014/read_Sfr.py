@@ -47,10 +47,10 @@ ax = fig.add_subplot(111)
 for i in range(len(model_names)):
     index = model_names[i]
     x = zlist[0:len(zlist)-1]
-    y = numpy.array(sfr_lm[index])/47.**3
+    y = numpy.array(sfr_lm[index])/(47./h0)**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
     ax.plot(x,numpy.log10(y),color[i]+pattern[0],label="LMACH - "+model_labels[i])
-    y = numpy.array(sfr_hm[index])/47.**3
+    y = numpy.array(sfr_hm[index])/(47./h0)**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
     ax.plot(x,numpy.log10(y),color[i]+pattern[1],label="HMACH - "+model_labels[i])
   
