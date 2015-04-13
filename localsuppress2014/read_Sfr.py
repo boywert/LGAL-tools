@@ -13,7 +13,7 @@ folder = "sfr/"
 model_names = ["okamoto","noreionization","patchy_I"]
 model_labels = ["AS","NS","LS"]
 color = ["r","g","b"]
-pattern = [":","--","-."]
+pattern = ["-.","--","-."]
 sfr_t0 = {}
 sfr_t1 = {}
 sfr_t2 = {}
@@ -27,7 +27,7 @@ for i in range(len(model_names)):
     sfr_lm[index] = []
     sfr_hm[index] = []
 j = 0
-for z in zlist:
+for z in zlist(0:len(zlist)-1):
     z = z.strip()
     zlist[j] = float(z)
     file = folder+"/"+z+".dat"
