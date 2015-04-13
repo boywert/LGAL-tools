@@ -17,11 +17,15 @@ pattern = ["-","--","-."]
 sfr_t0 = {}
 sfr_t1 = {}
 sfr_t2 = {}
+sfr_lm = {}
+sfr_hm = {}
 for i in range(len(model_names)):
     index = model_names[i]
     sfr_t0[index] = []
     sfr_t1[index] = []
     sfr_t2[index] = []
+    sfr_lm[index] = []
+    sfr_hm[index] = []
 j = 0
 for z in zlist:
     z = z.strip()
@@ -33,6 +37,8 @@ for z in zlist:
         sfr_t0[index].append(data[i][0])
         sfr_t1[index].append(data[i][1])
         sfr_t2[index].append(data[i][2])
+        sfr_lm[index].append(data[i][3])
+        sfr_hm[index].append(data[i][4])
     j += 1
 
 
@@ -41,7 +47,8 @@ ax = fig.add_subplot(111)
 for i in range(len(model_names)):
     index = model_names[i]
     x = zlist
-    y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
+    y = numpy.array(sfr_lm[index])/47.**3
+    #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
     ax.plot(x,y,color[i]+pattern[0],label=model_labels[i])
 
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
