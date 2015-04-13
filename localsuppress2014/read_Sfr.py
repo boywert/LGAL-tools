@@ -12,7 +12,7 @@ zlist = open(zlistfile,"r").readlines()
 folder = "sfr/"
 model_names = ["okamoto","noreionization","patchy_I"]
 model_labels = ["AS","NS","LS"]
-color = ["r","g","b"]
+color = ["#332288","#88CCEE","#44AA99"]
 pattern = ["-.","--","-."]
 sfr_t0 = {}
 sfr_t1 = {}
@@ -49,10 +49,10 @@ for i in range(len(model_names)):
     x = zlist[0:len(zlist)-1]
     y = numpy.array(sfr_lm[index])/(47./h0)**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,numpy.log10(y),color[i]+pattern[0],label="LMACH - "+model_labels[i])
+    ax.plot(x,numpy.log10(y),color=color[i],linestyle=pattern[0],label="LMACH - "+model_labels[i])
     y = numpy.array(sfr_hm[index])/(47./h0)**3
     #y = numpy.array(sfr_t0[index])+numpy.array(sfr_t1[index])+numpy.array(sfr_t2[index])
-    ax.plot(x,numpy.log10(y),color[i]+pattern[1],label="HMACH - "+model_labels[i])
+    ax.plot(x,numpy.log10(y),color=color[i],linestyle=pattern[1],label="HMACH - "+model_labels[i])
   
 
 leg = ax.legend(loc='best', handlelength = 9,ncol=1, fancybox=True, prop={'size':10})
