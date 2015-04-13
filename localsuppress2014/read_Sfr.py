@@ -6,7 +6,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy
 #z = sys.argv[1]
-
+h0=0.7
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 folder = "sfr/"
