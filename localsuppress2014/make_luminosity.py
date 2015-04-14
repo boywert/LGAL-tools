@@ -34,7 +34,7 @@ pylab.rc('text', usetex=True)
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 #z = zlist[int(sys.argv[1])].strip()
-z = "7.96"
+z = "6.06"
 file_prefix = "SA_z"+z
 firstfile = 0
 lastfile = 127
@@ -73,5 +73,6 @@ for i in range(len(model_names)):
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
 
-
+logf = -2.5*numpy.log10(gal[model_names[0]]["Sfr"])
+a = numpy.histogram(logf,bins=14,range=(-1.5,5.5))[0]/47.**3/0.5
 
