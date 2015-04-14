@@ -11,7 +11,7 @@ import LGalaxyStruct
 
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
-rank = 0
+rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+rank)
