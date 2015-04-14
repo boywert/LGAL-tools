@@ -12,7 +12,6 @@ import LGalaxyStruct
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 
-rank = sys.argv[1]
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+rank)
@@ -34,7 +33,7 @@ def loadfilter(structfile):
 pylab.rc('text', usetex=True)
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
-z = zlist[int(sys.argv[1])].strip()
+#z = zlist[int(sys.argv[1])].strip()
 z = "6.09"
 file_prefix = "SA_z"+z
 firstfile = 0
