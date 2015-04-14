@@ -1,6 +1,6 @@
 from mass_fn import *
 import matplotlib
-matplotlib.use('Agg') 
+matplotlib.use('pdf') 
 import pylab
 import sys
 import numpy
@@ -74,5 +74,12 @@ for i in range(len(model_names)):
 
 
 logf = -2.5*numpy.log10(gal[model_names[0]]["Sfr"])
-a = numpy.histogram(logf,bins=14,range=(-1.5,5.5))[0]/47.**3/0.5
+a = numpy.histogram(logf,bins=14,range=(-1.5,5.5))
+x = a[1][0:len(a[1])-1]+0.25
+y = a[0]/47.**3/0.5
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+fig.savefig()
 
