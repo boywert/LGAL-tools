@@ -73,45 +73,5 @@ for i in range(len(model_names)):
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
 
-pylab.rc('text', usetex=True)
-
-
-exit()
-
-gal_lomass ={}
-gal_himass = {}
-gal_type0 = {}
-gal_type1 = {}
-gal_type2 = {}
-
-
-for i in range(len(model_names)):
-    index = model_names[i]
-    gal_type0[index]  = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
-    gal_type1[index]  = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
-    gal_type2[index]  = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
-    gal_lomass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] < 0.1*h0)[0]]
-    gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1*h0)[0]]
-sfr_type0 = {}
-sfr_type1 = {}
-sfr_type2 = {}
-sfr_himass = {}
-sfr_lomass = {}
-for i in range(len(model_names)):
-    index = model_names[i]
-    sfr_type0[index] = numpy.sum(gal_type0[index]["Sfr"],dtype = numpy.float64)
-    sfr_type1[index] = numpy.sum(gal_type1[index]["Sfr"],dtype = numpy.float64)
-    sfr_type2[index] = numpy.sum(gal_type2[index]["Sfr"],dtype = numpy.float64)
-    sfr_himass[index] = numpy.sum(gal_himass[index]["Sfr"],dtype = numpy.float64)
-    sfr_lomass[index] = numpy.sum(gal_lomass[index]["Sfr"],dtype = numpy.float64)
-    
-folder = "sfr/"
-os.system("mkdir -p "+folder)
-f = open(folder+"/"+z+".dat","w+")
-print >> f,"#type0 type1 type2 Lo-Mass Hi-Mass"
-for i in range(len(model_names)):
-    index = model_names[i]
-    print >> f, sfr_type0[index], sfr_type1[index],sfr_type2[index],sfr_lomass[index],sfr_himass[index]
-f.close()
 
 
