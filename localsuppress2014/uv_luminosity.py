@@ -59,7 +59,7 @@ def add_obs_uv_z7(observe_folder,ax):
     oesch2010_y = (10.**oesch2010[:,1])/hubble_h**3.
 
     oesch2010_errorup = (10.**(oesch2010[:,1] + oesch2010[:,3]) - 10.**oesch2010[:,1])/hubble_h**3.
-    oesch2010_errordown = (10.**oesch2010[:,1] - 10.**(bouwens2010[:,1] + oesch2010[:,2]))/hubble_h**3.
+    oesch2010_errordown = (10.**oesch2010[:,1] - 10.**(oesch2010[:,1] + oesch2010[:,2]))/hubble_h**3.
     ax.errorbar(oesch2010_x,oesch2010_y,yerr=[ oesch2010_errordown, oesch2010_errorup], fmt='o',label="Oesch et al. (2010)")
     return ax
   
