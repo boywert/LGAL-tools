@@ -18,8 +18,8 @@ def add_obs_uv_z8(observe_folder,ax):
     mclure2010_x = mclure2010[:,0]-5.*numpy.log10(hubble_h)
     mclure2010_y = (10.**mclure2010[:,1])/hubble_h**3.
 
-    mclure2010_errorup = (10.**(mclure2010[:,1] + mclure2010[:,5]) - 10.**mclure2010[:,1])/hubble_h**3.
-    mclure2010_errordown = (10.**mclure2010[:,1] - 10.**(mclure2010[:,1] + mclure2010[:,4]))/hubble_h**3.
+    mclure2010_errorup = (10.**(mclure2010[:,1] + mclure2010[:,3]) - 10.**mclure2010[:,1])/hubble_h**3.
+    mclure2010_errordown = (10.**mclure2010[:,1] - 10.**(mclure2010[:,1] + mclure2010[:,2]))/hubble_h**3.
     ax.errorbar(mclure2010_x,mclure2010_y,yerr=mclure2010_y/10., fmt='o',label="Mclure et al. (2011)") 
   
     bouwens2010_file = observe_folder+"/bouwens2010_z8.txt"
@@ -27,8 +27,8 @@ def add_obs_uv_z8(observe_folder,ax):
     bouwens2010_x = bouwens2010[:,0]-5.*numpy.log10(hubble_h)
     bouwens2010_y = (10.**bouwens2010[:,1])/hubble_h**3.
 
-    bouwens2010_errorup = (10.**(bouwens2010[:,1] + bouwens2010[:,5]) - 10.**bouwens2010[:,1])/hubble_h**3.
-    bouwens2010_errordown = (10.**bouwens2010[:,1] - 10.**(bouwens2010[:,1] + bouwens2010[:,4]))/hubble_h**3.
+    bouwens2010_errorup = (10.**(bouwens2010[:,1] + bouwens2010[:,3]) - 10.**bouwens2010[:,1])/hubble_h**3.
+    bouwens2010_errordown = (10.**bouwens2010[:,1] - 10.**(bouwens2010[:,1] + bouwens2010[:,2]))/hubble_h**3.
     ax.errorbar(bouwens2010_x,bouwens2010_y,yerr=bouwens2010_y/10., fmt='o',label="Bouwens et al. (2010)")
 
     
