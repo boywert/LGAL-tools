@@ -86,5 +86,5 @@ for i in range(len(model_names)):
     ax.plot(x,y)
 
 ax.set_yscale("log")
-fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0))
+fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
 
