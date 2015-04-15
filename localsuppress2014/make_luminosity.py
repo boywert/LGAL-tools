@@ -83,7 +83,7 @@ for i in range(len(model_names)):
     a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
     x = a[1][0:len(a[1])-1]+0.25-18
     y = a[0]/47.**3/0.5
-    ax.plot(x,y,label=model_labels[i],model_plot_patterns[i])
+    ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
     
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
