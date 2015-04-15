@@ -26,7 +26,7 @@ def read_xfrac(filename,doubleflag):
 
 def do_powerspectrum(filename,doubleflag):
     xfrac = read_xfrac(filename,doubleflag).data
-    ps,bins = power_spectrum.power_spectrum_1d(xfrac, 47., kbins=153)
+    ps,bins = power_spectrum.power_spectrum_1d(xfrac, [47.,47.,47.], kbins=153)
     return ps
 
 def plot_powerspectrum(filelist,doubleflaglist,redshift):    
