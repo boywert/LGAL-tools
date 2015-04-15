@@ -68,7 +68,7 @@ def plot_uv_z6():
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    uv_luminosity.add_obs_uv_z7("../../codes/47Mpc/observed_UVL/",ax)
+    uv_luminosity.add_obs_uv_z6("../../codes/47Mpc/observed_UVL/",ax)
 
     for i in range(len(model_names)):
         index = model_names[i]
