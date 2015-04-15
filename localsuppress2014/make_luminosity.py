@@ -162,7 +162,7 @@ def plot_uv_z7():
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1600 - 5log(h)")
-    ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1$")
+    ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1}$")
     ax.set_yscale("log")
     fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
 
