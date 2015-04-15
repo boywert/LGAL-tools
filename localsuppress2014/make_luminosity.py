@@ -34,7 +34,7 @@ pylab.rc('text', usetex=True)
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 #z = zlist[int(sys.argv[1])].strip()
-z = "6.06"
+z = "7.96"
 file_prefix = "SA_z"+z
 firstfile = 0
 lastfile = 127
@@ -74,14 +74,15 @@ for i in range(len(model_names)):
 
 
 logf = -2.5*numpy.log10(gal[model_names[0]]["Sfr"])
-a = numpy.histogram(logf,bins=14,range=(-1.5,5.5))
-x = a[1][0:len(a[1])-1]+0.25-16.
+a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
+x = a[1][0:len(a[1])-1]+0.25-18
 y = a[0]/47.**3/0.5
 
 import uv_luminosity
 fig = plt.figure()
 ax = fig.add_subplot(111)
-uv_luminosity.add_obs_uv_z6("../../codes/47Mpc/observed_UVL/",ax)
-ax.plot(x,numpy.log10(y))
+uv_luminosity.add_obs_uv_z8("../../codes/47Mpc/observed_UVL/",ax)
+ax.plot(x,y)
+ax.set_yscale("log")
 fig.savefig("test.pdf")
 
