@@ -8,7 +8,7 @@ import os
 import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
-
+import uv_luminosity
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 rank = "0"
@@ -75,11 +75,13 @@ for i in range(len(model_names)):
 
 logf = -2.5*numpy.log10(gal[model_names[0]]["Sfr"])
 a = numpy.histogram(logf,bins=14,range=(-1.5,5.5))
-x = a[1][0:len(a[1])-1]+0.25
+x = a[1][0:len(a[1])-1]+0.25-16.
 y = a[0]/47.**3/0.5
 
+import uv_luminosity
 fig = plt.figure()
 ax = fig.add_subplot(111)
+uv_luminosity.add_obs_uv_z6("../../codes/47Mpc/observed_UVL/",ax)
 ax.plot(x,numpy.log10(y))
 fig.savefig("test.pdf")
 
