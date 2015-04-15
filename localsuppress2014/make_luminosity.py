@@ -34,7 +34,7 @@ pylab.rc('text', usetex=True)
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 #z = zlist[int(sys.argv[1])].strip()
-z = "7.96"
+z = "6.98"
 file_prefix = "SA_z"+z
 firstfile = 0
 lastfile = 127
@@ -81,7 +81,7 @@ y = a[0]/47.**3/0.5
 import uv_luminosity
 fig = plt.figure()
 ax = fig.add_subplot(111)
-uv_luminosity.add_obs_uv_z8("../../codes/47Mpc/observed_UVL/",ax)
+uv_luminosity.add_obs_uv_z7("../../codes/47Mpc/observed_UVL/",ax)
 ax.plot(x,y)
 ax.set_yscale("log")
 fig.savefig("test.pdf")
