@@ -168,4 +168,9 @@ def plot_uv_z7():
 
 
 
+def main():
+    plot_uv_z7()
 
+    
+if __name__=="__main__":
+    main()
