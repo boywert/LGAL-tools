@@ -30,16 +30,6 @@ def loadfilter(structfile):
     return (filter,dt)
 
 
-pylab.rc('text', usetex=True)
-zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
-zlist = open(zlistfile,"r").readlines()
-#z = zlist[int(sys.argv[1])].strip()
-z = "6.98"
-file_prefix = "SA_z"+z
-firstfile = 0
-lastfile = 127
-config = {}
-
 h0 = 0.7
 gadgetmass = 1.e10
 model_names = ["okamoto","noreionization","patchy_I"]
@@ -56,6 +46,20 @@ model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (
 model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/n306/sams/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
+
+pylab.rc('text', usetex=True)
+zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
+zlist = open(zlistfile,"r").readlines()
+#z = zlist[int(sys.argv[1])].strip()
+
+
+
+z = "6.98"
+file_prefix = "SA_z"+z
+firstfile = 0
+lastfile = 127
+config = {}
+
 try:
     gal
 except NameError:
@@ -63,26 +67,24 @@ except NameError:
     nTrees = {}
     nGals = {}
     nTreeGals = {}
-    star = {}
-    totsfr = {}
-    sfr = {}
+
+
+import uv_luminosity
+fig = plt.figure()
+ax = fig.add_subplot(111)
+uv_luminosity.add_obs_uv_z7("../../codes/47Mpc/observed_UVL/",ax)
 
 for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
+    logf = -2.5*numpy.log10(gal[index]["Sfr"])
+    a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
+    x = a[1][0:len(a[1])-1]+0.25-18
+    y = a[0]/47.**3/0.5
+    ax.plot(x,y)
 
-logf = -2.5*numpy.log10(gal[model_names[0]]["Sfr"])
-a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-x = a[1][0:len(a[1])-1]+0.25-18
-y = a[0]/47.**3/0.5
-
-import uv_luminosity
-fig = plt.figure()
-ax = fig.add_subplot(111)
-uv_luminosity.add_obs_uv_z7("../../codes/47Mpc/observed_UVL/",ax)
-ax.plot(x,y)
 ax.set_yscale("log")
-fig.savefig("test.pdf")
+fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0))
 
