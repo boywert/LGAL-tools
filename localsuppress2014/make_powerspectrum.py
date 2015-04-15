@@ -32,7 +32,7 @@ def do_powerspectrum(filename,doubleflag):
 def plot_powerspectrum(filelist,doubleflaglist,redshift):    
     fig = pylab.figure()
     ax = fig.add_subplot(111)
-    for i in range(filelist):
+    for ifile in range(len(filelist)):
         filename = filelist[ifile]+"/xfrac3d_"+redshift+".bin"
         ps = do_powerspectrum(filename,doubleflaglist[ifile])
         ax.plot(ps)
