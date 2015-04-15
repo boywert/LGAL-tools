@@ -80,6 +80,6 @@ y = a[0]/47.**3/0.5
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.plot(x,y)
+ax.plot(x,numpy.log10(y))
 fig.savefig("test.pdf")
 
