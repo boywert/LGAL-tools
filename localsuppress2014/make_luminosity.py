@@ -50,7 +50,7 @@ model_plot_patterns = ['r--','g--','b--']
 pylab.rc('text', usetex=True)
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
-
+offset = 18.0
 def plot_uv_z6():
     z = "6.06"
     file_prefix = "SA_z"+z
@@ -77,7 +77,7 @@ def plot_uv_z6():
 
         logf = -2.5*numpy.log10(gal[index]["Sfr"])
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-        x = a[1][0:len(a[1])-1]+0.25-17.75
+        x = a[1][0:len(a[1])-1]+0.25-offset
         y = a[0]/47.**3/0.5
         ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
     
@@ -116,7 +116,7 @@ def plot_uv_z8():
 
         logf = -2.5*numpy.log10(gal[index]["Sfr"])
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-        x = a[1][0:len(a[1])-1]+0.25-17.5
+        x = a[1][0:len(a[1])-1]+0.25-offset
         y = a[0]/47.**3/0.5
         ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
     
@@ -155,7 +155,7 @@ def plot_uv_z7():
 
         logf = -2.5*numpy.log10(gal[index]["Sfr"])
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-        x = a[1][0:len(a[1])-1]+0.25-17.5
+        x = a[1][0:len(a[1])-1]+0.25-offset
         y = a[0]/47.**3/0.5
         ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
     
