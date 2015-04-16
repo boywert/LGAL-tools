@@ -41,7 +41,7 @@ def read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter_arr,verbos
     filter_dtype = numpy.dtype(filter_tuple)
     output_Galaxy = numpy.array([],dtype=filter_dtype)
     for ifile in range(firstfile,lastfile+1):
-        filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
+        filename = folder+'/'+file_prefix+"%d"%(ifile)
         f = open(filename,"rb")
         this_nTrees = numpy.fromfile(f,numpy.int32,1)[0]
         nTrees += this_nTrees
