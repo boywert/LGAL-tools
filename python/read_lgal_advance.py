@@ -39,7 +39,7 @@ def read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter_arr,verbos
         if(filter_arr[prop] is True):
             filter_tuple.append((prop,dt[prop]))
     filter_dtype = numpy.dtype(filter_tuple)
-    output_Galaxy = numpy.array([],dtype=filter_dtype)
+    output_Halos = numpy.array([],dtype=filter_dtype)
     for ifile in range(firstfile,lastfile+1):
         filename = folder+'/'+file_prefix+"%d"%(ifile)
         f = open(filename,"rb")
