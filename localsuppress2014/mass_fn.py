@@ -4,6 +4,16 @@ gadget2msun=10.e10
 boxsize = 47.0
 hubble_h = 0.7
 
+def M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e15,nbins=20):
+    massf = numpy.log10(gadget2msun*halo['M_Crit200'])
+    mass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
+    massftn_y = mass[0]/(boxsize)**2/(numpy.log10(mass_max/mass_min)/nbins)
+    massftn_x = []
+    for i in range(len(stellarmass[0])):
+        massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
+    return (massftn_x,massftn_y)
+
+
 def stellar_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
     massf = gadget2msun*gal['DiskMass']+gadget2msun*gal['BulgeMass']
     stellarmass = numpy.histogram(numpy.log10(massf),nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
