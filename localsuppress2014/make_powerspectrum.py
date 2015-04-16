@@ -42,8 +42,8 @@ def plot_powerspectrum(filelist,doubleflaglist,redshift):
 
 filelist = ["/mnt/lustre/scratch/cs390/codes/ionz_codes/nosupwithnohist/43000.00/","/mnt/lustre/scratch/cs390/codes/ionz_codes/okamotowithnohist/43000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/n306/xfrac/43000.00/"]
 doubleflaglist =[0,0,0]
-# plot_powerspectrum(filelist,doubleflaglist,"9.938")
+plot_powerspectrum(filelist,doubleflaglist,"9.938")
 # plot_powerspectrum(filelist,doubleflaglist,"9.026")
 # plot_powerspectrum(filelist,doubleflaglist,"7.960")
-plot_powerspectrum(filelist,doubleflaglist,"6.981")
+# plot_powerspectrum(filelist,doubleflaglist,"6.981")
 
