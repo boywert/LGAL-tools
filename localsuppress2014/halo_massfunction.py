@@ -23,8 +23,8 @@ def main():
     firstfile = 127
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=False)
     for i in range(len(zlist)):
-        halos = output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
-        (massftn_x,massftn_y) = M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e13,nbins=50)
+        halos = read_lgal.output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
+        (massftn_x,massftn_y) = mass_fn.M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e13,nbins=50)
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(massfn_x,massfn_y)
