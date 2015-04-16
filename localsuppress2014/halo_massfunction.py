@@ -20,7 +20,7 @@ def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_075."
     firstfile = 0
-    firstfile = 127
+    lastfile = 127
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal.read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=False)
     for i in range(len(zlist)):
         halos = output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
