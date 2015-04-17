@@ -11,7 +11,7 @@ import mass_fn
 hubble_h = 0.7
 
 matplotlib.rc('text', usetex=True)
-matplotlib.rc('savefig', dvi=300)
+matplotlib.rc('savefig', dpi=300)
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 def main():
