@@ -21,6 +21,7 @@ def main():
     file_prefix = "trees_075."
     firstfile = 0
     lastfile = 127
+    os.system("mkdir -p pdf")
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal.read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=True)
     for i in range(len(zlist)):
         print 'halo mass function: z = '+zlist[i]
@@ -33,7 +34,8 @@ def main():
             ax.set_xlabel(r"$M_{200c}(h^{-1}M_\odot)$")
             ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} dex^-1}$")
             ax.set_yscale("log")
-            fig.savefig(zlist[i].strip()+"_massfn.pdf",bbox_inches='tight',pad_inches=0)
+            
+            fig.savefig("pdf/"+zlist[i].strip()+"_massfn.pdf",bbox_inches='tight',pad_inches=0)
     return 0
 
 if __name__=="__main__":
