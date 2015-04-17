@@ -25,7 +25,7 @@ def main():
     for i in range(len(zlist)):
         print 'halo mass function: z = '+zlist[i]
         halos = output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
-        (massftn_x,massftn_y) = mass_fn.M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e13,nbins=50)
+        (massfn_x,massfn_y) = mass_fn.M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e13,nbins=50)
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(massfn_x,massfn_y)
