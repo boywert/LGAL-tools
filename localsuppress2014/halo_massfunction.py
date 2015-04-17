@@ -10,8 +10,8 @@ import mass_fn
 
 hubble_h = 0.7
 
-matplotlib.rc('font', family='sans-serif') 
-matplotlib.rc('font', serif='Helvetica Neue') 
+matplotlib.rc('font', family='serif') 
+matplotlib.rc('font', serif='Helvetica') 
 matplotlib.rc('text', usetex=True)
 
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
