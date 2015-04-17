@@ -9,7 +9,7 @@ def M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e15,nbins=20):
     mass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
     massftn_y = mass[0]/(boxsize)**2/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []
-    for i in range(len(stellarmass[0])):
+    for i in range(len(mass[0])):
         massftn_x.append((mass[1][i]+mass[1][i+1])/2.)
     return (massftn_x,massftn_y)
 
