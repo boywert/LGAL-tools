@@ -25,14 +25,15 @@ def main():
     for i in range(len(zlist)):
         print 'halo mass function: z = '+zlist[i]
         halos = output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
-        (massfn_x,massfn_y) = mass_fn.M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e13,nbins=50)
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(massfn_x,massfn_y)
-        ax.set_xlabel(r"$M_{200c}(h^{-1}M_\odot)$")
-        ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} dex^-1}$")
-        ax.set_yscale("log")
-        fig.savefig(zlist[i]+".pdf",bbox_inches='tight',pad_inches=0)
+        if(len(halos) > 0):
+            (massfn_x,massfn_y) = mass_fn.M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e13,nbins=50)
+            fig = plt.figure()
+            ax = fig.add_subplot(111)
+            ax.plot(massfn_x,massfn_y)
+            ax.set_xlabel(r"$M_{200c}(h^{-1}M_\odot)$")
+            ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} dex^-1}$")
+            ax.set_yscale("log")
+            fig.savefig(zlist[i]+".pdf",bbox_inches='tight',pad_inches=0)
     return 0
 
 if __name__=="__main__":
