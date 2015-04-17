@@ -32,8 +32,8 @@ def main():
             fig = plt.figure()
             ax = fig.add_subplot(111)
             ax.plot(massfn_x,massfn_y)
-            ax.set_xlabel(r"$M_{200c}(h^{-1}M_\odot)$")
-            ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} dex^-1}$")
+            ax.set_xlabel(r"$\mathrm{M_{200c}[}h^{-1}\mathrm{M_\odot]}$")
+            ax.set_ylabel(r"$\mathrm{\Phi[}h^3\mathrm{Mpc^{-3} dex^-1]}$")
             ax.set_yscale("log")
             
             fig.savefig("pdf/"+zlist[i].strip()+"_massfn.pdf",bbox_inches='tight',pad_inches=0)
