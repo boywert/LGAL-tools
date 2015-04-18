@@ -16,10 +16,13 @@ def read_xfrac(filename,doubleflag):
     padd = numpy.fromfile(f,numpy.int32,1)[0]
     padd = numpy.fromfile(f,numpy.int32,1)[0]
     if(doubleflag == 1):
-        output.data = numpy.fromfile(f,numpy.float64,output.grid[0]**3).reshape(( output.grid[0], output.grid[1], output.grid[2]))
+        output.data = numpy.fromfile(f,numpy.float64,output.grid[0]**3)
     else:
-        output.data = numpy.fromfile(f,numpy.float32,output.grid[0]**3).reshape(( output.grid[0], output.grid[1], output.grid[2]))
+        output.data = numpy.fromfile(f,numpy.float32,output.grid[0]**3)
+    output.data = output.data/numpy.mean(output.data, dtype = numpy.float64) - 1.
+    output.data = output.data.reshape(( output.grid[0], output.grid[1], output.grid[2]))
     padd = numpy.fromfile(f,numpy.int32,1)[0]
+    f.close()
     return output
 
 
@@ -45,7 +48,7 @@ doubleflaglist =[0,0,0]
 #15.132
 plot_powerspectrum(filelist,doubleflaglist,"15.132")
 #plot_powerspectrum(filelist,doubleflaglist,"9.938")
-# plot_powerspectrum(filelist,doubleflaglist,"9.026")
-# plot_powerspectrum(filelist,doubleflaglist,"7.960")
-# plot_powerspectrum(filelist,doubleflaglist,"6.981")
+plot_powerspectrum(filelist,doubleflaglist,"9.026")
+plot_powerspectrum(filelist,doubleflaglist,"7.960")
+plot_powerspectrum(filelist,doubleflaglist,"6.981")
 
