@@ -33,7 +33,7 @@ def main():
             for j in range(len(massfn_x)):
                 print >> f,massfn_x[j],massfn_y[j]
             f.close()
-            if(numpy.sum(massfn_y) < 0.00001):
+            if(numpy.sum(massfn_y) > 0.00001):
                 fig = plt.figure()
                 ax = fig.add_subplot(111)
                 ax.plot(massfn_x,massfn_y)
