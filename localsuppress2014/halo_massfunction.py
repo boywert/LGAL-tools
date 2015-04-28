@@ -33,13 +33,14 @@ def main():
             for j in range(len(massfn_x)):
                 print >> f,massfn_x[j],massfn_y[j]
             f.close()
-            fig = plt.figure()
-            ax = fig.add_subplot(111)
-            ax.plot(massfn_x,massfn_y)
-            ax.set_xlabel(r"$\mathrm{M_{200c}[}h^{-1}\mathrm{M_\odot]}$")
-            ax.set_ylabel(r"$\mathrm{\Phi[}h^3\mathrm{Mpc^{-3} dex^-1]}$")
-            ax.set_yscale("log")            
-            fig.savefig("pdf/"+zlist[i].strip()+"_massfn.pdf",bbox_inches='tight',pad_inches=0)
+            if(numpy.sum(massfn_y) < 0.00001):
+                fig = plt.figure()
+                ax = fig.add_subplot(111)
+                ax.plot(massfn_x,massfn_y)
+                ax.set_xlabel(r"$\mathrm{M_{200c}[}h^{-1}\mathrm{M_\odot]}$")
+                ax.set_ylabel(r"$\mathrm{\Phi[}h^3\mathrm{Mpc^{-3} dex^-1]}$")
+                ax.set_yscale("log")            
+                fig.savefig("pdf/"+zlist[i].strip()+"_massfn.pdf",bbox_inches='tight',pad_inches=0)
     return 0
 
 if __name__=="__main__":
