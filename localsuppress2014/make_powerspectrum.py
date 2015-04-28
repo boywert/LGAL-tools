@@ -47,7 +47,7 @@ filelist = ["/mnt/lustre/scratch/cs390/codes/ionz_codes/nosupwithnohist/43000.00
 doubleflaglist =[0,0,0]
 #15.132
 plot_powerspectrum(filelist,doubleflaglist,"15.132")
-#plot_powerspectrum(filelist,doubleflaglist,"9.938")
+plot_powerspectrum(filelist,doubleflaglist,"9.938")
 plot_powerspectrum(filelist,doubleflaglist,"9.026")
 plot_powerspectrum(filelist,doubleflaglist,"7.960")
 plot_powerspectrum(filelist,doubleflaglist,"6.981")
