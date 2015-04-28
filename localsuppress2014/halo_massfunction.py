@@ -21,7 +21,7 @@ def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_075."
     firstfile = 0
-    lastfile = 215
+    lastfile = 127
     os.system("mkdir -p pdf")
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal.read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=True)
     for i in range(len(zlist)):
