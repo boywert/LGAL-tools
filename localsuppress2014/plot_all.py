@@ -137,7 +137,7 @@ def plot_uv_z7():
     fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
 
     
-def plot_uv_z7():
+def plot_uv_z6():
     z = "6.06"
     file_prefix = "SA_z"+z
     firstfile = 0
