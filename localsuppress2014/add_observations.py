@@ -2,8 +2,8 @@ import matplotlib as plt
 import numpy
 
 hubble_h = 0.7
+
 def add_obs_uv_z8(observe_folder,ax):
-    
     bouwens2011_file = observe_folder+"/bouwens2011_z8.txt"
     bouwens2011 = numpy.loadtxt(bouwens2011_file)
     bouwens2011_x = bouwens2011[:,0]-5.*numpy.log10(hubble_h)
