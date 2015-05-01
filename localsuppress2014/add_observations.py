@@ -101,7 +101,7 @@ def add_obs_smf_z6(observe_folder,ax):
     data_errordown = data[:,2]
     ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Gonzalez et al. (2011)")
     
-    data_file = observe_folder+"/Duncan14_MF_z6.cat"
+    data_file = observe_folder+"/Duncan14_MF_z6.txt"
     data = numpy.loadtxt(data_file)
     data_x = data[:,0]
     data_y = data[:,1]
