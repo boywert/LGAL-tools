@@ -156,6 +156,8 @@ def plot_uv_z6():
     uvlf_y = {}
     sfr_x = {}
     sfr_y = {}
+    smf_x = {}
+    smf_y = {}
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
@@ -166,7 +168,7 @@ def plot_uv_z6():
         uvlf_x[index] = a[1][0:len(a[1])-1]+0.25-offset
         uvlf_y[index] = a[0]/47.**3/0.5
         (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10**-0.5,mass_max=10.**3,nbins=10)
-        
+        (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=10**7,mass_max=10.**12,nbins=50)
 
         
     # UVLF
@@ -196,7 +198,20 @@ def plot_uv_z6():
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^-1})$")
     ax.set_yscale("log")
     fig.savefig("sfr_z6.pdf",bbox_inches='tight',pad_inches=0)
-    
+
+    # SMF
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    add_observations.add_obs_smf_z6("observations/SMF/",ax)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(smf_x[index],smf_y[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$\mathrm{log (M/M_\odot)}$")
+    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^-1})$")
+    ax.set_yscale("log")
+    fig.savefig("smf_z6.pdf",bbox_inches='tight',pad_inches=0)
 def main():
     plot_uv_z6()
    # plot_uv_z7()
