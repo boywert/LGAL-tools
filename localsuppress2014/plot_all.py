@@ -152,6 +152,8 @@ def plot_uv_z6():
         nGals = {}
         nTreeGals = {}
 
+    uvlf_x = {}
+    uvlf_y = {}
     sfr_x = {}
     sfr_y = {}
     for i in range(len(model_names)):
@@ -161,16 +163,19 @@ def plot_uv_z6():
 
         logf = -2.5*numpy.log10(gal[index]["Sfr"])
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-        sfr_x[index] = a[1][0:len(a[1])-1]+0.25-offset
-        sfr_y[index] = a[0]/47.**3/0.5
+        uvlf_x[index] = a[1][0:len(a[1])-1]+0.25-offset
+        uvlf_y[index] = a[0]/47.**3/0.5
+        (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10**-0.5,mass_max=10.**3,nbins=10):
+        
 
+        
     # UVLF
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    add_observations.add_obs_uv_z6("../../codes/47Mpc/observed_UVL/",ax)
+    add_observations.add_obs_uv_z6("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1600 - 5log(h)")
@@ -178,6 +183,19 @@ def plot_uv_z6():
     ax.set_yscale("log")
     fig.savefig("uv_l_z6.pdf",bbox_inches='tight',pad_inches=0)
 
+    # SFR
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    add_observations.add_obs_sfr_z6("observations/SFR/",ax)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$\mathrm{log SFR(M_\odot/year)}$")
+    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^-1})$")
+    ax.set_yscale("log")
+    fig.savefig("sfr_z6.pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
     plot_uv_z6()

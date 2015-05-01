@@ -16,9 +16,9 @@ def metallicity_fn(gal,mass_min=1.e-5,mass_max=1.,nbins=20):
 
 
 def sfr_density_fn(gal,mass_min=0.1,mass_max=1000.,nbins=20):
-    massf = numpy.log10(gal['Sfr']**hubble_h**2)
+    massf = numpy.log10(gal['Sfr'])
     stellarmass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
-    massftn_y = stellarmass[0]/(boxsize)**3/(numpy.log10(mass_max/mass_min)/nbins)
+    massftn_y = stellarmass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []
     for i in range(len(stellarmass[0])):
         massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
