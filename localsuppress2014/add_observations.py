@@ -79,7 +79,7 @@ def add_obs_uv_z6(observe_folder,ax):
 def add_obs_sfr_z6(observe_folder,ax):
     data_file = observe_folder+"/smit2012_z6.txt"
     data = numpy.loadtxt(data_file)
-    data_x = data[:,0]
+    data_x = data[:,0]+numpy.log10(0.55)
     data_y = data[:,1]
     data_error = data[:,2]
     ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Smit et al. (2012)")
