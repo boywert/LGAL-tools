@@ -177,7 +177,7 @@ def plot_uv_z6():
         (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10**-0.5,mass_max=10.**3,nbins=10)
         (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=10**7,mass_max=10.**12,nbins=50)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
-        (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index])
+        (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
 
     # metals
@@ -185,7 +185,7 @@ def plot_uv_z6():
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(metalicity_x[index],metalicity_x[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(metalicity_x[index],metalicity_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"Z")
