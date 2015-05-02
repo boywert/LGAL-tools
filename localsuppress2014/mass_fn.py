@@ -5,6 +5,16 @@ boxsize = 47.0
 hubble_h = 0.7
 
 
+def uv_luminosity_fn(gal,min=-23.,max=-17.,nbins=12):
+    massf = gal["Mag"][:,5] - numpy.log10(hubble_h)
+    stellarmass = numpy.histogram(massf,nbins,(min,max))
+    massftn_y = stellarmass[0]/(boxsize)**3/((max-min)/nbins)
+    massftn_x = []
+    for i in range(len(stellarmass[0])):
+        massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
+    return (massftn_x,massftn_y)
+
+
 def metallicity_fn(gal,mass_min=1.e-5,mass_max=1.,nbins=20):
     massf = numpy.log10((gadget2msun*gal['MetalsDiskMass']+gadget2msun*gal['MetalsBulgeMass'])/(gadget2msun*gal['DiskMass']+gadget2msun*gal['BulgeMass']))
     stellarmass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
@@ -35,7 +45,7 @@ def M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e15,nbins=20):
 
 
 def stellar_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
-    massf = numpy.log10((gadget2msun*gal['DiskMass']+gadget2msun*gal['BulgeMass'])/hubble_h)
+    massf = numpy.log10(gadget2msun*(gal['DiskMass']+gal['BulgeMass'])/hubble_h)
     stellarmass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
     massftn_y = stellarmass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []

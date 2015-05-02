@@ -22,6 +22,7 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False
     filter['Type'] = True
+    filter['Mag'] = True
     filter['Sfr'] = True
     filter['HaloM_Crit200'] = True
     filter['DiskMass'] = True
@@ -154,6 +155,8 @@ def plot_uv_z6():
 
     uvlf_x = {}
     uvlf_y = {}
+    luvlf_x = {}
+    luvlf_y = {}
     sfr_x = {}
     sfr_y = {}
     smf_x = {}
@@ -169,6 +172,7 @@ def plot_uv_z6():
         uvlf_y[index] = a[0]/47.**3/0.5
         (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10**-0.5,mass_max=10.**3,nbins=10)
         (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=10**7,mass_max=10.**12,nbins=50)
+        (luvlf_x[index],luvlf_y[index]) = uv_lumunosity_fn(gal[index],min=-23.,max=-17,nbins=12)
 
         
     # UVLF
@@ -178,6 +182,7 @@ def plot_uv_z6():
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(luvlf_x[index],luvlf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1600 - 5log(h)")
