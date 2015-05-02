@@ -172,7 +172,7 @@ def plot_uv_z6():
         uvlf_y[index] = a[0]/47.**3/0.5
         (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10**-0.5,mass_max=10.**3,nbins=10)
         (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=10**7,mass_max=10.**12,nbins=50)
-        (luvlf_x[index],luvlf_y[index]) = uv_lumunosity_fn(gal[index],min=-23.,max=-17,nbins=12)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
 
         
     # UVLF
