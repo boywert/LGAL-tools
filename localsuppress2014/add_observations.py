@@ -130,7 +130,7 @@ def add_obs_uv_z6(observe_folder,ax):
     data_y = (10.**data[:,1])/hubble_h**3.
     data_errorup = (10.**(data[:,1] + data[:,3]) - 10.**data[:,1])/hubble_h**3.
     data_errordown = (10.**data[:,1] - 10.**(data[:,1] + data[:,2]))/hubble_h**3.
-    ax.errorbar(data_x,data_y,yerr==[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
 
     data_file = observe_folder+"/bowler2014_z6.txt"
     data = numpy.loadtxt(data_file)
