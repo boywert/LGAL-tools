@@ -66,6 +66,43 @@ def add_obs_uv_z7(observe_folder,ax):
     return ax
 
 
+def add_obs_sfr_z7(observe_folder,ax):
+    data_file = observe_folder+"/smit2012_z7.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]+numpy.log10(0.55)
+    data_y = data[:,1]
+    data_error = data[:,2]
+    ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Smit et al. (2012)")
+    
+    data_file = observe_folder+"/Duncan14_SFRF_UV_z7.cat"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]
+    data_y = data[:,1]
+
+    data_errorup = data[:,3]
+    data_errordown = data[:,2]
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
+
+    
+def add_obs_smf_z7(observe_folder,ax):
+    data_file = observe_folder+"/gonzalez2011_z7.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]
+    data_y = 10.**data[:,1]
+    data_errorup = 10.**(data[:,2]+data[:,1])-10.**data[:,1]
+    data_errordown = 10.**data[:,1] - 10.**(data[:,1]+data[:,3])
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Gonzalez et al. (2011)")
+    
+    data_file = observe_folder+"/Duncan14_MF_z7.cat"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]
+    data_y = data[:,1]
+    data_errorup = data[:,3]
+    data_errordown = data[:,2]
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
+
+
+    
 
 #####################################################################################################################
 # z = 6  
@@ -86,6 +123,23 @@ def add_obs_uv_z6(observe_folder,ax):
     data_error = data[:,2]
     ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bouwens et al. (2014)")
 
+    data_file = observe_folder+"/Duncan14_LF_z6.txt"
+    data = numpy.loadtxt(data_file)
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]-5.*numpy.log10(hubble_h)
+    data_y = (10.**data[:,1])/hubble_h**3.
+    data_errorup = (10.**(data[:,1] + data[:,3]) - 10.**data[:,1])/hubble_h**3.
+    data_errordown = (10.**data[:,1] - 10.**(data[:,1] + data[:,2]))/hubble_h**3.
+    ax.errorbar(data_x,data_y,yerr==[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
+
+    data_file = observe_folder+"/bowler2014_z6.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]-5.*numpy.log10(hubble_h)
+    data_y = data[:,1]/hubble_h**3.
+    data_error = data[:,2]
+    ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bowler et al. (2014)")
+    
+    
     return ax
 
 def add_obs_sfr_z6(observe_folder,ax):
