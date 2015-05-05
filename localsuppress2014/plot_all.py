@@ -98,6 +98,47 @@ def plot_uv_z8():
     fig.savefig("uv_l_z8.pdf",bbox_inches='tight',pad_inches=0)
 
     
+# def plot_uv_z7():
+#     z = "6.98"
+#     file_prefix = "SA_z"+z
+#     firstfile = 0
+#     lastfile = 127
+#     config = {}
+
+#     try:
+#         gal
+#     except NameError:
+#         gal = {}
+#         nTrees = {}
+#         nGals = {}
+#         nTreeGals = {}
+
+#     sfr_x = {}
+#     sfr_y = {}
+#     for i in range(len(model_names)):
+#         index = model_names[i]
+#         if not index in gal:
+#             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+
+#         logf = -2.5*numpy.log10(gal[index]["Sfr"])
+#         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
+#         sfr_x[index] = a[1][0:len(a[1])-1]+0.25-offset
+#         sfr_y[index] = a[0]/47.**3/0.5
+
+#     # UVLF
+#     fig = plt.figure()
+#     ax = fig.add_subplot(111)
+#     add_observations.add_obs_uv_z7("../../codes/47Mpc/observed_UVL/",ax)
+#     for i in range(len(model_names)):
+#         index = model_names[i]
+#         ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
+#     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+#     leg.get_frame().set_linewidth(0)
+#     ax.set_xlabel(r"M1600 - 5log(h)")
+#     ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1}$")
+#     ax.set_yscale("log")
+#     fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
+
 def plot_uv_z7():
     z = "6.98"
     file_prefix = "SA_z"+z
@@ -113,8 +154,16 @@ def plot_uv_z7():
         nGals = {}
         nTreeGals = {}
 
+    uvlf_x = {}
+    uvlf_y = {}
+    luvlf_x = {}
+    luvlf_y = {}
     sfr_x = {}
     sfr_y = {}
+    smf_x = {}
+    smf_y = {}
+    metalicity_x = {}
+    metalicity_y = {}
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
@@ -122,23 +171,69 @@ def plot_uv_z7():
 
         logf = -2.5*numpy.log10(gal[index]["Sfr"])
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-        sfr_x[index] = a[1][0:len(a[1])-1]+0.25-offset
-        sfr_y[index] = a[0]/47.**3/0.5
+        uvlf_x[index] = a[1][0:len(a[1])-1]+0.25-offset
+        uvlf_y[index] = a[0]/47.**3/0.5
+        (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10**-0.5,mass_max=10.**3,nbins=10)
+        (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=10**7,mass_max=10.**12,nbins=50)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
+        (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
+        
 
+    # metals
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(metalicity_x[index],metalicity_y[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"Z")
+    ax.set_ylabel(r"$\mathrm{\Phi (Mpc^{-3} Mag^-1)}$")
+    ax.set_yscale("log")
+    fig.savefig("metal_z6.pdf",bbox_inches='tight',pad_inches=0)
+    
     # UVLF
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    add_observations.add_obs_uv_z7("../../codes/47Mpc/observed_UVL/",ax)
+    add_observations.add_obs_uv_z7("observations/UVLF/",ax)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(luvlf_x[index],luvlf_y[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"M1600 - 5log(h)")
+    ax.set_ylabel(r"$\mathrm{\Phi (Mpc^{-3} Mag^-1)}$")
+    ax.set_yscale("log")
+    fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
+
+    # SFR
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    add_observations.add_obs_sfr_z7("observations/SFR/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"M1600 - 5log(h)")
-    ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
+    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("sfr_z7.pdf",bbox_inches='tight',pad_inches=0)
 
+    # SMF
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    add_observations.add_obs_smf_z7("observations/SMF/",ax)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(smf_x[index],smf_y[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$\mathrm{\log_{10} (M/M_\odot)}$")
+    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
+    ax.set_yscale("log")
+    fig.savefig("smf_z7.pdf",bbox_inches='tight',pad_inches=0)
     
 def plot_uv_z6():
     z = "6.06"
