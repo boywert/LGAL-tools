@@ -260,6 +260,12 @@ def plot_uv_z6():
     smf_y = {}
     hmf_x = {}
     hmf_y = {}
+    coldmf_x = {}
+    coldmf_y = {}
+    hotmf_x = {}
+    hotmf_y = {}
+    ejectedmf_x = {}
+    ejectedmf_y = {}
     metalicity_x = {}
     metalicity_y = {}
     for i in range(len(model_names)):
@@ -274,6 +280,9 @@ def plot_uv_z6():
         (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10.**-0.5,mass_max=1.e3,nbins=10)
         (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
         (hmf_x[index],hmf_y[index]) =  M200c_mass_fn_gal(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
+        (coldmf_x[index],coldmf_y[index]) =  coldgas_mass_fn(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
+        (hotmf_x[index],hotmf_y[index]) =  hotgas_mass_fn(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
+        (ejectedmf_x[index],ejectedmf_y[index]) =  ejected_mass_fn(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
@@ -297,7 +306,7 @@ def plot_uv_z6():
     add_observations.add_obs_uv_z6("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
+        #ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
         ax.plot(luvlf_x[index],luvlf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
@@ -328,6 +337,9 @@ def plot_uv_z6():
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],model_plot_patterns[i],label=model_labels[i])
         ax.plot(hmf_x[index],hmf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(hotmf_x[index],hotmf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(coldmf_x[index],coldmf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(ejectmf_x[index],ejectmf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$\mathrm{\log_{10} (M/M_\odot)}$")

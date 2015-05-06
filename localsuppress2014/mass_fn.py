@@ -71,18 +71,27 @@ def stellar_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
     return (massftn_x,massftn_y)
 
 def hotgas_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
-    massf = gadget2msun*gal['HotGas']
-    stellarmass = numpy.histogram(numpy.log10(massf),nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
-    massftn_y = stellarmass[0]
+    massf = numpy.log10(gadget2msun*gal['HotGas']/hubble_h)
+    stellarmass = numpy.histogram((massf),nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
+    massftn_y = stellarmass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []
     for i in range(len(stellarmass[0])):
         massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
     return (massftn_x,massftn_y)
 
 def coldgas_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
-    massf = gadget2msun*gal['ColdGas']
-    stellarmass = numpy.histogram(numpy.log10(massf),nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
-    massftn_y = stellarmass[0]
+    massf = numpy.log10(gadget2msun*gal['ColdGas']/hubble_h)
+    stellarmass = numpy.histogram((massf),nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
+    massftn_y = stellarmass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
+    massftn_x = []
+    for i in range(len(stellarmass[0])):
+        massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
+    return (massftn_x,massftn_y)
+
+def ejected_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
+    massf = numpy.log10(gadget2msun*gal['EjectedMass']/hubble_h)
+    stellarmass = numpy.histogram((massf),nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
+    massftn_y = stellarmass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []
     for i in range(len(stellarmass[0])):
         massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
