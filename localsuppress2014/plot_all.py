@@ -342,7 +342,7 @@ def plot_uv_z6():
         ax.plot(hmf_x[index],hmf_y[index],model_plot_patterns[i],label=model_labels[i])
         ax.plot(hotmf_x[index],hotmf_y[index],model_plot_patterns[i],label=model_labels[i])
         ax.plot(coldmf_x[index],coldmf_y[index],model_plot_patterns[i],label=model_labels[i])
-        ax.plot(ejectmf_x[index],ejectmf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(ejectedmf_x[index],ejectedmf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$\mathrm{\log_{10} (M/M_\odot)}$")
