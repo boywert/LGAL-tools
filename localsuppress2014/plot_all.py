@@ -271,9 +271,9 @@ def plot_uv_z6():
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
         uvlf_x[index] = a[1][0:len(a[1])-1]+0.25-offset
         uvlf_y[index] = a[0]/47.**3/0.5
-        (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=1e-0.5,mass_max=1.e3,nbins=10)
-        (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=10.e7,mass_max=1.e12,nbins=50)
-        (hmf_x[index],hmf_y[index]) =  M200c_mass_fn_gal(gal[index],mass_min=10.e7,mass_max=1.e12,nbins=50)
+        (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=1.e-0.5,mass_max=1.e3,nbins=10)
+        (smf_x[index],smf_y[index]) =  stellar_mass_fn(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
+        (hmf_x[index],hmf_y[index]) =  M200c_mass_fn_gal(gal[index],mass_min=1.e7,mass_max=1.e12,nbins=50)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
