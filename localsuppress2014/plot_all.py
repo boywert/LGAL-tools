@@ -41,6 +41,7 @@ gadgetmass = 1.e10
 model_names = ["okamoto","noreionization","patchy_I"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/n306/sams/43000.00/inputs/LGalaxyStruct.py"]
 
+use_model = [False,True,True]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -49,8 +50,29 @@ for i in range(len(struct_file)):
     dt.append(t)
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
+
 model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/n306/sams/43000.00/"]
 model_plot_patterns = ['r--','g--','b--']
+
+#filter model
+dt_tmp = []
+model_names_tmp = []
+struct_file_tmp = []
+model_labels_tmp = []
+model_paths_tmp = []
+for i in range(len(use_model)):
+    if use_model[i]:
+        dt_tmp.append(dt[i])
+        model_names_tmp.append(model_names[i])
+        struct_file_tmp.append(struct_file[i])
+        model_labels_tmp.append(model_labels[i])
+        model_paths_tmp.append(model_paths[i])
+
+dt = dt_tmp
+model_names = model_names_tmp
+struct_file = struct
+model_labels = model_labels_tmp
+model_paths = model_paths_tmp       
 
 
 pylab.rc('text', usetex=True)
@@ -309,7 +331,7 @@ def plot_uv_z6():
     add_observations.add_obs_uv_z6("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        #ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
         ax.plot(luvlf_x[index],luvlf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
