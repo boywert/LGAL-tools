@@ -55,6 +55,7 @@ model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/s
 model_plot_patterns = ['r--','g--','b--']
 
 #filter model
+filter_tmp = []
 dt_tmp = []
 model_names_tmp = []
 struct_file_tmp = []
@@ -62,12 +63,13 @@ model_labels_tmp = []
 model_paths_tmp = []
 for i in range(len(use_model)):
     if use_model[i]:
+        filter_tmp.append(filter[i])
         dt_tmp.append(dt[i])
         model_names_tmp.append(model_names[i])
         struct_file_tmp.append(struct_file[i])
         model_labels_tmp.append(model_labels[i])
         model_paths_tmp.append(model_paths[i])
-
+filter = filter_tmp
 dt = dt_tmp
 model_names = model_names_tmp
 struct_file = struct_file_tmp
