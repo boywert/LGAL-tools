@@ -70,7 +70,7 @@ for i in range(len(use_model)):
 
 dt = dt_tmp
 model_names = model_names_tmp
-struct_file = struct
+struct_file = struct_file_tmp
 model_labels = model_labels_tmp
 model_paths = model_paths_tmp       
 
