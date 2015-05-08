@@ -41,7 +41,7 @@ gadgetmass = 1.e10
 model_names = ["okamoto","noreionization","patchy_I"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/n306/sams/43000.00/inputs/LGalaxyStruct.py"]
 
-use_model = [True,True,True]
+use_model = [False,True,False]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -333,7 +333,7 @@ def plot_uv_z6():
     add_observations.add_obs_uv_z6("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
+        #ax.plot(uvlf_x[index],uvlf_y[index],model_plot_patterns[i],label=model_labels[i])
         ax.plot(luvlf_x[index],luvlf_y[index],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
@@ -363,12 +363,12 @@ def plot_uv_z6():
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],model_plot_patterns[i],label=model_labels[i])
-        ax.plot(hmf_x[index],hmf_y[index],model_plot_patterns[i],label=model_labels[i])
-        ax.plot(hotmf_x[index],hotmf_y[index],"b-",label=model_labels[i])
-        ax.plot(coldmf_x[index],coldmf_y[index],"k-",label=model_labels[i])
-        ax.plot(ejectedmf_x[index],ejectedmf_y[index],"r-",label=model_labels[i])
-    #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    #leg.get_frame().set_linewidth(0)
+        #ax.plot(hmf_x[index],hmf_y[index],model_plot_patterns[i],label=model_labels[i])
+        #ax.plot(hotmf_x[index],hotmf_y[index],"b-",label=model_labels[i])
+        #ax.plot(coldmf_x[index],coldmf_y[index],"k-",label=model_labels[i])
+        #ax.plot(ejectedmf_x[index],ejectedmf_y[index],"r-",label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$\mathrm{\log_{10} (M/M_\odot)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
