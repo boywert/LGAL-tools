@@ -33,6 +33,7 @@ def main():
             high = float(high)/npart**3
             low = numpy.sum(halos[numpy.where(halos['M_Crit200'] < 0.1/hubble_h)]['Len'],dtype=numpy.int64)
             low = float(low)/npart**3
+            print zlist[i],low,high
             print >> f,zlist[i],low,high
     f.close()
     return 0
