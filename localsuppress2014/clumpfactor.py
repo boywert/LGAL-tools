@@ -27,11 +27,12 @@ def main():
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal.read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=True)
     count = 0
     for i in range(nTrees):
-        mass = output_Halos[count]["M_Crit200"]
-        count += 1
-        for j in range(1,nTreeHalos[i]):
-            output_Halos[count]["M_Crit200"] = mass
+        if(nTreeHalos[i] > 0):
+            mass = output_Halos[count]["M_Crit200"]
             count += 1
+            for j in range(1,nTreeHalos[i]):
+                output_Halos[count]["M_Crit200"] = mass
+                count += 1
             
     for i in range(len(zlist)):
         print 'halo mass function: z = '+zlist[i]
