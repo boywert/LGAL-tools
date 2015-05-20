@@ -19,6 +19,7 @@ def main():
     filter['M_Crit200'] = True
     filter['Len'] = True
     filter['SnapNum'] = True
+    filter['FirstHaloInFOFgroup'] = True
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_075."
     firstfile = 0
@@ -26,14 +27,9 @@ def main():
     f = open("clumping.dat","w")
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal.read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=True)
     count = 0
-    for i in range(nTrees):
-        if(nTreeHalos[i] > 0):
-            mass = output_Halos[count]["M_Crit200"]
-            count += 1
-            for j in range(1,nTreeHalos[i]):
-                output_Halos[count]["M_Crit200"] = mass
-                count += 1
-            
+    for i in range(nHalos):
+        output_Halos[i]["M_Crit200"] = output_Halos[output_Halos[i]["FirstHaloInFOFgroup"]]["M_Crit200"]
+        
     for i in range(len(zlist)):
         print 'halo mass function: z = '+zlist[i]
         halos = output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
