@@ -29,7 +29,7 @@ def main():
     for i in range(nTrees):
         mass = output_Halos[count]["M_Crit200"]
         count += 1
-        for j in range(nTreeHalos[i]):
+        for j in range(1,nTreeHalos[i]):
             output_Halos[count]["M_Crit200"] = mass
             count += 1
             
