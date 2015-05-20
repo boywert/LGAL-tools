@@ -26,10 +26,13 @@ def main():
     lastfile = 127
     f = open("clumping.dat","w")
     (nTrees,nHalos,nTreeHalos,output_Halos) = read_lgal.read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter,verbose=True)
-    count = 0
-    for i in range(nHalos):
-        output_Halos[i]["M_Crit200"] = output_Halos[output_Halos[i]["FirstHaloInFOFgroup"]]["M_Crit200"]
-        
+   
+    countroot = 0
+    for i in range(nTrees):
+        for j in range(nTreeHalos[i]):
+            output_Halos[countroot+j]["M_Crit200"] = output_Halos[countroot+output_Halos[countroot+j]["FirstHaloInFOFgroup"]]["M_Crit200"]
+        countroot += nTreeHalos[i]
+
     for i in range(len(zlist)):
         print 'halo mass function: z = '+zlist[i]
         halos = output_Halos[numpy.where(output_Halos['SnapNum'] == i)]
