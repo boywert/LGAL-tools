@@ -93,7 +93,7 @@ for i in range(len(model_names)):
     gal_lomass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] < 0.1/h0)[0]]
     gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1/h0)[0]]
     (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=50)
-    ax.plot(x,y,label=model_names[i])
+    ax.plot(sfr_bin_x,sfr_bin_y,label=model_names[i])
 fig.savefig("test.pdf")
 
 sfr_type0 = {}
