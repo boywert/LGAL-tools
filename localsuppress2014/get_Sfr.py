@@ -99,6 +99,7 @@ for i in range(len(model_names)):
     ax.plot(sfr_bin_x,sfr_bin_y,labels=model_names[i])
     ax2.plot(massfn_x,massfn_y,labels=model_names[i])
 fig.savefig("test.pdf")
+fig2.savefig("test2.pdf")
 
 sfr_type0 = {}
 sfr_type1 = {}
