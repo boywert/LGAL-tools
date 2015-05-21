@@ -8,7 +8,6 @@ import os
 import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
-
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 
@@ -44,7 +43,7 @@ config = {}
 h0 = 0.7
 gadgetmass = 1.e10
 model_names = ["okamoto","noreionization","patchy_I"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.00/inputs/LGalaxyStruct.py"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/inputs/LGalaxyStruct.py"]
 
 dt = []
 filter = []
@@ -54,7 +53,7 @@ for i in range(len(struct_file)):
     dt.append(t)
 
 model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/L-Galaxy_with_RT/sams/43000.00/"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/"]
 model_plot_patterns = ['r--','g--','b--']
 
 try:
@@ -83,14 +82,18 @@ gal_type0 = {}
 gal_type1 = {}
 gal_type2 = {}
 
-
+sfr_hist = {}
+fig = pylab.figure()
+ax = fig.add_subplot(111)
 for i in range(len(model_names)):
     index = model_names[i]
     gal_type0[index]  = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
     gal_type1[index]  = gal[index][numpy.where(gal[index]["Type"] == 1)[0]]
     gal_type2[index]  = gal[index][numpy.where(gal[index]["Type"] == 2)[0]]
-    gal_lomass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] < 0.1*h0)[0]]
-    gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1*h0)[0]]
+    gal_lomass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] < 0.1/h0)[0]]
+    gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1/h0)[0]]
+    (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=50):
+
 sfr_type0 = {}
 sfr_type1 = {}
 sfr_type2 = {}
@@ -102,8 +105,7 @@ for i in range(len(model_names)):
     sfr_type1[index] = numpy.sum(gal_type1[index]["Sfr"],dtype = numpy.float64)
     sfr_type2[index] = numpy.sum(gal_type2[index]["Sfr"],dtype = numpy.float64)
     sfr_himass[index] = numpy.sum(gal_himass[index]["Sfr"],dtype = numpy.float64)
-    sfr_lomass[index] = numpy.sum(gal_lomass[index]["Sfr"],dtype = numpy.float64)
-    
+    sfr_lomass[index] = numpy.sum(gal_lomass[index]["Sfr"],dtype = numpy.float64)    
 folder = "sfr/"
 os.system("mkdir -p "+folder)
 f = open(folder+"/"+z+".dat","w+")

@@ -41,10 +41,10 @@ def main():
             high = float(high)/npart**3
             low = numpy.sum(halos[numpy.where((halos['M_Crit200'] < 0.1/hubble_h) & (halos['M_Crit200'] >= 0.01/hubble_h))]['Len'],dtype=numpy.int64)
             low = float(low)/npart**3
-            mid = numpy.sum(halos[numpy.where(halos['M_Crit200'] < 0.01/hubble_h)]['Len'],dtype=numpy.int64)
-            mid = float(mid)/npart**3
+            mini = numpy.sum(halos[numpy.where(halos['M_Crit200'] < 0.01/hubble_h)]['Len'],dtype=numpy.int64)
+            mini = float(mini)/npart**3
             print zlist[i].strip(),low,mid,high
-            print >> f,zlist[i].strip(),low,mid,high
+            print >> f,zlist[i].strip(),mini,low,high
     f.close()
     return 0
 
