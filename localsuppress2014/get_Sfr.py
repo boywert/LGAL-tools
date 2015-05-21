@@ -84,7 +84,9 @@ gal_type2 = {}
 
 sfr_hist = {}
 fig = pylab.figure()
+fig2 = pylab.figure()
 ax = fig.add_subplot(111)
+ax2 = fig2.add_subplot(111)
 for i in range(len(model_names)):
     index = model_names[i]
     gal_type0[index]  = gal[index][numpy.where(gal[index]["Type"] == 0)[0]]
@@ -93,7 +95,9 @@ for i in range(len(model_names)):
     gal_lomass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] < 0.1/h0)[0]]
     gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1/h0)[0]]
     (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
-    ax.plot(sfr_bin_x,sfr_bin_y,label=model_names[i])
+    (massfn_x,massfn_y) = M200c_mass_fn_gal(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
+    ax.plot(sfr_bin_x,sfr_bin_y,labels=model_names[i])
+    ax2.plot(massfn_x,massfn_y,labels=model_names[i])
 fig.savefig("test.pdf")
 
 sfr_type0 = {}
