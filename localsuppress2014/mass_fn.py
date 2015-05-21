@@ -43,6 +43,16 @@ def sfr_density_fn(gal,mass_min=0.1,mass_max=1000.,nbins=20):
         massftn_x.append((stellarmass[1][i]+stellarmass[1][i+1])/2.)
     return (massftn_x,massftn_y)
 
+def sfr_massbin_fn(gal,mass_min=1e8,mass_max=1.e15,nbins=20):
+    massf = numpy.log10(gadget2msun*gal['HaloM_Crit200']/hubble_h)
+    mass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)),weights=gal["Sfr"])
+    massftn_y = mass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
+    massftn_x = []
+    for i in range(len(mass[0])):
+        massftn_x.append((mass[1][i]+mass[1][i+1])/2.)
+    return (massftn_x,massftn_y)
+
+
 def M200c_mass_fn(halos,mass_min=1e8,mass_max=1.e15,nbins=20):
     massf = numpy.log10(gadget2msun*halos['M_Crit200'])
     mass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
