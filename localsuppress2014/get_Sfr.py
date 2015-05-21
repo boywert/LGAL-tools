@@ -96,8 +96,8 @@ for i in range(len(model_names)):
     gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1/h0)[0]]
     (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     (massfn_x,massfn_y) = M200c_mass_fn_gal(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
-    ax.plot(sfr_bin_x,sfr_bin_y,labels=model_names[i])
-    ax2.plot(massfn_x,massfn_y,labels=model_names[i])
+    ax.plot(sfr_bin_x,sfr_bin_y,label=model_names[i])
+    ax2.plot(massfn_x,massfn_y,label=model_names[i])
 fig.savefig("test.pdf")
 fig2.savefig("test2.pdf")
 
