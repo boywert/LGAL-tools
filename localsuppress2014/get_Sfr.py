@@ -42,7 +42,7 @@ config = {}
 
 h0 = 0.7
 gadgetmass = 1.e10
-model_names = ["okamoto","noreionization","patchy_I"]
+model_names = ["okamoto","noreionization","patchyI"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/LGalaxyStruct.py"]
 
 dt = []
@@ -99,10 +99,10 @@ for i in range(len(model_names)):
     ax.plot(sfr_bin_x,numpy.cumsum(sfr_bin_y),label=model_names[i])
     ax2.plot(massfn_x,massfn_y,label=model_names[i])
 
-ax.set_xlabel(r"$\mathrm{\log_10(M/M_\odot)}$")
-ax2.set_xlabel(r"$\mathrm{\log_10(M/M_\odot)}$")
-ax.set_ylabel(r"$\phi$")
-ax2.set_ylabel(r"$\phi$")
+ax.set_xlabel(r"$\mathrm{\log_10(M_{200c}/M_\odot)}$")
+ax2.set_xlabel(r"$\mathrm{\log_10(M_{200c}/M_\odot)}$")
+ax.set_ylabel(r"$\mathrm{\phi(Mpc^{-3} dex^{-1})}$")
+ax2.set_ylabel(r"$\mathrm{\phi(Mpc^{-3} dex^{-1})}$")
 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg.get_frame().set_linewidth(0)
 leg2 = ax2.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
