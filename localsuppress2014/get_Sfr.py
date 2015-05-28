@@ -52,9 +52,9 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-model_labels = ["Okamoto et al. (2008)","No Reionization","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/14000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/14000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/"]
-model_plot_patterns = ['r--','g--','b--','y--','k--']
+model_labels = ["No Reionization","Patchy Reionization (cutoff at 8)","Patchy Reionization (cutoff at 9)","Patchy Reionization (Gradual)"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/14000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/14000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/"]
+model_plot_patterns = ['r--','g--','b--','y--']
 
 try:
     gal
@@ -96,8 +96,8 @@ for i in range(len(model_names)):
     gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1/h0)[0]]
     (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     (massfn_x,massfn_y) = M200c_mass_fn_gal(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
-    ax.plot(sfr_bin_x,numpy.cumsum(sfr_bin_y),label=model_names[i])
-    ax2.plot(massfn_x,massfn_y,label=model_names[i])
+    ax.plot(sfr_bin_x,numpy.cumsum(sfr_bin_y),label=model_labels[i])
+    ax2.plot(massfn_x,massfn_y,label=model_labels[i])
 
 ax.set_xlabel(r"$\mathrm{\log_10(M_{200c}/M_\odot)}$")
 ax2.set_xlabel(r"$\mathrm{\log_10(M_{200c}/M_\odot)}$")
