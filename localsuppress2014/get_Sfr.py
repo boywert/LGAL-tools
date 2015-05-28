@@ -98,8 +98,17 @@ for i in range(len(model_names)):
     (massfn_x,massfn_y) = M200c_mass_fn_gal(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     ax.plot(sfr_bin_x,numpy.cumsum(sfr_bin_y),label=model_names[i])
     ax2.plot(massfn_x,massfn_y,label=model_names[i])
-fig.savefig("test.pdf")
-fig2.savefig("test2.pdf")
+
+ax.set_xlabel(r"$\mathrm{\log_10(M/M_\odot)}$")
+ax2.set_xlabel(r"$\mathrm{\log_10(M/M_\odot)}$")
+ax.set_ylabel(r"$\phi$")
+ax2.set_ylabel(r"$\phi$")
+leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+leg2 = ax2.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+fig.savefig("sum_sfr_bin_"+str(rank)".pdf")
+fig2.savefig("massfn_"+str(rank)".pdf")
 
 sfr_type0 = {}
 sfr_type1 = {}
