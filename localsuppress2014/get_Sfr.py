@@ -42,7 +42,7 @@ config = {}
 
 h0 = 0.7
 gadgetmass = 1.e10
-model_names = ["okamoto","noreionization","patchy8","patchy9","patchyG"]
+model_names = ["noreionization","patchy8","patchy9","patchyG"]
 struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/14000.00/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/14000.00/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/LGalaxyStruct.py"]
 
 dt = []
