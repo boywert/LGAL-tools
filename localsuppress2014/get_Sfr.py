@@ -107,8 +107,8 @@ leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size
 leg.get_frame().set_linewidth(0)
 leg2 = ax2.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
 leg2.get_frame().set_linewidth(0)
-fig.savefig("sum_sfr_bin_"+str(rank)".pdf")
-fig2.savefig("massfn_"+str(rank)".pdf")
+fig.savefig("sum_sfr_bin_"+str(rank)+".pdf")
+fig2.savefig("massfn_"+str(rank)+".pdf")
 
 sfr_type0 = {}
 sfr_type1 = {}
