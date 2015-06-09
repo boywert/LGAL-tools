@@ -388,8 +388,8 @@ def plot_uv_z6():
     ax.set_yscale("log")
     fig.savefig("smf_z6.pdf",bbox_inches='tight',pad_inches=0)
 def main():
-    #plot_uv_z6()
-    #plot_uv_z7()
+    plot_uv_z6()
+    plot_uv_z7()
     plot_uv_z8()
     
 if __name__=="__main__":
