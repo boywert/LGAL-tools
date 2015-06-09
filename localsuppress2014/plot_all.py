@@ -420,7 +420,7 @@ def plot_uv_z12():
         a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
         uvlf_x[index] = a[1][0:len(a[1])-1]+0.25-offset-5*numpy.log10(0.7)
         uvlf_y[index] = a[0]/47.**3/0.5
-        (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10.**-0.5,mass_max=1.e3,nbins=10)
+        (sfr_x[index],sfr_y[index]) =  sfr_density_fn(gal[index],mass_min=10.**-1.,mass_max=10.**0.5,nbins=10)
 
     # SFR
     fig = plt.figure()
