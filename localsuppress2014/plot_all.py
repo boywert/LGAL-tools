@@ -483,9 +483,9 @@ def plot_uv_z12():
 
     
 def main():
-    #plot_uv_z6()
-    #plot_uv_z7()
-    #plot_uv_z8()
+    plot_uv_z6()
+    plot_uv_z7()
+    plot_uv_z8()
     plot_uv_z10()
 if __name__=="__main__":
     main()
