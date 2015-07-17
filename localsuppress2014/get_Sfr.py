@@ -42,9 +42,10 @@ config = {}
 
 h0 = 0.7
 gadgetmass = 1.e10
-model_names = ["noreionization","patchy8","patchy9","patchyG"]
-struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/14000.00/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/14000.00/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/LGalaxyStruct.py"]
+model_names = ["noreionization","okamoto","patchyG","patchy8","patchy9"]
+struct_file = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/inputs/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/480.00/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/480.00/LGalaxyStruct.py","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/480.00/LGalaxyStruct.py"]
 
+use_model = [True,True,True,True,True]
 dt = []
 filter = []
 for i in range(len(struct_file)):
@@ -52,9 +53,9 @@ for i in range(len(struct_file)):
     filter.append(f)
     dt.append(t)
 
-model_labels = ["No Reionization","Patchy Reionization (cutoff at 8)","Patchy Reionization (cutoff at 9)","Patchy Reionization (Gradual)"]
-model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/14000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/14000.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/14000.00/"]
-model_plot_patterns = ['r--','g--','b--','y--']
+model_labels = ["No Suppression","Okamoto et al.(2008)","Patchy Suppression (Gradual)","Patchy Suppression (cuttoff at 8)","Patchy Suppression (cuttoff at 9)"]
+model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/lustre/scratch/cs390/47Mpc/outputs/okamoto/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_5/sams/480.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_7/sams/480.00/","/mnt/lustre/scratch/cs390/47Mpc/couple/model_8/sams/480.00/"]
+model_plot_patterns = ['r--','g--','b--','y--','k--']
 
 try:
     gal
