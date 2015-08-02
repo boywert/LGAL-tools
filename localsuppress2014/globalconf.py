@@ -1,4 +1,3 @@
-file_prefix = "SA_z"+z
 firstfile = 0
 lastfile = 127
 config = {}

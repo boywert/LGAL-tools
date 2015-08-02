@@ -42,7 +42,9 @@ for i in range(len(struct_file)):
     (f,t) = loadfilter(struct_file[i])
     filter.append(f)
     dt.append(t)
-    
+
+file_prefix = "SA_z"+z
+
 try:
     gal
 except NameError:
