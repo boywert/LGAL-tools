@@ -45,7 +45,6 @@ def sfr_density_fn(gal,mass_min=0.1,mass_max=1000.,nbins=20):
 
 def sfr_massbin_fn(gal,mass_min=1e8,mass_max=1.e15,nbins=20):
     massf = numpy.log10(gadget2msun*gal['HaloM_Crit200']/hubble_h)
-    print massf
     mass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)),weights=gal["Sfr"])
     massftn_y = mass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []
