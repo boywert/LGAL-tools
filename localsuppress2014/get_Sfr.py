@@ -60,8 +60,8 @@ for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        print gal[index]["Sfr"]
-
+        print gal[index]["Sfr"],gal[index]['HaloM_Crit200']
+        
 
 pylab.rc('text', usetex=True)
 
@@ -87,7 +87,6 @@ for i in range(len(model_names)):
     (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     (massfn_x,massfn_y) = M200c_mass_fn_gal(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     ax.plot(sfr_bin_x,numpy.cumsum(sfr_bin_y),label=model_labels[i])
-    print (sfr_bin_x,sfr_bin_y) 
     ax2.plot(massfn_x,massfn_y,label=model_labels[i])
 
 ax.set_xlabel(r"$\mathrm{\log_{10}(M_{200c}/M_\odot)}$")
