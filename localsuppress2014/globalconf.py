@@ -16,6 +16,6 @@ model_paths = ["/mnt/lustre/scratch/cs390/47Mpc/outputs/no_reionization/","/mnt/
 model_plot_patterns = ['r--','g--','b--','y--']
 
 
-use_model = [False,True,False,True]
+use_model = [True,True,True,True]
 
 
