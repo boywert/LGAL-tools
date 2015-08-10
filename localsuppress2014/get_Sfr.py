@@ -109,8 +109,8 @@ for i in range(len(model_names)):
     gal_himass[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"] > 0.1/h0)[0]]
     (sfr_bin_x,sfr_bin_y) = sfr_massbin_fn(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     for ii in range(len(gal[index])):
-        if gal[index][ii]["Sfr"] > 1000.
-        print gal[index][ii]["Sfr"]
+        if gal[index][ii]["Sfr"] > 1000.:
+            print gal[index][ii]["Sfr"]
     print numpy.sum(gal[index]["Sfr"],dtype=numpy.float64)
     (massfn_x,massfn_y) = M200c_mass_fn_gal(gal[index],mass_min=1e8,mass_max=1.e12,nbins=20)
     #ax.plot(sfr_bin_x,numpy.cumsum(sfr_bin_y),label=model_labels[i])
