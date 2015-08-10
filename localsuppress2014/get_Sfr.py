@@ -83,7 +83,10 @@ for i in range(len(model_names)):
     index = model_names[i]
     if not index in gal:
         (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        print gal[index]["Sfr"],gal[index]['HaloM_Crit200']
+        for ii in range(len(gal[index])):
+            if gal[index][ii]["Sfr"] > 1000.:
+                gal[index][ii]["Sfr"] = 0.;
+            
         
 
 pylab.rc('text', usetex=True)
