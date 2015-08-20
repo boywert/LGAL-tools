@@ -1,5 +1,6 @@
 firstfile = 0
 lastfile = 127
+zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 config = {}
 
 h0 = 0.7
