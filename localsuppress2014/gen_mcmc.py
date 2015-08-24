@@ -45,7 +45,7 @@ def main():
                 t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
                 tot_nbins[j,i] += len(t_list)
                 percent += 100./(lastsnap+1)/nbins
-                print "%d \% completed " % (int(percent))
+                print "%d % completed " % (int(percent))
         # sample data
         print "Sampling data ..."
         for j in range(nbins):
