@@ -26,7 +26,7 @@ def main():
         #halos = output_Halos[index]
         #haloids = output_Halos[haloindex]
         a = numpy.histogram(output_Halos[rootindex]["M_Crit200"],bins=50)
-        
+        print a 
      
     return 0
 
