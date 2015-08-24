@@ -27,7 +27,7 @@ def main():
         rbound = lbound+delta_logm
         print lbound,rbound
         choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
-        choose_list = random.sample(choose_list,20)
+        choose_list = random.sample(choose_list,min(len(choose_list),20))
         print rootindex[choose_list]
 
     return 0
