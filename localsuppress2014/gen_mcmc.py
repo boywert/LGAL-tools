@@ -34,7 +34,7 @@ def main():
         rbound = lbound+delta_logm
         print lbound,rbound
         r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
-        choose_list = random.sample(r,min(len(r_list),sample_bin))
+        choose_list = random.sample(r_list,min(len(r_list),sample_bin))
         for h in choose_list:
             tot_ntrees += 1
             tot_nhalos += nTreeHalos[h]
