@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 sys.path.append("../python/")
 from  read_lgal_advance import *
 import random
+from mpi4py import MPI
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
 hubble_h = 0.7
 gadget_m_conv = 1.e10
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
@@ -25,12 +31,12 @@ def main():
     tot_nhalos = 0
     tot_ntreehalos = numpy.array([],dtype=numpy.int32)
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
-    tot_output_haloids_mcmc  = numpy.array([],dtype=numpy.int64)
+    tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
     tot_weight = numpy.array([],dtype=numpy.float64)
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-
-    for ifile in range(100,nFiles):
+    filelist = [40]
+    for ifile in filelist:
         firstfile = ifile
         lastfile = ifile
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
@@ -44,8 +50,7 @@ def main():
                 rbound = lbound+delta_logm
                 t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
                 tot_nbins[j,i] += len(t_list)
-                percent += 100./(lastsnap+1)/nbins
-                print str(int(percent))+"% completed"
+
         # sample data
         print "Sampling data ..."
         for j in range(nbins):
@@ -59,8 +64,14 @@ def main():
                 tot_nhalos += nTreeHalos[h]
                 tot_ntreehalos = numpy.append(tot_ntreehalos,nTreeHalos[h])
                 tot_output_halos = numpy.append(tot_output_halos,output_Halos[rootindex[h]:rootindex[h]+nTreeHalos[h]])
-                tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]:rootindex[h]+nTreeHalos[h]]["HaloID"])
-
+                tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]:rootindex[h]+nTreeHalos[h]])
+                
+    for i in range(lastsnap+1):
+        for j in range(nbins):
+            lbound = min_m+j*delta_logm
+            rbound = lbound+delta_logm
+            c_list = numpy.where((numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (tot_output_halos['SnapNum'] == i) & (tot_output_haloids_mcmc["HaloID"] == tot_output_haloids_mcmc["FirstHaloInFOFgroup"]))[0]
+            tot_count[j,i] += len(c_list)    
     
     print tot_ntrees
     print tot_nhalos
@@ -68,6 +79,7 @@ def main():
     print tot_output_halos
     print tot_output_haloids_mcmc
     print tot_weight
+    
     return 0
 
 if __name__=="__main__":
