@@ -15,6 +15,7 @@ max_m = 10.
 nbins = 20
 delta_logm = (max_m-min_m)/nbins
 sample_bin = 1
+nFiles = 128
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
@@ -29,7 +30,7 @@ def main():
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
 
-    for ifile in range(100,lastsnap+1):
+    for ifile in range(100,nFiles):
         firstfile = ifile
         lastfile = ifile
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
