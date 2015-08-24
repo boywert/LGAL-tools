@@ -12,9 +12,9 @@ zlist = open(zlistfile,"r").readlines()
 lastsnap = 75
 min_m = 8.
 max_m = 10.
-nbins = 30
+nbins = 20
 delta_logm = (max_m-min_m)/nbins
-sample_bin = 10
+sample_bin = 40
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
