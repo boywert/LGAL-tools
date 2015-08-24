@@ -18,8 +18,7 @@ sample_bin = 20
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
-
-    firstfile = 120
+    firstfile = 0
     lastfile = 127
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
