@@ -18,8 +18,8 @@ def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
 
-    firstfile = 0
-    lastfile = 10
+    firstfile = 127
+    lastfile = 127
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for j in range(nbins):
@@ -27,6 +27,7 @@ def main():
         rbound = lbound+delta_logm
         print lbound,rbound
         choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
+        choose_list = random.sample(choose_list,20)
         print rootindex[choose_list]
 
     return 0
