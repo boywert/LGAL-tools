@@ -25,9 +25,10 @@ def main():
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         for j in range(nbins):
-            min = min_m+j*delta_logm
-            max = min+delta_logm
-            choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=min))[0]
+            lbound = min_m+j*delta_logm
+            rbound = min+delta_logm
+            print lbound,rbound
+            choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
             print len(choose_list)
 
     return 0
