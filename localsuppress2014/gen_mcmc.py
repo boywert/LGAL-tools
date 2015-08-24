@@ -27,7 +27,7 @@ def main():
         halos = output_Halos[haloindex]
         haloids = output_Halos[haloindex]
         for j in firsthalo:
-            if output_Halos[j].FirstHaloInFOFgroup != 0:
+            if output_Halos[j]["FirstHaloInFOFgroup"] != 0:
                 print output_Halos[j]
     return 0
 
