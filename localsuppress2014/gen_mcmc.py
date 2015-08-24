@@ -22,11 +22,10 @@ def main():
         lastfile = i
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
         firsthalo = numpy.cumsum(nTreeHalos)-nTreeHalos
-        print nTreeHalos
+        print nTrees,nHalos,nTreeHalos
         haloindex = numpy.where(output_Halos['SnapNum'] == lastsnap)
         halos = output_Halos[haloindex]
         haloids = output_Halos[haloindex]
-        print haloindex
     return 0
 
 if __name__=="__main__":
