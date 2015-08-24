@@ -27,11 +27,9 @@ def main():
         for j in range(nbins):
             min = min_m+j*delta_logm
             max = min+delta_logm
-            choose_list = rootindex[numpy.where((output_Halos[rootindex]['M_Crit200'] >=min) & (output_Halos[rootindex]['M_Crit200'] <=max))[0]]
+            choose_list = numpy.where((output_Halos[rootindex]['M_Crit200'] >=min) & (output_Halos[rootindex]['M_Crit200'] <=max))[0]
             print choose_list
-        
-        print a 
-     
+
     return 0
 
 if __name__=="__main__":
