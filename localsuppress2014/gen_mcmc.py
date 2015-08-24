@@ -38,7 +38,7 @@ def main():
             tot_nhalos += nTreeHalos[h]
             tot_ntreehalos = numpy.append(tot_ntreehalos,nTreeHalos[h])
             tot_output_halos = numpy.append(tot_output_halos,output_Halos[rootindex[h]:rootindex[h+1]])
-            tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]])
+            tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]]["HaloID"])
 
     print tot_ntrees
     print tot_nhalos
