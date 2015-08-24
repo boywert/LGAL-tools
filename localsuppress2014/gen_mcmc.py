@@ -35,7 +35,7 @@ def main():
     tot_weight = numpy.array([],dtype=numpy.float64)
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-    filelist = [40]
+    filelist = [rank]
     for ifile in filelist:
         firstfile = ifile
         lastfile = ifile
