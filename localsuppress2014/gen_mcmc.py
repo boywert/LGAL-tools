@@ -27,14 +27,8 @@ def main():
         halos = output_Halos[haloindex]
         haloids = output_Halos[haloindex]
         firsthalo2 = numpy.where((output_HaloIDs["FirstHaloInFOFgroup"] == output_HaloIDs["HaloID"]) & (output_Halos['SnapNum'] == lastsnap))[0]
-        print len(firsthalo),len(firsthalo2)
-        j = 0
-        while firsthalo[j] == firsthalo2[j]:
-            print j, firsthalo[j],firsthalo2[j]
-            j += 1
-        print  j, firsthalo[j],firsthalo2[j]
-        j+=1
-        print  j, firsthalo[j],firsthalo2[j]
+        print len(firsthalo),len(firsthalo2), nTrees
+     
     return 0
 
 if __name__=="__main__":
