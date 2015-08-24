@@ -13,7 +13,7 @@ hubble_h = 0.7
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 lastsnap = 75
-selected_file = 100
+selected_file = 127
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
@@ -26,7 +26,8 @@ def main():
         haloindex = numpy.where(output_Halos['SnapNum'] == lastsnap)
         halos = output_Halos[haloindex]
         haloids = output_Halos[haloindex]
-        print firsthalo
+        for j in firsthalo:
+            print output_Halos[j].FirstHaloInFOFgroup
     return 0
 
 if __name__=="__main__":
