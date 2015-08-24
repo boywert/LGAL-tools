@@ -78,7 +78,8 @@ def main():
     print tot_ntreehalos
     print tot_output_halos
     print tot_output_haloids_mcmc
-    print tot_weight
+    print tot_count
+    print tot_nbins
     
     return 0
 
