@@ -58,6 +58,10 @@ tree_properties_used = {}
 for el in struct_lgalinput.names:
     tree_properties_used[el] = False
 
+tree_dbid_properties_used = {}
+for el in struct_lgaldbidsinput.names:
+    tree_dbid_properties_used[el] = False
+
 def read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter_arr,verbose):
     dt = struct_lgalinput
     nTrees = 0
@@ -90,6 +94,33 @@ def read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter_arr,verbos
     return (nTrees,nHalos,nTreeHalos,output_Halos)
 
 def read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose):
+    nTrees = 0
+    nHalos = 0
+    nTreeHalos = numpy.array([],dtype=numpy.int32)
+    output_Halos = numpy.array([],dtype=struct_lgalinput)
+    output_HaloIDs = numpy.array([],dtype=struct_lgaldbidsinput)
+    for ifile in range(firstfile,lastfile+1):
+        filename = folder+'/trees_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
+        f = open(filename,"rb")
+        this_nTrees = numpy.fromfile(f,numpy.int32,1)[0]
+        nTrees += this_nTrees
+        this_nHalos = numpy.fromfile(f,numpy.int32,1)[0]
+        nHalos += this_nHalos
+        if(verbose):
+            print "File ", ifile," nHalos = ",this_nHalos
+        addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
+        nTreeHalos = numpy.append(nTreeHalos,addednTreeHalos)
+        this_addedHalos = numpy.fromfile(f,struct_lgalinput,this_nHalos)
+        output_Halos = numpy.append(output_Halos,this_addedHalos)
+        f.close()
+        filename = folder+'/tree_dbids_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
+        f = open(filename,"rb")
+        this_addedHalos = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
+        output_HaloIDs = numpy.append(output_HaloIDs,this_addedHalos)
+        f.close()
+    return (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs)
+
+def read_lgal_input_fulltrees_withids_advance(folder,lastsnap,firstfile,lastfile,trees_filter,tree_dbids_filter,verbose):
     nTrees = 0
     nHalos = 0
     nTreeHalos = numpy.array([],dtype=numpy.int32)

@@ -1,7 +1,7 @@
 from mass_fn import *
 from globalconf import *
 import matplotlib
-matplotlib.use('pdf') 
+matplotlib.use('Agg') 
 import pylab
 import sys
 import numpy
@@ -12,6 +12,7 @@ import LGalaxyStruct
 import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
+import timeit
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
