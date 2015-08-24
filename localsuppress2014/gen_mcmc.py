@@ -25,7 +25,7 @@ def main():
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         #halos = output_Halos[index]
         #haloids = output_Halos[haloindex]
-        a = numpy.histogram(output_Halos[rootindex]["M_Crit200"],bins=50)
+        a = numpy.histogram(numpy.log10(output_Halos["M_Crit200"]*1e10),bins=50,range=(8.,11.))
         print a 
      
     return 0
