@@ -10,7 +10,6 @@ gadget_m_conv = 1.e10
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 lastsnap = 75
-selected_file = 0
 min_m = 8.
 max_m = 10.
 nbins = 20
@@ -18,7 +17,7 @@ delta_logm = (max_m-min_m)/nbins
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
-    flist = [selected_file]
+    flist = range(10)
     for i in flist:
         firstfile = i
         lastfile = i
