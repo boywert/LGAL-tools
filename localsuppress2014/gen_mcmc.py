@@ -26,7 +26,7 @@ def main():
         print nTrees,nHalos,nTreeHalos
         haloindex = numpy.where(output_Halos['SnapNum'] == lastsnap)
         halos = output_Halos[haloindex]
-        haloids = output_Halos[haloindex]g
+        haloids = output_Halos[haloindex]
     return 0
 
 if __name__=="__main__":
