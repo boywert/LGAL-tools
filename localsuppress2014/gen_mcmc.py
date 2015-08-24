@@ -14,7 +14,7 @@ selected_file = 127
 min_m = 8.
 max_m = 10.
 nbins = 50
-delta_logm = int((max_m-min_m)/nbins+0.5)
+delta_logm = (max_m-min_m)/nbins
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
