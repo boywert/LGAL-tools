@@ -13,7 +13,7 @@ lastsnap = 75
 selected_file = 127
 min_m = 8.
 max_m = 10.
-nbins = 50
+nbins = 20
 delta_logm = (max_m-min_m)/nbins
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
