@@ -29,7 +29,7 @@ def main():
             rbound = lbound+delta_logm
             print lbound,rbound
             choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
-            print len(choose_list)
+            print choose_list
 
     return 0
 
