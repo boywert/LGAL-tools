@@ -13,11 +13,12 @@ hubble_h = 0.7
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 lastsnap = 75
-nFiles = 128
+selected_file = 100
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
-    for i in range(nFiles):
+    flist = [selected_file]
+    for i in flist:
         firstfile = i
         lastfile = i
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
@@ -25,7 +26,7 @@ def main():
         print nTrees,nHalos,nTreeHalos
         haloindex = numpy.where(output_Halos['SnapNum'] == lastsnap)
         halos = output_Halos[haloindex]
-        haloids = output_Halos[haloindex]
+        haloids = output_Halos[haloindex]g
     return 0
 
 if __name__=="__main__":
