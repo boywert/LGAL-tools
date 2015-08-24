@@ -20,7 +20,7 @@ def main():
     file_prefix = "trees_%03d." % (lastsnap)
     firstfile = 0
     lastfile = 127
-    (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
+    (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for j in range(nbins):
         lbound = min_m+j*delta_logm
