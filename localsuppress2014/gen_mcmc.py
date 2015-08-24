@@ -6,7 +6,7 @@ sys.path.append("../python/")
 from  read_lgal_advance import *
 import random
 hubble_h = 0.7
-
+gadget_m_conv = 1.e10
 zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
 zlist = open(zlistfile,"r").readlines()
 lastsnap = 75
@@ -27,7 +27,7 @@ def main():
         for j in range(nbins):
             min = min_m+j*delta_logm
             max = min+delta_logm
-            choose_list = numpy.where((output_Halos[rootindex]['M_Crit200'] >=min) & (output_Halos[rootindex]['M_Crit200'] <=max))[0]
+            choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=min) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=max))
             print choose_list
 
     return 0
