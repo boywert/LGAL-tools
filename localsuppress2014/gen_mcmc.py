@@ -27,8 +27,8 @@ def main():
         for j in range(nbins):
             min = min_m+j*delta_logm
             max = min+delta_logm
-            choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=min))
-            print choose_list
+            choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=min))[0]
+            print len(choose_list)
 
     return 0
 
