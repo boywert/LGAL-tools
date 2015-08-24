@@ -35,15 +35,19 @@ def main():
         lastfile = ifile
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
-        print "make total table"
+        print "Making total table ..."
         # compute weight table
+        percent = 0
         for i in range(lastsnap+1):
             for j in range(nbins):
                 lbound = min_m+j*delta_logm
                 rbound = lbound+delta_logm
                 t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
                 tot_nbins[j,i] += len(t_list)
+                percent += 100./(lastsnap+1)/nbins
+                print "%d \% completed " % (percent)
         # sample data
+        print "Sampling data ..."
         for j in range(nbins):
             lbound = min_m+j*delta_logm
             rbound = lbound+delta_logm
