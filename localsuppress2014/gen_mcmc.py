@@ -17,18 +17,17 @@ delta_logm = (max_m-min_m)/nbins
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
-    flist = range(10)
-    for i in flist:
-        firstfile = i
-        lastfile = i
-        (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
-        rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
-        for j in range(nbins):
-            lbound = min_m+j*delta_logm
-            rbound = lbound+delta_logm
-            print lbound,rbound
-            choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
-            print rootindex[choose_list]
+
+    firstfile = 0
+    lastfile = 10
+    (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
+    rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
+    for j in range(nbins):
+        lbound = min_m+j*delta_logm
+        rbound = lbound+delta_logm
+        print lbound,rbound
+        choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
+        print rootindex[choose_list]
 
     return 0
 
