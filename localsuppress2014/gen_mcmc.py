@@ -33,6 +33,8 @@ def main():
             print j, firsthalo[j],firsthalo2[j]
             j += 1
         print  j, firsthalo[j],firsthalo2[j]
+        j+=1
+        print  j, firsthalo[j],firsthalo2[j]
     return 0
 
 if __name__=="__main__":
