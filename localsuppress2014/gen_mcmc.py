@@ -26,7 +26,7 @@ def main():
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         for j in range(nbins):
             lbound = min_m+j*delta_logm
-            rbound = min+delta_logm
+            rbound = lbound+delta_logm
             print lbound,rbound
             choose_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
             print len(choose_list)
