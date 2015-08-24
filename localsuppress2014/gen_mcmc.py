@@ -26,22 +26,37 @@ def main():
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
     tot_output_haloids_mcmc  = numpy.array([],dtype=numpy.int64)
     tot_weight = numpy.array([],dtype=numpy.float64)
+    tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+    tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+
+    for ifile in range(100,lastsnap+1):
+        firstfile = ifile
+        lastfile = ifile
+        (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
+        rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     
-    (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
-    rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
-    for j in range(nbins):
-        lbound = min_m+j*delta_logm
-        rbound = lbound+delta_logm
-        print lbound,rbound
-        r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
-        choose_list = random.sample(r_list,min(len(r_list),sample_bin))
-        for h in choose_list:
-            tot_ntrees += 1
-            tot_nhalos += nTreeHalos[h]
-            tot_ntreehalos = numpy.append(tot_ntreehalos,nTreeHalos[h])
-            tot_output_halos = numpy.append(tot_output_halos,output_Halos[rootindex[h]:rootindex[h+1]])
-            tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]]["HaloID"])
-            tot_weight = numpy.append(tot_weight,float(sample_bin)/len(r_list))
+        # compute weight table
+        for i in range(lastsnap+1):
+            for j in range(nbins):
+                lbound = min_m+j*delta_logm
+                rbound = lbound+delta_logm
+                t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
+                tot_nbins[j,i] += len(t_list)
+   
+        for j in range(nbins):
+            lbound = min_m+j*delta_logm
+            rbound = lbound+delta_logm
+            print lbound,rbound
+            r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
+            choose_list = random.sample(r_list,min(len(r_list),sample_bin))
+            for h in choose_list:
+                tot_ntrees += 1
+                tot_nhalos += nTreeHalos[h]
+                tot_ntreehalos = numpy.append(tot_ntreehalos,nTreeHalos[h])
+                tot_output_halos = numpy.append(tot_output_halos,output_Halos[rootindex[h]:rootindex[h]+nTreeHalos[h]])
+                tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]:rootindex[h]+nTreeHalos[h]]["HaloID"])
+
+    
     print tot_ntrees
     print tot_nhalos
     print tot_ntreehalos
