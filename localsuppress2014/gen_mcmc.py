@@ -23,8 +23,8 @@ def main():
         lastfile = i
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
-        halos = output_Halos[haloindex]
-        haloids = output_Halos[haloindex]
+        #halos = output_Halos[index]
+        #haloids = output_Halos[haloindex]
         a = numpy.histogram(output_Halos[rootindex]["M_Crit200"],bins=50)
         
      
