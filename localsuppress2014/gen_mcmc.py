@@ -25,6 +25,7 @@ def main():
     tot_ntreehalos = numpy.array([],dtype=numpy.int32)
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
     tot_output_haloids_mcmc  = numpy.array([],dtype=numpy.int64)
+    
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for j in range(nbins):
@@ -43,6 +44,8 @@ def main():
     print tot_ntrees
     print tot_nhalos
     print tot_ntreehalos
+    print tot_output_halos
+    print tot_output_haloids_mcmc
     return 0
 
 if __name__=="__main__":
