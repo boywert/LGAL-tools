@@ -28,8 +28,7 @@ def main():
         haloids = output_Halos[haloindex]
         firsthalo2 = numpy.where((output_HaloIDs["FirstHaloInFOFgroup"] == output_HaloIDs["HaloID"]) & (output_Halos['SnapNum'] == lastsnap))[0]
         print len(firsthalo),len(firsthalo2)
-        for j in range(len(firsthalo2)):
-            print firsthalo[j],firsthalo2[j]
+        print firsthalo[0],firsthalo2[0]
     return 0
 
 if __name__=="__main__":
