@@ -22,12 +22,11 @@ def main():
         firstfile = i
         lastfile = i
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=False)
-        firsthalo = numpy.cumsum(nTreeHalos)-nTreeHalos
-        haloindex = numpy.where(output_Halos['SnapNum'] == lastsnap)
+        rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         halos = output_Halos[haloindex]
         haloids = output_Halos[haloindex]
-        firsthalo2 = numpy.where((output_HaloIDs["FirstHaloInFOFgroup"] == output_HaloIDs["HaloID"]) & (output_Halos['SnapNum'] == lastsnap))[0]
-        print len(firsthalo),len(firsthalo2), nTrees
+        a = numpy.histogram(output_Halos[rootindex]["M_Crit200"],bins=50)
+        
      
     return 0
 
