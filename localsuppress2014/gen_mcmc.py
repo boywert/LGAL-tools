@@ -36,6 +36,7 @@ def main(argv):
     random.shuffle(all_list)
     all_list = numpy.array(all_list)
     filelist = numpy.array_split(all_list,size)[rank]
+    print "Rank",rank,filelist
     for ifile in filelist:
         firstfile = ifile
         lastfile = ifile
