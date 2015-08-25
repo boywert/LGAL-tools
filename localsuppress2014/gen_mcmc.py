@@ -32,10 +32,15 @@ def main(argv):
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-    all_list = range(nFiles)
-    random.shuffle(all_list)
-    all_list = numpy.array(all_list)
-    filelist = numpy.array_split(all_list,size)[rank]
+    if rank == 0:
+        all_list = range(nFiles)
+        random.shuffle(all_list)
+        all_list = numpy.array(all_list)
+        filelist = numpy.array_split(all_list,size)[rank]
+    else:
+        filelist = None
+    filelist = comm.scatter(filelist, root=0)
+        
     print "Rank",rank,filelist
     for ifile in filelist:
         firstfile = ifile
