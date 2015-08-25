@@ -115,7 +115,7 @@ def main(argv):
 
         fp = []
         for snap in range(lastsnap+1):
-            fp.append(open("%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap)))
+            fp.append(open("%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap),"w"))
         for i in range(b[0]):
             if(f_tot_output_haloids_mcmc[i]["HaloID"] == f_tot_output_haloids_mcmc[i]["FirstHaloInFOFgroup"]):
                 mass_bin = (numpy.log10(output_Halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
