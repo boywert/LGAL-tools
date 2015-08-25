@@ -25,17 +25,14 @@ nFiles = 128
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
-    firstfile = 40
-    lastfile = 40
     tot_ntrees = 0
     tot_nhalos = 0
     tot_ntreehalos = numpy.array([],dtype=numpy.int32)
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
     tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
-    tot_weight = numpy.array([],dtype=numpy.float64)
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-    all_list = numpy.array(range(40))
+    all_list = numpy.array(range(120,nFiles))
     filelist = numpy.array_split(all_list,size)[rank]
     for ifile in filelist:
         firstfile = ifile
@@ -73,15 +70,25 @@ def main():
             rbound = lbound+delta_logm
             c_list = numpy.where((numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (tot_output_halos['SnapNum'] == i) & (tot_output_haloids_mcmc["HaloID"] == tot_output_haloids_mcmc["FirstHaloInFOFgroup"]))[0]
             tot_count[j,i] += len(c_list)    
+
     
-    print tot_ntrees
-    print tot_nhalos
-    print tot_ntreehalos
-    print tot_output_halos
-    print tot_output_haloids_mcmc
-    print tot_count
-    print tot_nbins
-    
+
+    comm.Barrier()
+    comm.Reduce(None, tot_ntrees, op=MPI.SUM, root=0)
+    comm.Reduce(None, tot_nhalos, op=MPI.SUM, root=0)
+    tot_ntreehalos = comm.Gather(tot_ntreehalos, root=0)
+    tot_output_halos = comm.Gather(tot_output_halos, root=0)
+    tot_output_haloids_mcmc = comm.Gather(tot_output_haloids_mcmc, root=0)
+    comm.Reduce(None, tot_count, op=MPI.SUM, root=0)
+    comm.Reduce(None, tot_nbins, op=MPI.SUM, root=0)
+    if rank==0:
+        print tot_ntrees 
+        print tot_nhalos 
+        print tot_ntreehalos
+        print tot_output_halos
+        print tot_output_haloids_mcmc
+        print tot_nbins
+        print tot_count
     return 0
 
 if __name__=="__main__":
