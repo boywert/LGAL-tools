@@ -36,7 +36,7 @@ def main(argv):
         all_list = range(nFiles)
         random.shuffle(all_list)
         all_list = numpy.array(all_list)
-        filelist = numpy.array_split(all_list,size)[rank]
+        filelist = numpy.array_split(all_list,size)
     else:
         filelist = None
     filelist = comm.scatter(filelist, root=0)
