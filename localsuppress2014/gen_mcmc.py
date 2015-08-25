@@ -1,7 +1,6 @@
 import numpy
 import os
 import sys
-import matplotlib.pyplot as plt
 sys.path.append("../python/")
 from  read_lgal_advance import *
 import random
@@ -96,8 +95,8 @@ def main(argv):
         print f_tot_output_haloids_mcmc
         print f_tot_nbins
         print f_tot_count
-        fp_halo = open("trees","wb")
-        fp_haloids = open("tree_dbids","wb")
+        fp_halo = open("trees_075.0","wb")
+        fp_haloids = open("tree_dbids_075.0","wb")
         a.tofile(fp_halo)
         b.tofile(fp_halo)
         f_tot_ntreehalos.tofile(fp_halo)
