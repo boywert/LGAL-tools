@@ -77,8 +77,8 @@ def main():
     comm.Barrier()
     a = numpy.zeros(1)
     b = numpy.zeros(1)
-    comm.Reduce(a, tot_ntrees, op=MPI.SUM, root=0)
-    comm.Reduce(b, tot_nhalos, op=MPI.SUM, root=0)
+    comm.Reduce(tot_ntrees, a, op=MPI.SUM, root=0)
+    comm.Reduce(tot_nhalos, b, op=MPI.SUM, root=0)
    
     tot_ntreehalos = comm.gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.gather(tot_output_halos, root=0)
