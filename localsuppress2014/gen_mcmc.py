@@ -54,7 +54,6 @@ def main():
         for j in range(nbins):
             lbound = min_m+j*delta_logm
             rbound = lbound+delta_logm
-            print lbound,rbound
             r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
             choose_list = random.sample(r_list,min(len(r_list),sample_bin))
             for h in choose_list:
@@ -74,8 +73,10 @@ def main():
     
 
     comm.Barrier()
-    comm.Reduce(None, tot_ntrees, op=MPI.SUM, root=0)
-    comm.Reduce(None, tot_nhalos, op=MPI.SUM, root=0)
+    a = numpy.zeros(1)
+    b = numpy.zeros(1)
+    comm.Reduce(a, tot_ntrees, op=MPI.SUM, root=0)
+    comm.Reduce(b, tot_nhalos, op=MPI.SUM, root=0)
     tot_ntreehalos = comm.Gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.Gather(tot_output_halos, root=0)
     tot_output_haloids_mcmc = comm.Gather(tot_output_haloids_mcmc, root=0)
