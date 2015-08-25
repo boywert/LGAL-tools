@@ -135,7 +135,7 @@ def main(argv):
             fp = open(filename,"w")
             fp.write("%d\n" % (len(data)))
             for l in data:
-                fp.write(data)
+                fp.write(l)
             fp.close()
     return 0
 
