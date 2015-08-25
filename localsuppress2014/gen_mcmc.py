@@ -57,7 +57,7 @@ def main(argv):
             rbound = lbound+delta_logm
             r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
             choose_list = random.sample(r_list,min(len(r_list),sample_bin+extraportion_bins[j]))
-            extraportion_bins[j] += max(0,sample_bin-len(r_list))
+            extraportion_bins[j] += sample_bin-len(choose_list)
             for h in choose_list:
                 tot_ntrees[0] += 1
                 tot_nhalos[0] += nTreeHalos[h]
@@ -91,11 +91,13 @@ def main(argv):
         f_tot_ntreehalos = numpy.concatenate(tot_ntreehalos)
         f_tot_output_halos = numpy.concatenate(tot_output_halos)
         f_tot_output_haloids_mcmc = numpy.concatenate(tot_output_haloids_mcmc)
+        
         print f_tot_ntreehalos
         print f_tot_output_halos
         print f_tot_output_haloids_mcmc
         print f_tot_nbins
         print f_tot_count
+        
         fp_halo = open("trees_075.0","wb")
         fp_haloids = open("tree_dbids_075.0","wb")
         a.tofile(fp_halo)
@@ -105,6 +107,8 @@ def main(argv):
         fp_halo.close()
         f_tot_output_haloids_mcmc["HaloID"].tofile(fp_haloids)
         fp_haloids.close()
+
+        
     return 0
 
 if __name__=="__main__":
