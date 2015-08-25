@@ -32,9 +32,7 @@ def main():
     tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-    if rank == 0:
-        f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-        f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+
     all_list = numpy.array(range(126,nFiles))
     filelist = numpy.array_split(all_list,size)[rank]
     for ifile in filelist:
