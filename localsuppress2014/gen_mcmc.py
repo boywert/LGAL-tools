@@ -84,8 +84,10 @@ def main(argv):
     tot_ntreehalos = comm.gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.gather(tot_output_halos, root=0)
     tot_output_haloids_mcmc = comm.gather(tot_output_haloids_mcmc, root=0)
+
     comm.Reduce(tot_count, f_tot_count, op=MPI.SUM, root=0)
     comm.Reduce(tot_nbins, f_tot_nbins, op=MPI.SUM, root=0)
+
     if rank==0:
         print a 
         print b
@@ -99,6 +101,8 @@ def main(argv):
         print f_tot_nbins
         print f_tot_count
         
+        weight_bin = float(f_tot_count)/f_tot_nbins
+
         fp_halo = open("trees_075.0","wb")
         fp_haloids = open("tree_dbids_075.0","wb")
         a.tofile(fp_halo)
@@ -109,6 +113,15 @@ def main(argv):
         f_tot_output_haloids_mcmc["HaloID"].tofile(fp_haloids)
         fp_haloids.close()
 
+        fp = []
+        for snap in range(lastsnap+1):
+            fp.append(open("%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap)))
+        for i in range(b[0]):
+            if(f_tot_output_haloids_mcmc[i]["HaloID"] == f_tot_output_haloids_mcmc[i]["FirstHaloInFOFgroup"]):
+                mass_bin = (numpy.log10(output_Halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
+                if (mass_bin < nbins) & (mass_bin >= 0):
+                    weight = weight_bin[mass_bin,snap]
+                    print f_tot_output_haloids_mcmc[i]["HaloID"],0,0,1./weight
         
     return 0
 
