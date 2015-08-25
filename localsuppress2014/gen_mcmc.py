@@ -117,7 +117,7 @@ def main(argv):
         count = numpy.zeros(lastsnap+1)
         for snap in range(lastsnap+1):
             fp.append(open("%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap),"w"))
-            print >> fp[snap], 0
+
         for i in range(b[0]):
             if(f_tot_output_haloids_mcmc[i]["HaloID"] == f_tot_output_haloids_mcmc[i]["FirstHaloInFOFgroup"]):
                 mass_bin = (numpy.log10(output_Halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
@@ -126,10 +126,17 @@ def main(argv):
                     weight = weight_bin[mass_bin,snap]
                     if(weight > 0.):
                         print >> fp[snap], f_tot_output_haloids_mcmc[i]["HaloID"],"\t",0,"\t",0,"\t",1./weight
-                        count[snap] += 1
+    
         for snap in range(lastsnap+1):
-            fp[snap].SEEK_SET(0)
-            print >> fp[snap], count[snap]
+            fp[snap].close()
+        for snap in range(lastsnap+1):
+            filename = "%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap)
+            data = open(filename).readlines()
+            fp = open(filename,"w")
+            fp.write("%d\n" % (len(data)))
+            for l in data:
+                fp.write(data)
+            fp.close()
     return 0
 
 if __name__=="__main__":
