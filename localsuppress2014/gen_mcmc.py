@@ -42,7 +42,7 @@ def main(argv):
         lastfile = ifile
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
-        print "Making total table ..."
+        print "Rank",rank,"Making total table ..."
         # compute weight table
         for i in range(lastsnap+1):
             for j in range(nbins):
@@ -52,7 +52,7 @@ def main(argv):
                 tot_nbins[j,i] += len(t_list)
             
         # sample data
-        print "Sampling data ..."
+        print "Rank",rank,"Sampling data ..."
         for j in range(nbins):
             lbound = min_m+j*delta_logm
             rbound = lbound+delta_logm
