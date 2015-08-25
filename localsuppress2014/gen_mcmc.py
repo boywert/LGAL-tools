@@ -103,7 +103,7 @@ def main(argv):
         f_tot_ntreehalos.tofile(fp_halo)
         f_tot_output_halos.tofile(fp_halo)
         fp_halo.close()
-        f_tot_output_haloids_mcmc.tofile(fp_haloids)
+        f_tot_output_haloids_mcmc["HaloID"].tofile(fp_haloids)
         fp_haloids.close()
     return 0
 
