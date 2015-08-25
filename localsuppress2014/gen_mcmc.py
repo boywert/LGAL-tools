@@ -34,8 +34,8 @@ def main():
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-    all_list = numpy.array(range(126,nFiles))
-    all_list = random.shuffle(all_list)
+    all_list = range(126,nFiles)
+    all_list = numpy.array(random.shuffle(all_list))
     filelist = numpy.array_split(all_list,size)[rank]
     for ifile in filelist:
         firstfile = ifile
