@@ -78,20 +78,21 @@ def main():
     comm.Reduce(a, tot_ntrees, op=MPI.SUM, root=0)
     comm.Reduce(b, tot_nhalos, op=MPI.SUM, root=0)
     if rank == 0:
-        print a,b
+        f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+        f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_ntreehalos = comm.gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.gather(tot_output_halos, root=0)
     tot_output_haloids_mcmc = comm.gather(tot_output_haloids_mcmc, root=0)
-    comm.Reduce(None, tot_count, op=MPI.SUM, root=0)
-    comm.Reduce(None, tot_nbins, op=MPI.SUM, root=0)
+    comm.Reduce(tot_count, f_tot_count, op=MPI.SUM, root=0)
+    comm.Reduce(tot_nbins, f_tot_nbins, op=MPI.SUM, root=0)
     if rank==0:
-        print tot_ntrees 
-        print tot_nhalos 
+        print a 
+        print b 
         print tot_ntreehalos
         print tot_output_halos
         print tot_output_haloids_mcmc
-        print tot_nbins
-        print tot_count
+        print f_tot_nbins
+        print f_tot_count
     return 0
 
 if __name__=="__main__":
