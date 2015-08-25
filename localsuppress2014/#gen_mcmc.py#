@@ -1,7 +1,6 @@
 import numpy
 import os
 import sys
-import matplotlib.pyplot as plt
 sys.path.append("../python/")
 from  read_lgal_advance import *
 import random
