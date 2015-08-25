@@ -32,7 +32,7 @@ def main(argv):
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-    all_list = range(126,nFiles)
+    all_list = range(127,nFiles)
     random.shuffle(all_list)
     all_list = numpy.array(all_list)
     filelist = numpy.array_split(all_list,size)[rank]
@@ -101,7 +101,7 @@ def main(argv):
         print f_tot_nbins
         print f_tot_count
         
-        weight_bin = float(f_tot_count)/f_tot_nbins
+        weight_bin = f_tot_count.astype(numpy.float64)/f_tot_nbins.astype(numpy.float64)
 
         fp_halo = open("trees_075.0","wb")
         fp_haloids = open("tree_dbids_075.0","wb")
