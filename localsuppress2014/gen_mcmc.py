@@ -32,6 +32,9 @@ def main():
     tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+     if rank == 0:
+        f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+        f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     all_list = numpy.array(range(126,nFiles))
     filelist = numpy.array_split(all_list,size)[rank]
     for ifile in filelist:
@@ -77,9 +80,7 @@ def main():
     b = numpy.zeros(1)
     comm.Reduce(a, tot_ntrees, op=MPI.SUM, root=0)
     comm.Reduce(b, tot_nhalos, op=MPI.SUM, root=0)
-    if rank == 0:
-        f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
-        f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+   
     tot_ntreehalos = comm.gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.gather(tot_output_halos, root=0)
     tot_output_haloids_mcmc = comm.gather(tot_output_haloids_mcmc, root=0)
