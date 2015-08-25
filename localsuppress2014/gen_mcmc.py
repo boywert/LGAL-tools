@@ -35,6 +35,7 @@ def main():
     f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     all_list = numpy.array(range(126,nFiles))
+    all_list = random.shuffle(all_list)
     filelist = numpy.array_split(all_list,size)[rank]
     for ifile in filelist:
         firstfile = ifile
@@ -87,10 +88,13 @@ def main():
     comm.Reduce(tot_nbins, f_tot_nbins, op=MPI.SUM, root=0)
     if rank==0:
         print a 
-        print b 
-        print tot_ntreehalos
-        print tot_output_halos
-        print tot_output_haloids_mcmc
+        print b
+        f_tot_ntreehalos = numpy.concatenate(tot_ntreehalos)
+        f_tot_output_halos = numpy.concatenate(tot_output_halos)
+        f_tot_output_haloids_mcmc = numpy.concatenate(tot_output_haloids_mcmc)
+        print f_tot_ntreehalos
+        print f_tot_output_halos
+        print f_tot_output_haloids_mcmc
         print f_tot_nbins
         print f_tot_count
     return 0
