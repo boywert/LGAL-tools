@@ -13,8 +13,6 @@ rank = comm.Get_rank()
 
 hubble_h = 0.7
 gadget_m_conv = 1.e10
-zlistfile = "/mnt/lustre/scratch/cs390/47Mpc/snap_z.txt"
-zlist = open(zlistfile,"r").readlines()
 lastsnap = 75
 min_m = 8.
 max_m = 10.
@@ -22,9 +20,9 @@ nbins = 20
 delta_logm = (max_m-min_m)/nbins
 sample_bin = 1
 nFiles = 128
-def main():
+def main(argv):
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
-    file_prefix = "trees_%03d." % (lastsnap)
+    #file_prefix = "trees_%03d." % (lastsnap)
     tot_ntrees = numpy.zeros(1)
     tot_nhalos = numpy.zeros(1)
     tot_ntreehalos = numpy.array([],dtype=numpy.int32)
@@ -98,8 +96,17 @@ def main():
         print f_tot_output_haloids_mcmc
         print f_tot_nbins
         print f_tot_count
+        fp_halo = open("trees","wb")
+        fp_haloids = open("tree_dbids","wb")
+        a.tofile(fp_halo)
+        b.tofile(fp_halo)
+        f_tot_ntreehalos.tofile(fp_halo)
+        f_tot_output_halos.tofile(fp_halo)
+        fp_halo.close()
+        f_tot_output_haloids_mcmc.tofile(fp_haloids)
+        fp_haloids.close() 
     return 0
 
 if __name__=="__main__":
-    main()
+    main(sys.argv)
     
