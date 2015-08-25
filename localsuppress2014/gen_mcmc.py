@@ -74,8 +74,8 @@ def main():
     
 
     comm.Barrier()
-    comm.Reduce(None, tot_ntrees, op=MPI.SUM, root=0)
-    comm.Reduce(None, tot_nhalos, op=MPI.SUM, root=0)
+    comm.Reduce(None, [tot_ntrees], op=MPI.SUM, root=0)
+    comm.Reduce(None, [tot_nhalos], op=MPI.SUM, root=0)
     tot_ntreehalos = comm.Gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.Gather(tot_output_halos, root=0)
     tot_output_haloids_mcmc = comm.Gather(tot_output_haloids_mcmc, root=0)
