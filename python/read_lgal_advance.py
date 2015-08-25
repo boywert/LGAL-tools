@@ -136,6 +136,7 @@ def read_lgal_input_fulltrees_withids_advance(folder,lastsnap,firstfile,lastfile
         if(verbose):
             print "File ", ifile," nHalos = ",this_nHalos
         addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
+        
         nTreeHalos = numpy.append(nTreeHalos,addednTreeHalos)
         this_addedHalos = numpy.fromfile(f,struct_lgalinput,this_nHalos)
         output_Halos = numpy.append(output_Halos,this_addedHalos)

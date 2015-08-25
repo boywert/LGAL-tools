@@ -22,8 +22,8 @@ nFiles = 128
 def main(argv):
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     #file_prefix = "trees_%03d." % (lastsnap)
-    tot_ntrees = numpy.zeros(1)
-    tot_nhalos = numpy.zeros(1)
+    tot_ntrees = numpy.zeros(1,dtype=numpy.int32)
+    tot_nhalos = numpy.zeros(1,dtype=numpy.int32)
     tot_ntreehalos = numpy.array([],dtype=numpy.int32)
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
     tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
