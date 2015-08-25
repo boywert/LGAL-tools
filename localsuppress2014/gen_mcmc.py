@@ -25,8 +25,8 @@ nFiles = 128
 def main():
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     file_prefix = "trees_%03d." % (lastsnap)
-    tot_ntrees = 0
-    tot_nhalos = 0
+    tot_ntrees = numpy.zeros(1)
+    tot_nhalos = numpy.zeros(1)
     tot_ntreehalos = numpy.array([],dtype=numpy.int32)
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
     tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
@@ -58,8 +58,8 @@ def main():
             r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
             choose_list = random.sample(r_list,min(len(r_list),sample_bin))
             for h in choose_list:
-                tot_ntrees += 1
-                tot_nhalos += nTreeHalos[h]
+                tot_ntrees[0] += 1
+                tot_nhalos[0] += nTreeHalos[h]
                 tot_ntreehalos = numpy.append(tot_ntreehalos,nTreeHalos[h])
                 tot_output_halos = numpy.append(tot_output_halos,output_Halos[rootindex[h]:rootindex[h]+nTreeHalos[h]])
                 tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]:rootindex[h]+nTreeHalos[h]])
@@ -74,8 +74,8 @@ def main():
     
 
     comm.Barrier()
-    comm.Reduce(None, [tot_ntrees], op=MPI.SUM, root=0)
-    comm.Reduce(None, [tot_nhalos], op=MPI.SUM, root=0)
+    comm.Reduce(None, tot_ntrees, op=MPI.SUM, root=0)
+    comm.Reduce(None, tot_nhalos, op=MPI.SUM, root=0)
     tot_ntreehalos = comm.Gather(tot_ntreehalos, root=0)
     tot_output_halos = comm.Gather(tot_output_halos, root=0)
     tot_output_haloids_mcmc = comm.Gather(tot_output_haloids_mcmc, root=0)
