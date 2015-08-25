@@ -28,6 +28,7 @@ def main(argv):
     tot_output_halos = numpy.array([],dtype=struct_lgalinput)
     tot_output_haloids_mcmc  = numpy.array([],dtype=struct_lgaldbidsinput)
     tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
+    extraportion_bins = numpy.zeros(nbins,dtype=numpy.int64)
     tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_nbins = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
     f_tot_count = numpy.zeros((nbins,lastsnap+1),dtype=numpy.int64)
@@ -42,21 +43,21 @@ def main(argv):
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         print "Making total table ..."
         # compute weight table
-        percent = 0
         for i in range(lastsnap+1):
             for j in range(nbins):
                 lbound = min_m+j*delta_logm
                 rbound = lbound+delta_logm
                 t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
                 tot_nbins[j,i] += len(t_list)
-
+            
         # sample data
         print "Sampling data ..."
         for j in range(nbins):
             lbound = min_m+j*delta_logm
             rbound = lbound+delta_logm
             r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
-            choose_list = random.sample(r_list,min(len(r_list),sample_bin))
+            choose_list = random.sample(r_list,min(len(r_list),sample_bin+extraportion_bins[j]))
+            extraportion_bins[j] += max(0,sample_bin-len(r_list))
             for h in choose_list:
                 tot_ntrees[0] += 1
                 tot_nhalos[0] += nTreeHalos[h]
