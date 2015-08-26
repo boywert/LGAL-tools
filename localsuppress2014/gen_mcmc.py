@@ -137,9 +137,10 @@ def main(argv):
         for snap in range(lastsnap+1):
             os.system("mkdir -p Samples")
             filename = "Samples/%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap)
-            fp = open(filename)
+            fp = open(filename, "r")
             data = fp.readlines()
             fp.close()
+            os.system("rm -f "+filename)
             fp = open(filename,"w")
             fp.write("%d\n" % (len(data)))
             for l in data:
