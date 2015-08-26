@@ -18,7 +18,9 @@ max_m = 12.
 nbins = 20
 delta_logm = (max_m-min_m)/nbins
 sample_bin = 2
-nFiles = 64
+nFiles = 128
+
+
 def main(argv):
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     #file_prefix = "trees_%03d." % (lastsnap)
