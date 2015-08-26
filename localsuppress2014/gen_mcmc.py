@@ -123,7 +123,7 @@ def main(argv):
         fp = []
         count = numpy.zeros(lastsnap+1)
         for snap in range(lastsnap+1):
-            fp.append(open("%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap),"w"))
+            fp.append(open("Samples/%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap),"w"))
 
         for i in range(b[0]):
             if(f_tot_output_haloids_mcmc[i]["HaloID"] == f_tot_output_haloids_mcmc[i]["FirstHaloInFOFgroup"]):
@@ -142,7 +142,6 @@ def main(argv):
             fp = open(filename, "r")
             data = fp.readlines()
             fp.close()
-            os.system("rm -f "+filename)
             fp = open(filename,"w")
             fp.write("%d\n" % (len(data)))
             for l in data:
