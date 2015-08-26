@@ -15,10 +15,10 @@ gadget_m_conv = 1.e10
 lastsnap = 75
 min_m = 8.
 max_m = 12.
-nbins = 40
+nbins = 20
 delta_logm = (max_m-min_m)/nbins
-sample_bin = 1
-nFiles = 128
+sample_bin = 2
+nFiles = 64
 def main(argv):
     folder = "/mnt/lustre/scratch/cs390/47Mpc/treedata/"
     #file_prefix = "trees_%03d." % (lastsnap)
