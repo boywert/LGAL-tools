@@ -14,8 +14,8 @@ hubble_h = 0.7
 gadget_m_conv = 1.e10
 lastsnap = 75
 min_m = 8.
-max_m = 10.
-nbins = 20
+max_m = 12.
+nbins = 40
 delta_logm = (max_m-min_m)/nbins
 sample_bin = 1
 nFiles = 128
@@ -40,7 +40,7 @@ def main(argv):
     else:
         filelist = None
     filelist = comm.scatter(filelist, root=0)
-        
+
     print "Rank",rank,filelist
     for ifile in filelist:
         firstfile = ifile
@@ -107,9 +107,9 @@ def main(argv):
         print f_tot_count
         
         weight_bin = f_tot_count.astype(numpy.float64)/f_tot_nbins.astype(numpy.float64)
-
-        fp_halo = open("trees_075.0","wb")
-        fp_haloids = open("tree_dbids_075.0","wb")
+        os.system("mkdir -p treedata")
+        fp_halo = open("treedata/trees_075.0","wb")
+        fp_haloids = open("treedata/tree_dbids_075.0","wb")
         a.tofile(fp_halo)
         b.tofile(fp_halo)
         f_tot_ntreehalos.tofile(fp_halo)
@@ -135,7 +135,8 @@ def main(argv):
         for snap in range(lastsnap+1):
             fp[snap].close()
         for snap in range(lastsnap+1):
-            filename = "%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap)
+            os.system("mkdir -p Samples")
+            filename = "Samples/%ssample_allz_nh_%d%d.dat" % ("optimal", 999, snap)
             data = open(filename).readlines()
             fp = open(filename,"w")
             fp.write("%d\n" % (len(data)))
