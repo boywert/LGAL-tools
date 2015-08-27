@@ -76,7 +76,10 @@ def main(argv):
                 tot_ntreehalos = numpy.append(tot_ntreehalos,nTreeHalos[h])
                 tot_output_halos = numpy.append(tot_output_halos,output_Halos[rootindex[h]:rootindex[h]+nTreeHalos[h]])
                 tot_output_haloids_mcmc = numpy.append(tot_output_haloids_mcmc,output_HaloIDs[rootindex[h]:rootindex[h]+nTreeHalos[h]])
-                
+        del(output_Halos)
+        del(output_HaloIDs)
+        del(nTreeHalos)
+        
     # for i in range(lastsnap+1):
     #     for j in range(nbins):
     #         lbound = min_m+j*delta_logm
