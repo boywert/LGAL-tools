@@ -52,24 +52,24 @@ def main(argv):
         print "Rank",rank,"Making total table ..."
 
         # compute weight table
-        # for i in range(lastsnap+1):
-        #     for j in range(nbins):
-        #         lbound = min_m+j*delta_logm
-        #         rbound = lbound+delta_logm
-        #         t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
-        #         tot_nbins[j,i] += len(t_list)
+        for i in range(lastsnap+1):
+            for j in range(nbins):
+                print "computing weight table snap = %d, bin = %d" % (i,j)
+                lbound = min_m+j*delta_logm
+                rbound = lbound+delta_logm
+                t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
+                tot_nbins[j,i] += len(t_list)
             
         # sample data
         print "Rank",rank,"Sampling data ..."
         for j in range(nbins):
-            print "doing bin = ",j,"/",nbins-1
+            print "Sampling bin = ",j,"/",nbins-1
             lbound = min_m+j*delta_logm
             rbound = lbound+delta_logm
             r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
             choose_list = random.sample(r_list,min(len(r_list),sample_bin+extraportion_bins[j]))
             extraportion_bins[j] += sample_bin-len(choose_list)
-            tot_count[j,lastsnap] = len(choose_list)
-            tot_nbins[j,lastsnap] = len(r_list)
+            
             for h in choose_list:
                 tot_ntrees[0] += 1
                 tot_nhalos[0] += nTreeHalos[h]
@@ -80,12 +80,12 @@ def main(argv):
         del(output_HaloIDs)
         del(nTreeHalos)
         
-    # for i in range(lastsnap+1):
-    #     for j in range(nbins):
-    #         lbound = min_m+j*delta_logm
-    #         rbound = lbound+delta_logm
-    #         c_list = numpy.where((numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (tot_output_halos['SnapNum'] == i) & (tot_output_haloids_mcmc["HaloID"] == tot_output_haloids_mcmc["FirstHaloInFOFgroup"]))[0]
-    #         tot_count[j,i] += len(c_list)    
+    for i in range(lastsnap+1):
+        for j in range(nbins):
+            lbound = min_m+j*delta_logm
+            rbound = lbound+delta_logm
+            c_list = numpy.where((numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(tot_output_halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (tot_output_halos['SnapNum'] == i) & (tot_output_haloids_mcmc["HaloID"] == tot_output_haloids_mcmc["FirstHaloInFOFgroup"]))[0]
+            tot_count[j,i] += len(c_list)    
 
     
 
@@ -137,7 +137,7 @@ def main(argv):
                 mass_bin = (numpy.log10(f_tot_output_halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
                 if (mass_bin < nbins) & (mass_bin >= 0):
                     snap = f_tot_output_halos[i]["SnapNum"]
-                    weight = weight_bin[mass_bin,lastsnap]
+                    weight = weight_bin[mass_bin,i]
                     if(weight > 0.):
                         print >> fp[snap], f_tot_output_haloids_mcmc[i]["HaloID"],"\t",0,"\t",0,"\t",1./weight
     
