@@ -134,7 +134,7 @@ def main(argv):
 
         for i in range(b[0]):
             if(f_tot_output_haloids_mcmc[i]["HaloID"] == f_tot_output_haloids_mcmc[i]["FirstHaloInFOFgroup"]):
-                mass_bin = (numpy.log10(output_Halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
+                mass_bin = (numpy.log10(f_tot_output_halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
                 if (mass_bin < nbins) & (mass_bin >= 0):
                     snap = f_tot_output_halos[i]["SnapNum"]
                     weight = weight_bin[mass_bin,lastsnap]
