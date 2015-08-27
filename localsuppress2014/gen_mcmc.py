@@ -15,9 +15,9 @@ gadget_m_conv = 1.e10
 lastsnap = 75
 min_m = 8.
 max_m = 12.
-nbins = 20
+nbins = 10
 delta_logm = (max_m-min_m)/nbins
-sample_bin = 20
+sample_bin = 2
 nFiles = 128
 
 
