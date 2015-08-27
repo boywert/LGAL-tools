@@ -18,7 +18,7 @@ max_m = 12.
 nbins = 20
 delta_logm = (max_m-min_m)/nbins
 sample_bin = 20
-nFiles = 2
+nFiles = 128
 
 
 def main(argv):
@@ -42,7 +42,6 @@ def main(argv):
     else:
         filelist = None
     filelist = comm.scatter(filelist, root=0)
-            
     print "Rank",rank,filelist
     for ifile in filelist:
         firstfile = ifile
@@ -54,7 +53,7 @@ def main(argv):
         # compute weight table
         for i in range(lastsnap+1):
             for j in range(nbins):
-                print "computing weight table snap = %d, bin = %d" % (i,j)
+                print "Rank",rank,"computing weight table snap = %d, bin = %d" % (i,j)
                 lbound = min_m+j*delta_logm
                 rbound = lbound+delta_logm
                 t_list = numpy.where((numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos['M_Crit200']*gadget_m_conv/hubble_h) >=lbound) & (output_Halos['SnapNum'] == i) & (output_HaloIDs["HaloID"] == output_HaloIDs["FirstHaloInFOFgroup"]))[0]
@@ -63,7 +62,7 @@ def main(argv):
         # sample data
         print "Rank",rank,"Sampling data ..."
         for j in range(nbins):
-            print "Sampling bin = ",j,"/",nbins-1
+            print "Rank",rank,"Sampling bin = ",j,"/",nbins-1
             lbound = min_m+j*delta_logm
             rbound = lbound+delta_logm
             r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=rbound) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=lbound))[0]
