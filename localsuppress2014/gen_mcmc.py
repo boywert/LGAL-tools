@@ -136,7 +136,7 @@ def main(argv):
                 mass_bin = (numpy.log10(f_tot_output_halos[i]['M_Crit200']*gadget_m_conv/hubble_h) - min_m)/delta_logm
                 if (mass_bin < nbins) & (mass_bin >= 0):
                     snap = f_tot_output_halos[i]["SnapNum"]
-                    weight = weight_bin[mass_bin,i]
+                    weight = weight_bin[mass_bin,snap]
                     if(weight > 0.):
                         print >> fp[snap], f_tot_output_haloids_mcmc[i]["HaloID"],"\t",0,"\t",0,"\t",1./weight
     
