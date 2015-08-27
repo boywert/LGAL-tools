@@ -45,8 +45,8 @@ def main(argv):
     filelist = [lastsnap]
     print "Rank",rank,filelist
     for ifile in filelist:
-        firstfile = 100
-        lastfile = nFiles
+        firstfile = 125
+        lastfile = nFiles-1
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         print "Rank",rank,"Making total table ..."
