@@ -18,7 +18,7 @@ max_m = 12.
 nbins = 20
 delta_logm = (max_m-min_m)/nbins
 sample_bin = 20
-nFiles = 128
+nFiles = 2
 
 
 def main(argv):
