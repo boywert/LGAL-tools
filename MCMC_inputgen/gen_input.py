@@ -18,7 +18,7 @@ def make_unique(a):
     ind = numpy.lexsort(a.T)
     print ind
     print numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))
-    #return a
+    return a[ numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))]
 
 def get_mcmc_variables(mcmc_template, output_folder, n_trials):
     fp = open(mcmc_template)
