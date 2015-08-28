@@ -65,22 +65,26 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
 
 def gen_input(template,order,mcmc_set,dest_folder,n_trials):
     for i in range(n_trials):
-        print "======================================================"
+        fp = open(dest_folder+"/output_"+str(i))
         temp = template.copy()
+        temp['OutputDir'] =  temp['OutputDir'].strip()+"/"+str(i)
+        os.system("mkdir -p "+temp['OutputDir'])
+        print >> fp, "% Sample "+str(1)
         for key in order:
             if key in mcmc_set[i]:
-                print "haha",i
-                print key,mcmc_set[i][key],temp[key]
+                print >> fp, key,mcmc_set[i][key]
             else:
-                print key,temp[key]    
+                print >> fp, key,temp[key]
+        fp.close()
 def main(argv):
-    if len(argv) < 5:
-        print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials>"
+    if len(argv) < 6:
+        print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials> <dest_folder>"
         exit()
     n_trials =  int(argv[4])
     mcmc_set = get_mcmc_variables(argv[2], argv[3], int(argv[4]))
     template,order = get_template(argv[1])
-    gen_input(template,order,mcmc_set,"",n_trials)
+    os.system("mkdir -p "+argv[5])
+    gen_input(template,order,mcmc_set,argv[5],n_trials)
     return 0
 
 if __name__ == "__main__":
