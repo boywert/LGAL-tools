@@ -64,15 +64,15 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             key = var_order[j]
             mcmc_set[i][key] = 10.**sortlist[i][j+2]
     print lhood
-    return mcmc_set
+    return mcmc_set,lhood
 
-def gen_input(template,order,mcmc_set,dest_folder,n_trials):
+def gen_input(template,order,mcmc_set,lhood,dest_folder,n_trials):
     for i in range(n_trials):
         fp = open(dest_folder+"/output_"+str(i), "w")
         temp = template.copy()
         temp['OutputDir'] =  temp['OutputDir'].strip()+"/"+str(i)
         os.system("mkdir -p "+temp['OutputDir'])
-        print >> fp, "% Sample "+str(i)+" generated on "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print >> fp, "% Sample llhood ="+str(lhood[i])+" generated on "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         for key in order:
             if key in mcmc_set[i]:
                 print >> fp, key,mcmc_set[i][key]
@@ -84,10 +84,10 @@ def main(argv):
         print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials> <dest_folder>"
         exit()
     n_trials =  int(argv[4])
-    mcmc_set = get_mcmc_variables(argv[2], argv[3], int(argv[4]))
+    mcmc_set,lhood = get_mcmc_variables(argv[2], argv[3], int(argv[4]))
     template,order = get_template(argv[1])
     os.system("mkdir -p "+argv[5])
-    gen_input(template,order,mcmc_set,argv[5],n_trials)
+    gen_input(template,order,mcmc_set,lhood,argv[5],n_trials)
     return 0
 
 if __name__ == "__main__":
