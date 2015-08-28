@@ -8,12 +8,14 @@ def get_template(filename):
     fp = open(filename, "r")
     content = fp.readlines()
     allvars = {}
+    vars_order =[]
     for line in content:
         data = line.strip().split()
         if len(data) > 0:
             if (data[0][0] != "%") & (data[0][0] != "-"):
                 allvars[data[0]] = data[1]
-    return allvars
+                vars_order.append(data[0])
+    return allvars,vars_order
 def make_unique(a):
     ind,indices = numpy.unique(a[:,1],return_index=True)
     return a[indices]
@@ -60,12 +62,12 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             mcmc_set[i][key] = 10.**sortlist[i][j+2] 
     return mcmc_set
 
-def gen_input(template,mcmc_set,dest_folder,n_trials):
+def gen_input(template,order,mcmc_set,dest_folder,n_trials):
     for i in range(n_trials):
         temp = template.copy()
         for key in mcmc_set[i]:
             temp[key] = mcmc_set[i][key]
-        for key in temp:
+        for key in order:
             print key,temp[key]    
 def main(argv):
     if len(argv) < 5:
@@ -73,8 +75,8 @@ def main(argv):
         exit()
     n_trials =  int(argv[4])
     mcmc_set = get_mcmc_variables(argv[2], argv[3], int(argv[4]))
-    template = get_template(argv[1])
-    gen_input(template,mcmc_set,"",n_trials)
+    template,order = get_template(argv[1])
+    gen_input(template,order,mcmc_set,"",n_trials)
     return 0
 
 if __name__ == "__main__":
