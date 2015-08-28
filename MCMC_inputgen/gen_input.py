@@ -70,7 +70,7 @@ def gen_input(template,order,mcmc_set,dest_folder,n_trials):
         for key in order:
             if key in mcmc_set[i]:
                 print "haha"
-                print key,mcmc_set[i][key]
+                print key,mcmc_set[i][key],temp[key]
             else:
                 print key,temp[key]    
 def main(argv):
