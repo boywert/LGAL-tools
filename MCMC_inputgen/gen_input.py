@@ -36,9 +36,9 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
         line = mcmc_content[1+i]
         data = line.strip().split()
         if len(data) > 0:
-            var_order.append(data[0])
             if data[5] == '1':
                 mcmc_allvars[data[0]] = True
+                var_order.append(data[0])
             else:
                 mcmc_allvars[data[0]] = False
     p = os.listdir(output_folder)
