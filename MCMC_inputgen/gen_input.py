@@ -58,16 +58,23 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
         for j in range(len(var_order)):
             key = var_order[j]
             mcmc_set[i][key] = 10.**sortlist[i][j+2] 
-    print mcmc_set[:,'SfrEfficiency']
     return mcmc_allvars
 
+def gen_input(template,mcmc_set,dest_folder,n_trials):
+    for i in range(n_trials):
+        temp = template.copy()
+        for key in mcmc_set[i]:
+            temp[key] = mcmc_set[i][key]
+        for key in temp:
+            print key,temp[key]    
 def main(argv):
     if len(argv) < 5:
         print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials>"
         exit()
-    
-    get_mcmc_variables(argv[2], argv[3], int(argv[4]))
+    n_trials =  int(argv[4])
+    mcmc_set = get_mcmc_variables(argv[2], argv[3], int(argv[4]))
     template = get_template(argv[1])
+    gen_input(template,mcmc_set,"",n_trials)
     return 0
 
 if __name__ == "__main__":
