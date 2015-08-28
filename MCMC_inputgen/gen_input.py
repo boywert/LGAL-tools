@@ -17,6 +17,8 @@ def get_template(filename):
 def make_unique(a):
     ind = numpy.lexsort(a.T)
     a[numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))]
+    for i in a:
+        print i
     return a
 
 def get_mcmc_variables(mcmc_template, output_folder, n_trials):
