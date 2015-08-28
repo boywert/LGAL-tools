@@ -52,7 +52,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             listp = numpy.sort(listp,axis=0)[0:n_trials]
             sortlist = numpy.append(sortlist,listp,axis=0)
             sortlist = make_unique(sortlist)
-            sortlist = numpy.sort(sortlist,axis=1)[0:n_trials]
+            sortlist = numpy.sort(sortlist,axis=0)[0:n_trials]
             print sortlist
 
     # for key in var_order:
