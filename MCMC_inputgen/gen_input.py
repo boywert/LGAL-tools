@@ -1,5 +1,8 @@
 import sys
 import subprocess
+import random
+import os
+import numpy
 
 def get_template(filename):
     fp = open(filename, "r")
@@ -14,7 +17,7 @@ def get_template(filename):
 def get_mcmc_variables(mcmc_template, output_folder):
     fp = open(mcmc_template)
     mcmc_content = fp.readlines()
-
+    fp.close()
     for line in mcmc_content:
         data = line.strip().split()
         if len(data) > 0:
@@ -33,11 +36,12 @@ def get_mcmc_variables(mcmc_template, output_folder):
                 mcmc_allvars[data[0]] = True
             else:
                 mcmc_allvars[data[0]] = False
-    exe = "sort -k 2 -n "+output_folder+"/senna_gt_*.txt"
-    print exe
-    p = subprocess.Popen(exe.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    for i in range(100):
-        print p.stdout.readline().strip().split()
+    tmpfile = "/tmp/"+str(random.randint(1000000)) 
+    exe = "sort -k 2 -n "+output_folder+"/senna_gt_*.txt | head -n 100 >"+tmpfile
+    os.system(exe)
+    mcmc_trials = open(tmpfile).readlines()
+    mcmc_trials = dict(mcmc_trials)
+    print mcmc_trials
     # for key in var_order:
     #     if mcmc_allvars[key]:
             
