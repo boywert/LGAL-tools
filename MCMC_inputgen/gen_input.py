@@ -47,7 +47,8 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
         if file.find("senna_gt") > -1:
             print file
             listp = numpy.loadtxt(output_folder+"/"+file)
-            listp = make_unique(listp).sort(listp,axis=0)[0:n_trials]
+            listp = make_unique(listp)
+            listp = numpy.sort(listp,axis=0)[0:n_trials]
             #numpy.append(sortlist,listp)
             #sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
             #print sortlist
