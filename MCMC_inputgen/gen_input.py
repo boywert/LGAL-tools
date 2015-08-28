@@ -69,7 +69,8 @@ def gen_input(template,order,mcmc_set,dest_folder,n_trials):
         temp = template.copy()
         temp['OutputDir'] =  temp['OutputDir'].strip()+"/"+str(i)
         os.system("mkdir -p "+temp['OutputDir'])
-        print >> fp, "% Sample "+str(1)
+        print >> fp, "% Sample "+str(i)
+        print i
         for key in order:
             if key in mcmc_set[i]:
                 print >> fp, key,mcmc_set[i][key]
