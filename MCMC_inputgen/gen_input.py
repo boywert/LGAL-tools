@@ -41,12 +41,12 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             if data[5] == '1':
                 mcmc_allvars[data[0]] = True
                 var_order.append(data[0])
-    
+                
     p = os.listdir(output_folder)
     sortlist = 1000000*numpy.ones(shape=(2,len(var_order)+2),dtype=numpy.float64)
 
     for file in p:
-        if file.find("senna_gt_") > -1:
+        if file.find("senna_gt_10") > -1:
             print file
             listp = numpy.loadtxt(output_folder+"/"+file)
             listp = make_unique(listp)
@@ -56,11 +56,14 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             sortlist = numpy.sort(sortlist,axis=0)[0:n_trials]
 
     mcmc_set = []
+    lhood = []
     for i in range(len(sortlist)):
         mcmc_set.append({})
+        lhood.append(sortlist[i][1])
         for j in range(len(var_order)):
             key = var_order[j]
-            mcmc_set[i][key] = 10.**sortlist[i][j+2]        
+            mcmc_set[i][key] = 10.**sortlist[i][j+2]
+    print lhood
     return mcmc_set
 
 def gen_input(template,order,mcmc_set,dest_folder,n_trials):
