@@ -65,7 +65,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
 
 def gen_input(template,order,mcmc_set,dest_folder,n_trials):
     for i in range(n_trials):
-        fp = open(dest_folder+"/output_"+str(i))
+        fp = open(dest_folder+"/output_"+str(i), "w")
         temp = template.copy()
         temp['OutputDir'] =  temp['OutputDir'].strip()+"/"+str(i)
         os.system("mkdir -p "+temp['OutputDir'])
