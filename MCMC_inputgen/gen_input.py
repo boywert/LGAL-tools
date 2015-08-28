@@ -16,6 +16,7 @@ def get_template(filename):
     return allvars
 def make_unique(a):
     ind = numpy.lexsort(a.T)
+    print ind
     a[numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))]
     return a
 
@@ -39,8 +40,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             if data[5] == '1':
                 mcmc_allvars[data[0]] = True
                 var_order.append(data[0])
-            else:
-                mcmc_allvars[data[0]] = False
+    
     p = os.listdir(output_folder)
     sortlist = 1000000*numpy.ones(shape=(2,len(var_order)+2),dtype=numpy.float64)
 
@@ -56,7 +56,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
     print sortlist
 
     # for key in var_order:
-    #     if mcmc_allvars[key]:
+    #      mcmc_allvars[key]:
             
     return mcmc_allvars
 
