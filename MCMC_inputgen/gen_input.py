@@ -51,7 +51,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             sortlist = numpy.append(sortlist,listp,axis=0)
             sortlist = make_unique(sortlist)
             sortlist = numpy.sort(sortlist,axis=0)[0:n_trials]
-            print "Min ChiSQ = "sortlist[0][1]
+            print "Min ChiSQ = ",sortlist[0][1]
     
     # for key in var_order:
     #      mcmc_allvars[key]:
