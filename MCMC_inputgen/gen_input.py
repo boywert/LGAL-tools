@@ -34,7 +34,7 @@ def get_mcmc_variables(mcmc_template, output_folder):
             else:
                 mcmc_allvars[data[0]] = False
     exe = "sort -k 2 -n "+output_folder+"/senna_gt_0.txt | head -n 100"
-    print exe
+    print exe.split()
     p = subprocess.Popen(exe.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0]
     print p
     # for key in var_order:
