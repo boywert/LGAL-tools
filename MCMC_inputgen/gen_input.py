@@ -66,10 +66,11 @@ def gen_input(template,order,mcmc_set,dest_folder,n_trials):
     for i in range(n_trials):
         print "======================================================"
         temp = template.copy()
-        for key in mcmc_set[i]:
-            temp[key] = mcmc_set[i][key]
         for key in order:
-            print key,temp[key]    
+            if key in mcmc_set[i]:
+                print key,mcmc_set[i][key]
+            else:
+                print key,temp[key]    
 def main(argv):
     if len(argv) < 5:
         print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials>"
