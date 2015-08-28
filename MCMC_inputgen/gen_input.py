@@ -15,8 +15,8 @@ def get_template(filename):
                 allvars[data[0]] = data[1]
     return allvars
 def make_unique(a):
-    ind = numpy.lexsort(a.T)
-    return a[numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))]
+    ind,indices = numpy.unique(a[:,1],return_index=True)
+    return a[indices]
     
 def get_mcmc_variables(mcmc_template, output_folder, n_trials):
     fp = open(mcmc_template)
@@ -51,7 +51,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             sortlist = numpy.append(sortlist,listp,axis=0)
             sortlist = make_unique(sortlist)
             sortlist = numpy.sort(sortlist,axis=0)[0:n_trials]
-    print sortlist
+            print sortlist
 
     # for key in var_order:
     #      mcmc_allvars[key]:
