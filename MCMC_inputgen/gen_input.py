@@ -43,7 +43,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
     sortlist = 1000000*numpy.ones(shape=(2,len(var_order)+2),dtype=numpy.float64)
 
     for file in p:
-        if file.find("senna_gt") > -1:
+        if file.find("senna_gt_10") > -1:
             print file
             listp = numpy.loadtxt(output_folder+"/"+file)
             listp = make_unique(listp)
@@ -51,11 +51,14 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             sortlist = numpy.append(sortlist,listp,axis=0)
             sortlist = make_unique(sortlist)
             sortlist = numpy.sort(sortlist,axis=0)[0:n_trials]
-            print "Min ChiSQ = ",sortlist[0][1]
-    
-    # for key in var_order:
-    #      mcmc_allvars[key]:
-            
+
+    mcmc_set = []
+    for i in range(len(sortlist)):
+        mcmc_set.append(mcmc_allvars)
+        for j in range(len(var_order)):
+            key = var_order[j]
+            mcmc_set[i][key] = sortlist[i][j+2] 
+    print mcmc_set
     return mcmc_allvars
 
 def main(argv):
