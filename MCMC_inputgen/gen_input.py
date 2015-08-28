@@ -83,6 +83,7 @@ def main(argv):
         exit()
     n_trials =  int(argv[4])
     mcmc_set = get_mcmc_variables(argv[2], argv[3], int(argv[4]))
+    print mcmc_set
     template,order = get_template(argv[1])
     os.system("mkdir -p "+argv[5])
     gen_input(template,order,mcmc_set,argv[5],n_trials)
