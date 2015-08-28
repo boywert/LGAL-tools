@@ -42,7 +42,8 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             else:
                 mcmc_allvars[data[0]] = False
     p = os.listdir(output_folder)
-    sortlist = numpy.array([],dtype=numpy.float64)
+    
+    sortlist = 1000000*numpy.ones((len(var_order)+2),dtype=numpy.float64)
     for file in p:
         if file.find("senna_gt") > -1:
             print file
