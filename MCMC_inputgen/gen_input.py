@@ -14,7 +14,7 @@ def get_template(filename):
             if (data[0][0] != "%") & (data[0][0] != "-"):
                 allvars[data[0]] = data[1]
     return allvars
-def get_mcmc_variables(mcmc_template, output_folder):
+def get_mcmc_variables(mcmc_template, output_folder, n_trials):
     fp = open(mcmc_template)
     mcmc_content = fp.readlines()
     fp.close()
@@ -36,23 +36,27 @@ def get_mcmc_variables(mcmc_template, output_folder):
                 mcmc_allvars[data[0]] = True
             else:
                 mcmc_allvars[data[0]] = False
-    tmpfile = "/tmp/"+str(random.randint(0,1000000)) 
-    exe = "sort -k 2 -n "+output_folder+"/senna_gt_*.txt | head -n 100 >"+tmpfile
-    os.system(exe)
-    mcmc_trials = open(tmpfile).readlines()
-    mcmc_trials = dict(mcmc_trials)
-    print mcmc_trials
+    p = os.listdir(output_folder)
+    sortlist = numpy.array([],dtype=numpy.float32)
+    for file in p:
+        if file.find("senna_gt") > -1:
+            listp = numpy.loadtxt(output_folder+"/"+file)
+            listp = numpy.unique(listp).sort(axis=1)[0:n_trials]
+            numpy.append(sortlist,listp)
+            sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
+            print sortlist
+
     # for key in var_order:
     #     if mcmc_allvars[key]:
             
     return mcmc_allvars
 
 def main(argv):
-    if len(argv) < 4:
-        print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder>"
+    if len(argv) < 5:
+        print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials>"
         exit()
     
-    get_mcmc_variables(argv[2], argv[3])
+    get_mcmc_variables(argv[2], argv[3], argv[4])
     template = get_template(argv[1])
     return 0
 
