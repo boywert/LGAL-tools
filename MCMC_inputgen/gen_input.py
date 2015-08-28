@@ -43,9 +43,9 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             listp = numpy.loadtxt(output_folder+"/"+file)
             listp = numpy.unique(listp)
             print listp
-            numpy.append(sortlist,listp)
-            sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
-            print sortlist
+            #numpy.append(sortlist,listp)
+            #sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
+            #print sortlist
 
     # for key in var_order:
     #     if mcmc_allvars[key]:
