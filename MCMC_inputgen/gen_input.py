@@ -59,7 +59,8 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
         mcmc_set.append(mcmc_allvars)
         for j in range(len(var_order)):
             key = var_order[j]
-            mcmc_set[i][key] = 10.**sortlist[i][j+2] 
+            mcmc_set[i][key] = 10.**sortlist[i][j+2]
+            print mcmc_set[i]
     return mcmc_set
 
 def gen_input(template,order,mcmc_set,dest_folder,n_trials):
