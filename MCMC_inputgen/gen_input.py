@@ -36,7 +36,7 @@ def get_mcmc_variables(mcmc_template, output_folder):
                 mcmc_allvars[data[0]] = True
             else:
                 mcmc_allvars[data[0]] = False
-    tmpfile = "/tmp/"+str(random.randint(1000000)) 
+    tmpfile = "/tmp/"+str(random.randint(0,1000000)) 
     exe = "sort -k 2 -n "+output_folder+"/senna_gt_*.txt | head -n 100 >"+tmpfile
     os.system(exe)
     mcmc_trials = open(tmpfile).readlines()
