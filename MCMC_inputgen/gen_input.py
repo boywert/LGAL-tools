@@ -69,6 +69,7 @@ def gen_input(template,order,mcmc_set,dest_folder,n_trials):
         temp = template.copy()
         for key in order:
             if key in mcmc_set[i]:
+                print "haha"
                 print key,mcmc_set[i][key]
             else:
                 print key,temp[key]    
