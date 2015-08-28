@@ -47,9 +47,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
         if file.find("senna_gt") > -1:
             print file
             listp = numpy.loadtxt(output_folder+"/"+file)
-            listp = make_unique(listp)
-            listp = numpy.sort(listp,axis=0)
-            print listp[0:8]
+            listp = make_unique(listp).sort(listp,axis=0)[0:n_trials]
             #numpy.append(sortlist,listp)
             #sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
             #print sortlist
@@ -64,7 +62,7 @@ def main(argv):
         print "Usage python "+argv[0]+" <valid_lgal_input_file> <MCMCParameterPriorsAndSwitches.txt> <MCMC_output_folder> <number_of_trials>"
         exit()
     
-    get_mcmc_variables(argv[2], argv[3], argv[4])
+    get_mcmc_variables(argv[2], argv[3], int(argv[4]))
     template = get_template(argv[1])
     return 0
 
