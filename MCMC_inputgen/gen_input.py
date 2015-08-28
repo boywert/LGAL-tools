@@ -14,6 +14,11 @@ def get_template(filename):
             if (data[0][0] != "%") & (data[0][0] != "-"):
                 allvars[data[0]] = data[1]
     return allvars
+def make_unique(data):
+    ind = numpy.lexsort(a.T)
+    a[numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))]
+    return a
+
 def get_mcmc_variables(mcmc_template, output_folder, n_trials):
     fp = open(mcmc_template)
     mcmc_content = fp.readlines()
@@ -42,7 +47,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
         if file.find("senna_gt") > -1:
             print file
             listp = numpy.loadtxt(output_folder+"/"+file)
-            print listp
+            listp = make_unique(listp)
             #numpy.append(sortlist,listp)
             #sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
             #print sortlist
