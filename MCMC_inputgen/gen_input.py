@@ -64,6 +64,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
 
 def gen_input(template,order,mcmc_set,dest_folder,n_trials):
     for i in range(n_trials):
+        print "======================================================"
         temp = template.copy()
         for key in mcmc_set[i]:
             temp[key] = mcmc_set[i][key]
