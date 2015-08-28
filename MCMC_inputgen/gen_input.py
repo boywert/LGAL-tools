@@ -14,7 +14,7 @@ def get_template(filename):
             if (data[0][0] != "%") & (data[0][0] != "-"):
                 allvars[data[0]] = data[1]
     return allvars
-def make_unique(data):
+def make_unique(a):
     ind = numpy.lexsort(a.T)
     a[numpy.concatenate(([True],numpy.any(a[ind[1:]]!= a[ind[:-1]],axis=1)))]
     return a
