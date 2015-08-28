@@ -49,7 +49,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             listp = numpy.loadtxt(output_folder+"/"+file)
             listp = make_unique(listp)
             listp = numpy.sort(listp,axis=0)[0:n_trials]
-            numpy.append(sortlist,listp)
+            sortlist = numpy.append(sortlist,listp)
             sortlist = make_unique(sortlist)
             sortlist = numpy.sort(sortlist,axis=1)[0:n_trials]
             print sortlist
