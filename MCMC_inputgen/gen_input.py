@@ -42,13 +42,13 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             else:
                 mcmc_allvars[data[0]] = False
     p = os.listdir(output_folder)
-    sortlist = numpy.array([],dtype=numpy.float32)
+    sortlist = numpy.array([],dtype=numpy.float64)
     for file in p:
         if file.find("senna_gt") > -1:
             print file
             listp = numpy.loadtxt(output_folder+"/"+file)
             listp = make_unique(listp)
-            print listp.dtype
+            print numpy.sort(listp,axis=1)
             #numpy.append(sortlist,listp)
             #sortlist = numpy.unique(sortlist).sort(axis=1)[0:n_trials]
             #print sortlist
