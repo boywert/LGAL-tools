@@ -33,11 +33,11 @@ def get_mcmc_variables(mcmc_template, output_folder):
                 mcmc_allvars[data[0]] = True
             else:
                 mcmc_allvars[data[0]] = False
-    exe = "sort -k 2 -n "+output_folder+"/senna_gt_0.txt"
+    exe = "sort -k 2 -n "+output_folder+"/senna_gt_*.txt"
     print exe.split()
     p = subprocess.Popen(exe.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     for i in range(100):
-        print p.stdout.readline()
+        print p.stdout.readline().strip().split()
     # for key in var_order:
     #     if mcmc_allvars[key]:
             
