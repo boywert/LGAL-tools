@@ -43,7 +43,6 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
                 mcmc_allvars[data[0]] = False
     p = os.listdir(output_folder)
     sortlist = 1000000*numpy.ones(shape=(2,len(var_order)+2),dtype=numpy.float64)
-    print sortlist
 
     for file in p:
         if file.find("senna_gt") > -1:
@@ -51,7 +50,7 @@ def get_mcmc_variables(mcmc_template, output_folder, n_trials):
             listp = numpy.loadtxt(output_folder+"/"+file)
             listp = make_unique(listp)
             listp = numpy.sort(listp,axis=0)[0:n_trials]
-            #sortlist = numpy.append(sortlist,listp)
+            sortlist = numpy.append(sortlist,listp,axis=0)
             print listp
             print sortlist
             #sortlist = make_unique(sortlist)
