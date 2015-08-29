@@ -43,9 +43,9 @@ model_paths = []
 use_model = []
 
 for i in range(20):
-    model_names.append("input_"+str(i))
+    model_names.append("input"+str(i))
     struct_file.append("/scratch/01937/cs390/test_run/python/LGalaxyStruct.py")
-    model_labels.append("input_"+str(i))
+    model_labels.append("input"+str(i))
     model_paths.append("/scratch/01937/cs390/data/outputs/"+str(i)+"/")
     use_model.append(True)
 
