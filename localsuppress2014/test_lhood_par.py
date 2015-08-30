@@ -42,12 +42,18 @@ model_labels = []
 model_paths = []
 use_model = []
 
-for i in range(20):
+for i in range(5):
     model_names.append("input"+str(i))
     struct_file.append("/scratch/01937/cs390/test_run/python/LGalaxyStruct.py")
     model_labels.append("input"+str(i))
     model_paths.append("/scratch/01937/cs390/data/outputs/"+str(i)+"/")
     use_model.append(True)
+
+model_names.append("Test")
+struct_file.append("/scratch/01937/cs390/test_run/python/LGalaxyStruct.py")
+model_labels.append("Okamoto")
+model_paths.append("/scratch/01937/cs390/data/outputs/okamoto_infall/")
+use_model.append(True)
 
 dt = []
 filter = []
