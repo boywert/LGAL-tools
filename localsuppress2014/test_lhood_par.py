@@ -52,7 +52,7 @@ for i in range(5):
 model_names.append("Test")
 struct_file.append("/scratch/01937/cs390/test_run/python/LGalaxyStruct.py")
 model_labels.append("Okamoto")
-model_paths.append("/scratch/01937/cs390/data/outputs/okamoto_infall/")
+model_paths.append("/scratch/01937/cs390/data/outputs/okamoto/")
 use_model.append(True)
 
 dt = []
