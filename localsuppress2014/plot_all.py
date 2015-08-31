@@ -212,7 +212,6 @@ def plot_uv_z6():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
-        uvlf_y[index] = a[0]/47.**3/0.5
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
@@ -246,54 +245,13 @@ def plot_uv_z6():
     plt.close(fig)
 
 
-def plot_uv_z10():
-    z = "9.94"
-    file_prefix = "SA_z"+z
-    firstfile = 0
-    lastfile = 127
-    config = {}
 
-    try:
-        gal
-    except NameError:
-        gal = {}
-        nTrees = {}
-        nGals = {}
-        nTreeGals = {}
-
-    uvlf_x = {}
-    uvlf_y = {}
-    luvlf_x = {}
-    luvlf_y = {}
-    sfr_x = {}
-    sfr_y = {}
-
-    for i in range(len(model_names)):
-        index = model_names[i]
-        if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-
-
-
-
-    # SFR
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
-    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    ax.set_yscale("log")
-    fig.savefig("sfr_z10.pdf",bbox_inches='tight',pad_inches=0)
 
     
 def main():
     plot_uv_z6()
     plot_uv_z7()
     #plot_uv_z8()
-    #plot_uv_z10()
+
 if __name__=="__main__":
     main()
