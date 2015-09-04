@@ -95,7 +95,8 @@ def plot_uv_z8():
 
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
-        
+        del(gal[index])
+        del[nTreeGals[index]]
 
     # metals
     fig = plt.figure()
@@ -154,7 +155,8 @@ def plot_uv_z7():
 
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
-        
+        del(gal[index])
+        del[nTreeGals[index]]
 
     # metals
     fig = plt.figure()
@@ -211,10 +213,10 @@ def plot_uv_z6():
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
-        
+        del(gal[index])
+        del[nTreeGals[index]]
 
     # metals
     fig = plt.figure()
