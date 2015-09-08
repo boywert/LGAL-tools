@@ -109,6 +109,8 @@ def main(argv):
     folder = "/scratch/01937/cs390/test_4_1440_112/trees/treedata/"
     firstfile  = 0
     lastfile = 7
+    gadget_m_conv = 1.e10
+    hubble_h = 0.7
     m6 = arange(9.5,13,0.5)
     zlist = arange(6.0,12.0,0.1)
     for t_m6 in m6:
