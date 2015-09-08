@@ -106,7 +106,7 @@ def mz_Correa2015(m0,z0,zlist,boxsize):
 def main(argv):
     z = 6.0
     boxsize = 112.0 #Mpc/h
-    folder = ""
+    folder = "/scratch/01937/cs390/test_4_1440_112/trees/treedata/"
     firstfile  = 0
     lastfile = 7
     m6 = arange(9.5,13,0.5)
