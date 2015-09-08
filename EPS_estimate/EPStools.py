@@ -121,7 +121,7 @@ def main(argv):
         r_m = t_m6+0.1
         r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) <=r_m) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv/hubble_h) >=l_m))[0]
         for i in r_list:
-            root = rootindex[i]:
+            root = rootindex[i]
             print output_Halos[root]["M_Crit200"]
     return 0
 if __name__ == "__main__":
