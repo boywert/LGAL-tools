@@ -123,7 +123,7 @@ def main(argv):
     for t_m6 in m6:
         mass = zeros(len(z_list_lgal),dtype=float64)
         count = 0
-        count.dtype = int64
+        count.astype(int64)
         l_m = t_m6-0.1
         r_m = t_m6+0.1
         r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m))[0]
