@@ -118,7 +118,7 @@ def main(argv):
     zlist = arange(6.0,12.0,0.1)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
-        plot(zlist,log10(mz/t_m6))
+        plot(zlist,log10(mz)/t_m6)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
@@ -137,7 +137,7 @@ def main(argv):
                 mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]/M0        
                 nexthaloid = output_Halos[root+nexthaloid]['FirstProgenitor']
             count += 1
-        plot(z_list_lgal,mass)
+        plot(z_list_lgal,log10(mass))
     savefig("test.pdf")
     return 0
 if __name__ == "__main__":
