@@ -134,10 +134,10 @@ def main(argv):
             nexthaloid = output_Halos[root]['FirstProgenitor']
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
-                mass[nexthalo["SnapNum"]] += log10(nexthalo["M_Crit200"]/M0)        
+                mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]/M0 
                 nexthaloid = nexthalo['FirstProgenitor']
             count += 1
-        plot(z_list_lgal,mass/count)
+        plot(z_list_lgal,log10(mass/count))
     savefig("test.pdf")
     return 0
 if __name__ == "__main__":
