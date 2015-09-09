@@ -15,6 +15,7 @@ m2km = 0.001
 G = 6.674e-11   # SI
 H0 = 100.0        # km/s / (Mpc/h)
 Msun2Gadget = 1e-10
+Gadget2Msun = 1./Msun2Gadget
 G = G * (m2km**2.) * (m2Mpc) / (kg2Msun * Msun2Gadget) # (Mpc/h) (km/s)^2 / (1e10Msun/h)
 rho_crit_0 = 3.* H0**2 / (8.*pi*G)  # (1e10 Msun/h)/(Mpc/h)^3
 rho_m_0 = omegam*rho_crit_0
@@ -108,35 +109,49 @@ def main(argv):
     z = 6.0
     boxsize = 112.0 #Mpc/h
     folder = "/scratch/01937/cs390/test_4_1440_112/trees/treedata/"
+    #folder = "/Volumes/Backup/Work/test_4_1440_112/treedata/"
     snapfile = "/scratch/01937/cs390/test_4_1440_112/trees/snap_z3.txt"
+    #snapfile = "/Volumes/Backup/Work/test_4_1440_112/snap_z3.txt"
     z_list_lgal = loadtxt(snapfile)
     firstfile  = 0
     lastfile = 7
     gadget_m_conv = 1.e10
     hubble_h = 0.7
-    m6 = arange(9.5,13,0.5)
-    zlist = arange(6.0,20.0,0.1)
+    m6 = arange(9.5,12.5,0.5)
+    zlist = arange(6.0,18.0,0.1)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
-        plot(zlist,log10(mz)-t_m6)
+        plot(zlist,log10(mz))
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
         mass = zeros(len(z_list_lgal),dtype=float64)
-        mass[len(z_list_lgal)-1] = 1.0
-        count = 0
+        count = zeros(len(z_list_lgal),dtype=int64)
+        mask = ones(len(z_list_lgal),dtype=int32)
         l_m = t_m6-0.1
         r_m = t_m6+0.1
         r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m))[0]
         for i in r_list:
             root = rootindex[i]
-            M0 = output_Halos[root]["M_Crit200"]
+            M0 = output_Halos[root]["M_Crit200"]*Gadget2Msun
             nexthaloid = output_Halos[root]['FirstProgenitor']
+            mass[output_Halos[root]["SnapNum"]] += M0
+            count[output_Halos[root]["SnapNum"]] += 1
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
-                mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]/M0 
+                sum_mass = nexthalo["M_Crit200"]*Gadget2Msun
+                nextprogid = nexthalo['NextProgenitor']
+                while nextprogid > -1:
+                    nextprog = output_Halos[root+nextprogid]
+                    sum_mass += nextprog["M_Crit200"]*Gadget2Msun
+                    nextprogid = nextprog['NextProgenitor']
+    
+                mass[nexthalo["SnapNum"]] += sum_mass #nexthalo["M_Crit200"]*Gadget2Msun
+                count[nexthalo["SnapNum"]] += 1
                 nexthaloid = nexthalo['FirstProgenitor']
-            count += 1
+        
+        mask = count > count[len(z_list_lgal)-1]/2
+        mass = mass*mask
         plot(z_list_lgal,log10(mass/count))
     savefig("test.pdf")
     return 0
