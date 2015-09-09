@@ -138,7 +138,7 @@ def main(argv):
                 nexthaloid = output_Halos[root+nexthaloid]['FirstProgenitor']
             count += 1
         plot(z_list_lgal,mass)
-    savefig()
+    savefig("test.pdf")
     return 0
 if __name__ == "__main__":
     main(sys.argv)
