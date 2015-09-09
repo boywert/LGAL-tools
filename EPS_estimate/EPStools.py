@@ -109,8 +109,6 @@ def main(argv):
     folder = "/scratch/01937/cs390/test_4_1440_112/trees/treedata/"
     snapfile = "/scratch/01937/cs390/test_4_1440_112/trees/snap_z3.txt"
     z_list_lgal = loadtxt(snapfile)
-    mass = zeros(len(z_list_lgal),dtype=float64)
-    count = zeros(len(z_list_lgal),dtype=int64)
     firstfile  = 0
     lastfile = 7
     gadget_m_conv = 1.e10
@@ -123,6 +121,8 @@ def main(argv):
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
+        mass = zeros(len(z_list_lgal),dtype=float64)
+        count = zeros(len(z_list_lgal),dtype=int64)
         l_m = t_m6-0.1
         r_m = t_m6+0.1
         r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m))[0]
