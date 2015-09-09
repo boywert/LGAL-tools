@@ -115,7 +115,7 @@ def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
     m6 = arange(9.5,13,0.5)
-    zlist = arange(6.0,12.0,0.1)
+    zlist = arange(6.0,20.0,0.1)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
         plot(zlist,log10(mz)-t_m6)
@@ -134,10 +134,10 @@ def main(argv):
             nexthaloid = output_Halos[root]['FirstProgenitor']
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
-                mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]/M0        
+                mass[nexthalo["SnapNum"]] += log10(nexthalo["M_Crit200"]/M0)        
                 nexthaloid = nexthalo['FirstProgenitor']
             count += 1
-        plot(z_list_lgal,log10(mass/count))
+        plot(z_list_lgal,mass/count)
     savefig("test.pdf")
     return 0
 if __name__ == "__main__":
