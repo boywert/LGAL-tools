@@ -135,6 +135,7 @@ def main(argv):
                 mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]/M0
                 count[nexthalo["SnapNum"]] += 1
                 nexthaloid = output_Halos[root+nexthaloid]['FirstProgenitor']
+        print mass/count
     return 0
 if __name__ == "__main__":
     main(sys.argv)
