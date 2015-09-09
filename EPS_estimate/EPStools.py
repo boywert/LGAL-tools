@@ -122,6 +122,7 @@ def main(argv):
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
         mass = zeros(len(z_list_lgal),dtype=float64)
+        mass[0] = 1.0
         count = 0
         l_m = t_m6-0.1
         r_m = t_m6+0.1
@@ -132,7 +133,7 @@ def main(argv):
             nexthaloid = output_Halos[root]['FirstProgenitor']
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
-                mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]/M0        
+                mass[nexthalo["SnapNum"]] += log10(nexthalo["M_Crit200"]/M0)        
                 nexthaloid = output_Halos[root+nexthaloid]['FirstProgenitor']
             count += 1
         print mass/count
