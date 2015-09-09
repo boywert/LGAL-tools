@@ -118,7 +118,7 @@ def main(argv):
     zlist = arange(6.0,12.0,0.1)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
-        plot(zlist,log10(mz)/t_m6)
+        plot(zlist,log10(mz)-t_m6)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
