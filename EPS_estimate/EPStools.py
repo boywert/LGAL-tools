@@ -141,7 +141,7 @@ def main(argv):
                 nexthalo = output_Halos[root+nexthaloid]
                 nextprogid = nexthalo['NextProgenitor']
                 if nextprogid == -1:
-                    mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun
+                    mass[nexthalo["SnapNum"]] += nexthalo["M_Mean200"]*Gadget2Msun
                     count[nexthalo["SnapNum"]] += 1
                     nexthaloid = nexthalo['FirstProgenitor']
                 else:
