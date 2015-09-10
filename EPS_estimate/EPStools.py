@@ -119,9 +119,11 @@ def main(argv):
     hubble_h = 0.7
     m6 = arange(9.5,12.5,0.5)
     zlist = arange(6.0,18.0,0.1)
+    fig = figure()
+    ax = fig.add_subplot(111)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
-        plot(zlist,log10(mz))
+        ax.plot(zlist,log10(mz))
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
@@ -147,9 +149,9 @@ def main(argv):
                 else:
                     nexthaloid = -1
         
-        #mask = count > count[len(z_list_lgal)-1]/2
+        mask = count > count[len(z_list_lgal)-1]/4
         mass = mass*mask
-        plot(z_list_lgal,log10(mass/count))
+        ax.plot(z_list_lgal,log10(mass/count))
     savefig("test.pdf")
     return 0
 if __name__ == "__main__":
