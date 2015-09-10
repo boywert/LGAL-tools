@@ -147,9 +147,9 @@ def main(argv):
                 else:
                     nexthaloid = -1
         
-        #mask = count > count[len(z_list_lgal)-1]/2
+        mask = count > count[len(z_list_lgal)-1]/2
         mass = mass*mask
-        plot(z_list_lgal,log10(mass/count))
+        plot(z_list_lgal,log10(mass/len(r_list)))
     savefig("test.pdf")
     return 0
 if __name__ == "__main__":
