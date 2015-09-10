@@ -140,12 +140,12 @@ def main(argv):
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
                 nextprogid = nexthalo['NextProgenitor']
-                #if nextprogid == -1:
-                mass[nexthalo["SnapNum"]] += nexthalo["M_Mean200"]*Gadget2Msun
-                count[nexthalo["SnapNum"]] += 1
-                nexthaloid = nexthalo['FirstProgenitor']
-                #else:
-                #    nexthaloid = -1
+                if nextprogid == -1:
+                    mass[nexthalo["SnapNum"]] += nexthalo["M_Mean200"]*Gadget2Msun
+                    count[nexthalo["SnapNum"]] += 1
+                    nexthaloid = nexthalo['FirstProgenitor']
+                else:
+                    nexthaloid = -1
         
         #mask = count > count[len(z_list_lgal)-1]/2
         mass = mass*mask
