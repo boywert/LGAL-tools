@@ -121,7 +121,7 @@ def main(argv):
     zlist = arange(6.0,18.0,0.1)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
-        plot(zlist,log10(mz)-t_m6)
+        plot(zlist,log10(mz))
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     for t_m6 in m6:
@@ -135,13 +135,13 @@ def main(argv):
             root = rootindex[i]
             M0 = output_Halos[root]["M_Mean200"]*Gadget2Msun
             nexthaloid = output_Halos[root]['FirstProgenitor']
-            mass[output_Halos[root]["SnapNum"]] += M0/M0
+            mass[output_Halos[root]["SnapNum"]] += M0
             count[output_Halos[root]["SnapNum"]] += 1
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
                 nextprogid = nexthalo['NextProgenitor']
                 if nextprogid == -1:
-                    mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun/M0
+                    mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun
                     count[nexthalo["SnapNum"]] += 1
                     nexthaloid = nexthalo['FirstProgenitor']
                 else:
