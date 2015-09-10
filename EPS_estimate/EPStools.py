@@ -119,6 +119,7 @@ def main(argv):
     hubble_h = 0.7
     m6 = arange(9.5,12.5,0.5)
     zlist = arange(6.0,18.0,0.1)
+    rc('text', usetex=True)
     fig = figure()
     ax = fig.add_subplot(111)
     for t_m6 in m6:
@@ -149,9 +150,11 @@ def main(argv):
                 else:
                     nexthaloid = -1
         
-        mask = count > count[len(z_list_lgal)-1]/10
+        mask = count > count[len(z_list_lgal)-1]/5
         mass = mass*mask
         ax.plot(z_list_lgal,log10(mass/count))
+    ax.set_xlabel(r"$z$")
+    ax.set_ylabel(r"$\log(hM/M_\odot)$")
     savefig("test.pdf")
     return 0
 if __name__ == "__main__":
