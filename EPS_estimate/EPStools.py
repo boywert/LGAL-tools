@@ -119,6 +119,9 @@ def main(argv):
     hubble_h = 0.7
     m6 = arange(9.5,12.5,0.5)
     zlist = arange(6.0,18.0,0.1)
+    #rc('text', usetex=True)
+    #fig = figure()
+    #ax = fig.add_subplot(111)
     for t_m6 in m6:
         mz = mz_Correa2015(t_m6,z,zlist,boxsize)
         plot(zlist,log10(mz))
@@ -150,9 +153,10 @@ def main(argv):
         mask = count > count[len(z_list_lgal)-1]/5
         mass = mass*mask
         plot(z_list_lgal,log10(mass/count))
-    set_xlabel(r"z")
-    set_ylabel(r"log(hM/M_sun)")
+    xlabel(r"z")
+    ylabel(r"log(hM/M_sun)")
     savefig("test.pdf")
+    #fig.close()
     return 0
 if __name__ == "__main__":
     main(sys.argv)
