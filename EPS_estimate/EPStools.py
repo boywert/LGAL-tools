@@ -149,7 +149,7 @@ def main(argv):
                 else:
                     nexthaloid = -1
         
-        mask = count > count[len(z_list_lgal)-1]/4
+        mask = count > count[len(z_list_lgal)-1]/10
         mass = mass*mask
         ax.plot(z_list_lgal,log10(mass/count))
     savefig("test.pdf")
