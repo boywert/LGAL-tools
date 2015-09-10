@@ -133,7 +133,7 @@ def main(argv):
         r_list = numpy.where((numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (numpy.log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m))[0]
         for i in r_list:
             root = rootindex[i]
-            M0 = output_Halos[root]["M_Mean200"]*Gadget2Msun
+            M0 = output_Halos[root]["M_Crit200"]*Gadget2Msun
             nexthaloid = output_Halos[root]['FirstProgenitor']
             mass[output_Halos[root]["SnapNum"]] += M0
             count[output_Halos[root]["SnapNum"]] += 1
@@ -141,7 +141,7 @@ def main(argv):
                 nexthalo = output_Halos[root+nexthaloid]
                 nextprogid = nexthalo['NextProgenitor']
                 #if nextprogid == -1:
-                mass[nexthalo["SnapNum"]] += nexthalo["M_Mean200"]*Gadget2Msun
+                mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun
                 count[nexthalo["SnapNum"]] += 1
                 nexthaloid = nexthalo['FirstProgenitor']
                 #else:
