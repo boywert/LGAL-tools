@@ -139,18 +139,18 @@ def main(argv):
             count[output_Halos[root]["SnapNum"]] += 1
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
-                sum_mass = nexthalo["M_Crit200"]*Gadget2Msun
+                sum_mass = nexthalo["M_Mean200"]*Gadget2Msun
                 nextprogid = nexthalo['NextProgenitor']
                 while nextprogid > -1:
                     nextprog = output_Halos[root+nextprogid]
-                    sum_mass += nextprog["M_Crit200"]*Gadget2Msun
+                    sum_mass += nextprog["M_Mean200"]*Gadget2Msun
                     nextprogid = nextprog['NextProgenitor']
     
                 mass[nexthalo["SnapNum"]] += sum_mass #nexthalo["M_Crit200"]*Gadget2Msun
                 count[nexthalo["SnapNum"]] += 1
                 nexthaloid = nexthalo['FirstProgenitor']
         
-        mask = count > count[len(z_list_lgal)-1]/2
+        #mask = count > count[len(z_list_lgal)-1]/2
         mass = mass*mask
         plot(z_list_lgal,log10(mass/count))
     savefig("test.pdf")
