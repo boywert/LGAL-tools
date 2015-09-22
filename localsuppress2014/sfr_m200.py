@@ -95,6 +95,7 @@ def plot_uv_z8():
         gal[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"]>0.)]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
+        print gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10*Msun2kg/h_mass*0.167)
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10*Msun2kg/h_mass*0.167))
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10)
         ssfr = numpy.nan_to_num(ssfr)
@@ -103,7 +104,7 @@ def plot_uv_z8():
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
-        print mean_logphoton[index]
+        print sum_logphoton[index]
         mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
         m200c[index] = []
         for i in range(len(sum_SFR[index][0])):
