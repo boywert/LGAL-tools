@@ -87,8 +87,12 @@ def plot_uv_z8():
 
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]),bins=50,weights=gal[index]["Sfr"])
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]),bins=50,weights=gal[index]["Sfr"]**2)
+       
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]),bins=50)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
+        print sum_SFR[index]
+        print N[index]
+        print mean_SFR[index]
         m200c[index] = []
         for i in range(len(sum_SFR[index][0])):
             m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
