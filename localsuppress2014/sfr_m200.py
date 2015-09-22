@@ -90,8 +90,8 @@ def plot_uv_z8():
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],1.0,nummax)
         print gal[index]["NPhotReion"]
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["NPhotReion"])
-        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"])
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10))
+        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10))
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
