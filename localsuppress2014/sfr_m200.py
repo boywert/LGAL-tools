@@ -87,6 +87,7 @@ def plot_uv_z8():
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+        gal[index] = gal[index][numpy.where(numpy.log10(gal[index]["HaloM_Crit200"])>0.)]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10))
