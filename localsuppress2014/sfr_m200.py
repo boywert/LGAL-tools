@@ -90,8 +90,8 @@ def plot_uv_z8():
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]),bins=50)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         m200c[index] = []
-        for i in range(len(sub_SFR[:,0])):
-            m200c[index].append(0.5*(sub_SFR[1][i]+sub_SFR[1][i+1]))
+        for i in range(len(sum_SFR[:,0])):
+            m200c[index].append(0.5*(sum_SFR[1][i]+sum_SFR[1][i+1]))
         del(gal[index])
         del(nTreeGals[index])
 
