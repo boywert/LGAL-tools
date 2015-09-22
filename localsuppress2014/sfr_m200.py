@@ -86,10 +86,10 @@ def plot_uv_z8():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
-        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10/hubble_h),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"])
-        sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10/hubble_h),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"]**2)
+        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"])
+        sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"]**2)
        
-        N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10/hubble_h),range=(7.5,9.5),bins=20)
+        N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0] 
         print sum_SFR[index]
