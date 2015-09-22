@@ -14,6 +14,9 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
 rank = "0"
+SEC_PER_YEAR = 3600*24*365.25
+Msun2kg = 1.989e30
+h_mass = 1.6737237e-27 #kg
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+rank)
@@ -91,8 +94,8 @@ def plot_uv_z8():
         bins = 40
         gal[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"]>0.)]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
-        gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10))
+        gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR-),0.0,nummax)
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10*Msun2kg/h_mass*0.167))
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10)
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=ssfr)
