@@ -79,6 +79,7 @@ def plot_uv_z8():
     sum_SFR_sq = {}
     N = {}
     mean_SFR = {}
+    m200c = {}
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
