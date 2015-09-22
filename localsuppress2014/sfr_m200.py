@@ -92,6 +92,7 @@ def plot_uv_z8():
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"]*1.e10))
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10)
         ssfr = numpy.clip(ssfr,0.0,10.0)
+        print ssfr
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=ssfr)
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20)
