@@ -29,6 +29,7 @@ def loadfilter(structfile):
     filter['NPhotReion'] = True
     filter['HaloM_Crit200'] = True
     filter['Sfr'] = True
+    filter['Type'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -92,12 +93,12 @@ def plot_uv_z8():
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where(gal[index]["HaloM_Crit200"]>0.)]
+        gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.) & (gal[index]["Type"] == 1.))]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
         print numpy.log10(gal[index]["HaloM_Crit200"].astype(numpy.float64)*1.e10*Msun2kg/h_mass*0.167)
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["NPhotReion"]-numpy.log10(gal[index]["HaloM_Crit200"].astype(numpy.float64)*1.e10*Msun2kg/h_mass*0.167))
-        ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10)
+        ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=ssfr)
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
