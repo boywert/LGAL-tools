@@ -76,7 +76,7 @@ def plot_uv_z8():
         nTreeGals = {}
 
     sum_SFR = {}
-    sub_SFR_sq = {}
+    sum_SFR_sq = {}
     N = {}
     mean_SFR = {}
     for i in range(len(model_names)):
