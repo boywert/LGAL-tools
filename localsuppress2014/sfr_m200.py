@@ -103,9 +103,8 @@ def plot_uv_z8():
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
+        print mean_logphoton[index]
         mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
-        
-        print mean_SFR[index]
         m200c[index] = []
         for i in range(len(sum_SFR[index][0])):
             m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
