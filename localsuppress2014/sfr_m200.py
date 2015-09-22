@@ -84,8 +84,8 @@ def plot_uv_z8():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
-        sum_SFR[index] = numpy.histogram(gal[index]["HaloM_Crit200"],bins=50,weigh=gal[index]["Sfr"])
-        sum_SFR_sq[index] = numpy.histogram(gal[index]["HaloM_Crit200"],bins=50,weigh=gal[index]["Sfr"]**2)
+        sum_SFR[index] = numpy.histogram(gal[index]["HaloM_Crit200"],bins=50,weight=gal[index]["Sfr"])
+        sum_SFR_sq[index] = numpy.histogram(gal[index]["HaloM_Crit200"],bins=50,weight=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(gal[index]["HaloM_Crit200"],bins=50)
         mean_SFR[index] = sum_SFR[:,0]/N[:,0]
         m200c[index] = []
