@@ -90,11 +90,11 @@ def plot_uv_z8():
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["NPhotReion"])
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"])
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20,weights=gal[index]["Sfr"]**2)
-       
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=(7.5,9.5),bins=20)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
-        mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0] 
+        mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
+        print  sum_logphoton[index]
         print mean_logphoton[index]
         print mean_SFR[index]
         m200c[index] = []
@@ -124,7 +124,7 @@ def plot_uv_z8():
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[M_\odot]$")
     ax.set_ylabel(r"$\mathrm{NPHOT}$")
-    fig.savefig("SFRvsPhot_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
     #plot_uv_z6()
