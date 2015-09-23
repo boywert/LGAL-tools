@@ -141,7 +141,6 @@ def plot_uv_z8():
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{NPHOT}$")
-    ax.set_yscale("log")
     fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
