@@ -96,10 +96,10 @@ def plot_uv_z8():
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.))]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
-        total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
+        total_sfr =  gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass
         nummax= numpy.nanmax(total_sfr)
         total_sfr = numpy.clip(total_sfr,0.0,nummax)
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["NPhotReion"]-total_sfr)
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=10**gal[index]["NPhotReion"]/total_sfr)
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=ssfr)
@@ -136,6 +136,7 @@ def plot_uv_z8():
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[M_\odot]$")
     ax.set_ylabel(r"$\mathrm{NPHOT}$")
+    ax.set_yscale("log")
     fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
