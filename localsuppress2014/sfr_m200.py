@@ -99,7 +99,7 @@ def plot_uv_z8():
         total_sfr =  gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass
         nummax= numpy.nanmax(total_sfr)
         total_sfr = numpy.clip(total_sfr,0.0,nummax)
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=10**gal[index]["NPhotReion"]/total_sfr)
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=10**gal[index]["NPhotReion"].astype(numpy.float64)/total_sfr)
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=ssfr)
