@@ -112,6 +112,7 @@ def plot_uv_z8():
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
         print sum_logphoton[index]
+        print mean_logphoton[index]
         mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
         m200c[index] = []
         for i in range(len(sum_SFR[index][0])):
