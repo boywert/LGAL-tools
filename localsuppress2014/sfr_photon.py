@@ -102,10 +102,10 @@ def plot_uv(z):
         total_sfr = numpy.clip(total_sfr,0.0,nummax2)
         avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
         print index,"avg = ",10.**avg
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=10**gal[index]["NPhotReion"].astype(numpy.float64) )
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=10**gal[index]["NPhotReion"].astype(numpy.float64),density=True)
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
-        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
+        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"],density=True)
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0] #/N[index][0]
@@ -129,9 +129,9 @@ def plot_uv(z):
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$\mathrm{SFR [M_\odot/year]}$")
+    ax.set_ylabel(r"cumulative sum $\mathrm{SFR [M_\odot/year]}$")
     ax.set_yscale("log")
-    fig.savefig("SFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("cumsumSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -141,14 +141,16 @@ def plot_uv(z):
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$\mathrm{NPHOT}$")
+    ax.set_ylabel(r"cumulative sum $\mathrm{N_{photon}}$")
     ax.set_yscale("log")
-    fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("cumsumNPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
     #plot_uv_z6()
     #plot_uv_z7()
-    plot_uv("6.06")
+    plot_uv("6.00")
+    plot_uv("6.98")
+    plot_uv("7.96")
 
 if __name__=="__main__":
     main()
