@@ -28,6 +28,8 @@ def loadfilter(structfile):
         fi = False
     filter['NPhotReion'] = True
     filter['HaloM_Crit200'] = True
+    filter['HotGas'] = True
+    filter['ColdGas'] = True
     filter['Sfr'] = True
     filter['Type'] = True
     dt = LGalaxyStruct.struct_dtype
@@ -81,6 +83,7 @@ def plot_uv_z8():
         nTreeGals = {}
     sum_logphoton = {}
     sum_SFR = {}
+    sum_hotgas = {}
     sum_SFR_sq = {}
     N = {}
     mean_SFR = {}
@@ -95,17 +98,17 @@ def plot_uv_z8():
         bins = 40
         #gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
 
-        nummax= numpy.nanmax(gal[index]["NPhotReion"])
-        gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
-        
-        total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
-        nummax2= numpy.nanmax(total_sfr)
-        total_sfr = numpy.clip(total_sfr,0.0,nummax2)
-        avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
-        print index,"avg = ",10.**avg
+        # nummax= numpy.nanmax(gal[index]["NPhotReion"])
+        # gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
+        # total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
+        # nummax2= numpy.nanmax(total_sfr)
+        # total_sfr = numpy.clip(total_sfr,0.0,nummax2)
+        # avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
+        # print index,"avg = ",10.**avg
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=10.**gal[index]["NPhotReion"].astype(numpy.float64) )
-        ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
-        ssfr = numpy.nan_to_num(ssfr)
+        sum_hotgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["HotGas"].astype(numpy.float64)*1.e10 )
+        #ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
+        #ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins)
@@ -119,6 +122,18 @@ def plot_uv_z8():
         del(gal[index])
         del(nTreeGals[index])
 
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{HotGas[M_\odot/h}$")
+    ax.set_yscale("log")
+    fig.savefig("HotgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    
     fig = plt.figure()
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
