@@ -117,6 +117,7 @@ def plot_uv_z8():
         sum_stellarmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)*1.e10)
         sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
         sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
+        print sum_ejectedmass[index]
         #ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         #ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
