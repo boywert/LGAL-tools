@@ -150,7 +150,7 @@ def plot_uv_z8():
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$\mathrm{Ejected Mass[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{Ejected Mass[h^{-1}M_\odot]}$")
     ax.set_yscale("log")
     fig.savefig("EjectedvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
