@@ -117,7 +117,7 @@ def plot_uv_z8():
         sum_stellarmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)*1.e10)
         sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
         sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
-        print sum_ejectedmass[index]
+        print sum_stellarratio[index]
         #ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         #ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
@@ -125,7 +125,6 @@ def plot_uv_z8():
         N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
-        print sum_logphoton[index]
         mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
         m200c[index] = []
         for i in range(len(sum_SFR[index][0])):
