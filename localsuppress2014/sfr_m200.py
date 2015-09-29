@@ -89,6 +89,7 @@ def plot_uv_z8():
     sum_coldgas= {}
     sum_SFR_sq = {}
     sum_stellarmass  = {}
+    sum_stellarratio  = {}
     sum_ejectedmass = {}
     N = {}
     mean_SFR = {}
@@ -114,6 +115,7 @@ def plot_uv_z8():
         sum_hotgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["HotGas"].astype(numpy.float64)*1.e10 )
         sum_coldgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["ColdGas"].astype(numpy.float64)*1.e10)
         sum_stellarmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)*1.e10)
+        sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
         sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
         #ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         #ssfr = numpy.nan_to_num(ssfr)
@@ -142,6 +144,18 @@ def plot_uv_z8():
     ax.set_yscale("log")
     fig.savefig("StarvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{Stellar Ratio[h^{-1}M_\odot]}$")
+    ax.set_yscale("log")
+    fig.savefig("StarRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    
     fig = plt.figure()
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
