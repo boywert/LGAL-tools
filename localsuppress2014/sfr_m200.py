@@ -93,7 +93,7 @@ def plot_uv_z8():
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
+        #gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
 
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
