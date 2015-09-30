@@ -73,8 +73,7 @@ pylab.rc('text', usetex=True)
 zlist = open(zlistfile,"r").readlines()
 
 
-def plot_uv_z8():
-    z = "6.00"
+def plot_z(z):
     file_prefix = "SA_z"+z
     try:
         gal
@@ -220,7 +219,8 @@ def plot_uv_z8():
 def main():
     #plot_uv_z6()
     #plot_uv_z7()
-    plot_uv_z8()
+    plot_z("6.00")
+    plot_z("9.94")
 
 if __name__=="__main__":
     main()
