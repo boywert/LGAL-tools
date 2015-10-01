@@ -151,7 +151,7 @@ def plot_z(z):
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$\mathrm{Stellar Ratio[h^{-1}M_\odot]}$")
+    ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
     ax.set_yscale("log")
     fig.savefig("StarRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
