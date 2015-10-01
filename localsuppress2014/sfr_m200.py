@@ -220,7 +220,7 @@ def main():
     #plot_uv_z6()
     #plot_uv_z7()
     plot_z("6.00")
-    plot_z("9.94")
+    plot_z("7.96")
 
 if __name__=="__main__":
     main()
