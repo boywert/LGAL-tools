@@ -83,6 +83,7 @@ def plot_z(z):
         nGals = {}
         nTreeGals = {}
     sum_logphoton = {}
+    sum_sSFR = {}
     sum_SFR = {}
     sum_hotgas = {}
     sum_coldgas= {}
@@ -101,7 +102,7 @@ def plot_z(z):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.))]
+        gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.) & (gal[index]["StellarMass"]>0.))]
 
         # nummax= numpy.nanmax(gal[index]["NPhotReion"])
         # gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
@@ -115,6 +116,7 @@ def plot_z(z):
         sum_coldgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["ColdGas"].astype(numpy.float64)*1.e10)
         sum_stellarmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)*1.e10)
         sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
+        sum_sSFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]/(gal[index]["StellarMass"].astype(numpy.float64)/hubble_h*1.e10))
         sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
         print sum_stellarratio[index]
         #ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
@@ -131,6 +133,19 @@ def plot_z(z):
         del(gal[index])
         del(nTreeGals[index])
 
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_sSFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
+    ax.set_yscale("log")
+    fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+
+    
     fig = plt.figure()
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
