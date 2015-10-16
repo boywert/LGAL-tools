@@ -2,7 +2,7 @@
 import numpy
 import os
 import sys
-
+import time
 struct_lgalinput = numpy.dtype([
     ('Descendant',numpy.int32,1),
     ('FirstProgenitor',numpy.int32,1),
@@ -183,6 +183,54 @@ def read_lgaltree_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
     return (nHalos,output_Galaxy)
 
 
+def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose):
+    nTrees = 0
+    nHalos = 0
+    filter_tuple = []
+    for prop in dt.names:
+        if(filter_arr[prop] is True):
+            filter_tuple.append((prop,dt[prop]))
+    filter_dtype = numpy.dtype(filter_tuple)
+
+    tree_index = numpy.array(lastfile-firstfile+1,dtype=numpy.int32)
+    halo_index = numpy.array(lastfile-firstfile+1,dtype=numpy.int32)
+    i = 0
+    for ifile in range(firstfile,lastfile+1):
+        filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
+        f = open(filename,"rb")
+        tree_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
+        halo_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
+        f.close()
+        i+=1
+    tree_findex = numpy.cumsum(tree_index)-tree_index
+    halo_findex = numpy.cumsum(halo_index)-halo_index
+    
+    nTreeHalos = numpy.array(numpy.sum(tree_index),dtype=numpy.int32)
+    output_Galaxy = numpy.array(numpy.sum(halo_index),dtype=filter_dtype)
+    i = 0
+    for ifile in range(firstfile,lastfile+1):
+        filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
+        f = open(filename,"rb")
+        this_nTrees = numpy.fromfile(f,numpy.int32,1)[0]
+        nTrees += this_nTrees
+        this_nHalos = numpy.fromfile(f,numpy.int32,1)[0]
+        nHalos += this_nHalos
+        if(verbose):
+            print "File ", ifile," nGals = ",this_nHalos
+        addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
+        nTreeHalos[tree_findex[i]:tree_findex[i]+tree_index[i]+1] = addednTreeHalos
+        this_addedGalaxy = numpy.fromfile(f,dt,this_nHalos)
+        addedGalaxy = numpy.zeros(this_nHalos,dtype=filter_dtype)
+        for prop in dt.names:
+            if(filter_arr[prop] is True):
+                addedGalaxy[prop] = this_addedGalaxy[prop]
+        output_Galaxy[halo_findex[i]:halo_findex[i]+halo_index[i]+1] = addedGalaxy
+        f.close()
+        i += 1
+    return (nTrees,nHalos,nTreeHalos,output_Galaxy)
+
+
+
 # This function return (nTrees,nHalos,nTreeHalos,Galaxy)
 # The input are (folder,file_prefix,firstfile,lastfile [,filter_arr])
 def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose):
@@ -196,13 +244,12 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
     filter_dtype = numpy.dtype(filter_tuple)
     output_Galaxy = numpy.array([],dtype=filter_dtype)
     for ifile in range(firstfile,lastfile+1):
+        start = time.time()
         filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
         f = open(filename,"rb")
-        dummy = numpy.fromfile(f,numpy.int32,1)
-        this_nTrees =  dummy[0]
+        this_nTrees = numpy.fromfile(f,numpy.int32,1)[0]
         nTrees += this_nTrees
-        dummy = numpy.fromfile(f,numpy.int32,1)
-        this_nHalos = dummy[0]
+        this_nHalos = numpy.fromfile(f,numpy.int32,1)[0]
         nHalos += this_nHalos
         if(verbose):
             print "File ", ifile," nGals = ",this_nHalos
@@ -214,8 +261,9 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
             if(filter_arr[prop] is True):
                 addedGalaxy[prop] = this_addedGalaxy[prop]
         output_Galaxy = numpy.append(output_Galaxy,addedGalaxy)
-       
-      
         f.close()
+        end = time.time()
+        if(verbose):
+            print end-start,"s"
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
 

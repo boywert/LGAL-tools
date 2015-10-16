@@ -3,6 +3,7 @@ import commah
 #plt.use("Agg")
 from numpy import *
 from pylab import *
+from matplotlib.colors import LogNorm
 import time
 import sys
 sys.path.append("../python/")
@@ -175,8 +176,9 @@ def main(argv):
     m6 = [9.5,10.,10.5,11.0,11.5]
     color = ['r','r','r','r','r']
     minz = 6.
-    maxz = 20.
+    maxz = 15.
     dz = 0.25
+    limit = 300
     zlist = arange(minz,maxz,dz)
     rc('text', usetex=True)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
@@ -185,7 +187,7 @@ def main(argv):
         fig = figure()
         ax = fig.add_subplot(111)
         t_m6 = m6[j]
-        maxmass = t_m6+2.
+        maxmass = t_m6+0.5
         minmass = t_m6-2.
         mbin = len(zlist)
         dm = (maxmass-minmass)/mbin
@@ -197,12 +199,12 @@ def main(argv):
         l_m = t_m6-0.1
         r_m = t_m6+0.1
         stsn = 1000
-        r_list = numpy.where((log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m))[0]
+        r_list = numpy.where((log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m) & (output_HaloIDs[rootindex]["HaloID"] == output_HaloIDs[rootindex]["FirstHaloInFOFgroup"]))[0]
         for i in r_list:
             root = rootindex[i]
             M0 = output_Halos[root]["M_Crit200"]*Gadget2Msun
             nexthaloid = output_Halos[root]['FirstProgenitor']
-            if nexthaloid > -1:
+            if (nexthaloid > -1) & (output_Halos[root]['Len'] >= limit):
                 bin_m = (log10(M0) - minmass)/dm
                 mass[output_Halos[root]["SnapNum"]] += M0
                 count[output_Halos[root]["SnapNum"]] += 1
@@ -213,7 +215,7 @@ def main(argv):
                         count_2d[bin_m,bin_z] += 1
             while nexthaloid > -1:
                 nexthalo = output_Halos[root+nexthaloid]
-                if nexthalo['Len'] > 50:
+                if nexthalo['Len'] >= limit:
                     mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun
                     bin_m = (log10(nexthalo["M_Crit200"]*Gadget2Msun) - minmass)/dm
                     count[nexthalo["SnapNum"]] += 1
@@ -230,17 +232,22 @@ def main(argv):
         #print count_2d
         print "min snap",stsn
         mass = mass*mask
-        #ax.plot(z_list_lgal,log10(mass/count), color=color[j],linestyle='--')
-
+        ax.plot(z_list_lgal,log10(mass/count), color=color[j],linestyle='--',label="Average ("+str(limit)+"+ particles)")
+        mask = count > count[len(z_list_lgal)-1]/2
+        mass = mass*mask
+        ax.plot(z_list_lgal,log10(mass/count), color='k',linestyle='-',label="Average ("+str(limit)+"+ particles,50\% limit)")
         extent = [minz,maxz,minmass,maxmass]
         print extent
-        ax.imshow(count_2d,origin='lower',aspect='auto',extent=extent,interpolation='none')
-        ax.plot(zlist,log10(mz),color=color[j],linestyle = '-')
+        im = ax.imshow(count_2d,origin='lower',aspect='auto',norm=LogNorm(),extent=extent,interpolation='none')
+        fig.colorbar(im,ax=ax)
+        ax.plot(zlist,log10(mz),color=color[j],linestyle = '-',label="Correa et al. (2015)")
         ax.set_xlim([minz,maxz])
         ax.set_ylim([minmass,maxmass])
         ax.set_xlabel(r"$z$")
         ax.set_ylabel(r"$\log(h M_{200c}/M_\odot)$")
-        fig.savefig(str(t_m6)+"test.pdf")
+        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg.get_frame().set_linewidth(0)
+        fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
         #close(fig)
         #ax.imshow(count_2d,origin='lower')
         #fig.show()

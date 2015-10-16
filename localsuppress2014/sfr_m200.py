@@ -145,8 +145,8 @@ def plot_z(z):
         ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$BaryonMass/(M_{200c}\Omega_b\Omega_m^{-1})$")
-    ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$BaryonMass/(M_{200c}\Omega_b\Omega_m^{-1})$")
     ax.set_yscale("log")
     fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
