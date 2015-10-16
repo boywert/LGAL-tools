@@ -268,6 +268,6 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
             print end-start,"s"
     endx = time.time()
     if(verbose > 0):
-        print "Read ",file_prefix,firstfile,"-",lastfile,":",endx-startx        
+        print "Read ",file_prefix,"file",firstfile,"-",lastfile,":",endx-startx,"s"        
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
 
