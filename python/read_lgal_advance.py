@@ -198,8 +198,8 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
     for ifile in range(firstfile,lastfile+1):
         filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
         f = open(filename,"rb")
-        tree_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
-        halo_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
+        tree_index[i:i+1] = numpy.fromfile(f,numpy.int32,1)[0]
+        halo_index[i:i+1] = numpy.fromfile(f,numpy.int32,1)[0]
         f.close()
         i+=1
     tree_findex = numpy.cumsum(tree_index)-tree_index
