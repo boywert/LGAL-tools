@@ -101,7 +101,7 @@ def plot_z(z):
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],True)
         rangen = (7.5,11.5)
         bins = 40
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.) & (gal[index]["StellarMass"]>0.))]
