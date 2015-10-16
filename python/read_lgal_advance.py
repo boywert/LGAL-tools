@@ -184,6 +184,7 @@ def read_lgaltree_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
 
 
 def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose):
+    startx = time.time()
     nTrees = 0
     nHalos = 0
     filter_tuple = []
@@ -209,6 +210,7 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
     output_Galaxy = numpy.zeros(numpy.sum(halo_index),dtype=filter_dtype)
     i = 0
     for ifile in range(firstfile,lastfile+1):
+        start = time.time()
         filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
         f = open(filename,"rb")
         this_nTrees = numpy.fromfile(f,numpy.int32,1)[0]
@@ -227,6 +229,12 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
         output_Galaxy[halo_findex[i]:halo_findex[i]+halo_index[i]] = addedGalaxy
         f.close()
         i += 1
+        end = time.time()
+        if(verbose == 2):
+            print end-start,"s"
+    endx = time.time()
+    if(verbose > 0):
+        print "Read ",file_prefix,"file",firstfile,"-",lastfile,":",endx-startx,"s"  
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
 
 
