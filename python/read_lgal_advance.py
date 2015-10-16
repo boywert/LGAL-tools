@@ -192,21 +192,21 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
             filter_tuple.append((prop,dt[prop]))
     filter_dtype = numpy.dtype(filter_tuple)
 
-    tree_index = numpy.array(lastfile-firstfile+1,dtype=numpy.int32)
-    halo_index = numpy.array(lastfile-firstfile+1,dtype=numpy.int32)
+    tree_index = numpy.zeros(lastfile-firstfile+1,dtype=numpy.int32)
+    halo_index = numpy.zeros(lastfile-firstfile+1,dtype=numpy.int32)
     i = 0
     for ifile in range(firstfile,lastfile+1):
         filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
         f = open(filename,"rb")
-        tree_index[i:i+1] = numpy.fromfile(f,numpy.int32,1)[0]
-        halo_index[i:i+1] = numpy.fromfile(f,numpy.int32,1)[0]
+        tree_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
+        halo_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
         f.close()
         i+=1
     tree_findex = numpy.cumsum(tree_index)-tree_index
     halo_findex = numpy.cumsum(halo_index)-halo_index
     
-    nTreeHalos = numpy.array(numpy.sum(tree_index),dtype=numpy.int32)
-    output_Galaxy = numpy.array(numpy.sum(halo_index),dtype=filter_dtype)
+    nTreeHalos = numpy.zeros(numpy.sum(tree_index),dtype=numpy.int32)
+    output_Galaxy = numpy.zeros(numpy.sum(halo_index),dtype=filter_dtype)
     i = 0
     for ifile in range(firstfile,lastfile+1):
         filename = folder+'/'+file_prefix+"_"+"%d"%(ifile)
