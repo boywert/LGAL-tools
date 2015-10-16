@@ -217,7 +217,7 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
         nTrees += this_nTrees
         this_nHalos = numpy.fromfile(f,numpy.int32,1)[0]
         nHalos += this_nHalos
-        if(verbose):
+        if(verbose==2):
             print "File ", ifile," nGals = ",this_nHalos
         addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
         nTreeHalos[tree_findex[i]:tree_findex[i]+tree_index[i]] = addednTreeHalos
