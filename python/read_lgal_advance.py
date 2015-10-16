@@ -233,7 +233,8 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
 
 # This function return (nTrees,nHalos,nTreeHalos,Galaxy)
 # The input are (folder,file_prefix,firstfile,lastfile [,filter_arr])
-def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose):
+def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose=1):
+    startx = time.time()
     nTrees = 0
     nHalos = 0
     nTreeHalos = numpy.array([],dtype=numpy.int32)
@@ -251,7 +252,7 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
         nTrees += this_nTrees
         this_nHalos = numpy.fromfile(f,numpy.int32,1)[0]
         nHalos += this_nHalos
-        if(verbose):
+        if(verbose == 2):
             print "File ", ifile," nGals = ",this_nHalos
         addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
         nTreeHalos = numpy.append(nTreeHalos,addednTreeHalos)
@@ -263,7 +264,10 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
         output_Galaxy = numpy.append(output_Galaxy,addedGalaxy)
         f.close()
         end = time.time()
-        if(verbose):
+        if(verbose == 2):
             print end-start,"s"
+    endx = time.time()
+    if(verbose > 0):
+        print "Read ",file_prefix,firstfile,"-",lastfile,":",endx-startx        
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
 
