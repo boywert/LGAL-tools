@@ -218,13 +218,13 @@ def readsnap_lgal_advance2(folder,file_prefix,firstfile,lastfile,filter_arr,dt,v
         if(verbose):
             print "File ", ifile," nGals = ",this_nHalos
         addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
-        nTreeHalos[tree_findex[i]:tree_findex[i]+tree_index[i]+1] = addednTreeHalos
+        nTreeHalos[tree_findex[i]:tree_findex[i]+tree_index[i]] = addednTreeHalos
         this_addedGalaxy = numpy.fromfile(f,dt,this_nHalos)
         addedGalaxy = numpy.zeros(this_nHalos,dtype=filter_dtype)
         for prop in dt.names:
             if(filter_arr[prop] is True):
                 addedGalaxy[prop] = this_addedGalaxy[prop]
-        output_Galaxy[halo_findex[i]:halo_findex[i]+halo_index[i]+1] = addedGalaxy
+        output_Galaxy[halo_findex[i]:halo_findex[i]+halo_index[i]] = addedGalaxy
         f.close()
         i += 1
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
