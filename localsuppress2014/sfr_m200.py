@@ -105,7 +105,7 @@ def plot_z(z):
             print gal[index]['Sfr']
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.) & (gal[index]["StellarMass"]>0.))]
+        # gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.) & (gal[index]["StellarMass"]>0.))]
 
         # nummax= numpy.nanmax(gal[index]["NPhotReion"])
         # gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
