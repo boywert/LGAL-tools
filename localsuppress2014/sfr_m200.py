@@ -138,7 +138,7 @@ def plot_z(z):
             m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
         del(gal[index])
         del(nTreeGals[index])
-        print sum_[index]
+        print sum_baryons[index]
         print N[index]
 
     fig = plt.figure()
