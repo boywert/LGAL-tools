@@ -106,7 +106,7 @@ def plot_z(z):
             print gal[index]['Sfr']
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
+        gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
         
         # nummax= numpy.nanmax(gal[index]["NPhotReion"])
         # gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
@@ -123,12 +123,12 @@ def plot_z(z):
         sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
         sum_sSFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]/(gal[index]["StellarMass"].astype(numpy.float64)/hubble_h*1.e10))
         sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
-        sum_ejectedratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
+        sum_ejectedratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)/gal[index]["Mvir"])
         print sum_stellarratio[index]
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
-        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
-        sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
+        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
+        sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
