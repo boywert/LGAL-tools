@@ -116,23 +116,23 @@ def plot_z(z):
         # avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
         # print index,"avg = ",10.**avg
         sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"])/gal[index]["Mvir"]/0.166)
-        # sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=numpy.float64(1)*10.**gal[index]["NPhotReion"].astype(numpy.float64) )
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=numpy.float64(1)*10.**gal[index]["NPhotReion"].astype(numpy.float64) )
         sum_hotgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["HotGas"].astype(numpy.float64)*1.e10 )
-        # sum_coldgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["ColdGas"].astype(numpy.float64)*1.e10)
-        # sum_stellarmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)*1.e10)
-        # sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
-        # sum_sSFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]/(gal[index]["StellarMass"].astype(numpy.float64)/hubble_h*1.e10))
-        # sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
-        # sum_ejectedratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
-        #print sum_stellarratio[index]
-        #ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
-        #ssfr = numpy.nan_to_num(ssfr)
+        sum_coldgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["ColdGas"].astype(numpy.float64)*1.e10)
+        sum_stellarmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)*1.e10)
+        sum_stellarratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["StellarMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
+        sum_sSFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]/(gal[index]["StellarMass"].astype(numpy.float64)/hubble_h*1.e10))
+        sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
+        sum_ejectedratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)/gal[index]["HaloM_Crit200"])
+        print sum_stellarratio[index]
+        ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
+        ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
-        # sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
+        sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
-        # mean_SFR[index] = sum_SFR[index][0]/N[index][0]
-        # mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
-        # mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
+        mean_SFR[index] = sum_SFR[index][0]/N[index][0]
+        mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
+        mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
         m200c[index] = []
         for i in range(len(sum_SFR[index][0])):
             m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
@@ -153,115 +153,115 @@ def plot_z(z):
     #ax.set_yscale("log")
     fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_sSFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
-    # ax.set_yscale("log")
-    # fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_sSFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
+    ax.set_yscale("log")
+    fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_stellarmass[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{Stellar Mass[h^{-1}M_\odot]}$")
-    # ax.set_yscale("log")
-    # fig.savefig("StarvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_stellarmass[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{Stellar Mass[h^{-1}M_\odot]}$")
+    ax.set_yscale("log")
+    fig.savefig("StarvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"Ejected Mass / M$_{200c}$")
-    # ax.set_yscale("log")
-    # fig.savefig("EjectRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"Ejected Mass / M$_{200c}$")
+    ax.set_yscale("log")
+    fig.savefig("EjectRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
-    # ax.set_yscale("log")
-    # fig.savefig("StarRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
+    ax.set_yscale("log")
+    fig.savefig("StarRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_ejectedmass[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{Ejected Mass[h^{-1}M_\odot]}$")
-    # ax.set_yscale("log")
-    # fig.savefig("EjectedvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_ejectedmass[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{Ejected Mass[h^{-1}M_\odot]}$")
+    ax.set_yscale("log")
+    fig.savefig("EjectedvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_coldgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{ColdGas[M_\odot/h}$")
-    # ax.set_yscale("log")
-    # fig.savefig("ColdgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_coldgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{ColdGas[M_\odot/h}$")
+    ax.set_yscale("log")
+    fig.savefig("ColdgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{HotGas[M_\odot/h}$")
-    # ax.set_yscale("log")
-    # fig.savefig("HotgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{HotGas[M_\odot/h}$")
+    ax.set_yscale("log")
+    fig.savefig("HotgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],mean_SFR[index],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{SFR [M_\odot/year]}$")
-    # ax.set_yscale("log")
-    # fig.savefig("SFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],mean_SFR[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{SFR [M_\odot/year]}$")
+    ax.set_yscale("log")
+    fig.savefig("SFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],mean_logphoton[index],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{NPHOT}$")
-    # ax.set_yscale("log")
-    # fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],mean_logphoton[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{NPHOT}$")
+    ax.set_yscale("log")
+    fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
     #plot_uv_z6()
