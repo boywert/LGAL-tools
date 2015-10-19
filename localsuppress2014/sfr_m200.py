@@ -148,7 +148,7 @@ def plot_z(z):
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$BaryonMass/(M_{200c}\Omega_b\Omega_m^{-1})$")
-    ax.set_yscale("log")
+    #ax.set_yscale("log")
     fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
     # fig = plt.figure()
