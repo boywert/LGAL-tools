@@ -106,8 +106,8 @@ def plot_z(z):
             print gal[index]['Sfr']
         rangen = (7.5,11.5)
         bins = 40
-        # gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"]>0.) & (gal[index]["StellarMass"]>0.))]
-
+        gal[index] = gal[index][numpy.where((gal[index]["Mvir"]>0.))]
+        
         # nummax= numpy.nanmax(gal[index]["NPhotReion"])
         # gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
         # total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
@@ -115,7 +115,7 @@ def plot_z(z):
         # total_sfr = numpy.clip(total_sfr,0.0,nummax2)
         # avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
         # print index,"avg = ",10.**avg
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=(gal[index]["StellarMass"]+gal[index]["ColdGas"]+gal[index]["HotGas"]+gal[index]["EjectedMass"]) )
+        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=(gal[index]["StellarMass"]+gal[index]["ColdGas"]+gal[index]["HotGas"]+gal[index]["EjectedMass"]) / gal[index]["Mvir"]/ 0.166)
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=numpy.float64(1)*10.**gal[index]["NPhotReion"].astype(numpy.float64) )
         sum_hotgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["HotGas"].astype(numpy.float64)*1.e10 )
         sum_coldgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["ColdGas"].astype(numpy.float64)*1.e10)
