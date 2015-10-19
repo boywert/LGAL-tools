@@ -153,17 +153,17 @@ def plot_z(z):
     #ax.set_yscale("log")
     fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_sSFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
-    ax.set_yscale("log")
-    fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    # for i in range(len(model_names)):
+    #     index = model_names[i]
+    #     ax.plot(m200c[index],sum_sSFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    # leg.get_frame().set_linewidth(0)
+    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    # ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
+    # ax.set_yscale("log")
+    # fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
     
     fig = plt.figure()
@@ -178,29 +178,29 @@ def plot_z(z):
     ax.set_yscale("log")
     fig.savefig("StarvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"Ejected Mass / M$_{200c}$")
-    ax.set_yscale("log")
-    fig.savefig("EjectRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    # for i in range(len(model_names)):
+    #     index = model_names[i]
+    #     ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    # leg.get_frame().set_linewidth(0)
+    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    # ax.set_ylabel(r"Ejected Mass / M$_{200c}$")
+    # ax.set_yscale("log")
+    # fig.savefig("EjectRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
-    ax.set_yscale("log")
-    fig.savefig("StarRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    # for i in range(len(model_names)):
+    #     index = model_names[i]
+    #     ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    # leg.get_frame().set_linewidth(0)
+    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    # ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
+    # ax.set_yscale("log")
+    # fig.savefig("StarRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
