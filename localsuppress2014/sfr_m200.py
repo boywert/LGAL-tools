@@ -106,7 +106,7 @@ def plot_z(z):
             print gal[index]['Sfr']
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["Mvir"]>0.))]
+        gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
         
         # nummax= numpy.nanmax(gal[index]["NPhotReion"])
         # gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
@@ -129,7 +129,7 @@ def plot_z(z):
         #ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
-        N[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins)
+        N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
         mean_logphoton[index] = sum_logphoton[index][0]/N[index][0]
         mean_SFR_sq[index]= sum_SFR_sq[index][0]/N[index][0]
