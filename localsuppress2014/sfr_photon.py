@@ -89,16 +89,18 @@ def plot_uv(z):
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-            gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
-            nummax= numpy.nanmax(gal[index]["NPhotReion"])
-            gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
-            print gal[index]['NPhotReion']
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+        gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
+        nummax= numpy.nanmax(gal[index]["NPhotReion"])
+        gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
+        print gal[index]['NPhotReion']
+
         rangen = (7.5,11.5)
         bins = 40
-       
 
+        print gal[index][numpy.where(gal[index]['NPhotReion'] != gal[index]['NPhotReion'])]
         
+        exit()
         
         total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
         nummax2= numpy.nanmax(total_sfr)
