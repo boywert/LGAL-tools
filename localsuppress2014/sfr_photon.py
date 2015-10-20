@@ -95,7 +95,7 @@ def plot_uv(z):
         gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
 
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
-        gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"]+numpy.log10(SEC_PER_YEAR),0.0,nummax)
+        gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
         
         total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
         nummax2= numpy.nanmax(total_sfr)

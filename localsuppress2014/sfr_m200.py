@@ -138,7 +138,7 @@ def plot_z(z):
             m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
         del(gal[index])
         del(nTreeGals[index])
-        print sum_hotgas[index]
+        print sum_coldgas[index]
         print N[index]
 
     fig = plt.figure()
