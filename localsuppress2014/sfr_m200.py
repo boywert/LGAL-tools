@@ -40,6 +40,7 @@ def loadfilter(structfile):
     filter['Type'] = True
     filter['sfh_ibin'] = True
     filter['sfh_numbins'] = True
+    filter['sfh_time'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -109,7 +110,7 @@ def plot_z(z):
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         print gal[index]['sfh_ibin']
-        print gal[index]['sfh_numbins']
+        print gal[index]['sfh_time']
         rangen = (7.5,11.5)
         bins = 40
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
