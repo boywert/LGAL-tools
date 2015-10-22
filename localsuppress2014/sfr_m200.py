@@ -160,7 +160,7 @@ def plot_z(z):
     #ax.set_yscale("log")
     fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-     fig = plt.figure()
+    fig = plt.figure()
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
