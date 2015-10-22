@@ -98,7 +98,7 @@ def plot_uv(z):
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
         gal[index]["NPhotReion"] = gal[index]["NPhotReion"] + numpy.log10(11.6e6*SEC_PER_YEAR)
 
-        rangen = (7.5,13.5)
+        rangen = (7.5,11.5)
         bins = 40
 
                 

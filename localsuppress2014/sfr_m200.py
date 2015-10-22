@@ -132,7 +132,7 @@ def plot_z(z):
         print sum_stellarratio[index]
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
-        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
+        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]*11.6e6)
         sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CumulativeSFR"].astype(numpy.float64)*1.e10/hubble_h*Msun2kg/h_mass*500.)
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
@@ -160,17 +160,17 @@ def plot_z(z):
     fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],sum_sSFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
-    # ax.set_yscale("log")
-    # fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_logphoton[index][0]/(sum_SFR[index][0]*Msun2kg/h_mass),model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
+    ax.set_yscale("log")
+    fig.savefig("gamma_peratomvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
