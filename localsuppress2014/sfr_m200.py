@@ -174,11 +174,11 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],numpy.cumsum(sum_ASFR[index][0]),model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_ASFR[index][0],model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$\mathrm{ASFR[yr^{-1}]}$")
+    ax.set_ylabel(r"$\mathrm{ASFR[]}$")
     ax.set_yscale("log")
     fig.savefig("ASFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
