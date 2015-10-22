@@ -143,8 +143,8 @@ def plot_z(z):
             m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
         del(gal[index])
         del(nTreeGals[index])
-        print sum_logphoton[index][0]
-        print sum_logphoton[index][0].dtype
+        #print sum_logphoton[index][0]
+        #print sum_logphoton[index][0].dtype
         print sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass)
 
     fig = plt.figure()
@@ -164,7 +164,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_logphoton[index][0]/(sum_SFR[index][0]*Msun2kg/h_mass),model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass)),model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
