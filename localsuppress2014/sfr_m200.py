@@ -38,9 +38,7 @@ def loadfilter(structfile):
     filter['BlackHoleMass'] = True
     filter['Sfr'] = True
     filter['Type'] = True
-    filter['sfh_ibin'] = True
-    filter['sfh_numbins'] = True
-    filter['sfh_DiskMass'] = True
+    filter['CumulativeSFR'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -103,14 +101,13 @@ def plot_z(z):
     N = {}
     mean_SFR = {}
     mean_SFR_sq = {}
+    sum_ASFR = {}
     mean_logphoton = {}
     m200c = {}
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        print gal[index]['sfh_ibin']
-        print gal[index]['sfh_DiskMass']
         rangen = (7.5,11.5)
         bins = 40
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
@@ -135,6 +132,7 @@ def plot_z(z):
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"])
+        sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CummulativeSFR"]*1.e10)
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
@@ -172,6 +170,17 @@ def plot_z(z):
     # ax.set_yscale("log")
     # fig.savefig("sSFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],sum_ASFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{ASFR[yr^{-1}]}$")
+    ax.set_yscale("log")
+    fig.savefig("ASFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
