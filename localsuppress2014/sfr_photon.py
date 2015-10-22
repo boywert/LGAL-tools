@@ -17,6 +17,8 @@ rank = "0"
 SEC_PER_YEAR = 3600*24*365.25
 Msun2kg = 1.989e30
 h_mass = 1.6737237e-27 #kg
+hubble_h = 0.7
+boxsize = 47.0
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+rank)
@@ -93,21 +95,19 @@ def plot_uv(z):
         gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
-        print gal[index]['NPhotReion']
+        gal[index]["NPhotReion"] = gal[index]["NPhotReion"] + numpy.log10(11.6e6*SEC_PER_YEAR)
 
         rangen = (7.5,11.5)
         bins = 40
 
-        print gal[index][numpy.where(gal[index]['NPhotReion'] != gal[index]['NPhotReion'])]
-        
-        
+                
         
         total_sfr =  numpy.log10(gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass)
         nummax2= numpy.nanmax(total_sfr)
         total_sfr = numpy.clip(total_sfr,0.0,nummax2)
         avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
         print index,"avg = ",10.**avg
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=numpy.float64(10)**gal[index]["NPhotReion"].astype(numpy.float64))
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=numpy.float64(10)**gal[index]["NPhotReion"].astype(numpy.float64)/(boxsize/hubble_h)**3)
         print sum_logphoton[index]
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
