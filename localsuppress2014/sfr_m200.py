@@ -144,6 +144,7 @@ def plot_z(z):
         del(gal[index])
         del(nTreeGals[index])
         print sum_logphoton[index][0]
+        print sum_SFR[index][0].dtype
         print sum_SFR[index][0]*Msun2kg
 
     fig = plt.figure()
