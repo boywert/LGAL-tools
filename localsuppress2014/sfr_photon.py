@@ -108,7 +108,7 @@ def plot_uv(z):
         total_sfr = numpy.clip(total_sfr,0.0,nummax2)
         avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
         print index,"avg = ",10.**avg
-        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]"Mvir"]*1.e10),range=rangen,bins=bins,weights=(numpy.float64(10)**gal[index]["NPhotReion"].astype(numpy.float64)-1.)/(boxsize/hubble_h)**3)
+        sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=(numpy.float64(10)**gal[index]["NPhotReion"].astype(numpy.float64)-1.)/(boxsize/hubble_h)**3)
         print sum_logphoton[index]
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
