@@ -93,7 +93,7 @@ def plot_uv(z):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
+        #gal[index] = gal[index][numpy.where((gal[index]["Sfr"]>0.))]
         nummax= numpy.nanmax(gal[index]["NPhotReion"])
         gal[index]["NPhotReion"] = numpy.clip(gal[index]["NPhotReion"],0.0,nummax)
         gal[index]["NPhotReion"] = gal[index]["NPhotReion"] + numpy.log10(11.6e6*SEC_PER_YEAR)
