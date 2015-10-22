@@ -129,7 +129,6 @@ def plot_z(z):
         sum_sSFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]/(gal[index]["StellarMass"].astype(numpy.float64)/hubble_h*1.e10))
         sum_ejectedmass[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)*1.e10)
         sum_ejectedratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)/gal[index]["Mvir"])
-        print sum_stellarratio[index]
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]*11.6e6)
@@ -145,6 +144,7 @@ def plot_z(z):
         del(gal[index])
         del(nTreeGals[index])
         print sum_logphoton[index][0]
+        print sum_SFR[index][0]
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
