@@ -133,7 +133,7 @@ def plot_z(z):
         ssfr = numpy.nan_to_num(ssfr)
         sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]*11.6e6)
         sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CumulativeSFR"].astype(numpy.float64)*1.e10/hubble_h*Msun2kg/h_mass*500.)
-        sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CumulativeSFR"].astype(numpy.float64)*500./gal[index][Mvir])
+        sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CumulativeSFR"].astype(numpy.float64)*500./gal[index]['Mvir'])
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
         mean_SFR[index] = sum_SFR[index][0]/N[index][0]
