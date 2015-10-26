@@ -93,9 +93,7 @@ def get_uv(z):
         
     del(gal)
     return sum_photon
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],mean_logphoton[index],model_plot_patterns[i],label=model_labels[i])
+
 
 def main_plot():
     zlist = open(zlistfile,"r").readlines()
