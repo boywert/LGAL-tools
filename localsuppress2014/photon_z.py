@@ -88,7 +88,7 @@ def get_uv(z):
         
         rangen = (7.5,11.5)
         bins = 40                
-        sum_logphoton[index] = numpy.sum((numpy.float64(10)**gal[index]["NPhotReion"].astype(numpy.float64)-1.),dtype=numpy.float64)
+        sum_photon[index] = numpy.sum((numpy.float64(10)**gal[index]["NPhotReion"].astype(numpy.float64)-1.),dtype=numpy.float64)
         print sum_logphoton[index]
         
     del(gal)
