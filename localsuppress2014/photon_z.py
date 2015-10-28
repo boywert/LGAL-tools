@@ -98,22 +98,23 @@ def get_uv(z):
 def main_plot():
     zlist = open(zlistfile,"r").readlines()
     uv_gamma = {}
-    z_plot = []
+    z_plot = {}
     for i in range(len(model_names)):
         index = model_names[i]
         uv_gamma[index] = []
+        z_plot[index] = []
     for z in zlist:
-        z_plot.append(float(z.strip()))
         uv = get_uv(z.strip())
         for i in range(len(model_names)):
             index = model_names[i]
+            z_plot[index].append(float(z.strip()))
             uv_gamma[index].append(uv[index])
     fig = pylab.figure()
     ax = fig.add_subplot(111)
     print uv_gamma['oka_infall']
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(z_plot[index],uv_gamma[index]/(boxsize/h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
+        ax.plot(z_plot,uv_gamma[index]/(boxsize/h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
     
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
