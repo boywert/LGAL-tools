@@ -100,14 +100,14 @@ def main_plot():
     uv_gamma = []
     z_plot = []
     for z in zlist:
-        z_plot = float(z.strip())
+        z_plot.append(float(z.strip()))
         uv_gamma.append(get_uv(z.strip()))
     fig = pylab.figure()
     ax = fig.add_subplot(111)
     print uv_gamma[0]
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(z_plot[index],uv_gamma[0:len(uv_gamma)-1,index]/(boxsize/h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
+        ax.plot(z_plot[index],uv_gamma[0:len(uv_gamma)][index]/(boxsize/h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
     
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
