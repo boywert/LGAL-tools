@@ -115,7 +115,7 @@ def main_plot():
     print uv_gamma['oka_infall']
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(z_plot,uv_gamma[index]/(boxsize/hubble_h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
+        ax.plot(z_plot[index],uv_gamma[index]/(boxsize/hubble_h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
     
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
