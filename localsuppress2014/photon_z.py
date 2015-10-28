@@ -101,14 +101,15 @@ def main_plot():
     z_plot = {}
     for i in range(len(model_names)):
         index = model_names[i]
-        uv_gamma[index] = []
-        z_plot[index] = []
-    for z in zlist:
+        uv_gamma[index] = numpy.zeros(len(zlist),dtype=numpy.float64)
+        z_plot[index] = numpy.zeros(len(zlist),dtype=numpy.float64)
+    for iz in range(len(zlist)):
+        z = zlist[iz]
         uv = get_uv(z.strip())
         for i in range(len(model_names)):
             index = model_names[i]
-            z_plot[index].append(float(z.strip()))
-            uv_gamma[index].append(uv[index])
+            z_plot[index][iz] = float(z.strip())
+            uv_gamma[index][iz] = uv[index]
     fig = pylab.figure()
     ax = fig.add_subplot(111)
     print uv_gamma['oka_infall']
