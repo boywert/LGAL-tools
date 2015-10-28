@@ -106,7 +106,7 @@ def main_plot():
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(z_plot[index],uv_gamma[0:][index]/(boxsize/h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
+        ax.plot(z_plot[index],uv_gamma[0:len(uv_gamma)-1,index]/(boxsize/h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
     
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
