@@ -117,7 +117,7 @@ def main_plot():
             z_plot[index][iz] = float(z.strip())
             uv_gamma[index][iz] = uv[index]
     data = (z_plot,uv_gamma)
-    cpickle.dump( data, open( "data.pickled", "wb" ) )
+    pickle.dump( data, open( "data.pickled", "wb" ) )
     exit()
     fig = plt.figure()
     ax = fig.add_subplot(111)
