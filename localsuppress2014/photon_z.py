@@ -100,8 +100,7 @@ def get_uv(z):
     del(gal)
     return sum_photon
 
-
-def main_plot():
+def get_data_and_pickle(filename):
     zlist = open(zlistfile,"r").readlines()
     uv_gamma = {}
     z_plot = {}
@@ -117,21 +116,32 @@ def main_plot():
             z_plot[index][iz] = float(z.strip())
             uv_gamma[index][iz] = uv[index]
     data = (z_plot,uv_gamma)
-    pickle.dump( data, open( "data.pickled", "wb" ) )
-    exit()
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    print uv_gamma['oka_infall']
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(z_plot[index],uv_gamma[index]/(boxsize/hubble_h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
-    
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$z$")
-    ax.set_ylabel(r"$N_{photon} Ilian plot$")
-    ax.set_yscale("log")
-    fig.savefig("gammavsz.pdf",bbox_inches='tight',pad_inches=0)
+    pickle.dump( data, open(filename, "wb" ) )
+
+def unpickle(filename):
+    data = pickle.load( open( filename, "rb" ) )
+    return data
+def main_plot():
+    filename = "data.picked"
+    if sys.arg[1] == "read":
+        get_data_and_pickle(filename)
+    elif sys.arg[1] == "plot":
+        data = unpickle(filename)
+        z_plot=data[0]
+        uv_gamma = data[1]
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        print uv_gamma['oka_infall']
+        for i in range(len(model_names)):
+            index = model_names[i]
+            ax.plot(z_plot[index],uv_gamma[index]/(boxsize/hubble_h/143.)/1e70,model_plot_patterns[i],label=model_labels[i])
+        
+        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg.get_frame().set_linewidth(0)
+        ax.set_xlabel(r"$z$")
+        ax.set_ylabel(r"$N_{photon} Ilian plot$")
+        ax.set_yscale("log")
+        fig.savefig("gammavsz.pdf",bbox_inches='tight',pad_inches=0)
 def main():
     main_plot()
 
