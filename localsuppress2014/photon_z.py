@@ -8,6 +8,7 @@ import pylab
 import sys
 import numpy
 import os
+import cpickle
 import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
@@ -112,6 +113,9 @@ def main_plot():
             index = model_names[i]
             z_plot[index][iz] = float(z.strip())
             uv_gamma[index][iz] = uv[index]
+    data = (z_plot,uv_gamma)
+    cpickle.dump( data, open( "data.pickled", "wb" ) )
+    exit()
     fig = plt.figure()
     ax = fig.add_subplot(111)
     print uv_gamma['oka_infall']
