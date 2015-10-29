@@ -112,7 +112,7 @@ def main_plot():
             index = model_names[i]
             z_plot[index][iz] = float(z.strip())
             uv_gamma[index][iz] = uv[index]
-    fig = matplotlib.figure()
+    fig = plt.figure()
     ax = fig.add_subplot(111)
     print uv_gamma['oka_infall']
     for i in range(len(model_names)):
