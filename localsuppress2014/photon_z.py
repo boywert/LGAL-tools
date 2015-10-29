@@ -2,6 +2,8 @@ from mass_fn import *
 from globalconf import *
 import matplotlib
 matplotlib.use('Agg') 
+pgf_with_rc_fonts = {"pgf.texsystem": "pdflatex"}
+matplotlib.rcParams.update(pgf_with_rc_fonts)
 import pylab
 import sys
 import numpy
