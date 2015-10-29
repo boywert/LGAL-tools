@@ -138,6 +138,7 @@ def main_plot():
         
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
+        ax.set_ylim([0.001,1000.])
         ax.set_xlabel(r"$z$")
         ax.set_ylabel(r"$N_{photon} Ilian plot$")
         ax.set_yscale("log")
