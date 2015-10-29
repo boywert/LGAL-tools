@@ -123,9 +123,9 @@ def unpickle(filename):
     return data
 def main_plot():
     filename = "data.picked"
-    if sys.arg[1] == "read":
+    if sys.argv[1] == "read":
         get_data_and_pickle(filename)
-    elif sys.arg[1] == "plot":
+    elif sys.argv[1] == "plot":
         data = unpickle(filename)
         z_plot=data[0]
         uv_gamma = data[1]
