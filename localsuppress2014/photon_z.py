@@ -8,7 +8,10 @@ import pylab
 import sys
 import numpy
 import os
-import cpickle
+try:
+    import cPickle as pickle
+except:
+    import pickle
 import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
