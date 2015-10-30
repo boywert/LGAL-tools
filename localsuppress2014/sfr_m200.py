@@ -132,7 +132,7 @@ def plot_z(z):
         sum_ejectedratio[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["EjectedMass"].astype(numpy.float64)/gal[index]["Mvir"])
         ssfr = gal[index]["Sfr"]/(gal[index]["HaloM_Crit200"]*1.e10/hubble_h)
         ssfr = numpy.nan_to_num(ssfr)
-        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]*11.6e6)
+        sum_SFR[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]*11.6e6)
         #sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CumulativeSFR"].astype(numpy.float64)*1.e10/hubble_h*Msun2kg/h_mass*500.)
         #sum_ASFR[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["CumulativeSFR"].astype(numpy.float64)*500./gal[index]['Mvir'])
         sum_SFR_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"]**2)
@@ -147,7 +147,7 @@ def plot_z(z):
         del(nTreeGals[index])
         #print sum_logphoton[index][0]
         #print sum_logphoton[index][0].dtype
-        print sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass)
+        print sum_logphoton[index][0]*SEC_PER_YEAR/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass)
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -271,17 +271,17 @@ def plot_z(z):
     ax.set_yscale("log")
     fig.savefig("SFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     ax.plot(m200c[index],mean_logphoton[index],model_plot_patterns[i],label=model_labels[i])
-    # leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    # leg.get_frame().set_linewidth(0)
-    # ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    # ax.set_ylabel(r"$\mathrm{NPHOT}$")
-    # ax.set_yscale("log")
-    # fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(m200c[index],mean_logphoton[index],model_plot_patterns[i],label=model_labels[i])
+    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg.get_frame().set_linewidth(0)
+    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
+    ax.set_ylabel(r"$\mathrm{NPHOT}$")
+    ax.set_yscale("log")
+    fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
     #plot_uv_z6()
