@@ -55,7 +55,7 @@ def calNN(data,boxsize):
         for i in range(1,N+1):
             dV = (4./3*np.pi*r[i]**3-4./3*np.pi*r[i-1]**3)
             xi[i] = (totals[i]-totals[i-1])/rho/dV/npoint 
-
+        print xi
     
         #pylab.plot(r,xi)
         #pylab.xscale('log')
