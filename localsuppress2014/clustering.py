@@ -21,7 +21,7 @@ size = comm.Get_size()
 rank = comm.Get_rank()
 
 def loadfilter(structfile):
-    sys.path.insert(0,"../tmp/"+rank)
+    sys.path.insert(0,"../tmp/"+str(rank))
     os.system("cp "+structfile+" ../tmp/"+rank+"/LGalaxyStruct.py")
     os.system("rm -f ../tmp/"+rank+"/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
