@@ -93,10 +93,12 @@ def plot_xi(z):
     
             (r,xi[index]) = CF.calNN(data,47.0)
     if rank == 0:
+        print "plotting figure"
         fig = plt.figure()
         ax = fig.add_subplot(111)
         for i in range(len(model_names)):
             index = model_names[i]
+            print "adding",model_labels[i]
             ax.plot(r,xi[index],model_plot_patterns[i],label=model_labels[i])
             leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
@@ -104,8 +106,9 @@ def plot_xi(z):
         ax.set_ylabel(r"$\xi$")
         ax.set_yscale("log")
         ax.set_xscale("log")
+        print "saving fig"
         fig.savefig("mag_15_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
-    
+        print "done"
 def main():
     plot_xi("6.00")
     #plot_z("7.96")
