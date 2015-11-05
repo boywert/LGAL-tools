@@ -25,7 +25,7 @@ def calNN(data,boxsize):
         tree.rebuild_boundaries()
         for j in range(start_n,stop_n+1):
             if rank == 0:
-                if j%((stop_n-start_n+1)/10):
+                if j%((stop_n-start_n+1)/10) == 0:
                     print "process",j*100./(stop_n-start_n+1),"%"
             for i in range(N+1):
                 upper_r = 10.**(np.log10(min)+i*dx)
