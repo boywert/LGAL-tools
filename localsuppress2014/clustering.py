@@ -13,7 +13,7 @@ import add_observations
 sys.path.append("../python/")
 sys.path.append("../clustering/")
 import read_lgal_advance as read_lgal
-import xi
+import xi as CF
 import timeit
 from mpi4py import MPI
 comm = MPI.COMM_WORLD
@@ -87,7 +87,7 @@ def plot_xi(z):
             else:
                 data = None
             data = comm.bcast(data,root=0)
-            (r,xis) = xi.calNN(data,47.0)
+            (r,xis) = CF.calNN(data,47.0)
             if rank ==0:
                 print xis
     # fig = plt.figure()
