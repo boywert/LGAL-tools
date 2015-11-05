@@ -6,6 +6,8 @@ size = comm.Get_size()
 rank = comm.Get_rank()
 
 def calNN(data,boxsize):
+    if rank ==0:
+        print "calculate NN"
     N=50
     min = boxsize/306.
     max = boxsize/2.-1.
@@ -18,7 +20,6 @@ def calNN(data,boxsize):
 
     start_n = rank*npoint/size
     stop_n = np.array([(rank+1)*npoint/size-1,npoint-1]).min()
-    print start_n,stop_n,stop_n-start_n
     with fast3tree.fast3tree(data) as tree:
         tree.set_boundaries(0.0,boxsize)
         tree.rebuild_boundaries()
@@ -28,10 +29,11 @@ def calNN(data,boxsize):
                 idx = tree.query_radius(data[j],upper_r, periodic=True,output='count') - 1
                 r[i] = upper_r
                 count[i] += idx
-
+    
     comm.Barrier()
     # the 'totals' array will hold the sum of each 'data' array
     if comm.rank==0:
+        print "Reducing data"
         # only processor 0 will actually get the data
         totals = np.zeros_like(count)
     else:
