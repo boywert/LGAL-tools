@@ -99,6 +99,7 @@ def plot_xi(z):
         ax.set_xlabel(r"$r$")
         ax.set_ylabel(r"$\xi$")
         ax.set_yscale("log")
+        ax.set_xscale("log")
         fig.savefig("mag_15_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
