@@ -88,7 +88,7 @@ def plot_xi(z):
                 data = None
             data = comm.bcast(data,root=0)
             if(rank == 1):
-                print data
+                print len(data)
     
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
