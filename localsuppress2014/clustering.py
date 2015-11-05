@@ -87,9 +87,8 @@ def plot_xi(z):
             else:
                 data = None
             data = comm.bcast(data,root=0)
-            if(rank == 1):
-                print len(data)
-    
+            (r,xis) = calNN(data,47.0)
+            print xis
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
     # for i in range(len(model_names)):
