@@ -22,7 +22,7 @@ rank = comm.Get_rank()
 
 def loadfilter(structfile):
     os.system("mkdir -p ../tmp/"+str(rank))
-    sys.path.append("../tmp/"+str(rank))
+    sys.path.insert(0,"../tmp/"+str(rank))
     os.system("cp "+structfile+" ../tmp/"+str(rank)+"/LGalaxyStruct.py")
     os.system("rm -f ../tmp/"+str(rank)+"/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
