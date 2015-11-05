@@ -86,7 +86,7 @@ def plot_xi(z):
                 data = gal[index]["Pos"]
             else:
                 data = None
-            MPI.bcast(gal,root=0)
+            data = comm.bcast(data,root=0)
             if(rank == 1):
                 print data
     
