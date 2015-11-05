@@ -71,27 +71,24 @@ zlist = open(zlistfile,"r").readlines()
 
 def plot_xi(z):
     file_prefix = "SA_z"+z
-    if rank == 0:
-        try:
-            gal
-        except NameError:
-            gal = {}
-            nTrees = {}
-            nGals = {}
-            nTreeGals = {}
-            for i in range(len(model_names)):
-                index = model_names[i]
-                if not index in gal:
-                    (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-                gal[index] = gal[index][numpy.where(gal[index]["Mag"][:,5]<-15.)]
-    else:
-        gal = {}
-        nTrees = {}
-        nGals = {}
-        nTreeGals = {}
-        (nTrees[index],nGals[index],nTreeGals[index],gal[index])  = (None,None,None,None)
+    xi = {}
         
-    mpi.bcast(gal,root=0)
+    gal = {}
+    nTrees = {}
+    nGals = {}
+    nTreeGals = {}
+    for i in range(len(model_names)):
+        index = model_names[i]
+        if not index in gal:
+            if rank == 0:
+                (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+                gal[index] = gal[index][numpy.where(gal[index]["Mag"][:,5]<-15.)]
+                data = gal[index]["Pos"]
+            else:
+                data = None
+            MPI.bcast(gal,root=0)
+            if(rank == 1):
+                print data
     
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
