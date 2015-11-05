@@ -24,6 +24,9 @@ def calNN(data,boxsize):
         tree.set_boundaries(0.0,boxsize)
         tree.rebuild_boundaries()
         for j in range(start_n,stop_n+1):
+            if rank == 0:
+                if j == (stop_n-start_n+1)%5:
+                    print "process",j/(stop_n-start_n+1)*100.,"%"
             for i in range(N+1):
                 upper_r = 10.**(np.log10(min)+i*dx)
                 idx = tree.query_radius(data[j],upper_r, periodic=True,output='count') - 1
