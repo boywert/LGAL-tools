@@ -85,7 +85,7 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
-    for m in range(-17,0):
+    for m in range(-17,-12):
         mag = float(m)
         for i in range(len(model_names)):
             index = model_names[i]
@@ -113,7 +113,7 @@ def plot_xi(z):
             fig.savefig("mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
-    plot_xi("6.00")
+    #plot_xi("6.00")
     plot_xi("7.96")
 
 if __name__=="__main__":
