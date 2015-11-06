@@ -85,7 +85,8 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
 
-    for mag in range(-13.,0.):
+    for m in range(-13,0):
+        mag = float(m)
         if rank == 0:
             data = gal[index][numpy.where((gal[index]["Mag"][:,5]<mag))]["Pos"]
         else:
