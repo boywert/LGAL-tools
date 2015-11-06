@@ -84,7 +84,7 @@ def plot_xi(z):
         if not index in gal:
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-                gal[index] = gal[index][numpy.where((gal[index]["Mag"][:,5]<-17.0))] # & (gal[index]["Type"] == 0))]
+                gal[index] = gal[index][numpy.where((gal[index]["Mag"][:,5]<-14.0))] # & (gal[index]["Type"] == 0))]
                 #gal[index] = gal[index][numpy.where((gal[index]["Type"] == 0))]
                 data = gal[index]["Pos"]
             else:
@@ -107,7 +107,7 @@ def plot_xi(z):
         ax.set_yscale("log")
         ax.set_xscale("log")
         print "saving fig"
-        fig.savefig("mag_17_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+        fig.savefig("mag_14_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
         print "done"
 def main():
     plot_xi("6.00")
