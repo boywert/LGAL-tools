@@ -9,7 +9,7 @@ def calNN(data,boxsize):
     if rank ==0:
         print "calculate NN"
     N=50
-    min = boxsize/306.
+    min = 0.0001
     max = boxsize/2.-1.
     npoint = len(data)
     rho = npoint/boxsize**3
