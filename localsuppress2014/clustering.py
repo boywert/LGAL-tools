@@ -99,7 +99,7 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             print "adding",model_labels[i]
-            ax.plot(r,xi[index],model_plot_patterns[i],label=model_labels[i])
+            ax.plot(r[1:],xi[index][1:],model_plot_patterns[i],label=model_labels[i])
             leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$r[h^{-1}Mpc]$")
