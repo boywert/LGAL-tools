@@ -102,8 +102,8 @@ def plot_xi(z):
             ax.plot(r,xi[index],model_plot_patterns[i],label=model_labels[i])
             leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
-        ax.set_xlabel(r"$r$")
-        ax.set_ylabel(r"$\xi$")
+        ax.set_xlabel(r"$r[h^{-1}Mpc]$")
+        ax.set_ylabel(r"$1+\xi(r)$")
         ax.set_yscale("log")
         ax.set_xscale("log")
         print "saving fig"
