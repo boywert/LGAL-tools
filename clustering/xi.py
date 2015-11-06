@@ -60,7 +60,7 @@ def calNN(data,boxsize):
         #pylab.plot(r,xi)
         #pylab.xscale('log')
         #pylab.show()
-    xi = comm.bcast(xi, root=0)
+    #xi = comm.bcast(xi, root=0)
     return (r,xi)
 def main():
     boxsize = 47.0
