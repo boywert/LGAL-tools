@@ -112,6 +112,7 @@ def plot_xi(z):
             print "saving fig","mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf"
             fig.savefig("mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
+        comm.Barrier()
 def main():
     plot_xi("6.00")
     plot_xi("7.96")
