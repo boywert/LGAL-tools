@@ -109,8 +109,8 @@ def plot_xi(z):
             ax.set_ylabel(r"$1+\xi(r)$")
             ax.set_yscale("log")
             ax.set_xscale("log")
-            print "saving fig","mag_"+sfr(long(abs(mag)))+"_xi"+str(z)+".pdf"
-            fig.savefig("mag_"+sfr(long(abs(mag)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+            print "saving fig","mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf"
+            fig.savefig("mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
     plot_xi("6.00")
