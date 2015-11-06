@@ -85,14 +85,16 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
 
-    for m in range(-13,0):
+    for m in range(-17,0):
         mag = float(m)
-        if rank == 0:
-            data = gal[index][numpy.where((gal[index]["Mag"][:,5]<mag))]["Pos"]
-        else:
-            data = None
-        data = comm.bcast(data,root=0)
-        (r,xi[index]) = CF.calNN(data,47.0)            
+        for i in range(len(model_names)):
+            index = model_names[i]
+            if rank == 0:
+                data = gal[index][numpy.where((gal[index]["Mag"][:,5]<mag))]["Pos"]
+            else:
+                data = None
+            data = comm.bcast(data,root=0)
+            (r,xi[index]) = CF.calNN(data,47.0)            
         if rank == 0:
             print "plotting figure"
             fig = plt.figure()
