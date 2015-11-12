@@ -95,7 +95,7 @@ def plot_uv_z8():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-4.5,mass_max=10.**4,nbins=40)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-13,nbins=24)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
     # SFR
@@ -108,7 +108,8 @@ def plot_uv_z8():
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
-        ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
+        ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} dex^{-1}}]$")
+        ax.set_xlim([-20.5,16.5])
         ax.set_yscale("log")
         fig.savefig("sfr_z8.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
