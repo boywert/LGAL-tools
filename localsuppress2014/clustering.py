@@ -90,7 +90,7 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) && (gal[index]["Mag"][:,5]<90))]["Pos"]
+                data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<90))]["Pos"]
             else:
                 data = None
             data = comm.bcast(data,root=0)
