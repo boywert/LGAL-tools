@@ -212,7 +212,7 @@ def plot_uv_z7():
     ax.set_xlabel(r"M1600 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi (Mpc^{-3} Mag^-1)}$")
     ax.set_yscale("log")
-    ax.set_xlim((-21,-15))
+    ax.set_xlim([-21,-15])
     fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
@@ -294,8 +294,8 @@ def plot_uv_z6():
 
     
 def main():
-    plot_uv_z6()
-    #plot_uv_z7()
+    #plot_uv_z6()
+    plot_uv_z7()
     #plot_uv_z8()
 
 if __name__=="__main__":
