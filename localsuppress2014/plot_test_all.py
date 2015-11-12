@@ -140,6 +140,7 @@ def plot_uv_z8():
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
     ax.set_xlim([-20.5,-16.])
+    ax.set_ylim([1e-5,1e-1])
     fig.savefig("uv_l_z8.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
