@@ -212,7 +212,7 @@ def plot_uv_z7():
     ax.set_xlabel(r"M1600 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi (Mpc^{-3} Mag^-1)}$")
     ax.set_yscale("log")
-    ax.set_xlim((-23,-17))
+    ax.set_xlim((-21,-15))
     fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
@@ -244,7 +244,7 @@ def plot_uv_z6():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-4.5,mass_max=10.**4,nbins=40)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-17,nbins=12)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-15,nbins=20)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
     # SFR
@@ -287,17 +287,16 @@ def plot_uv_z6():
     ax.set_xlabel(r"M1600 - 5log(h)")
     ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1}$")
     ax.set_yscale("log")
+    ax.set_xlim([-22.5,-15.5])
     fig.savefig("uv_l_z6.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
-
-
 
 
     
 def main():
     plot_uv_z6()
-    plot_uv_z7()
-    plot_uv_z8()
+    #plot_uv_z7()
+    #plot_uv_z8()
 
 if __name__=="__main__":
     main()
