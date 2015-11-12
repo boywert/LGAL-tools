@@ -85,12 +85,12 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
-    for m in range(-12,-11):
+    for m in range(-15.0,-10.0):
         mag = float(m)
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where((gal[index]["Mag"][:,5]<mag))]["Pos"]
+                data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) && (gal[index]["Mag"][:,5]<90))]["Pos"]
             else:
                 data = None
             data = comm.bcast(data,root=0)
@@ -109,7 +109,7 @@ def plot_xi(z):
             ax.set_ylabel(r"$1+\xi(r)$")
             ax.set_yscale("log")
             ax.set_xscale("log")
-            print "saving fig","mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf"
+            print "saving fig","magf_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf"
             fig.savefig("mag_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
