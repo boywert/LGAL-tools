@@ -299,8 +299,8 @@ def plot_uv_z6():
     
 def main():
     plot_uv_z6()
-    #plot_uv_z7()
-    #plot_uv_z8()
+    plot_uv_z7()
+    plot_uv_z8()
 
 if __name__=="__main__":
     main()
