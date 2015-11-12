@@ -151,7 +151,7 @@ def add_obs_sfr_z6(observe_folder,ax):
     data_error = data[:,2]
     ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Smit et al. (2012)")
     
-    data_file = observe_folder+"/Duncan14_SFRF_UV_SED_z6.cat"
+    data_file = observe_folder+"/Duncan14_SFRF_SED_z6.cat"
     data = numpy.loadtxt(data_file)
     data_x = data[:,0]
     data_y = data[:,1]
