@@ -261,6 +261,7 @@ def plot_uv_z6():
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
+    ax.set_xlime([1e-1,1e2])
     fig.savefig("sfr_z6.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
                                                                                 
@@ -298,8 +299,8 @@ def plot_uv_z6():
     
 def main():
     plot_uv_z6()
-    plot_uv_z7()
-    plot_uv_z8()
+    #plot_uv_z7()
+    #plot_uv_z8()
 
 if __name__=="__main__":
     main()
