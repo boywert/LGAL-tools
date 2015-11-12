@@ -94,7 +94,7 @@ def plot_uv_z8():
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-4.5,mass_max=10.**4,nbins=40)
+        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-13,nbins=24)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
@@ -169,7 +169,7 @@ def plot_uv_z7():
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-4.5,mass_max=10.**4,nbins=40)
+        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-15,nbins=20)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
@@ -245,7 +245,7 @@ def plot_uv_z6():
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-4.5,mass_max=10.**4,nbins=40)
+        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-15,nbins=20)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
