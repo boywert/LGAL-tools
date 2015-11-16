@@ -112,7 +112,7 @@ def plot_xi(z):
             ax.set_yscale("log")
             ax.set_xscale("log")
             print "saving fig","halo_"+str(long(abs(halo)))+"_xi"+str(z)+".pdf"
-            fig.savefig("halo_"+str(long(abs(halo)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+            fig.savefig("halo_"+str(long(abs(mag)))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
     plot_xi("6.00")
