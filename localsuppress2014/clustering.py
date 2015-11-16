@@ -85,7 +85,7 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
-    for m in range(8,11,0.5):
+    for m in range(8.0,11.0,0.5):
         mag = float(m)
         for i in range(len(model_names)):
             index = model_names[i]
