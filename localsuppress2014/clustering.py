@@ -91,7 +91,7 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                gal[index][numpy.where((gal[index]["Mvir"]>mag))]["Pos"]
+                data = gal[index][numpy.where((gal[index]["Mvir"]>mag))]["Pos"]
                 #data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<90))]["Pos"]
             else:
                 data = None
