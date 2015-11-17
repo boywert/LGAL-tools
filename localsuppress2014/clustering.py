@@ -86,16 +86,16 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
-    slot = "Mvir"
-    mlist = numpy.arange(8,11,0.5)
+    slot = "Mag"
+    mlist = numpy.arange(-22,10,0.5)
     for m in mlist:
         mag  = m
         mag1 = mag+0.5
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10)>mag) & (numpy.log10(gal[index][slot]*1e10)<mag1))]["Pos"]
-                #data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<90))]["Pos"]
+                #data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10)>mag) & (numpy.log10(gal[index][slot]*1e10)<mag1))]["Pos"]
+                data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<mag1))]["Pos"]
             else:
                 data = None
             data = comm.bcast(data,root=0)
@@ -114,8 +114,8 @@ def plot_xi(z):
             ax.set_ylabel(r"$\xi(r)$")
             ax.set_yscale("log")
             ax.set_xscale("log")
-            print "saving fig","halo_"+str(abs(mag))+"_xi"+str(z)+".pdf"
-            fig.savefig("halo_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+            print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
+            fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
     plot_xi("6.00")
