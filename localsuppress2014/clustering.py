@@ -87,7 +87,7 @@ def plot_xi(z):
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
     slot = "Mag"
-    mlist = numpy.arange(-22,10,0.5)
+    mlist = numpy.arange(-20,10,0.5)
     for m in mlist:
         mag  = m
         mag1 = mag+0.5
@@ -98,7 +98,7 @@ def plot_xi(z):
                 data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<mag1))]["Pos"]
             else:
                 data = None
-            data = comm.bcast(data,root=0)
+                data = comm.bcast(data,root=0)
             (r,xi[index]) = CF.calNN(data,47.0)            
         if rank == 0:
             print "plotting figure"
@@ -119,7 +119,7 @@ def plot_xi(z):
             print "done"
 def main():
     plot_xi("6.00")
-    #plot_xi("7.96")
+    plot_xi("7.96")
 
 if __name__=="__main__":
     main()
