@@ -107,11 +107,11 @@ def plot_xi(z):
             for i in range(len(model_names)):
                 index = model_names[i]
                 print "adding",model_labels[i]
-                ax.plot(r[1:],xi[index][1:],model_plot_patterns[i],label=model_labels[i])
+                ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
                 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
             leg.get_frame().set_linewidth(0)
             ax.set_xlabel(r"$r[h^{-1}Mpc]$")
-            ax.set_ylabel(r"$1+\xi(r)$")
+            ax.set_ylabel(r"$\xi(r)$")
             ax.set_yscale("log")
             ax.set_xscale("log")
             print "saving fig","halo_"+str(long(abs(halo)))+"_xi"+str(z)+".pdf"
