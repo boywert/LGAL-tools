@@ -30,11 +30,11 @@ def calNN(data,boxsize):
                 if rank == 0:
                     if j%((stop_n-start_n)/10) == 0:
                         print "process",j*100./(stop_n-start_n),"%"
-                    for i in range(N+1):
-                        upper_r = 10.**(np.log10(min)+i*dx)
-                        idx = tree.query_radius(data[j],upper_r, periodic=True,output='count') - 1
-                        r[i] = upper_r
-                        count[i] += idx
+                for i in range(N+1):
+                    upper_r = 10.**(np.log10(min)+i*dx)
+                    idx = tree.query_radius(data[j],upper_r, periodic=True,output='count') - 1
+                    r[i] = upper_r
+                    count[i] += idx
     
     comm.Barrier()
     # the 'totals' array will hold the sum of each 'data' array
