@@ -100,7 +100,7 @@ def plot_xi(z):
                 data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<mag1))]["Pos"]
             else:
                 data = None
-                data = comm.bcast(data,root=0)
+            data = comm.bcast(data,root=0)
             (r,xi[index]) = CF.calNN(data,47.0)            
         if rank == 0:
             print "plotting figure"
