@@ -20,7 +20,6 @@ def calNN(data,boxsize):
 
     start_n = rank*npoint/size
     stop_n = np.array([(rank+1)*npoint/size-1,npoint-1]).min()
-    print "rank:",rank,start_n,stop_n
     comm.Barrier()
     if(stop_n > start_n):
         with fast3tree.fast3tree(data) as tree:
