@@ -20,18 +20,19 @@ def calNN(data,boxsize):
 
     start_n = rank*npoint/size
     stop_n = np.array([(rank+1)*npoint/size-1,npoint-1]).min()
-    with fast3tree.fast3tree(data) as tree:
-        tree.set_boundaries(0.0,boxsize)
-        tree.rebuild_boundaries()
-        for j in range(start_n,stop_n+1):
-            if rank == 0:
-                if j%((stop_n-start_n)/10) == 0:
-                    print "process",j*100./(stop_n-start_n),"%"
-            for i in range(N+1):
-                upper_r = 10.**(np.log10(min)+i*dx)
-                idx = tree.query_radius(data[j],upper_r, periodic=True,output='count') - 1
-                r[i] = upper_r
-                count[i] += idx
+    if(stop_n > start_n):
+        with fast3tree.fast3tree(data) as tree:
+            tree.set_boundaries(0.0,boxsize)
+            tree.rebuild_boundaries()
+            for j in range(start_n,stop_n+1):
+                if rank == 0:
+                    if j%((stop_n-start_n)/10) == 0:
+                        print "process",j*100./(stop_n-start_n),"%"
+                    for i in range(N+1):
+                        upper_r = 10.**(np.log10(min)+i*dx)
+                        idx = tree.query_radius(data[j],upper_r, periodic=True,output='count') - 1
+                        r[i] = upper_r
+                        count[i] += idx
     
     comm.Barrier()
     # the 'totals' array will hold the sum of each 'data' array
