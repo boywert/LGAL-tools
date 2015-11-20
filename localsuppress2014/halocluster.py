@@ -85,7 +85,7 @@ def plot_xi(z):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
     slot = "Mvir"
-    mlist = numpy.arange(8,11.1,0.5)
+    mlist = numpy.arange(8,10.6,0.5)
     if rank == 0:
         fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -105,7 +105,7 @@ def plot_xi(z):
         if rank == 0:
             print "plotting figure"
             print "adding",mag
-            ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=r"$\log_10(M) = %2.1f$" % (m))
+            ax.plot(r[1:],xi[index][1:]-1.,label=r"$\log_10(M) = %2.1f$" % (m))
     if rank == 0:
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
