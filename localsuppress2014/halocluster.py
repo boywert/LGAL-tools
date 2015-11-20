@@ -86,8 +86,9 @@ def plot_xi(z):
     comm.Barrier()
     slot = "Mvir"
     mlist = numpy.arange(8,11.1,0.5)
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
+    if rank == 0:
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
     for m in mlist:
         mag  = m
         if rank == 0:
@@ -105,14 +106,14 @@ def plot_xi(z):
             print "plotting figure"
             print "adding",mag
             ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=r"$\log_10(M) = %2.1f$" % (m))
-
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$r[h^{-1}Mpc]$")
-    ax.set_ylabel(r"$\xi(r)$")
-    ax.set_yscale("log")
-    ax.set_xscale("log")
-    fig.savefig(slot+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    if rank == 0:
+        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg.get_frame().set_linewidth(0)
+        ax.set_xlabel(r"$r[h^{-1}Mpc]$")
+        ax.set_ylabel(r"$\xi(r)$")
+        ax.set_yscale("log")
+        ax.set_xscale("log")
+        fig.savefig(slot+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
 def main():
     plot_xi("6.00")
     plot_xi("7.96")
