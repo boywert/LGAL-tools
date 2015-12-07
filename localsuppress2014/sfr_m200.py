@@ -217,13 +217,14 @@ def plot_z(z):
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg = ax.legend(loc=1, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-4,1.e-2])
     ax.set_xlim([8.0,11.5])
+    fig.suptitle("z = "+str(z))
     fig.savefig("StarRatiovsM_z"+"%08.2f"%(float(z))+".pdf",bbox_inches='tight')
     fig.savefig("StarRatiovsM_z"+"%08.2f"%(float(z))+".png",bbox_inches='tight')
     plt.close(fig)
