@@ -286,7 +286,7 @@ def plot_z(z):
     # fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
 def main():
-    zlist = open(zlistfile).open.readlines()
+    zlist = open(zlistfile).open().readlines()
     plot_z(zlist[sys.argv[1]])
     #plot_z("7.96")
 
