@@ -287,7 +287,8 @@ def plot_z(z):
     
 def main():
     zlist = open(zlistfile).readlines()
-    plot_z(zlist[long(sys.argv[1])])
+    zi = zlist[long(sys.argv[1])].strip()
+    plot_z(zi)
     #plot_z("7.96")
 
 if __name__=="__main__":
