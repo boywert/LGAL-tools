@@ -18,9 +18,9 @@ rank = "0"
 SEC_PER_YEAR = 3600*24*365.25
 Msun2kg = 1.989e30
 h_mass = 1.6737237e-27 #kg
-os.system("mkdir -p ../tmp/"+rank)
+ranki = str(random.randint(0,1000000))
+os.system("mkdir -p ../tmp/"+ranki)
 def loadfilter(structfile):
-    ranki = str(random.randint(0,1000000))
     sys.path.insert(0,"../tmp/"+ranki)
     os.system("cp "+structfile+" ../tmp/"+ranki+"/LGalaxyStruct.py")
     os.system("rm -f ../tmp/"+ranki+"/LGalaxyStruct.pyc")
