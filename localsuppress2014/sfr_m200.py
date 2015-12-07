@@ -223,7 +223,7 @@ def plot_z(z):
     ax.set_ylabel(r"Stellar Mass / M$_{200c}$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-5,1.e-2])
-    ax.set_ylim([8.0,11.5])
+    ax.set_xlim([8.0,11.5])
     fig.savefig("StarRatiovsM_z"+"%08.2f"%(float(z))+".png",bbox_inches='tight')
     plt.close(fig)
     
