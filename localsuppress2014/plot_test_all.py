@@ -86,8 +86,8 @@ def plot_uv_z8():
         nTreeGals = {}
     smf_x = {}
     smf_y = {}
-    sfr_x = {}
-    sfr_y = {}
+    #sfr_x = {}
+    #sfr_y = {}
     luvlf_x = {}
     luvlf_y = {}
     metalicity_x = {}
@@ -97,24 +97,24 @@ def plot_uv_z8():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e7,mass_max=1e12,nbins=20)
-        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
+        #(sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-13,nbins=24)
         (metalicity_x[index],metalicity_y[index]) = metallicity_fn(gal[index],mass_min=1.e-5,mass_max=1.,nbins=20)
         
-    # SFR
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    add_observations.add_obs_sfr_z7("observations/SFR/",ax)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
-        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-        leg.get_frame().set_linewidth(0)
-        ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
-        ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} dex^{-1}}]$")
-        ax.set_yscale("log")
-        fig.savefig("sfr_z8.pdf",bbox_inches='tight',pad_inches=0)
-    plt.close(fig)
+    # # SFR
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    # add_observations.add_obs_sfr_z7("observations/SFR/",ax)
+    # for i in range(len(model_names)):
+    #     index = model_names[i]
+    #     ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
+    #     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    #     leg.get_frame().set_linewidth(0)
+    #     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
+    #     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} dex^{-1}}]$")
+    #     ax.set_yscale("log")
+    #     fig.savefig("sfr_z8.pdf",bbox_inches='tight',pad_inches=0)
+    # plt.close(fig)
     
     # metals
     fig = plt.figure()
