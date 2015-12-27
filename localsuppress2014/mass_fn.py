@@ -6,7 +6,7 @@ hubble_h = 0.7
 
 
 def uv_luminosity_fn(gal,min=-23.,max=-17.,nbins=12):
-    massf = gal["Mag"][:,5] - 5.*numpy.log10(hubble_h)
+    massf = gal["MagDust"][:,5] - 5.*numpy.log10(hubble_h)
     stellarmass = numpy.histogram(massf,nbins,(min,max))
     massftn_y = stellarmass[0]/(boxsize)**3/((max-min)/nbins)
     massftn_x = []

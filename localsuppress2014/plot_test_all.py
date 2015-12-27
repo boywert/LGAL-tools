@@ -24,7 +24,7 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False
     
-    filter['Mag'] = True
+    filter['MagDust'] = True
     filter['Sfr'] = True
     filter['DiskMass'] = True
     filter['BulgeMass'] = True
