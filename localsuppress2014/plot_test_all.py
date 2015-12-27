@@ -185,7 +185,7 @@ def plot_uv_z7():
     add_observations.add_obs_smf_z7("observations/SMF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(smf_x[index],smf_y[index],model_plot_patterns[i],label=model_labels[i])
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$\mathrm{\log_{10}[M_*/M_\odot]}$")
@@ -278,7 +278,7 @@ def plot_uv_z6():
     add_observations.add_obs_smf_z6("observations/SMF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(smf_x[index],smf_y[index],model_plot_patterns[i],label=model_labels[i])
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$\mathrm{\log_{10}[M_*/M_\odot]}$")
