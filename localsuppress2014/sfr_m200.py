@@ -76,7 +76,7 @@ model_paths = model_paths_tmp
 
 
 pylab.rc('text', usetex=True)
-
+pylab.rc('lines', linewidth=2)
 zlist = open(zlistfile,"r").readlines()
 
 
