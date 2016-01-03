@@ -301,7 +301,7 @@ def plot_z(z,models,prefix):
 def main():
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
-    import model1 as models
+    import globalconf as models
     plot_z(zi,models,"")
     #import model2 as models
     #plot_z(zi,models,"all_stripping_")
