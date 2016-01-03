@@ -13,6 +13,13 @@ def add_obs_uv_z8(observe_folder,ax):
     bouwens2011_errordown = (10.**bouwens2011[:,1] - 10.**(bouwens2011[:,1] + bouwens2011[:,4]))/hubble_h**3.
     ax.errorbar(bouwens2011_x,bouwens2011_y,yerr=[ bouwens2011_errordown, bouwens2011_errorup], fmt='o',label="Bouwens et al. (2011)") 
 
+    data_file = observe_folder+"/bouwens2014_z8.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]-5.*numpy.log10(hubble_h)
+    data_y = data[:,1]/hubble_h**3.
+    data_error = data[:,2]/hubble_h**3.
+    ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bouwens et al. (2015)")
+    
     mclure2010_file = observe_folder+"/mclure2010_z8.txt"
     mclure2010= numpy.loadtxt(mclure2010_file)
     mclure2010_x = mclure2010[:,0]-5.*numpy.log10(hubble_h)
@@ -46,6 +53,13 @@ def add_obs_uv_z7(observe_folder,ax):
     bouwens2011_errorup = (10.**(bouwens2011[:,1] + bouwens2011[:,5]) - 10.**bouwens2011[:,1])/hubble_h**3.
     bouwens2011_errordown = (10.**bouwens2011[:,1] - 10.**(bouwens2011[:,1] + bouwens2011[:,4]))/hubble_h**3.
     ax.errorbar(bouwens2011_x,bouwens2011_y,yerr=[ bouwens2011_errordown, bouwens2011_errorup], fmt='o',label="Bouwens et al. (2011)") 
+    
+    data_file = observe_folder+"/bouwens2014_z7.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]-5.*numpy.log10(hubble_h)
+    data_y = data[:,1]/hubble_h**3.
+    data_error = data[:,2]/hubble_h**3.
+    ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bouwens et al. (2015)")
     
     mclure2010_file = observe_folder+"/mclure2010_z8.txt"
     mclure2010= numpy.loadtxt(mclure2010_file)
@@ -122,7 +136,7 @@ def add_obs_uv_z6(observe_folder,ax):
     data_x = data[:,0]-5.*numpy.log10(hubble_h)
     data_y = data[:,1]/hubble_h**3.
     data_error = data[:,2]/hubble_h**3.
-    ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bouwens et al. (2014)")
+    ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bouwens et al. (2015)")
 
     data_file = observe_folder+"/Duncan14_LF_z6.txt"
     data = numpy.loadtxt(data_file)
