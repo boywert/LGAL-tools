@@ -1,5 +1,4 @@
 from mass_fn import *
-from globalconf import *
 import matplotlib
 matplotlib.use('Agg') 
 import pylab
@@ -20,6 +19,12 @@ Msun2kg = 1.989e30
 h_mass = 1.6737237e-27 #kg
 ranki = str(random.randint(0,1000000))
 os.system("mkdir -p ../tmp/"+ranki)
+pylab.rc('text', usetex=True)
+pylab.rc('lines', linewidth=2)
+plt.rcParams['ytick.major.size'] = 8
+plt.rcParams['xtick.major.size'] = 8
+zlist = open(zlistfile,"r").readlines()
+
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+ranki)
     os.system("cp "+structfile+" ../tmp/"+ranki+"/LGalaxyStruct.py")
@@ -44,46 +49,41 @@ def loadfilter(structfile):
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
-dt = []
-filter = []
-for i in range(len(struct_file)):
-    (f,t) = loadfilter(struct_file[i])
-    filter.append(f)
-    dt.append(t)
-
-#filter model
-filter_tmp = []
-dt_tmp = []
-model_names_tmp = []
-struct_file_tmp = []
-model_labels_tmp = []
-model_paths_tmp = []
-for i in range(len(use_model)):
-    if use_model[i]:
-        filter_tmp.append(filter[i])
-        dt_tmp.append(dt[i])
-        model_names_tmp.append(model_names[i])
-        struct_file_tmp.append(struct_file[i])
-        model_labels_tmp.append(model_labels[i])
-        model_paths_tmp.append(model_paths[i])
-
-filter = filter_tmp
-dt = dt_tmp
-model_names = model_names_tmp
-struct_file = struct_file_tmp
-model_labels = model_labels_tmp
-model_paths = model_paths_tmp       
+def setfilter():
+    dt = []
+    filter = []
+    for i in range(len(struct_file)):
+        (f,t) = loadfilter(struct_file[i])
+        filter.append(f)
+        dt.append(t)
+    return dt,filter
 
 
-pylab.rc('text', usetex=True)
-pylab.rc('lines', linewidth=2)
-plt.rcParams['ytick.major.size'] = 8
-plt.rcParams['xtick.major.size'] = 8
+# filter_tmp = []
+# dt_tmp = []
+# model_names_tmp = []
+# struct_file_tmp = []
+# model_labels_tmp = []
+# model_paths_tmp = []
+# for i in range(len(use_model)):
+#     if use_model[i]:
+#         filter_tmp.append(filter[i])
+#         dt_tmp.append(dt[i])
+#         model_names_tmp.append(model_names[i])
+#         struct_file_tmp.append(struct_file[i])
+#         model_labels_tmp.append(model_labels[i])
+#         model_paths_tmp.append(model_paths[i])
 
-zlist = open(zlistfile,"r").readlines()
-
-
-def plot_z(z):
+# filter = filter_tmp
+# dt = dt_tmp
+# model_names = model_names_tmp
+# struct_file = struct_file_tmp
+# model_labels = model_labels_tmp
+# model_paths = model_paths_tmp
+gal = none
+global gal
+def plot_z(z,prefix):    
+    dt,filter = setfilter()
     file_prefix = "SA_z"+z
     try:
         gal
@@ -125,7 +125,7 @@ def plot_z(z):
         # total_sfr = numpy.clip(total_sfr,0.0,nummax2)
         # avg = numpy.sum(gal[index]["NPhotReion"] - total_sfr,dtype=numpy.float64)/len(total_sfr)
         # print index,"avg = ",10.**avg
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])/gal[index]["HaloM_Crit200"]/0.166)
+        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])/gal[index]["HaloM_Crit200"]/0.165)
         #sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins,weights=numpy.float64(1)*10.**gal[index]["NPhotReion"].astype(numpy.float64) -1.)
         sum_logphoton[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["Sfr"].astype(numpy.float64)*Msun2kg/h_mass*11.5e6*2800)
         sum_hotgas[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=gal[index]["HotGas"].astype(numpy.float64)*1.e10 )
@@ -161,10 +161,10 @@ def plot_z(z):
         ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
-    ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
-    ax.set_ylabel(r"$BaryonMass/(M_{200c}\Omega_b\Omega_m^{-1})$")
+    ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
+    ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
     #ax.set_yscale("log")
-    fig.savefig("baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"baryonsratiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
     fig = plt.figure()
@@ -177,7 +177,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{sSFR[yr^{-1}]}$")
     ax.set_yscale("log")
-    fig.savefig("gamma_peratomvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"gamma_peratomvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
     fig = plt.figure()
@@ -190,7 +190,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{ASFR[]}$")
     ax.set_yscale("log")
-    fig.savefig("ASFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"ASFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
     fig = plt.figure()
@@ -203,7 +203,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{Stellar Mass[h^{-1}M_\odot]}$")
     ax.set_yscale("log")
-    fig.savefig("StarvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"StarvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
     fig = plt.figure()
@@ -216,7 +216,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"Ejected Mass / M$_{200c}$")
     ax.set_yscale("log")
-    fig.savefig("EjectRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"EjectRatiovsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
     fig = plt.figure()
@@ -232,8 +232,8 @@ def plot_z(z):
     ax.set_ylim([1.e-4,1.e-2])
     ax.set_xlim([8.0,11.5])
     fig.suptitle("z = "+str(z))
-    fig.savefig("StarRatiovsM_z"+"%08.2f"%(float(z))+".pdf",bbox_inches='tight')
-    fig.savefig("StarRatiovsM_z"+"%08.2f"%(float(z))+".png",bbox_inches='tight')
+    fig.savefig(prefix+"StarRatiovsM_z"+"%08.2f"%(float(z))+".pdf",bbox_inches='tight')
+    fig.savefig(prefix+"StarRatiovsM_z"+"%08.2f"%(float(z))+".png",bbox_inches='tight')
     plt.close(fig)
     
     fig = plt.figure()
@@ -246,7 +246,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{Ejected Mass[h^{-1}M_\odot]}$")
     ax.set_yscale("log")
-    fig.savefig("EjectedvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"EjectedvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
     fig = plt.figure()
@@ -259,7 +259,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{ColdGas[M_\odot/h}$")
     ax.set_yscale("log")
-    fig.savefig("ColdgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"ColdgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -271,7 +271,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{HotGas[M_\odot/h}$")
     ax.set_yscale("log")
-    fig.savefig("HotgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"HotgasvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
     fig = plt.figure()
@@ -284,7 +284,7 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{SFR [M_\odot/year]}$")
     ax.set_yscale("log")
-    fig.savefig("SFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"SFRvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
     fig = plt.figure()
@@ -297,13 +297,16 @@ def plot_z(z):
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
     ax.set_ylabel(r"$\mathrm{NPHOT}$")
     ax.set_yscale("log")
-    fig.savefig("NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig(prefix+"NPHOTvsM_z"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
 def main():
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
-    plot_z(zi)
+    from globalconf import *
+    plot_z(zi,"no_stripping_")
+    from globalconf import *
+    plot_z(zi,"all_stripping_")
     #plot_z("7.96")
 
 if __name__=="__main__":
