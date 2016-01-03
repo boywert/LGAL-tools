@@ -140,7 +140,7 @@ def plot_uv_z8():
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label="")
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1500 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
@@ -235,7 +235,7 @@ def plot_uv_z7():
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label="")
-    leg = ax.legend(loc='best', handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
+    leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1500 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
@@ -331,7 +331,7 @@ def plot_uv_z6():
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='best', handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
+    leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1500 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
