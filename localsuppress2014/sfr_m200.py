@@ -1,4 +1,5 @@
 from mass_fn import *
+from globalconf import *
 import matplotlib
 matplotlib.use('Agg') 
 import pylab
@@ -300,14 +301,9 @@ def plot_z(z,prefix):
     plt.close(fig)
     
 def main():
-    from globalconf import *
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
     plot_z(zi,"no_stripping_")
-
-    from globalconf import *
-    zlist = open(zlistfile).readlines()
-    zi = zlist[long(sys.argv[1])].strip()
     plot_z(zi,"all_stripping_")
     #plot_z("7.96")
 
