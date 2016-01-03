@@ -189,7 +189,7 @@ def plot_uv_z6(ax):
 
     
 def main():
-    fig = plt.figure(figsize=(8, 16))
+    fig = plt.figure(figsize=(8, 18))
     ax1 = fig.add_subplot(3,1,1)
     ax2 = fig.add_subplot(3,1,2)
     ax3 = fig.add_subplot(3,1,3)
