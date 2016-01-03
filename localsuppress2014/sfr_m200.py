@@ -23,7 +23,6 @@ pylab.rc('text', usetex=True)
 pylab.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
-zlist = open(zlistfile,"r").readlines()
 
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+ranki)
@@ -301,11 +300,14 @@ def plot_z(z,prefix):
     plt.close(fig)
     
 def main():
+    from globalconf import *
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
-    from globalconf import *
     plot_z(zi,"no_stripping_")
+
     from globalconf import *
+    zlist = open(zlistfile).readlines()
+    zi = zlist[long(sys.argv[1])].strip()
     plot_z(zi,"all_stripping_")
     #plot_z("7.96")
 
