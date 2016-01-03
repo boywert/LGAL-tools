@@ -155,7 +155,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -168,7 +168,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass),model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass),color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -181,7 +181,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_ASFR[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_ASFR[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -194,7 +194,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_stellarmass[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_stellarmass[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -207,7 +207,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -220,7 +220,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc=1, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -250,7 +250,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_coldgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_coldgas[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -262,7 +262,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -275,7 +275,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],mean_SFR[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],mean_SFR[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -288,7 +288,7 @@ def plot_z(z):
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(m200c[index],mean_logphoton[index],model_plot_patterns[i],label=model_labels[i])
+        ax.plot(m200c[index],mean_logphoton[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
