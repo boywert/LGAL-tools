@@ -85,7 +85,7 @@ def plot_uv_z8(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-13,nbins=24)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-30.,max=-13,nbins=34)
 
     
     add_observations.add_obs_uv_z8("observations/UVLF/",ax)
@@ -127,7 +127,7 @@ def plot_uv_z7(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-15,nbins=20)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-30.,max=-15,nbins=30)
      
     # UVLF
     add_observations.add_obs_uv_z7("observations/UVLF/",ax)
@@ -167,7 +167,7 @@ def plot_uv_z6(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-25.,max=-15,nbins=20)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-30.,max=-15,nbins=30)
          
     # UVLF
 
