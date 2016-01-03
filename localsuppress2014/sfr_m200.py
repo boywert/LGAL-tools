@@ -77,8 +77,9 @@ model_paths = model_paths_tmp
 
 pylab.rc('text', usetex=True)
 pylab.rc('lines', linewidth=2)
-pylab.rc('ytick',major.size=8)
-pylab.rc('xtick',major.size=8)
+plt.rcParams('ytick.major.size') = 8
+plt.rcParams('xtick.major.size') = 8
+
 zlist = open(zlistfile,"r").readlines()
 
 
