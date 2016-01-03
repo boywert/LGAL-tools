@@ -131,10 +131,6 @@ def plot_uv_z8():
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^-1]}$")
     ax.set_yscale("log")
     fig.savefig("metal_z8.pdf",bbox_inches='tight',pad_inches=0)
-    ax.text(0.9, 0.1, r'$z = 8$',
-        verticalalignment='bottom', horizontalalignment='left',
-        transform=ax.transAxes,
-        color='green', fontsize=15)
     plt.close(fig)
     
     # UVLF
@@ -151,6 +147,9 @@ def plot_uv_z8():
     ax.set_yscale("log")
     ax.set_xlim([-20.5,-16.])
     ax.set_ylim([1e-5,1e-1])
+    ax.text(0.9, 0.1, 'z = 8',
+            verticalalignment='bottom', horizontalalignment='left',
+            transform=ax.transAxes, fontsize=15)
     fig.savefig("uv_l_z8.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
