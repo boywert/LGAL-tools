@@ -304,7 +304,7 @@ def main():
     zi = zlist[long(sys.argv[1])].strip()
     import model1 as models
     plot_z(zi,models,"no_stripping_")
-    models = reload(model2)
+    import model2 as models
     plot_z(zi,models,"all_stripping_")
     #plot_z("7.96")
 
