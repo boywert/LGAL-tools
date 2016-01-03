@@ -80,7 +80,6 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-global gal
 def plot_z(z,models,prefix):    
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
@@ -303,9 +302,9 @@ def main():
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
     import model1 as models
-    plot_z(zi,models,"no_stripping_")
-    import model2 as models
-    plot_z(zi,models,"all_stripping_")
+    plot_z(zi,models,"")
+    #import model2 as models
+    #plot_z(zi,models,"all_stripping_")
     #plot_z("7.96")
 
 if __name__=="__main__":
