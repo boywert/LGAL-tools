@@ -139,7 +139,7 @@ def plot_uv_z8():
     add_observations.add_obs_uv_z8("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(luvlf_x[index],luvlf_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     #leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1600 - 5log(h)")
@@ -188,7 +188,7 @@ def plot_uv_z7():
     add_observations.add_obs_smf_z7("observations/SMF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(smf_x[index],smf_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
         #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         #leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$\mathrm{\log_{10}[M_*/M_\odot]}$")
@@ -202,7 +202,7 @@ def plot_uv_z7():
     add_observations.add_obs_sfr_z7("observations/SFR/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
@@ -216,7 +216,7 @@ def plot_uv_z7():
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(metalicity_x[index],metalicity_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(metalicity_x[index],metalicity_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     #leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"Z")
@@ -231,7 +231,7 @@ def plot_uv_z7():
     add_observations.add_obs_uv_z7("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(luvlf_x[index],luvlf_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     #leg = ax.legend(loc='best', handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     #leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1600 - 5log(h)")
@@ -281,7 +281,7 @@ def plot_uv_z6():
     add_observations.add_obs_smf_z6("observations/SMF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(smf_x[index],smf_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$\mathrm{\log_{10}[M_*/M_\odot]}$")
@@ -295,7 +295,7 @@ def plot_uv_z6():
     add_observations.add_obs_sfr_z6("observations/SFR/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
@@ -310,7 +310,7 @@ def plot_uv_z6():
     ax = fig.add_subplot(111)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(metalicity_x[index],metalicity_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(metalicity_x[index],metalicity_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"Z")
@@ -324,7 +324,7 @@ def plot_uv_z6():
     add_observations.add_obs_uv_z6("observations/UVLF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(luvlf_x[index],luvlf_y[index],color=model_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='best', handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"M1600 - 5log(h)")
