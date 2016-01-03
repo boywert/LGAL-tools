@@ -80,7 +80,7 @@ def setfilter():
 # struct_file = struct_file_tmp
 # model_labels = model_labels_tmp
 # model_paths = model_paths_tmp
-gal = none
+gal = 0
 global gal
 def plot_z(z,prefix):    
     dt,filter = setfilter()
