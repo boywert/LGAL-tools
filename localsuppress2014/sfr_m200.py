@@ -49,11 +49,11 @@ def loadfilter(structfile):
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
-def setfilter():
+def setfilter(models):
     dt = []
     filter = []
-    for i in range(len(struct_file)):
-        (f,t) = loadfilter(struct_file[i])
+    for i in range(len(models.struct_file)):
+        (f,t) = loadfilter(models.struct_file[i])
         filter.append(f)
         dt.append(t)
     return dt,filter
@@ -78,12 +78,11 @@ def setfilter():
 # dt = dt_tmp
 # model_names = model_names_tmp
 # struct_file = struct_file_tmp
-# model_labels = model_labels_tmp
-# model_paths = model_paths_tmp
-gal = 0
+# model_labels = models.model_labels_tmp
+# models.model_paths = models.model_paths_tmp
 global gal
-def plot_z(z,prefix):    
-    dt,filter = setfilter()
+def plot_z(z,models,prefix):    
+    dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
         gal
@@ -110,10 +109,10 @@ def plot_z(z,prefix):
     sum_ASFR = {}
     mean_logphoton = {}
     m200c = {}
-    for i in range(len(model_names)):
-        index = model_names[i]
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (7.5,11.5)
         bins = 40
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
@@ -156,9 +155,9 @@ def plot_z(z,prefix):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
@@ -169,9 +168,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass),color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_logphoton[index][0]*SEC_PER_YEAR*11.6e6/(sum_SFR[index][0].astype(numpy.float64)*Msun2kg/h_mass),color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -182,9 +181,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_ASFR[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_ASFR[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -195,9 +194,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_stellarmass[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_stellarmass[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -208,9 +207,9 @@ def plot_z(z,prefix):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_ejectedratio[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -221,9 +220,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_stellarratio[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc=1, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -238,9 +237,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_ejectedmass[index][0]/N[index][0],model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_ejectedmass[index][0]/N[index][0],models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -251,9 +250,9 @@ def plot_z(z,prefix):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_coldgas[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_coldgas[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -263,9 +262,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],sum_hotgas[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -276,9 +275,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],mean_SFR[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],mean_SFR[index],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -289,9 +288,9 @@ def plot_z(z,prefix):
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    for i in range(len(model_names)):
-        index = model_names[i]
-        ax.plot(m200c[index],mean_logphoton[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(models.model_names)):
+        index = models.model_names[i]
+        ax.plot(m200c[index],mean_logphoton[index],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}M_\odot]$")
@@ -303,8 +302,10 @@ def plot_z(z,prefix):
 def main():
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
-    plot_z(zi,"no_stripping_")
-    plot_z(zi,"all_stripping_")
+    import model1 as models
+    plot_z(zi,models,"no_stripping_")
+    models = reload(model2)
+    plot_z(zi,models,"all_stripping_")
     #plot_z("7.96")
 
 if __name__=="__main__":
