@@ -126,12 +126,13 @@ def plot_z(z,models,ax):
     
 def main():
     zlist = open(zlistfile).readlines()
-    fig = plt.figure()
-    import globalconf as model1
-    ax1 = fig.add_subplot(211)
+    fig = plt.figure(figsize=(16, 6))
+    plt.subplots_adjust(vspace = .1)
+    import model1 as model1
+    ax1 = fig.add_subplot(121)
     plot_z("6.00",model1,ax1)
-    import globalconf as model2
-    ax2 = fig.add_subplot(212)
+    import model2 as model2
+    ax2 = fig.add_subplot(122)
     plot_z("8.06",model2,ax2)
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
