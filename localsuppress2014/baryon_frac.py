@@ -119,7 +119,7 @@ def plot_z(z,models,ax,pos):
         #print mean,sd
         ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - sd, sum_baryons[index][0]/N[index][0] + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
-        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
         labels = [item.get_text() for item in ax.get_xticklabels()]
@@ -140,6 +140,7 @@ def main():
     zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
     plt.subplots_adjust(wspace = 0)
+    fig.canvas.draw()
     import model1 as model1
     ax1 = fig.add_subplot(121)
     plot_z(zi,model1,ax1,"l")
