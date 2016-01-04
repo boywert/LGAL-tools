@@ -122,7 +122,7 @@ def plot_z(z,models,ax,pos):
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-        labels = [item.get_text() for item in ax.get_xticklabels()]
+        labels = [item.get_text() for item in ax.yaxis.get_ticklabels()]
         print labels
         labels[0] = ""
         print labels
