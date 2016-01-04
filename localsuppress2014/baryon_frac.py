@@ -80,7 +80,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax,plt_leg):    
+def plot_z(z,models,ax,pos):    
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -118,9 +118,11 @@ def plot_z(z,models,ax,plt_leg):
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         print mean,sd
         ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - sd, sum_baryons[index][0]/N[index][0] + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
-    if plt_leg == 1:
+    if pos == "r":
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
+        ax.yaxis.set_ticklabels([])
+
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
     ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
     #ax.set_yscale("log")
@@ -134,10 +136,10 @@ def main():
     plt.subplots_adjust(wspace = .1)
     import model1 as model1
     ax1 = fig.add_subplot(121)
-    plot_z(zi,model1,ax1,0)
+    plot_z(zi,model1,ax1,"l")
     import model2 as model2
     ax2 = fig.add_subplot(122)
-    plot_z(zi,model2,ax2,1)
+    plot_z(zi,model2,ax2,"r")
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
