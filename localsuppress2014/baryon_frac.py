@@ -152,7 +152,7 @@ def main():
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
     plot_z(zi,model2,ax2,"r")
-    fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("Baryons_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
 if __name__=="__main__":
