@@ -122,11 +122,11 @@ def plot_z(z,models,ax,pos):
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-        ticklabel = ax.xaxis.get_ticklabels()
-        print ticklabel
-        ticklabel[0] = ""
-        print ticklabel
-        ax.xaxis.set_ticklabels(ticklabel)
+        labels = [item.get_text() for item in ax.get_xticklabels()]
+        print labels
+        labels[0] = ""
+        print labels
+        ax.xaxis.set_ticklabels(labels)
     ax.set_ylim([0,1.4])
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
     if pos == "l":
