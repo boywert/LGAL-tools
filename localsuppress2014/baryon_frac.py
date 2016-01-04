@@ -114,7 +114,9 @@ def plot_z(z,models,ax,plt_leg):
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
-        ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - numpy.sqrt(sum_baryons_sq[index][0]/N[index][0] - (sum_baryons[index][0]/N[index][0])**2), sum_baryons[index][0]/N[index][0] + numpy.sqrt(sum_baryons_sq[index][0]/N[index][0] - (sum_baryons[index][0]/N[index][0])**2), alpha=0.5, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
+        sd =  numpy.sqrt(sum_baryons_sq[index][0]/N[index][0] - (sum_baryons[index][0]/N[index][0])**2)
+        print sum_baryons[index][0]/N[index][0]-sd,sum_baryons[index][0]/N[index][0] +sd
+        ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - sd, sum_baryons[index][0]/N[index][0] + sd, alpha=0.5, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if plt_leg == 1:
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
