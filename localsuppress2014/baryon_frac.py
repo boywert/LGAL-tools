@@ -129,10 +129,10 @@ def main():
     fig = plt.figure()
     import globalconf as model1
     ax1 = fig.add_subplot(211)
-    plot_z(75,model1,ax1)
+    plot_z("6.00",model1,ax1)
     import globalconf as model2
     ax2 = fig.add_subplot(212)
-    plot_z(48,model2,ax2)
+    plot_z("8.06",model2,ax2)
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
