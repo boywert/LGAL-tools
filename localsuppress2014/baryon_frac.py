@@ -80,7 +80,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax):    
+def plot_z(z,models,ax,plt_leg):    
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -111,13 +111,13 @@ def plot_z(z,models,ax):
         del(gal[index])
         del(nTreeGals[index])
 
-
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - numpy.sqrt(sum_baryons_sq[index][0]/N[index][0] - (sum_baryons[index][0]/N[index][0])**2), sum_baryons[index][0]/N[index][0] + numpy.sqrt(sum_baryons_sq[index][0]/N[index][0] - (sum_baryons[index][0]/N[index][0])**2), alpha=0.5, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
-    leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
+    if plt_leg == 1:
+        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
     ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
     #ax.set_yscale("log")
@@ -131,10 +131,10 @@ def main():
     plt.subplots_adjust(wspace = .1)
     import model1 as model1
     ax1 = fig.add_subplot(121)
-    plot_z(zi,model1,ax1)
+    plot_z(zi,model1,ax1,0)
     import model2 as model2
     ax2 = fig.add_subplot(122)
-    plot_z(zi,model2,ax2)
+    plot_z(zi,model2,ax2,1)
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
