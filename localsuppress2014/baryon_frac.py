@@ -119,7 +119,7 @@ def plot_z(z,models,ax,pos):
         #print mean,sd
         ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - sd, sum_baryons[index][0]/N[index][0] + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
-        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':14})
+        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
@@ -129,7 +129,14 @@ def plot_z(z,models,ax,pos):
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
     if pos == "l":
         ax.set_ylabel(r"$f_{\mathrm{Baryon}}/f_b$")
-    #ax.set_yscale("log")
+    if pos == "l":
+        ax.text(0.5, 0.85, 'stripping 0',
+                verticalalignment='bottom', horizontalalignment='left',
+                transform=ax.transAxes, fontsize=14)
+    else:
+        ax.text(0.5, 0.85, 'stripping 1',
+                verticalalignment='bottom', horizontalalignment='left',
+                transform=ax.transAxes, fontsize=14)
 
 
     
