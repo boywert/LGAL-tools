@@ -130,7 +130,7 @@ def plot_z(z,models,ax,pos):
     ax.set_ylim([0,1.4])
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
     if pos == "l":
-        ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
+        ax.set_ylabel(r"$f_{\mathrm{Baryon}}/f_b$")
     #ax.set_yscale("log")
 
 
@@ -140,12 +140,12 @@ def main():
     zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
     plt.subplots_adjust(wspace = 0)
-    fig.canvas.draw()
     import model1 as model1
     ax1 = fig.add_subplot(121)
     plot_z(zi,model1,ax1,"l")
     import model2 as model2
     ax2 = fig.add_subplot(122)
+    fig.canvas.draw()
     plot_z(zi,model2,ax2,"r")
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
