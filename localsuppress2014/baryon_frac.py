@@ -116,15 +116,16 @@ def plot_z(z,models,ax,pos):
         ax.plot(m200c[index],sum_baryons[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         mean = sum_baryons[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
-        print mean,sd
+        #print mean,sd
         ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - sd, sum_baryons[index][0]/N[index][0] + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-
+    ax.sex_yrange([0,1.4])
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
-    ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
+    if pos == "r":
+        ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
     #ax.set_yscale("log")
 
 
@@ -133,7 +134,7 @@ def main():
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
-    plt.subplots_adjust(wspace = .1)
+    plt.subplots_adjust(wspace = .05)
     import model1 as model1
     ax1 = fig.add_subplot(121)
     plot_z(zi,model1,ax1,"l")
