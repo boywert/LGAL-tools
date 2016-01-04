@@ -119,12 +119,13 @@ def plot_z(z,models,ax,pos):
         #print mean,sd
         ax.fill_between(m200c[index], sum_baryons[index][0]/N[index][0] - sd, sum_baryons[index][0]/N[index][0] + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
-        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
+        ticklabel = ax.xaxis.get_ticklabels()  
     ax.set_ylim([0,1.4])
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
-    if pos == "r":
+    if pos == "l":
         ax.set_ylabel(r"Total Baryon Mass $/ (f_b M_{200c})$")
     #ax.set_yscale("log")
 
