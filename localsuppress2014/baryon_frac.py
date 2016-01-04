@@ -126,14 +126,15 @@ def plot_z(z,models,ax):
     
 def main():
     zlist = open(zlistfile).readlines()
+    zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
     plt.subplots_adjust(vspace = .1)
     import model1 as model1
     ax1 = fig.add_subplot(121)
-    plot_z("6.00",model1,ax1)
+    plot_z(zi,model1,ax1)
     import model2 as model2
     ax2 = fig.add_subplot(122)
-    plot_z("8.06",model2,ax2)
+    plot_z(zi,model2,ax2)
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
