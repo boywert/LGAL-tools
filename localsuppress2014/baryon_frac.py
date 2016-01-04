@@ -122,7 +122,9 @@ def plot_z(z,models,ax,pos):
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-        ticklabel = ax.xaxis.get_ticklabels()  
+        ticklabel = ax.xaxis.get_ticklabels()
+        ticklabel[0] = ""
+        ax.xaxis.set_ticklabels(ticklabel)
     ax.set_ylim([0,1.4])
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
     if pos == "l":
@@ -135,7 +137,7 @@ def main():
     zlist = open(zlistfile).readlines()
     zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
-    plt.subplots_adjust(wspace = .05)
+    plt.subplots_adjust(wspace = 0)
     import model1 as model1
     ax1 = fig.add_subplot(121)
     plot_z(zi,model1,ax1,"l")
