@@ -106,8 +106,8 @@ def plot_z(z,models,ax):
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=((gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])/gal[index]["HaloM_Crit200"]/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
         m200c[index] = []
-        for i in range(len(sum_SFR[index][0])):
-            m200c[index].append(0.5*(sum_SFR[index][1][i]+sum_SFR[index][1][i+1]))
+        for i in range(len(sum_baryons[index][0])):
+            m200c[index].append(0.5*(sum_baryons[index][1][i]+sum_baryons[index][1][i+1]))
         del(gal[index])
         del(nTreeGals[index])
 
