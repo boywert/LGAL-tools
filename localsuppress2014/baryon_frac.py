@@ -80,7 +80,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,prefix):    
+def plot_z(z,models,ax):    
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -127,12 +127,12 @@ def plot_z(z,models,prefix):
 def main():
     zlist = open(zlistfile).readlines()
     fig = plt.figure()
-    import globalconf as models
+    import globalconf as model1
     ax1 = fig.add_subplot(211)
-    plot_z(75,models,ax1)
-    import globalconf as models
+    plot_z(75,model1,ax1)
+    import globalconf as model2
     ax2 = fig.add_subplot(212)
-    plot_z(48,models,ax2)
+    plot_z(48,model2,ax2)
     fig.savefig("Baryons.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
