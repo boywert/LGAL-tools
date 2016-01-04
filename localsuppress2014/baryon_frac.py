@@ -123,7 +123,9 @@ def plot_z(z,models,ax,pos):
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
         ticklabel = ax.xaxis.get_ticklabels()
+        print ticklabel
         ticklabel[0] = ""
+        print ticklabel
         ax.xaxis.set_ticklabels(ticklabel)
     ax.set_ylim([0,1.4])
     ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
