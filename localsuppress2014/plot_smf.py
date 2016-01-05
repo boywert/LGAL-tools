@@ -189,7 +189,7 @@ def main():
     ax1 = fig.add_subplot(3,1,1)
     ax2 = fig.add_subplot(3,1,2)
     ax3 = fig.add_subplot(3,1,3)
-    plt.subplots_adjust(hspace = .1)
+    plt.subplots_adjust(hspace = .07)
     plot_smf_z6(ax1)
     plot_smf_z7(ax2)
     plot_smf_z8(ax3)
