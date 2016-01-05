@@ -99,8 +99,8 @@ def plot_smf_z8(ax):
     ax.set_xlim([4,11])
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
-    ax.text(0.1, 0.1, 'z = 8',
-            verticalalignment='bottom', horizontalalignment='left',
+    ax.text(0.9, 0.9, 'z = 8',
+            verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
     
 def plot_smf_z7(ax):
@@ -138,8 +138,8 @@ def plot_smf_z7(ax):
     ax.set_ylim([1.e-5,1e2])
     ax.set_xlim([4,11])
     ax.set_yscale("log")     
-    ax.text(0.1, 0.1, 'z = 7',
-            verticalalignment='bottom', horizontalalignment='left',
+    ax.text(0.9, 0.9, 'z = 7',
+            verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
 
     
@@ -171,15 +171,15 @@ def plot_smf_z6(ax):
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg = ax.legend(loc='lower left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-5,1e2])
     ax.set_xlim([4,11])
-    ax.text(0.1, 0.1, 'z = 6',
-            verticalalignment='bottom', horizontalalignment='left',
+    ax.text(0.9, 0.9, 'z = 6',
+            verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
 
 
