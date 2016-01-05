@@ -37,6 +37,7 @@ def plot_tau():
     leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"redshift")
     ax.set_ylabel(r"$\tau_e$")
+    ax.set_xlim([6,18])
     fig.savefig("taue.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
