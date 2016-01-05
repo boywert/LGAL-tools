@@ -34,6 +34,7 @@ def plot_tau():
     yl = y-delta_tau_e
     ax.plot(x,y,"k-",linewidth=1)
     ax.fill_between(x, yu, yl, alpha=0.25, facecolor="#606060",linewidth=0)
+    ax.text(7.5, 0.69, 'PLANCK 2015', fontsize=12)
     for i in range(len(model_names)):
         index = model_names[i]
         tau = numpy.loadtxt(tau_folder+"/"+model_names[i]+".tau")
@@ -47,6 +48,7 @@ def plot_tau():
     ax.set_xlabel(r"redshift")
     ax.set_ylabel(r"$\tau_e$")
     ax.set_xlim([6,18])
+    ax.set_ylim([0.2,0.85])
     fig.savefig("taue.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
