@@ -136,12 +136,15 @@ def plot_z(z,models,ax,pos):
     if pos == "l":
         ax.set_ylabel(r"$f_{\mathrm{Baryon}}/f_b$")
     if pos == "l":
-        ax.text(0.5, 0.9, 'stripping 0',
+        ax.text(0.75, 0.25, 'stripping 0',
+                verticalalignment='bottom', horizontalalignment='center',
+                transform=ax.transAxes, fontsize=14)
+        x.text(0.5, 0.9, 'z = '+str(long(z)),
                 verticalalignment='bottom', horizontalalignment='center',
                 transform=ax.transAxes, fontsize=14)
     else:
-        ax.text(0.5, 0.9, 'stripping 1',
-                verticalalignment='bottom', horizontalalignment='left',
+        ax.text(0.75, 0.25, 'stripping 1',
+                verticalalignment='bottom', horizontalalignment='center',
                 transform=ax.transAxes, fontsize=14)
 
 
