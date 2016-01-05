@@ -82,8 +82,8 @@ def plot_smf_z8(ax):
         nGals = {}
         nTreeGals = {}
    
-    luvlf_x = {}
-    luvlf_y = {}
+    smf_x = {}
+    smf_y = {}
    
     for i in range(len(model_names)):
         index = model_names[i]
@@ -116,8 +116,8 @@ def plot_smf_z7(ax):
         nGals = {}
         nTreeGals = {}
    
-    luvlf_x = {}
-    luvlf_y = {}
+    smf_x = {}
+    smf_y = {}
    
     for i in range(len(model_names)):
         index = model_names[i]
