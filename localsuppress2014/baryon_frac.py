@@ -139,7 +139,7 @@ def plot_z(z,models,ax,pos):
         ax.text(0.5, 0.25, 'stripping 0',
                 verticalalignment='bottom', horizontalalignment='center',
                 transform=ax.transAxes, fontsize=14)
-        ax.text(0.5, 0.9, 'z = '+str(int(float(z))),
+        ax.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
                 verticalalignment='bottom', horizontalalignment='center',
                 transform=ax.transAxes, fontsize=14)
     else:
