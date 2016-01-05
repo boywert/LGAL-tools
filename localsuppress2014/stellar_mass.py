@@ -33,19 +33,19 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False
-    filter['NPhotReion'] = True
-    filter['Mvir'] = True
-    filter['HaloM_Crit200'] = True
-    filter['HotGas'] = True
-    filter['ColdGas'] = True
-    filter['EjectedMass'] = True
     filter['StellarMass'] = True
-    filter['ICM'] = True
-    filter['BlackHoleGas'] = True
-    filter['BlackHoleMass'] = True
-    filter['Sfr'] = True
-    filter['Type'] = True
-    filter['CumulativeSFR'] = True
+    filter['Mvir'] = True
+    # filter['HaloM_Crit200'] = True
+    # filter['HotGas'] = True
+    # filter['ColdGas'] = True
+    # filter['EjectedMass'] = True
+    # filter['StellarMass'] = True
+    # filter['ICM'] = True
+    # filter['BlackHoleGas'] = True
+    # filter['BlackHoleMass'] = True
+    # filter['Sfr'] = True
+    # filter['Type'] = True
+    # filter['CumulativeSFR'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -100,10 +100,10 @@ def plot_z(z,models,ax,pos):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (8.15,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["CumulativeSFR"] >0.))]
+        gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
         
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["CumulativeSFR"]*1.e10/hubble_h))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["CumulativeSFR"]*1.e10/hubble_h)**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["StellarMass"]*1.e10/hubble_h))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["StellarMass"]*1.e10/hubble_h)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
