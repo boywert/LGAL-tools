@@ -110,7 +110,6 @@ def plot_z(z,ax,pos):
     
 def main():
     zlist = open(zlistfile).readlines()
-    zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(8, 18))
     plt.subplots_adjust(hspace = 0.1)
     ax1 = fig.add_subplot(311)
