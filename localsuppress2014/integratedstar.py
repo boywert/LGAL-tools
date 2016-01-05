@@ -103,7 +103,7 @@ def plot_z(z,ax,pos):
     ax.set_yscale("log")
     #ax.set_xlim([-22.,-15.5])
     #ax.set_ylim([1e-6,1e-1])
-    ax.text(0.1, 0.9, 'z = '+long(float((z)),
+    ax.text(0.1, 0.9, 'z = '+long(float(z)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
 
