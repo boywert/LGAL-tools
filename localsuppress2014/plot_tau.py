@@ -32,7 +32,7 @@ def plot_tau():
         index = model_names[i]
         tau = numpy.loadtxt(tau_folder+"/"+model_names[i]+".tau")
         print tau[0,0]
-        if tau[0,0] == "1":
+        if tau[0,0] == 1:
             tau[:,0] = tau[:,0] - 1.
         ax.plot(tau[:,0],tau[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
