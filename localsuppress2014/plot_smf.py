@@ -171,7 +171,7 @@ def plot_smf_z6(ax):
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='top right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
