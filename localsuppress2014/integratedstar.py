@@ -116,7 +116,7 @@ def main():
     plot_z("6.00",ax1,"t")
     ax2 = fig.add_subplot(312)
     plot_z("6.98",ax2,"m")
-    ax2 = fig.add_subplot(312)
+    ax2 = fig.add_subplot(313)
     plot_z("7.96",ax2,"b")
     fig.savefig("intmassfn.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
