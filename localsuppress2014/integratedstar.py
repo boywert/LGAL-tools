@@ -88,12 +88,13 @@ def plot_z(z,ax,pos):
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         (cmass_x[index],cmass_y[index]) = integrated_stellar_mass_fn(gal[index],mass_min=1e3,mass_max=1e12,nbins=30)
          
     # UVLF
     for i in range(len(model_names)):
         index = model_names[i]
+        print cmass_y[index]
         ax.plot(cmass_x[index],cmass_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
@@ -118,7 +119,7 @@ def main():
     plot_z("6.98",ax2,"m")
     ax2 = fig.add_subplot(312)
     plot_z("7.96",ax2,"b")
-    fig.savefig("Baryons_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("intmassfn".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
 if __name__=="__main__":
