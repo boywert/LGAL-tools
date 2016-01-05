@@ -117,9 +117,9 @@ def plot_z(z,models,ax,pos):
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
         print cond
-        m200c[index] = m200c[index][cond]
         mean = mean[cond]
         sd = sd[cond]
+        m200c[index] = m200c[index][cond]
         print mean,sd
         ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
 
