@@ -28,6 +28,12 @@ plt.rcParams['xtick.major.size'] = 8
 def plot_tau():
     fig = plt.figure()
     ax = fig.add_subplot(111)
+    x = numpy.arange(0.,20.,0.1)
+    y = tau_e*numpy.ones(len(x))
+    yu = y+delta_tau_e
+    yl = y-delta_tau_e
+    ax.plot(x,y,"k-",linewidth=1)
+    ax.fill_between(x, yu, yl, alpha=0.25, facecolor="#606060",linewidth=0)
     for i in range(len(model_names)):
         index = model_names[i]
         tau = numpy.loadtxt(tau_folder+"/"+model_names[i]+".tau")
