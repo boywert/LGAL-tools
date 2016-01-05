@@ -100,10 +100,10 @@ def plot_z(z,models,ax,pos):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (7.5,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
+        gal[index] = gal[index][numpy.where((gal[index]["CumulativeSFR"] >0.))]
         
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*gal[index]["CumulativeSFR"]))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*gal[index]["CumulativeSFR"])**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["CumulativeSFR"]*1.e10/hubble_h))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["CumulativeSFR"]*1.e10/hubble_h)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
@@ -117,13 +117,10 @@ def plot_z(z,models,ax,pos):
         mean = sum_baryons[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
-        print cond
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        print mean,sd
         ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
-
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
@@ -132,10 +129,9 @@ def plot_z(z,models,ax,pos):
         labels = ["",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
     #ax.set_ylim([)
-    ax.set_yscale("log")
-    ax.set_xlabel(r"$M_{200c}/\mathrm{M_\odot}$")
+    ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.set_ylabel(r"$m_*/\mathrm{M_\odot}$")
+        ax.set_ylabel(r"$\long_{10}(m_*/\mathrm{M_\odot})$")
     if pos == "l":
         ax.text(0.5, 0.25, 'stripping 0',
                 verticalalignment='bottom', horizontalalignment='center',
