@@ -96,7 +96,7 @@ def plot_smf_z8(ax):
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylim([1.e-6,1])
-    ax.set_xlime[4,11]
+    ax.set_xlim[4,11]
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
     ax.text(0.1, 0.1, 'z = 8',
@@ -136,7 +136,7 @@ def plot_smf_z7(ax):
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_ylim([1.e-6,1])
-    ax.set_xlime[4,11]
+    ax.set_xlim[4,11]
     ax.set_yscale("log")     
     ax.text(0.1, 0.1, 'z = 7',
             verticalalignment='bottom', horizontalalignment='left',
@@ -177,7 +177,7 @@ def plot_smf_z6(ax):
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-6,1])
-    ax.set_xlime[4,11]
+    ax.set_xlim[4,11]
     ax.text(0.1, 0.1, 'z = 6',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
