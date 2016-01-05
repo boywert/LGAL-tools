@@ -100,7 +100,7 @@ def plot_z(z,ax,pos):
         leg = ax.legend(loc=3, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
     if pos == "b":
-        ax.set_xlabel(r"$\mathrm{M_*/M_\odot}$")
+        ax.set_xlabel(r"$m_{\mathrm{*,gross}}[h^{-1}\mathrm{M_\odot}]$")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
     #ax.set_xlim([-22.,-15.5])
