@@ -31,6 +31,8 @@ def plot_tau():
     for i in range(len(model_names)):
         index = model_names[i]
         tau = numpy.loadtxt(tau_folder+"/"+model_names[i]+".tau")
+        if tau[0,0] == "1":
+            tau[:,0] = tau[:,0] + 1.
         ax.plot(tau[:,0],tau[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
