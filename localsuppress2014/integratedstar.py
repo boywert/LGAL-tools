@@ -89,7 +89,7 @@ def plot_z(z,ax,pos):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        (cmass_x[index],cmass_y[index]) = integrated_stellar_mass_fn(gal[index],mass_min=1e3,mass_max=1e12,nbins=30)
+        (cmass_x[index],cmass_y[index]) = integrated_stellar_mass_fn(gal[index],mass_min=.01,mass_max=1e12,nbins=30)
          
     # UVLF
     for i in range(len(model_names)):
