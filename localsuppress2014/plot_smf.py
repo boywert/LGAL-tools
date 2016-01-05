@@ -67,7 +67,7 @@ plt.rcParams['xtick.major.size'] = 8
 zlist = open(zlistfile,"r").readlines()
 
 
-def plot_uv_z8(ax):
+def plot_smf_z8(ax):
     z = "7.96"
     file_prefix = "SA_z"+z
     #firstfile = 0
@@ -101,7 +101,7 @@ def plot_uv_z8(ax):
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
     
-def plot_uv_z7(ax):
+def plot_smf_z7(ax):
     z = "6.98"
     file_prefix = "SA_z"+z
     #firstfile = 0
@@ -139,7 +139,7 @@ def plot_uv_z7(ax):
             transform=ax.transAxes, fontsize=15)
 
     
-def plot_uv_z6(ax):
+def plot_smf_z6(ax):
     z = "6.00"
     file_prefix = "SA_z"+z
     #firstfile = 0
