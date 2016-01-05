@@ -102,9 +102,9 @@ def plot_z(z,models,ax,pos):
         bins = 40
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
         
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=((numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]+gal[index]["ICM"])/gal[index]["HaloM_Crit200"]/0.165))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["HaloM_Crit200"]*1.e10),range=rangen,bins=bins,weights=((numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])/gal[index]["HaloM_Crit200"]/0.165)**2)
-        N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10),range=rangen,bins=bins)
+        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=((numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]+gal[index]["ICM"])/gal[index]["HaloM_Crit200"]/0.165))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=((numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])/gal[index]["HaloM_Crit200"]/0.165)**2)
+        N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
             m200c[index].append(0.5*(sum_baryons[index][1][i]+sum_baryons[index][1][i+1]))
@@ -132,7 +132,7 @@ def plot_z(z,models,ax,pos):
         labels = ["",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
     ax.set_ylim([0,1.4])
-    ax.set_xlabel(r"$M_{200c}[h^{-1}\mathrm{M_\odot}]$")
+    ax.set_xlabel(r"$M_{200c}/\mathrm{M_\odot}$")
     if pos == "l":
         ax.set_ylabel(r"$f_{\mathrm{Baryon}}/f_b$")
     if pos == "l":
