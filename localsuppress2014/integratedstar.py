@@ -89,16 +89,18 @@ def plot_z(z,ax,pos):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        (cmass_x[index],cmass_y[index]) = integrated_stellar_mass_fn(gal[index],mass_min=.01,mass_max=1e12,nbins=30)
+        (cmass_x[index],cmass_y[index]) = integrated_stellar_mass_fn(gal[index],mass_min=1e4,mass_max=1e10,nbins=30)
          
     # UVLF
     for i in range(len(model_names)):
         index = model_names[i]
         print cmass_y[index]
         ax.plot(cmass_x[index],cmass_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    #ax.set_xlabel(r"M1500 - 5log(h)")
+    if pos == "t":
+        leg = ax.legend(loc=3, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
+        leg.get_frame().set_linewidth(0)
+    if pos == "b":
+        ax.set_xlabel(r"$M_*/M_\odot$")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
     #ax.set_xlim([-22.,-15.5])
@@ -106,7 +108,7 @@ def plot_z(z,ax,pos):
     ax.text(0.1, 0.9, 'z = '+str(int(float(z))),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-
+    
     
 def main():
     zlist = open(zlistfile).readlines()
