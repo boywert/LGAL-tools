@@ -129,9 +129,9 @@ def plot_z(z,models,ax,pos):
         labels = ["",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
     #ax.set_ylim([)
-    ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
+    ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.set_ylabel(r"$\long_{10}(m_*/\mathrm{M_\odot})$")
+        ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
     if pos == "l":
         ax.text(0.5, 0.25, 'stripping 0',
                 verticalalignment='bottom', horizontalalignment='center',
