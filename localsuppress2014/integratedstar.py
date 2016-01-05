@@ -1,5 +1,6 @@
 from mass_fn import *
 from globalconf import *
+import globalconf as models
 import matplotlib
 matplotlib.use('Agg') 
 import pylab
