@@ -47,7 +47,7 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
     fig = pylab.figure(figsize=(4*ncol, 4*nrow+1))
     plt.subplots_adjust(wspace = 0.01)
-    plt.subplots_adjust(hspace = 0.12)
+    plt.subplots_adjust(hspace = 0.10)
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
@@ -70,12 +70,12 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot+1, cmap=plt.get_cmap("Blues"), norm=LogNorm(vmin=1.0,  vmax=2.0), extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
-		ax[ifile].set_xlabel(labellist[ifile],fontsize=9)
+		ax[ifile].set_xlabel(labellist[ifile],fontsize=10)
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
                 if j == 0:
-                    ax[ifile].set_ylabel(r"47 Mpc/h")
+                    ax[ifile].set_ylabel(r"47 Mpc/h",fontsize=10)
                 ifile += 1
     outfile = "%3.1f_pic.pdf" % (frac)
     fig.savefig(outfile, bbox_inches='tight')
