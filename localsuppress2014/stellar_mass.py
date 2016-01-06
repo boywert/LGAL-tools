@@ -33,7 +33,8 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False
-    filter['StellarMass'] = True
+    filter['BulgeMass'] = True
+    filter['DiskMass'] = True
     filter['Mvir'] = True
     # filter['HaloM_Crit200'] = True
     # filter['HotGas'] = True
@@ -102,8 +103,8 @@ def plot_z(z,models,ax,pos):
         bins = 40
         gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
         
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["StellarMass"]*1.e10/hubble_h))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*gal[index]["StellarMass"]*1.e10/hubble_h)**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
