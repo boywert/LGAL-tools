@@ -88,16 +88,16 @@ def plot_smf_z8(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
+        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-2,mass_max=10.**2,nbins=20)
 
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
-    #ax.set_ylim([1.e-5,1e2])
+    ax.set_ylim([1.e-2,1e2])
     #ax.set_xlim([4,11])
-    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
+    #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 8',
             verticalalignment='bottom', horizontalalignment='right',
@@ -135,8 +135,8 @@ def plot_smf_z7(ax):
     #leg.get_frame().set_linewidth(0)
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    ax.set_ylim([1.e-5,1e2])
-    ax.set_xlim([4,11])
+    ax.set_ylim([1.e-2,1e2])
+    #ax.set_xlim([4,11])
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='right',
@@ -165,7 +165,7 @@ def plot_smf_z6(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-            (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-1,mass_max=10.**2,nbins=20)
+            (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-2,mass_max=10.**2,nbins=20)
             
     add_observations.add_obs_sfr_z6("observations/SFR/",ax)
     for i in range(len(model_names)):
@@ -176,7 +176,7 @@ def plot_smf_z6(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    #ax.set_ylim([1.e-5,1e2])
+    ax.set_ylim([1.e-2,1e2])
     #ax.set_xlim([4,11])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
@@ -189,7 +189,7 @@ def main():
     ax1 = fig.add_subplot(1,2,1)
     ax2 = fig.add_subplot(1,2,2)
     #ax3 = fig.add_subplot(3,1,3)
-    #plt.subplots_adjust(hspace = .07)
+    plt.subplots_adjust(wspace = 0)
     plot_smf_z6(ax1)
     #plot_smf_z7(ax2)
     plot_smf_z8(ax2)
