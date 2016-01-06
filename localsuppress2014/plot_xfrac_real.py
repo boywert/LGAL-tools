@@ -75,7 +75,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist):
                 if j == 0:
                     ax[ifile].set_ylabel(r"47 Mpc/h")
                 ifile += 1
-    fig.savefig("0.7_pic.pdf", bbox_inches='tight')
+    fig.savefig("0.3_pic.pdf", bbox_inches='tight')
     
 
 x = (0,306)
@@ -93,12 +93,12 @@ filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfra
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.515.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.283.bin"]
 # 70%
-filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
-            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.859.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
-            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.664.bin",
-            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.305.bin"]
+# filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
+#             "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
+#             "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.859.bin",
+#             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
+#             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.664.bin",
+#             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.305.bin"]
 labellist = ["No suppression, stripping 0",
             "No suppression, stripping 1",
             "Homogeneous, stripping 0",
