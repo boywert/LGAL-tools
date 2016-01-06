@@ -204,7 +204,7 @@ def plot_uv_z7():
     ax = fig.add_subplot(111)
     add_observations.add_obs_sfr_z7("observations/SFR/",ax)
     for i in range(len(model_names)):
-        index = model_names[i]
+index = model_names[i]
         ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)

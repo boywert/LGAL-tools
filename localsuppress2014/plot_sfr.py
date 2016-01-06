@@ -96,7 +96,10 @@ def plot_smf_z8(ax):
 
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_xlim([-2,2])
-    #ax.set_xlim([4,11])
+    ax.set_xlim([1e-5,10])
+    ax.yaxis.set_ticklabels([])
+    labels = ["",r"$-1.5$",r"$-1.0$",r"$-0.5$",r"$0$",r"$0.5$",r"$1.0$",r"$1.5$",r"$2.0$"]
+    ax.xaxis.set_ticklabels(labels)
     #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 8',
@@ -136,7 +139,7 @@ def plot_smf_z7(ax):
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_xlim([1.e-2,1e2])
-    #ax.set_xlim([4,11])
+    ax.set_xlim([1e-5,10])
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='right',
@@ -177,7 +180,7 @@ def plot_smf_z6(ax):
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
     ax.set_xlim([-2,2])
-    #ax.set_xlim([4,11])
+    ax.set_xlim([1e-5,10])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
