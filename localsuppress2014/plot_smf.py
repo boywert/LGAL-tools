@@ -95,9 +95,11 @@ def plot_smf_z8(ax):
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
-    ax.set_ylim([1.e-5,1e2])
-    ax.set_xlim([4,11])
+    ax.set_ylim([1.e-5,1e1])
+    ax.set_xlim([5,10])
     #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
+    labels = ["",r"$6$",r"$7$",r"$8$",r"$9$",r"$10$"]
+    ax.xaxis.set_ticklabels(labels)
     ax.set_yscale("log")     
     ax.yaxis.set_ticklabels([])
     ax.text(0.9, 0.9, 'z = 8',
@@ -177,9 +179,8 @@ def plot_smf_z6(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    ax.set_ylim([1.e-5,1e2])
-    ax.set_xlim([4,11])
-    ax.yaxis.set_ticklabels([])
+    ax.set_ylim([1.e-5,1e1])
+    ax.set_xlim([5,10])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
