@@ -67,7 +67,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
                 ax.append(pylab.subplot(gs[i,j]))
                 filename = filelist[ifile] #+"/xfrac3d_"+redshift+".bin"
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
-                im.append(ax[ifile].imshow(data_plot+0.00001, cmap=plt.get_cmap("magma"), norm=LogNorm(vmin=0.00001, vmax=1), extent=[x[0], x[1], y[0], y[1]]))
+                im.append(ax[ifile].imshow(data_plot+0.00001, cmap=cm.RdBu, norm=LogNorm(vmin=0.00001, vmax=1.00001), extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
 		ax[ifile].set_xlabel(labellist[ifile])
             	im[ifile].set_interpolation('bilinear')
