@@ -45,7 +45,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
-    fig = pylab.figure(figsize=(8*ncol, 8*nrow))
+    fig = pylab.figure(figsize=(8*ncol+1, 8*nrow+1))
     plt.subplots_adjust(wspace = 0.01)
     plt.subplots_adjust(hspace = 0.06)
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
@@ -77,6 +77,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
                     ax[ifile].set_ylabel(r"47 Mpc/h")
                 ifile += 1
     outfile = "%3.1f_pic.pdf" % (frac)
+    fig.colorbar(im)
     fig.savefig(outfile, bbox_inches='tight')
     plt.close(fig)
 
