@@ -1,4 +1,4 @@
-exe = ""
+exe = "/scratch/01937/cs390/Size-Analysis-C2-Ray/ZAHN/zahn_bubbles"
 label = ["nore_ori",
          "nore_infall",
          "oka_ori",
