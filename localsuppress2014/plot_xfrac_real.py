@@ -100,7 +100,7 @@ labellist = ["No suppression, stripping 0 (z = 8.76)",
             "Patchy suppression, stripping 1 (z = 8.28)"]
 
 doubleflaglist =[0,0,0,0,0,0]
-plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.3frac_picpdf")
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.3frac_pic.pdf")
 # 70%
 filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
             "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
@@ -115,7 +115,7 @@ labellist = ["No suppression, stripping 0 (z = 7.86)",
             "Patchy suppression, stripping 0 (z = 7.66)",
             "Patchy suppression, stripping 1 (z = 7.30)"]
 doubleflaglist =[0,0,0,0,0,0]
-plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.7frac_picpdf")
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.7frac_pic.pdf")
 
 
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.938")
