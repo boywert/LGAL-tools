@@ -71,8 +71,8 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
 		ax[ifile].set_xlabel(filelist[ifile])
             	im[ifile].set_interpolation('bilinear')
                 if j ==1:
-                    ax.yaxis.set_ticklabels([])
-                ax.xaxis.set_ticklabels([])
+                    ax[ifile].yaxis.set_ticklabels([])
+                ax[ifile].xaxis.set_ticklabels([])
 		ifile += 1
     fig.savefig("0.3_pic.pdf", bbox_inches='tight')
     
