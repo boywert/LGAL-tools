@@ -60,7 +60,7 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
         for j in range(ncol):
             if(i*nrow+j < len(filelist)):
                 ax.append(pylab.subplot(gs[i,j]))
-                filename = filelist[ifile]+"/xfrac3d_"+redshift+".bin"
+                filename = filelist[ifile] #+"/xfrac3d_"+redshift+".bin"
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot, cmap=cm.RdBu, vmin=0.0, vmax=1.0, extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
