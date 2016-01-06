@@ -82,7 +82,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
 
 x = (0,306)
 y = (0,306)
-z = (60,90)
+z = (90,120)
 
 nrow = 3
 ncol = 2
