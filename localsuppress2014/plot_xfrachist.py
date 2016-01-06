@@ -49,7 +49,7 @@ def plot_xfrac():
     #ax.set_xscale("log")
     ax1.set_ylim([0.0,1.0])
     ax0.set_ylim([1.0,3.0])
-    fig.savefig("xfrachist.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("xfrachist.pdf",bbox_inches='tight')#,pad_inches=0)
     plt.close(fig)
     
 def main():
