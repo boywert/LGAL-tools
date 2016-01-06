@@ -44,7 +44,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 
-def plot_reionized(nrow,ncol,filelist,doubleflaglist):
+def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist):
     fig = pylab.figure(figsize=(8*ncol, 8*nrow))
     plt.subplots_adjust(wspace = 0.01)
     plt.subplots_adjust(hspace = 0.05)
@@ -68,7 +68,7 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot, cmap=cm.RdBu, vmin=0.0, vmax=1.0, extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
-		ax[ifile].set_xlabel(filelist[ifile])
+		ax[ifile].set_xlabel(labellist[ifile])
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
@@ -92,14 +92,14 @@ filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfra
             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.515.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.283.bin"]
-filelist = ["No suppression, stripping 0",
+labellist = ["No suppression, stripping 0",
             "No suppression, stripping 1",
             "Homogeneous, stripping 0",
             "Homogeneous, stripping 1",
             "Patchy suppression, stripping 0",
             "Patchy suppression, stripping 1"]
 doubleflaglist =[0,0,0,0,0,0]
-plot_reionized(nrow,ncol,filelist,doubleflaglist)
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist)
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.938")
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.457")
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.026")
