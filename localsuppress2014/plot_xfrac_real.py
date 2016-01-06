@@ -48,7 +48,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
     fig = pylab.figure(figsize=(8*ncol, 8*nrow+0.8))
     plt.subplots_adjust(wspace = 0.01)
     plt.subplots_adjust(hspace = 0.06)
-    fig.title(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
+    fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
     for i in range(nrow):
