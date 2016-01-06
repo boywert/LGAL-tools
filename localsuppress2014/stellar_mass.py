@@ -120,6 +120,7 @@ def plot_z(z,models,ax,pos):
         cond = ~numpy.isnan(mean)
         mean = mean[cond]
         sd = sd[cond]
+        print mean,sd
         m200c[index] = m200c[index][cond]
         ref = -8.53 + 5./3.*m200c[index]
         ax.plot(m200c[index],ref,'k--')
