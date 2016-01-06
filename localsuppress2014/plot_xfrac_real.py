@@ -45,9 +45,9 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+1))
     plt.subplots_adjust(wspace = 0.01)
-    plt.subplots_adjust(hspace = 0.06)
+    plt.subplots_adjust(hspace = 0.12)
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
@@ -70,7 +70,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot+1, cmap=plt.get_cmap("Blues"), norm=LogNorm(vmin=1.0,  vmax=2.0), extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
-		ax[ifile].set_xlabel(labellist[ifile])
+		ax[ifile].set_xlabel(labellist[ifile],fontsize=9)
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
