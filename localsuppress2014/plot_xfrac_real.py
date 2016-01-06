@@ -45,7 +45,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 def plot_reionized(nrow,ncol,filelist,doubleflaglist):
-    fig = pylab.figure(figsize=(8*nrow, 6*ncol))
+    fig = pylab.figure(figsize=(8*nrow, 8*ncol))
     gs_width_ratios = []
     gs_height_ratios = []
     for i in range(nrow):
@@ -64,7 +64,7 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot, cmap=cm.RdBu, vmin=0.0, vmax=1.0, extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
-		ax[ifile].set_xlabel(filelist[ifile])
+		#ax[ifile].set_xlabel(filelist[ifile])
                 #ifile += 1
             	im[ifile].set_interpolation('bilinear')
 		ifile += 1
