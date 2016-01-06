@@ -51,6 +51,9 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
+    #for header
+    gs_height_ratios.append(0.1)
+    gs_width_ratios.append(1.)
     for i in range(nrow):
         gs_height_ratios.append(1.)
     for i in range(ncol):
@@ -60,11 +63,12 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
     im = []
     ifile = 0
     for i in range(nrow):
-        print "Plotiing row %d" %(i+1)
+        ii = i+1
+        print "Plotiing row %d" %(ii+1)
         for j in range(ncol):
-            print "\tPlotiing column %d, file %d of %d" %(j+1,i*ncol+j+1,len(filelist))
-            if(i*ncol+j < len(filelist)):
-                ax.append(pylab.subplot(gs[i,j]))
+            print "\tPlotiing column %d, file %d of %d" %(j+1,ii*ncol+j+1,len(filelist))
+            if(ii*ncol+j < len(filelist)):
+                ax.append(pylab.subplot(gs[ii,j]))
                 filename = filelist[ifile] #+"/xfrac3d_"+redshift+".bin"
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot+0.00001, cmap=cm.RdBu, norm=LogNorm(vmin=0.00001, vmax=1.00001), extent=[x[0], x[1], y[0], y[1]]))
@@ -76,8 +80,9 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
                 if j == 0:
                     ax[ifile].set_ylabel(r"47 Mpc/h")
                 ifile += 1
+    ax = plt.subplot(gs[0,:])
+    ax.colorbar(im[0])
     outfile = "%3.1f_pic.pdf" % (frac)
-    fig.colorbar(im[0])
     fig.savefig(outfile, bbox_inches='tight')
     plt.close(fig)
 
