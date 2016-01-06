@@ -88,7 +88,7 @@ filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfra
             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.515.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.283.bin"]
-doubleflaglist =[0,0,0,0]
+doubleflaglist =[0,0,0,0,0,0]
 plot_reionized(nrow,ncol,filelist,doubleflaglist)
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.938")
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.457")
