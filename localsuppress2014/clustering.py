@@ -31,7 +31,7 @@ def loadfilter(structfile):
         fi = False
     filter['Type'] = True
     filter['Pos'] = True
-    filter['Mag'] = True
+    filter['MagDust'] = True
     filter['Mvir'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
@@ -86,8 +86,8 @@ def plot_xi(z):
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
-    slot = "Mvir"
-    mlist = numpy.arange(8,12.0,0.5)
+    slot = "MagDust"
+    mlist = numpy.arange(-20.0,-8.0,0.5)
     for m in mlist:
         mag  = m
         if rank == 0:
@@ -109,6 +109,10 @@ def plot_xi(z):
             for i in range(len(model_names)):
                 index = model_names[i]
                 print "adding",model_labels[i]
+                ff = open(model_names[i]+"_"+str(mag)+".txt","w")
+                for ii in range(len(r)):
+                    print >> ff, r[ii],xi[index][ii]-1.
+                ff.close()
                 ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
                 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
             leg.get_frame().set_linewidth(0)
