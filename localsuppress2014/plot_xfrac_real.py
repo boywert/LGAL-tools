@@ -66,7 +66,7 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
                 im.append(ax[ifile].imshow(data_plot, cmap=cm.RdBu, vmin=0.0, vmax=1.0, extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
-		#ax[ifile].set_xlabel(filelist[ifile])
+		ax[ifile].set_xlabel(filelist[ifile])
                 #ifile += 1
             	im[ifile].set_interpolation('bilinear')
 		ifile += 1
