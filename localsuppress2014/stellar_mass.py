@@ -101,7 +101,7 @@ def plot_z(z,models,ax,pos):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (8.15,11.5)
         bins = 40
-        gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
+        gal[index] = gal[index][numpy.where(((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
         
         sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h)**2)
@@ -115,7 +115,6 @@ def plot_z(z,models,ax,pos):
 
     for i in range(len(models.model_names)):
         index = models.model_names[i]
-        print sum_baryons[index][0]
         mean = sum_baryons[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
