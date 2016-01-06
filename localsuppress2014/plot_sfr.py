@@ -97,7 +97,6 @@ def plot_smf_z8(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_xlim([-2,2])
     ax.set_ylim([1e-5,10])
-    ax.yaxis.set_ticklabels([])
     labels = ["",r"$-1.5$",r"$-1.0$",r"$-0.5$",r"$0$",r"$0.5$",r"$1.0$",r"$1.5$",r"$2.0$"]
     ax.xaxis.set_ticklabels(labels)
     #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
@@ -105,6 +104,7 @@ def plot_smf_z8(ax):
     ax.text(0.9, 0.9, 'z = 8',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
+    ax.yaxis.set_ticklabels([])
     
 def plot_smf_z7(ax):
     z = "6.98"
