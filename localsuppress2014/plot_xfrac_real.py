@@ -44,7 +44,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 
-def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist):
+def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,outfile):
     fig = pylab.figure(figsize=(8*ncol, 8*nrow))
     plt.subplots_adjust(wspace = 0.01)
     plt.subplots_adjust(hspace = 0.06)
@@ -75,7 +75,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist):
                 if j == 0:
                     ax[ifile].set_ylabel(r"47 Mpc/h")
                 ifile += 1
-    fig.savefig("0.3_pic.pdf", bbox_inches='tight')
+    fig.savefig(outfile, bbox_inches='tight')
     
 
 x = (0,306)
@@ -92,21 +92,32 @@ filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfra
             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.515.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.283.bin"]
-# 70%
-# filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
-#             "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
-#             "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.859.bin",
-#             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
-#             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.664.bin",
-#             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.305.bin"]
-labellist = ["No suppression, stripping 0",
-            "No suppression, stripping 1",
-            "Homogeneous, stripping 0",
-            "Homogeneous, stripping 1",
-            "Patchy suppression, stripping 0",
-            "Patchy suppression, stripping 1"]
+labellist = ["No suppression, stripping 0 (z = 8.76)",
+            "No suppression, stripping 1 (z = 8.76)",
+            "Homogeneous, stripping 0 (z = 8.76)",
+            "Homogeneous, stripping 1 (z = 8.76)",
+            "Patchy suppression, stripping 0 (z = 8.51)",
+            "Patchy suppression, stripping 1 (z = 8.28)"]
+
 doubleflaglist =[0,0,0,0,0,0]
-plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist)
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.3frac_picpdf")
+# 70%
+filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
+            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.859.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.664.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.305.bin"]
+labellist = ["No suppression, stripping 0 (z = 7.86)",
+            "No suppression, stripping 1 (z = 7.76)",
+            "Homogeneous, stripping 0 (z = 7.86)",
+            "Homogeneous, stripping 1 (z = 7.76)",
+            "Patchy suppression, stripping 0 (z = 7.66)",
+            "Patchy suppression, stripping 1 (z = 7.30)"]
+doubleflaglist =[0,0,0,0,0,0]
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.7frac_picpdf")
+
+
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.938")
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.457")
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.026")
