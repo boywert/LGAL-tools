@@ -44,10 +44,11 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 
-def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,outfile):
-    fig = pylab.figure(figsize=(8*ncol, 8*nrow))
+def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
+    fig = pylab.figure(figsize=(8*ncol, 8*nrow+0.8))
     plt.subplots_adjust(wspace = 0.01)
     plt.subplots_adjust(hspace = 0.06)
+    plt.title(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
     for i in range(nrow):
@@ -75,8 +76,9 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,outfile):
                 if j == 0:
                     ax[ifile].set_ylabel(r"47 Mpc/h")
                 ifile += 1
+    outfile = "%3.1f_pic.pdf" % (frac)
     fig.savefig(outfile, bbox_inches='tight')
-    
+    plt.close(fig)
 
 x = (0,306)
 y = (0,306)
@@ -100,7 +102,7 @@ labellist = ["No suppression, stripping 0 (z = 8.76)",
             "Patchy suppression, stripping 1 (z = 8.28)"]
 
 doubleflaglist =[0,0,0,0,0,0]
-plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.3frac_pic.pdf")
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.3)
 # 70%
 filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
             "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
@@ -115,7 +117,7 @@ labellist = ["No suppression, stripping 0 (z = 7.86)",
             "Patchy suppression, stripping 0 (z = 7.66)",
             "Patchy suppression, stripping 1 (z = 7.30)"]
 doubleflaglist =[0,0,0,0,0,0]
-plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,"0.7frac_pic.pdf")
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.7)
 
 
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.938")
