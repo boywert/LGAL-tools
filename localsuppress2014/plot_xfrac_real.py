@@ -77,7 +77,7 @@ def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
                     ax[ifile].set_ylabel(r"47 Mpc/h")
                 ifile += 1
     outfile = "%3.1f_pic.pdf" % (frac)
-    fig.colorbar(im)
+    fig.colorbar(im[0])
     fig.savefig(outfile, bbox_inches='tight')
     plt.close(fig)
 
