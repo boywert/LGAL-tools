@@ -68,7 +68,7 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
                 #ifile += 1
             	im[ifile].set_interpolation('bilinear')
 		ifile += 1
-    fig.savefig(redshift+"_pic.pdf", bbox_inches='tight')
+    fig.savefig("0.3_pic.pdf", bbox_inches='tight')
     
 
 x = (0,306)
