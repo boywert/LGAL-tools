@@ -115,7 +115,7 @@ def plot_z(z,models,ax,pos):
 
     for i in range(len(models.model_names)):
         index = models.model_names[i]
-        prin sum_baryons[index][0]
+        print sum_baryons[index][0]
         mean = sum_baryons[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
