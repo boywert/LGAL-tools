@@ -45,7 +45,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 def plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,frac):
-    fig = pylab.figure(figsize=(8*ncol+1, 8*nrow+1))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow))
     plt.subplots_adjust(wspace = 0.01)
     plt.subplots_adjust(hspace = 0.06)
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
