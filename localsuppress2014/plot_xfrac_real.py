@@ -61,8 +61,8 @@ def plot_reionized(nrow,ncol,filelist,doubleflaglist):
     for i in range(nrow):
         print "Plotiing row %d" %(i+1)
         for j in range(ncol):
-            print "\tPlotiing column %d, file %d of %d" %(j+1,i*nrow+j+1,len(filelist))
-            if(i*nrow+j < len(filelist)):
+            print "\tPlotiing column %d, file %d of %d" %(j+1,i*ncol+j+1,len(filelist))
+            if(i*ncol+j < len(filelist)):
                 ax.append(pylab.subplot(gs[i,j]))
                 filename = filelist[ifile] #+"/xfrac3d_"+redshift+".bin"
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
