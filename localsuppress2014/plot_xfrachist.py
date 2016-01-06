@@ -31,6 +31,7 @@ def plot_xfrac():
     gs = gridspec.GridSpec(2, 1, height_ratios=[1, 3])
     ax0 = plt.subplot(gs[0])
     ax1 = plt.subplot(gs[1])
+    plt.subplots_adjust(hspace = 0)
     for i in range(len(model_names)):
         index = model_names[i]
         xfrac = numpy.loadtxt(tau_folder+"/"+model_names[i]+"_"+str(model_fesc[i])+".log")
@@ -40,8 +41,10 @@ def plot_xfrac():
     leg = ax1.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
     ax1.set_xlabel(r"redshift")
+    ax1.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle/\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
     ax1.set_ylabel(r"$\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
     ax1.set_xlim([6,15])
+    ax0.set_xlim([6,15])
     #ax.set_xscale("log")
     ax1.set_ylim([0.0,1.0])
     fig.savefig("xfrachist.pdf",bbox_inches='tight',pad_inches=0)
