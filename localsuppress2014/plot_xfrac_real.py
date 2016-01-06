@@ -47,7 +47,7 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(nrow,ncol,filelist,doubleflaglist):
     fig = pylab.figure(figsize=(8*ncol, 8*nrow))
     plt.subplots_adjust(wspace = 0.01)
-    plt.subplots_adjust(hspace = 0.1)
+    plt.subplots_adjust(hspace = 0.05)
     gs_width_ratios = []
     gs_height_ratios = []
     for i in range(nrow):
