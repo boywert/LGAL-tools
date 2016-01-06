@@ -95,7 +95,7 @@ def plot_smf_z8(ax):
         ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
-    ax.set_ylim([1.e-2,1e2])
+    ax.set_xlim([1.e-2,1e2])
     #ax.set_xlim([4,11])
     #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
@@ -135,7 +135,7 @@ def plot_smf_z7(ax):
     #leg.get_frame().set_linewidth(0)
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    ax.set_ylim([1.e-2,1e2])
+    ax.set_xlim([1.e-2,1e2])
     #ax.set_xlim([4,11])
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 7',
@@ -176,7 +176,7 @@ def plot_smf_z6(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    ax.set_ylim([1.e-2,1e2])
+    ax.set_xlim([1.e-2,1e2])
     #ax.set_xlim([4,11])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
