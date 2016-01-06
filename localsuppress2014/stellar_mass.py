@@ -115,12 +115,12 @@ def plot_z(z,models,ax,pos):
 
     for i in range(len(models.model_names)):
         index = models.model_names[i]
+        prin sum_baryons[index][0]
         mean = sum_baryons[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
         mean = mean[cond]
         sd = sd[cond]
-        print mean,sd
         m200c[index] = m200c[index][cond]
         ref = -8.53 + 5./3.*m200c[index]
         ax.plot(m200c[index],ref,'k--')
