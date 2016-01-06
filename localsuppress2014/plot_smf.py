@@ -97,8 +97,9 @@ def plot_smf_z8(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylim([1.e-5,1e2])
     ax.set_xlim([4,11])
-    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
+    #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
+    ax.yaxis.set_ticklabels([])
     ax.text(0.9, 0.9, 'z = 8',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
@@ -173,11 +174,12 @@ def plot_smf_z6(ax):
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='lower left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
-    #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-5,1e2])
     ax.set_xlim([4,11])
+    ax.yaxis.set_ticklabels([])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
@@ -185,15 +187,15 @@ def plot_smf_z6(ax):
 
     
 def main():
-    fig = plt.figure(figsize=(8, 18))
-    ax1 = fig.add_subplot(3,1,1)
-    ax2 = fig.add_subplot(3,1,2)
-    ax3 = fig.add_subplot(3,1,3)
-    plt.subplots_adjust(hspace = .07)
+    fig = plt.figure(figsize=(16, 6))
+    ax1 = fig.add_subplot(1,2,1)
+    ax2 = fig.add_subplot(1,2,2)
+    #ax3 = fig.add_subplot(3,1,3)
+    plt.subplots_adjust(wspace = 0)
     plot_smf_z6(ax1)
-    plot_smf_z7(ax2)
-    plot_smf_z8(ax3)
-    fig.savefig("SMF678.pdf",bbox_inches='tight',pad_inches=0)
+    plot_smf_z8(ax2)
+    #plot_smf_z8(ax3)
+    fig.savefig("SMF68.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
 if __name__=="__main__":
