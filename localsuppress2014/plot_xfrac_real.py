@@ -77,11 +77,13 @@ x = (0,306)
 y = (0,306)
 z = (200,230)
 
-nrow = 2
+nrow = 3
 ncol = 2
 
 # 30%
-filelist = ["/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_8.762.bin",
+filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_8.762.bin",
+            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_8.762.bin",
             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.515.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.283.bin"]
