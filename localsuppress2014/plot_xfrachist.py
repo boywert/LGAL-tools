@@ -38,7 +38,7 @@ def plot_xfrac():
     ax.set_xlabel(r"redshift")
     ax.set_ylabel(r"$\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
     ax.set_xlim([6,20])
-    ax.set_xscale("log")
+    #ax.set_xscale("log")
     ax.set_ylim([0.0,1.0])
     fig.savefig("xfrachist.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
