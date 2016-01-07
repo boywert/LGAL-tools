@@ -130,7 +130,7 @@ def plot_xi(z):
             fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
-    zi = sys.argv[1])
+    zi = sys.argv[1]
     plot_xi(zi)
 
 if __name__=="__main__":
