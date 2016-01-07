@@ -121,25 +121,25 @@ def plot_smf_z7(ax):
         nGals = {}
         nTreeGals = {}
    
-    sfr_x = {}
-    sfr_y = {}
+    smf_x = {}
+    smf_y = {}
    
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-2,mass_max=10.**2,nbins=20)
-            
-    add_observations.add_obs_sfr_z6("observations/SFR/",ax)
+        (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
+
+    add_observations.add_obs_smf_z7("observations/SMF/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])(smf_x[index],smf_y[index]) 
+        ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     #leg.get_frame().set_linewidth(0)
     #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    ax.set_xlim([-0.5,2])
-    ax.set_xlim([1e-5,1e-1])
+    ax.set_xlim([1.e-2,1e2])
+    ax.set_xlim([1e-5,10])
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='right',
@@ -179,7 +179,7 @@ def plot_smf_z6(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    ax.set_xlim([-,2])
+    ax.set_xlim([-2,2])
     ax.set_ylim([1e-5,10])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
@@ -194,8 +194,8 @@ def main():
     #ax3 = fig.add_subplot(3,1,3)
     plt.subplots_adjust(wspace = 0)
     plot_smf_z6(ax1)
-    plot_smf_z7(ax2)
-    #plot_smf_z8(ax2)
+    #plot_smf_z7(ax2)
+    plot_smf_z8(ax2)
     fig.savefig("SFR68.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
