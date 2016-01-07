@@ -46,7 +46,7 @@ def plot_size(ax,folder,pos):
     ax.set_xlabel(r"$\mathrm{R/Mpc}$")
     if pos == "l":
         ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
-        leg = ax.legend(loc='lower center', handlelength = 5,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc=(0.5,0.5), handlelength = 5,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
 
     ax.text(0.98, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
