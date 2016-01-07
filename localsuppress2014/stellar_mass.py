@@ -130,10 +130,10 @@ def plot_z(z,models,ax,pos):
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
-        ref = -2.0+1.0*m200c[index]
+        ref = -2.6+1.0*m200c[index]
         ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}$')
     else:
-        ref = -4.0+1.2*m200c[index]
+        ref = -3.9+1.2*m200c[index]
         ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
     leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
@@ -142,7 +142,7 @@ def plot_z(z,models,ax,pos):
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
     ax.set_ylim([4,11])
-    ax.set_xlim([8.15,11.5])
+    ax.set_xlim([8.25,11.5])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
