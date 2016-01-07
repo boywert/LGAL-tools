@@ -114,7 +114,7 @@ def plot_xi(z):
             for i in range(len(model_names)):
                 index = model_names[i]
                 print "adding",model_labels[i]
-                ff = open(model_names[i]+"_"+str(mag)+".txt","w")
+                ff = open(model_names[i]+"_"+str(mag)+"_"+str(z)+".txt","w")
                 for ii in range(len(r)):
                     print >> ff, r[ii],xi[index][ii]-1.
                 ff.close()
