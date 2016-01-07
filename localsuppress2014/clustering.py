@@ -90,7 +90,7 @@ def plot_xi(z):
     comm.Barrier()
     slot = "MagDust"
     m_i = -20.0
-    m_f = -8.0
+    m_f = -4.0
     dm = 2.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
@@ -130,8 +130,8 @@ def plot_xi(z):
             fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
 def main():
-    plot_xi("6.00")
-    plot_xi("7.96")
+    zi = sys.argv[1])
+    plot_xi(zi)
 
 if __name__=="__main__":
     main()
