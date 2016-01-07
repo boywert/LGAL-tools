@@ -47,12 +47,12 @@ def plot_size(ax,folder,pos):
     if pos == "l":
         ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
     if pos == "r":
-        leg = ax.legend(loc="lower right", handlelength = 5,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc="lower right", handlelength = 7,ncol=1, fancybox=True, prop={'size':11})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.98, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+    ax.text(0.95, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
             verticalalignment='bottom', horizontalalignment='right',
-            transform=ax.transAxes, fontsize=14)
+            transform=ax.transAxes, fontsize=18)
     if pos != "l":
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$10^{0}$",r"$10^{1}$",r"$10^2$",r"$10^3$"]
