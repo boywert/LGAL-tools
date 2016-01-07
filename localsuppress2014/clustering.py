@@ -122,10 +122,13 @@ def plot_xi(z):
                 ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
                 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
             leg.get_frame().set_linewidth(0)
-            ax.set_xlabel(r"$r[h^{-1}Mpc]$")
-            ax.set_ylabel(r"$\xi(r)$")
+            ax.set_xlabel(r"$\mathrm{r}[h^{-1}\mathrm{Mpc}]$")
+            ax.set_ylabel(r"$\xi(\mathrm{r})$")
             ax.set_yscale("log")
             ax.set_xscale("log")
+            ax.text(0.1, 0.1, r'M1500 $\in$ $[%2.0f,%2.0f]$' % (mag,mag1),
+                verticalalignment='bottom', horizontalalignment='left',
+                transform=ax.transAxes, fontsize=14)
             print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
             fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0)
             print "done"
