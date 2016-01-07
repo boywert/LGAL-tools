@@ -147,7 +147,7 @@ def plot_z(z,models,ax,pos):
     ax.set_xlim([8.25,11.5])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
+        ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.text(0.9, 0.95, 'stripping 0',
                 verticalalignment='bottom', horizontalalignment='right',
