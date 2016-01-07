@@ -27,7 +27,7 @@ plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 
 def plot_xfrac():
-    fig = plt.figure(figsize=(8, 8)) 
+    fig = plt.figure(figsize=(8, 6)) 
     gs = gridspec.GridSpec(2, 1, height_ratios=[1, 3])
     ax0 = plt.subplot(gs[0])
     ax1 = plt.subplot(gs[1])
