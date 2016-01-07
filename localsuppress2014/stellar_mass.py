@@ -121,7 +121,10 @@ def plot_z(z,models,ax,pos):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        ref =  m200c[index]
+        if "infall" in index:
+            ref =  -3.4+1.0*m200c[index]
+        else:
+            ref = -4.0+1.2*m200c[index]
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         ax.plot(m200c[index],ref,'k--')
@@ -131,10 +134,10 @@ def plot_z(z,models,ax,pos):
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-        #labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
-        #ax.xaxis.set_ticklabels(labels)
+        labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
+        ax.xaxis.set_ticklabels(labels)
     ax.set_ylim([4,11])
-    ax.set_xlim([8.0,11.5])
+    ax.set_xlim([8.15,11.5])
     ax.set_xlabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
