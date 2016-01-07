@@ -121,7 +121,7 @@ def plot_z(z,models,ax,pos):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-            ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
+    
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         if pos == "l":
