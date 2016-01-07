@@ -40,12 +40,13 @@ def plot_size(ax,folder,pos):
 
 
     ax.set_xscale("log")
+    ax.set_ylim([1e-1,100])
     ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
     ax.set_xlabel(r"$\mathrm{R/Mpc}$")
     if pos == "l":
         ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
-        leg = ax.legend(loc="lower right", handlelength = 6,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc='lower center', handlelength = 5,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
 
     ax.text(0.98, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
