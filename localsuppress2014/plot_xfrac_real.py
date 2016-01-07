@@ -89,34 +89,51 @@ nrow = 3
 ncol = 2
 
 # 30%
-filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_8.762.bin",
-            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_8.762.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_8.762.bin",
-            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.515.bin",
-            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.283.bin"]
-labellist = ["No suppression, stripping 0 (z = 8.76)",
-            "No suppression, stripping 1 (z = 8.76)",
-            "Homogeneous, stripping 0 (z = 8.76)",
-            "Homogeneous, stripping 1 (z = 8.76)",
-            "Patchy suppression, stripping 0 (z = 8.51)",
-            "Patchy suppression, stripping 1 (z = 8.28)"]
+filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_9.308.bin",
+            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_9.308.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_9.308.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_9.308.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_9.026.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.892.bin"]
+labellist = ["No suppression, stripping 0 (z = 9.31)",
+             "No suppression, stripping 1 (z = 9.31)",
+             "Homogeneous, stripping 0 (z = 9.31)",
+             "Homogeneous, stripping 1 (z = 9.31)",
+             "Patchy suppression, stripping 0 (z = 9.03)",
+             "Patchy suppression, stripping 1 (z = 8.89)"]
 
 doubleflaglist =[0,0,0,0,0,0]
 plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.3)
+
+# 50%
+filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_8.397.bin",
+            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_8.397.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_8.397.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_8.397.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_8.172.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_8.064.bin"]
+labellist = ["No suppression, stripping 0 (z = 8.40)",
+             "No suppression, stripping 1 (z = 8.40)",
+             "Homogeneous, stripping 0 (z = 8.40)",
+             "Homogeneous, stripping 1 (z = 8.40)",
+             "Patchy suppression, stripping 0 (z = 8.17)",
+             "Patchy suppression, stripping 1 (z = 8.06)"]
+doubleflaglist =[0,0,0,0,0,0]
+plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.5)
+
 # 70%
-filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.859.bin",
-            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.859.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.760.bin",
-            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.664.bin",
-            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.305.bin"]
-labellist = ["No suppression, stripping 0 (z = 7.86)",
-            "No suppression, stripping 1 (z = 7.76)",
-            "Homogeneous, stripping 0 (z = 7.86)",
-            "Homogeneous, stripping 1 (z = 7.76)",
-            "Patchy suppression, stripping 0 (z = 7.66)",
-            "Patchy suppression, stripping 1 (z = 7.30)"]
+filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.980.bin",
+            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.980.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.980.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.980.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.760.bin",
+            "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.391.bin"]
+labellist = ["No suppression, stripping 0 (z = 7.98)",
+             "No suppression, stripping 1 (z = 7.98)",
+             "Homogeneous, stripping 0 (z = 7.98)",
+             "Homogeneous, stripping 1 (z = 7.98)",
+            "Patchy suppression, stripping 0 (z = 7.76)",
+             "Patchy suppression, stripping 1 (z = 7.39)"]
 doubleflaglist =[0,0,0,0,0,0]
 plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.7)
 
