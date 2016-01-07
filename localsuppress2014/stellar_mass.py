@@ -99,7 +99,7 @@ def plot_z(z,models,ax,pos):
         index = models.model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        rangen = (8.15,11.5)
+        rangen = (8.0,11.5)
         bins = 40
         gal[index] = gal[index][numpy.where(((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
         mass = gal[index]["Mvir"] #(gal[index]["BulgeMass"]+gal[index]["DiskMass"])
