@@ -40,9 +40,9 @@ def plot_size(ax,folder,pos):
 
 
     ax.set_xscale("log")
-    ax.set_ylim([1e-4,1])
+    ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
-    ax.set_xlabel(r"$R/\mathrm{Mpc}$")
+    ax.set_xlabel(r"$\mathrm{R/Mpc}$")
     if pos == "l":
         ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
         leg = ax.legend(loc="lower right", handlelength = 6,ncol=1, fancybox=True, prop={'size':10})
