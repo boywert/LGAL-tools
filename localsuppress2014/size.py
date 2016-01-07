@@ -38,22 +38,23 @@ def plot_size(ax,folder,pos):
         #print len(dx),len(x),len(data[:,3])
         ax.plot(x,x*data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
-    if pos != "l":
-        ax.yaxis.set_ticklabels([])
-        #labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
-        #ax.xaxis.set_ticklabels(labels)
+
     ax.set_xscale("log")
+    ax.set_ylim([1e-4,1])
     ax.set_yscale("log")
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
-        leg = ax.legend(loc="upper right", handlelength = 6,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc="lower right", handlelength = 6,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.1, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+    ax.text(0.5, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=14)
-
+    if pos != "l":
+        ax.yaxis.set_ticklabels([])
+        labels = ["",r"$10^{-1}$",r"$10^{0}$",r"$10^1$",r"$10^2$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
+        ax.xaxis.set_ticklabels(labels)
 
     
 def main():
