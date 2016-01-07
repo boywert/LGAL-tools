@@ -112,7 +112,7 @@ def plot_z(z,models,ax,pos):
         del(gal[index])
         del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
-
+    
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         mean = sum_baryons[index][0]/N[index][0]
@@ -121,21 +121,23 @@ def plot_z(z,models,ax,pos):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        if "infall" in index:
-            ref = -3.4+1.0*m200c[index]
-            ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
-            ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}$')
-        else:
-            ref = -4.0+1.2*m200c[index]
             ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
-        
-        ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+        if pos == "l":
+            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i])
+        else:
+            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
-        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
-        leg.get_frame().set_linewidth(0)
+        ref = -2.0+1.0*m200c[index]
+        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}$')
+    else:
+        ref = -4.0+1.2*m200c[index]
+        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
+    leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
+    leg.get_frame().set_linewidth(0)
+    if pos == "r":
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
