@@ -33,7 +33,7 @@ def plot_size(ax,folder,pos):
         x = data[:,0]
         dx = numpy.zeros(len(x))
         for i in range(len(x)-1):
-            dx = x[i] - x[i+1]
+            dx[i] = x[i] - x[i+1]
         dx[len(x)-1] = x[len(x)-1]
         ax.plot(x,data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
