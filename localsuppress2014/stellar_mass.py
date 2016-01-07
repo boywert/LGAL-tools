@@ -130,7 +130,7 @@ def plot_z(z,models,ax,pos):
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
-        ref = -2.6+1.0*m200c[index]
+        ref = -1.9+.92*m200c[index]
         ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}$')
     else:
         ref = -4.1+1.2*m200c[index]
