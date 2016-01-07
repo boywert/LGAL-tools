@@ -96,8 +96,8 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10)>mag) & (numpy.log10(gal[index][slot]*1e10)<mag1))]["Pos"]
-                #data = gal[index][numpy.where((gal[index]["Mag"][:,5]>mag) & (gal[index]["Mag"][:,5]<mag1))]["Pos"]
+                #data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10)>mag) & (numpy.log10(gal[index][slot]*1e10)<mag1))]["Pos"]
+                data = gal[index][numpy.where((gal[index]["MagDust"][:,5]>mag) & (gal[index]["MagDust"][:,5]<mag1))]["Pos"]
             else:
                 data = None
             data = comm.bcast(data,root=0)
