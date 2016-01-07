@@ -29,10 +29,10 @@ def plot_size(ax,folder,pos):
 
     for i in range(len(model_names)):
         index = model_names[i]
-        data = numpy.loadtxt(folder+index)
+        data = numpy.loadtxt(folder+"/"+index)
         x = []
         dx = []
-        ax.plot(data[:,0],data[:,3],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(data[:,0],data[:,3]/numpy.sum(data[:,3]),color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     if pos != "l":
         ax.yaxis.set_ticklabels([])
@@ -46,7 +46,7 @@ def plot_size(ax,folder,pos):
         leg = ax.legend(loc="lower left", handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.9, 0.8, 'stripping 1',
+    ax.text(0.9, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=14)
 
@@ -59,9 +59,9 @@ def main():
     ax2 = fig.add_subplot(132)
     ax3 = fig.add_subplot(133)
     fig.canvas.draw()
-    plot_size(ax1,"0.3/","l")
-    plot_size(ax2,"0.5/","c")
-    plot_size(ax3,"0.7/","r")
+    plot_size(ax1,"0.3","l")
+    plot_size(ax2,"0.5","c")
+    plot_size(ax3,"0.7","r")
     fig.savefig("sizedist.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
