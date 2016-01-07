@@ -27,8 +27,8 @@ plt.rcParams['xtick.major.size'] = 8
 
 def plot_size(z,folder,pos):    
 
-    for i in range(len(models.model_names)):
-        index = models.model_names[i]
+    for i in range(len(model_names)):
+        index = model_names[i]
         data = numpy.loadtxt(folder+index)
         x = []
         dx = []
