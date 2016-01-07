@@ -55,7 +55,7 @@ def plot_size(ax,folder,pos):
             transform=ax.transAxes, fontsize=14)
     if pos != "l":
         ax.yaxis.set_ticklabels([])
-        labels = ["",r"$10^{-1}$",r"$10^{0}$",r"$10^1$",r"$10^2$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
+        labels = ["",r"$10^{0}$",r"$10^{1}$",r"$10^2$",r"$10^3$"]
         ax.xaxis.set_ticklabels(labels)
 
     
