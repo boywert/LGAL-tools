@@ -122,11 +122,12 @@ def plot_z(z,models,ax,pos):
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
         if "infall" in index:
-            ref =  -3.4+1.0*m200c[index]
-            ax.plot(m200c[index],ref,'k--')
+            ref = -3.4+1.0*m200c[index]
+            ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
+            ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}$')
         else:
             ref = -4.0+1.2*m200c[index]
-            ax.plot(m200c[index],ref,'k--')
+            ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         
@@ -140,7 +141,7 @@ def plot_z(z,models,ax,pos):
         ax.xaxis.set_ticklabels(labels)
     ax.set_ylim([4,11])
     ax.set_xlim([8.15,11.5])
-    ax.set_xlabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
+    ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
     if pos == "l":
