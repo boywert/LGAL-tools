@@ -25,7 +25,7 @@ pylab.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 
-def plot_size(z,folder,pos):    
+def plot_size(ax,folder,pos):    
 
     for i in range(len(model_names)):
         index = model_names[i]
