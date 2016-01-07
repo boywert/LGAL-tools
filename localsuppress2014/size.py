@@ -44,11 +44,11 @@ def plot_size(ax,folder,pos):
     ax.set_yscale("log")
     ax.set_xlabel(r"$R/\mathrm{Mpc}$")
     if pos == "l":
-        ax.set_ylabel(r"$R \frac{d P(R)}{dR}$")
+        ax.set_ylabel(r"$R dP(R)/dR$")
         leg = ax.legend(loc="lower right", handlelength = 6,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.95, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+    ax.text(0.98, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=14)
     if pos != "l":
