@@ -121,7 +121,7 @@ def plot_z(z,models,ax,pos):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        ref = -8.53 + 5./3.*m200c[index]
+        ref =  m200c[index]
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         ax.plot(m200c[index],ref,'k--')
