@@ -36,7 +36,7 @@ def plot_size(ax,folder,pos):
             dx[j] = x[j] - x[j+1]
         dx[len(x)-1] = x[len(x)-1]
         #print len(dx),len(x),len(data[:,3])
-        ax.plot(x,data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(x,x*data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     if pos != "l":
         ax.yaxis.set_ticklabels([])
