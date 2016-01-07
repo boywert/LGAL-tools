@@ -87,12 +87,15 @@ def plot_xi(z):
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
     comm.Barrier()
     slot = "MagDust"
-    mlist = numpy.arange(-20.0,-8.0,1.0)
+    m_i = -20.0
+    m_f = -8.0
+    dm = 2.0
+    mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
         mag  = m
         if rank == 0:
             print "mag",mag
-        mag1 = mag+0.5
+        mag1 = mag+dm
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
