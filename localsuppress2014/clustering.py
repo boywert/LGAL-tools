@@ -87,6 +87,7 @@ def plot_xi(z):
                 #(nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
                 if "infall" in index:
                     print index
+    exit()
     comm.Barrier()
     slot = "MagDust"
     m_i = -20.0
