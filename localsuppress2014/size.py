@@ -32,7 +32,7 @@ def plot_size(z,folder,pos):
         data = numpy.loadtxt(folder+index)
         x = []
         dx = []
-        ax.plot(data[:,0],data[:,3],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+        ax.plot(data[:,0],data[:,3],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     if pos != "l":
         ax.yaxis.set_ticklabels([])
