@@ -43,11 +43,11 @@ def plot_size(ax,folder,pos):
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
-        leg = ax.legend(loc="lower left", handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
+        leg = ax.legend(loc="upper right", handlelength = 6,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.9, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
-            verticalalignment='bottom', horizontalalignment='right',
+    ax.text(0.1, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+            verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=14)
 
 
