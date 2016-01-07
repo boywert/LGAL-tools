@@ -131,7 +131,9 @@ def plot_z(z,models,ax,pos):
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
         ref = -1.9+.92*m200c[index]
-        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}$')
+        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{0.9}$')
+        ref = -3.58+1.08*m200c[index]
+        ax.plot(m200c[index],ref,'k:', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.1}$')
     else:
         ref = -4.1+1.2*m200c[index]
         ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
@@ -147,15 +149,15 @@ def plot_z(z,models,ax,pos):
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.text(0.5, 0.25, 'stripping 0',
-                verticalalignment='bottom', horizontalalignment='center',
+        ax.text(0.9, 0.8, 'stripping 0',
+                verticalalignment='bottom', horizontalalignment='right',
                 transform=ax.transAxes, fontsize=14)
-        ax.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
-                verticalalignment='bottom', horizontalalignment='center',
+        ax.text(0.1, 0.9, 'z = '+str(int(float(z)+0.5)),
+                verticalalignment='bottom', horizontalalignment='left',
                 transform=ax.transAxes, fontsize=14)
     else:
-        ax.text(0.5, 0.25, 'stripping 1',
-                verticalalignment='bottom', horizontalalignment='center',
+        ax.text(0.9, 0.8, 'stripping 1',
+                verticalalignment='bottom', horizontalalignment='right',
                 transform=ax.transAxes, fontsize=14)
 
 
