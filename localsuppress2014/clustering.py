@@ -113,6 +113,7 @@ def plot_xi(z):
                 for ii in range(len(r)):
                     print >> ff, r[ii],xi[index][ii]-1.
                 ff.close()
+                
                 ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
                 leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
             leg.get_frame().set_linewidth(0)
