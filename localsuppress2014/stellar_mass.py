@@ -46,7 +46,7 @@ def loadfilter(structfile):
     # filter['BlackHoleMass'] = True
     # filter['Sfr'] = True
     # filter['Type'] = True
-    # filter['CumulativeSFR'] = True
+    filter['CumulativeSFR'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -103,9 +103,9 @@ def plot_z(z,models,ax,pos):
         bins = 40
         gal[index] = gal[index][numpy.where(((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
         
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h)**2)
-        N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
+        sum_baryons[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["Cumulative"])*1.e10/hubble_h))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h)**2)
+        N[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
             m200c[index].append(0.5*(sum_baryons[index][1][i]+sum_baryons[index][1][i+1]))
@@ -131,8 +131,8 @@ def plot_z(z,models,ax,pos):
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-        labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
-        ax.xaxis.set_ticklabels(labels)
+        #labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
+        #ax.xaxis.set_ticklabels(labels)
     #ax.set_ylim([)
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
