@@ -36,13 +36,13 @@ def plot_xfrac():
         index = model_names[i]
         xfrac = numpy.loadtxt(tau_folder+"/"+model_names[i]+"_"+str(model_fesc[i])+".log")
         ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
-        ax1.plot(xfrac[:,0],xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax1.plot(xfrac[:,0],xfrac[:,2],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     leg = ax1.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
     ax1.set_xlabel(r"redshift")
     ax0.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle/\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
-    ax1.set_ylabel(r"$\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
+    ax1.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle$")
     ax1.set_xlim([6,15])
     ax0.set_xlim([6,15])
     ax0.xaxis.set_ticklabels([])
