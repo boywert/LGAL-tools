@@ -89,9 +89,9 @@ def plot_xi(z):
                     gal[index]["MagDust"][:,5] = gal[index]["MagDust"][:,5] - 0.87
     comm.Barrier()
     slot = "MagDust"
-    m_i = -20.0
-    m_f = -14.0
-    dm = 2.0
+    m_i = -9.0
+    m_f = -5.0
+    dm = 1.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
         mag  = m
