@@ -117,7 +117,7 @@ labellist = ["No suppression, stripping 0 (z = 8.40)",
              "Homogeneous, stripping 0 (z = 8.40)",
              "Homogeneous, stripping 1 (z = 8.40)",
              "Patchy suppression, stripping 0 (z = 8.17)",
-             "Patchy suppression, stripping 1 (z = 8.06)"]
+             "Patchy suppression, stripping 1 (z = 7.96)"]
 doubleflaglist =[0,0,0,0,0,0]
 plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.5)
 
