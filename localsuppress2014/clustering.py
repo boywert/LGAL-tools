@@ -85,7 +85,7 @@ def plot_xi(z):
         if not index in gal:
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-                if index[len(index-5):len(index)] == "fall":
+                if index[len(index)-5:len(index)] == "fall":
                     print index
     comm.Barrier()
     slot = "MagDust"
