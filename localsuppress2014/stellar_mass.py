@@ -103,7 +103,7 @@ def plot_z(z,models,ax,pos):
         bins = 40
         gal[index] = gal[index][numpy.where(((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
         
-        sum_baryons[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["Cumulative"])*1.e10/hubble_h))
+        sum_baryons[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h)**2)
         N[index] = numpy.histogram(numpy.log10((gal[index]["BulgeMass"]+gal[index]["DiskMass"])*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
