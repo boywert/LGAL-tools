@@ -39,7 +39,7 @@ def plot_size(ax,folder,pos):
         #labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         #ax.xaxis.set_ticklabels(labels)
     ax.set_xscale("log")
-    ax.set_yscale("log")
+    #ax.set_yscale("log")
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_*/\mathrm{M_\odot})$")
