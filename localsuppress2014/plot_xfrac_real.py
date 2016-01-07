@@ -122,10 +122,10 @@ doubleflaglist =[0,0,0,0,0,0]
 plot_reionized(nrow,ncol,filelist,labellist,doubleflaglist,0.5)
 
 # 70%
-filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.980.bin",
-            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.980.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.980.bin",
-            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.980.bin",
+filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfrac3d_7.960.bin",
+            "/scratch/01937/cs390/data/CSFR/no_reionization_infall/SEMNUM/1600.00/xfrac3d_7.960.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto/0/SEMNUM/720.00/xfrac3d_7.960.bin",
+            "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.960.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.760.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.391.bin"]
 labellist = ["No suppression, stripping 0 (z = 7.98)",
