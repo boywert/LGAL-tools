@@ -90,7 +90,7 @@ def plot_xi(z):
     comm.Barrier()
     slot = "MagDust"
     m_i = -20.0
-    m_f = -4.0
+    m_f = -14.0
     dm = 2.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
