@@ -8,7 +8,7 @@ rank = comm.Get_rank()
 def calNN(data,boxsize):
     if rank ==0:
         print "calculate NN"
-    N=50
+    N=20
     min = boxsize/306/2.
     max = boxsize/2.-1.
     npoint = len(data)
