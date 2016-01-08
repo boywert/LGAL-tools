@@ -128,10 +128,10 @@ filelist = ["/scratch/01937/cs390/data/CSFR/no_reionization/0/SEMNUM/720.00/xfra
             "/scratch/01937/cs390/data/CSFR/okamoto_infall/SEMNUM/1600.00/xfrac3d_7.960.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/720.00/xfrac3d_7.760.bin",
             "/scratch/01937/cs390/Hybrid/xfrac/1600.00/xfrac3d_7.391.bin"]
-labellist = ["No suppression, stripping 0 (z = 7.98)",
-             "No suppression, stripping 1 (z = 7.98)",
-             "Homogeneous, stripping 0 (z = 7.98)",
-             "Homogeneous, stripping 1 (z = 7.98)",
+labellist = ["No suppression, stripping 0 (z = 7.96)",
+             "No suppression, stripping 1 (z = 7.96)",
+             "Homogeneous, stripping 0 (z = 7.96)",
+             "Homogeneous, stripping 1 (z = 7.96)",
             "Patchy suppression, stripping 0 (z = 7.76)",
              "Patchy suppression, stripping 1 (z = 7.39)"]
 doubleflaglist =[0,0,0,0,0,0]
