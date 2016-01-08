@@ -132,32 +132,32 @@ def plot_z(z,models,ax,pos):
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     if pos == "r":
         ref = -1.9+.92*m200c[index]
-        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{0.9}$')
+        #ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{0.9}$')
         ref = -3.58+1.08*m200c[index]
-        ax.plot(m200c[index],ref,'k-.', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.1}$')
+        #ax.plot(m200c[index],ref,'k-.', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.1}$')
     else:
         ref = -4.1+1.2*m200c[index]
-        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
+        #ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
     leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
     if pos == "r":
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         ax.xaxis.set_ticklabels(labels)
-    ax.set_ylim([4,11])
+    ax.set_ylim([4,10])
     ax.set_xlim([8.25,11.5])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*}}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.text(0.9, 0.95, 'stripping 0',
+        ax.text(0.9, 0.9, 'stripping 0',
                 verticalalignment='bottom', horizontalalignment='right',
                 transform=ax.transAxes, fontsize=14)
-        ax.text(0.1, 0.95, 'z = '+str(int(float(z)+0.5)),
+        ax.text(0.1, 0.9, 'z = '+str(int(float(z)+0.5)),
                 verticalalignment='bottom', horizontalalignment='left',
                 transform=ax.transAxes, fontsize=14)
     else:
-        ax.text(0.9, 0.95, 'stripping 1',
+        ax.text(0.9, 0.9, 'stripping 1',
                 verticalalignment='bottom', horizontalalignment='right',
                 transform=ax.transAxes, fontsize=14)
 
