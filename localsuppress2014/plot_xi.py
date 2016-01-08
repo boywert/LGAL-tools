@@ -21,7 +21,7 @@ h_mass = 1.6737237e-27 #kg
 ranki = str(random.randint(0,1000000))
 os.system("mkdir -p ../tmp/"+ranki)
 pylab.rc('text', usetex=True)
-pylab.rc('lines', linewidth=2)
+pylab.rc('lines', linewidth=1)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 folder = "xi/"
@@ -40,22 +40,19 @@ def plot_size(ax,m,z,pos):
     ax.set_xlabel(r"$\xi(\mathrm{r})$")
     if pos%2 == 1:
         ax.set_ylabel(r"$\mathrm{r~[h^{-1}Mpc]}$")
-    if pos == "r":
-        leg = ax.legend(loc="lower right", handlelength = 7,ncol=1, fancybox=True, prop={'size':11})
+    if pos == "1":
+        leg = ax.legend(loc=" lower left", handlelength = 7,ncol=1, fancybox=True, prop={'size':11})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.95, 0.9, z+m,
+    ax.text(0.95, 0.9, z+","+m,
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=18)
-    if pos != "l":
-        ax.yaxis.set_ticklabels([])
-        labels = ["",r"$10^{0}$",r"$10^{1}$",r"$10^2$",r"$10^3$"]
-        ax.xaxis.set_ticklabels(labels)
 
     
 def main():
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16, 12))
     plt.subplots_adjust(wspace = 0)
+    plt.subplots_adjust(hspace = 0)
     ax1 = fig.add_subplot(221)
     ax2 = fig.add_subplot(222)
     ax3 = fig.add_subplot(223)
