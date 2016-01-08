@@ -91,7 +91,7 @@ def plot_xi(z):
     comm.Barrier()
     slot = "StellarMass"
     m_i = 6.0
-    m_f = 9.0
+    m_f = .0
     dm = 1.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
@@ -102,7 +102,7 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10)>mag) & (numpy.log10(gal[index][slot]*1e10)<mag1))]["Pos"]
+                data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
                 #data = gal[index][numpy.where((gal[index]["MagDust"][:,5]>mag) & (gal[index]["MagDust"][:,5]<mag1))]["Pos"]
             else:
                 data = None
