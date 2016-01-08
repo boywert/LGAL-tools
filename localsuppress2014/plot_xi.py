@@ -45,7 +45,7 @@ def plot_size(ax,m,z,pos):
         labels = ["",r"$0.1$",r"$1$",r"$10$",r"$100$",r"$1000$"]
         ax.yaxis.set_ticklabels(labels)
     if pos == 3:
-        labels = ["","0.1",r"$1$",r"$10$"]
+        labels = ["",r"$0.1$",r"$1$",r"$10$"]
         ax.xaxis.set_ticklabels(labels)
     if pos == 4:
         labels = ["","",r"$1$",r"$10$"]
@@ -59,10 +59,12 @@ def plot_size(ax,m,z,pos):
         ax.set_xlabel(r"$\mathrm{r~[h^{-1}Mpc]}$")
     if (pos== 2) | (pos==4):
         ax.yaxis.set_ticklabels([])
+    if (pos== 1) | (pos==2):
+        ax.xaxis.set_ticklabels([])
     ax.text(0.95, 0.5, r"$%2.1f < m_*/\mathrm{M_\odot} < %2.1f$" % (float(m),float(m)+1.),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=18)
-    ax.text(0.1, 1, r"$z = %d$" % (int(float(z)+0.5)),
+    ax.text(0.1, 0.1, "z = %d" % (int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=18)
 
