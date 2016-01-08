@@ -54,7 +54,7 @@ def plot_size(ax,m,z,pos):
 
     
 def main():
-    fig = plt.figure(figsize=(16, 6))
+    fig = plt.figure()
     plt.subplots_adjust(wspace = 0)
     ax1 = fig.add_subplot(221)
     ax2 = fig.add_subplot(222)
