@@ -91,7 +91,7 @@ def plot_xi(z):
     comm.Barrier()
     slot = "StellarMass"
     m_i = 6.0
-    m_f = .0
+    m_f = 8.0
     dm = 1.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
