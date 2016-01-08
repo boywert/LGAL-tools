@@ -1,7 +1,7 @@
 from mass_fn import *
 from globalconf import *
 import matplotlib
-matplotlib.use('Agg') 
+matplotlib.use('pdf') 
 import pylab
 import sys
 import numpy
@@ -21,12 +21,11 @@ h_mass = 1.6737237e-27 #kg
 ranki = str(random.randint(0,1000000))
 os.system("mkdir -p ../tmp/"+ranki)
 pylab.rc('text', usetex=True)
-pylab.rc('lines', linewidth=1)
+pylab.rc('lines', linewidth=1.5)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 folder = "xi/"
 def plot_size(ax,m,z,pos):    
-
     for i in range(len(model_names)):
         index = model_names[i]
         data = numpy.loadtxt(folder+"/StellarMass_"+index+"_"+m+"_"+z+".txt")
@@ -34,18 +33,37 @@ def plot_size(ax,m,z,pos):
 
 
     ax.set_xscale("log")
-    #ax.set_xlim([1e-1,100])
-    #ax.set_ylim([1e-2,1])
+    ax.set_xlim([1e-1,10])
+    ax.set_ylim([1e-1,1e3])
     ax.set_yscale("log")
-    ax.set_xlabel(r"$\xi(\mathrm{r})$")
-    if pos%2 == 1:
-        ax.set_ylabel(r"$\mathrm{r~[h^{-1}Mpc]}$")
-    if pos == "1":
-        leg = ax.legend(loc=" lower left", handlelength = 7,ncol=1, fancybox=True, prop={'size':11})
+    
+    
+    if pos == 1:
+        labels = ["","", r"$1$",r"$10$",r"$100$",r"$1000$"]
+        ax.yaxis.set_ticklabels(labels)
+    if pos == 3:
+        labels = ["",r"$0.1$",r"$1$",r"$10$",r"$100$",r"$1000$"]
+        ax.yaxis.set_ticklabels(labels)
+    if pos == 3:
+        labels = ["","0.1",r"$1$",r"$10$"]
+        ax.xaxis.set_ticklabels(labels)
+    if pos == 4:
+        labels = ["","",r"$1$",r"$10$"]
+        ax.xaxis.set_ticklabels(labels)
+    if pos == 1:
+        leg = ax.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':13})
         leg.get_frame().set_linewidth(0)
-
-    ax.text(0.95, 0.9, z+","+m,
+    if (pos== 1) | (pos==3):
+        ax.set_ylabel(r"$\xi(\mathrm{r})$")
+    if (pos== 3) | (pos==4):
+        ax.set_xlabel(r"$\mathrm{r~[h^{-1}Mpc]}$")
+    if (pos== 2) | (pos==4):
+        ax.yaxis.set_ticklabels([])
+    ax.text(0.95, 0.5, r"$%2.1f < m_*/\mathrm{M_\odot} < %2.1f$" % (float(m),float(m)+1.),
             verticalalignment='bottom', horizontalalignment='right',
+            transform=ax.transAxes, fontsize=18)
+    ax.text(0.1, 1, r"$z = %d$" % (int(float(z)+0.5)),
+            verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=18)
 
     

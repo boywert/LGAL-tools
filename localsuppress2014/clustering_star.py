@@ -90,8 +90,8 @@ def plot_xi(z):
                     gal[index]["MagDust"][:,5] = gal[index]["MagDust"][:,5] - 0.87
     comm.Barrier()
     slot = "StellarMass"
-    m_i = 5.5
-    m_f = 11.5
+    m_i = 6.
+    m_f = 12.
     dm = 1.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
