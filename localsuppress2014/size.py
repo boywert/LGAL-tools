@@ -47,7 +47,7 @@ def plot_size(ax,folder,pos):
     if pos == "l":
         ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
     if pos == "r":
-        leg = ax.legend(loc="lower right", handlelength = 7,ncol=1, fancybox=True, prop={'size':11})
+        leg = ax.legend(loc="lower right", handlelength = 7,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
 
     ax.text(0.95, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
@@ -60,7 +60,7 @@ def plot_size(ax,folder,pos):
 
     
 def main():
-    fig = plt.figure(figsize=(24, 6))
+    fig = plt.figure(figsize=(12, 3))
     plt.subplots_adjust(wspace = 0)
     ax1 = fig.add_subplot(131)
     ax2 = fig.add_subplot(132)
