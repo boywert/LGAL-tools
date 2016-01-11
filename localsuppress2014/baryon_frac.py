@@ -107,7 +107,9 @@ def plot_z(z,models,ax,pos):
         for i in range(len(firstgal)):
             if nTreeGals[index][i] > 0:
                 print total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
-                cenmass[i] = gal[index]["Mvir"][firstgal[i]:firstgal[i]+nTreeGals[index][i]][numpy.where(gal[index][firstgal[i]:firstgal[i]+nTreeGals[index]["Type"]] == 0)]
+                group = gal[index][firstgal[i]:firstgal[i]+nTreeGals[index][i]]
+                print group["Type"]
+                #[numpy.where(gal[index][firstgal[i]:firstgal[i]+nTreeGals[index]["Type"]] == 0)]
                 total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
                 print ">>",total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
                 print cenmass[i]
