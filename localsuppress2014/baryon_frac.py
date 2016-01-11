@@ -105,7 +105,8 @@ def plot_z(z,models,ax,pos):
         total_baryon = numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]+gal[index]["ICM"]
         for i in range(len(firstgal)):
             if nTreeGals[index][i] > 0:
-                total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
+                print total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
+                #total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
         sum_baryons[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
