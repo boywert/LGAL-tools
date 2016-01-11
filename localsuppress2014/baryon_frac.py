@@ -100,12 +100,12 @@ def plot_z(z,models,ax,pos):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (7.5,11.5)
         bins = 40
-        total_baryon = numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]
+        total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
         firstgal = numpy.where(gal[index]["Type"] == 0)
         cenmass = numpy.zeros(len(firstgal))
         for i in range(len(firstgal)-1):
             cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
-        cenmass[len(firstgal)-1] =  numpy.sum(total_baryon[firstgal[i]:nGals[index]])
+        cenmass[len(firstgal)-1] =  numpy.sum(total_baryon[firstgal[i]:len(gal[index])])
         cenhalomass = gal[index]["Mvir"][firstgal]
         #gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
 
