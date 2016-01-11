@@ -104,9 +104,10 @@ def plot_z(z,models,ax,pos):
         firstgal = numpy.where(gal[index]["Type"] == 0)
         cenmass = numpy.zeros(len(firstgal))
         for i in range(len(firstgal)-1):
+            print total_baryon[firstgal[i]:firstgal[i+1]]
             cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
         cenhalomass = gal[index]["Mvir"][firstgal]
-        print cenmass/cenhalomass
+        print cenmass
         #gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
 
         # for i in range(len(firstgal)):
