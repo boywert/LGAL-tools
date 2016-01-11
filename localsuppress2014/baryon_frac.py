@@ -101,10 +101,10 @@ def plot_z(z,models,ax,pos):
         rangen = (7.5,11.5)
         bins = 40
         total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
-        firstgal = numpy.where(gal[index]["Type"] == 0)
+        firstgal = numpy.where(gal[index]["Type"] == 0)[0]
         cenmass = numpy.zeros(len(firstgal))
         for i in range(len(firstgal)-1):
-            print firstgal[i],"",firstgal[i+1]
+            print firstgal[i],firstgal[i+1]
             print total_baryon[firstgal[i]:firstgal[i+1]]
             cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
         cenhalomass = gal[index]["Mvir"][firstgal]
