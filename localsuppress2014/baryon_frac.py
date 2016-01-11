@@ -100,24 +100,27 @@ def plot_z(z,models,ax,pos):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (7.5,11.5)
         bins = 40
+        total_baryon = numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]
         firstgal = numpy.where(gal[index]["Type"] == 0)
-        print firstgal
-        exit()
         cenmass = numpy.zeros(len(firstgal))
-        gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
-        total_baryon = numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]+gal[index]["ICM"]
-        for i in range(len(firstgal)):
-            print nTreeGals[index][i]
-            if nTreeGals[index][i] > 0:
-                print total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
-                group = gal[index][firstgal[i]:firstgal[i]+nTreeGals[index][i]]
-                print group["Type"]
-                #[numpy.where(gal[index][firstgal[i]:firstgal[i]+nTreeGals[index]["Type"]] == 0)]
-                total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
-                print ">>",total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
-        sum_baryons[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165)**2)
-        N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
+        for i in range(len(firstgal)-1):
+            cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
+        cenmass[len(firstgal)-1] =  numpy.sum(total_baryon[firstgal[i]:nGals[index]])
+        cenhalomass = gal[index]["Mvir"][firstgal]
+        #gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
+
+        # for i in range(len(firstgal)):
+        #     print nTreeGals[index][i]
+        #     if nTreeGals[index][i] > 0:
+        #         print total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
+        #         group = gal[index][firstgal[i]:firstgal[i]+nTreeGals[index][i]]
+        #         print group["Type"]
+        #         #[numpy.where(gal[index][firstgal[i]:firstgal[i]+nTreeGals[index]["Type"]] == 0)]
+        #         total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
+        #         print ">>",total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]]
+        sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
+        N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
             m200c[index].append(0.5*(sum_baryons[index][1][i]+sum_baryons[index][1][i+1]))
