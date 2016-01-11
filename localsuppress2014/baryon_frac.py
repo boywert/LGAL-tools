@@ -107,7 +107,7 @@ def plot_z(z,models,ax,pos):
             if nTreeGals[index][i] > 0:
                 total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
         sum_baryons[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firs]/gal[index][firstgal]["Mvir"]/0.165)**2)
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
