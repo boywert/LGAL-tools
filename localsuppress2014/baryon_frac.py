@@ -106,8 +106,7 @@ def plot_z(z,models,ax,pos):
         for i in range(len(firstgal)-1):
             cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
         cenhalomass = gal[index]["Mvir"][firstgal]
-        print cenhalomass
-        print cenmass
+        print cenmass/cenhalomass
         #gal[index] = gal[index][numpy.where((gal[index]["Mvir"] >0.))]
 
         # for i in range(len(firstgal)):
@@ -134,7 +133,6 @@ def plot_z(z,models,ax,pos):
         mean = sum_baryons[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
-        print cond
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
