@@ -98,8 +98,6 @@ def plot_z(z,models,ax,pos):
         index = models.model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-            print nTreeGals[index]
-            exit()
         rangen = (7.5,11.5)
         bins = 40
         firstgal = numpy.cumsum(nTreeGals[index])-nTreeGals[index]        
