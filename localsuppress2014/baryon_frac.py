@@ -100,14 +100,14 @@ def plot_z(z,models,ax,pos):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (7.5,11.5)
         bins = 40
-        firstgal = numpy.cumsum(nTreeGals[index])-nTreeGals[index]
-        
+        firstgal = numpy.cumsum(nTreeGals[index])-nTreeGals[index]        
         gal[index] = gal[index][numpy.where((gal[index]["HaloM_Crit200"] >0.))]
         total_baryon = numpy.float64(1)*gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]+gal[index]["ICM"]
         for i in range(len(firstgal)):
+            print firstgal[i],nTreeGals[index][i]
             total_baryon[firstgal[i]] = numpy.sum(total_baryon[firstgal[i]:firstgal[i]+nTreeGals[index][i]])
         sum_baryons[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firstgal]/gal[index][firstgal]["Mvir"]/0.165)**2)
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(gal[index][firstgal]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins,weights=(total_baryon[firs]/gal[index][firstgal]["Mvir"]/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(gal[index]["Mvir"]*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
@@ -165,7 +165,7 @@ def main():
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
     plot_z(zi,model2,ax2,"r")
-    fig.savefig("Total_Baryons_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("Baryons_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
 if __name__=="__main__":
