@@ -9,7 +9,7 @@ import os
 import matplotlib.pyplot as plt
 os.system("cp dummy_dtype.py LGalaxyStruct.py")
 import LGalaxyStruct
-import add_observations
+#import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
