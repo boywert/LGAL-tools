@@ -84,6 +84,7 @@ def plot_smf():
    
     for i in range(len(model_names)):
         index = model_names[i]
+        print index
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e2,mass_max=1e9,nbins=40)
