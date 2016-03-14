@@ -23,8 +23,7 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False    
-    filter['DiskMass'] = True
-    filter['BulgeMass'] = True
+    filter['StellarMass'] = True
     filter['Mvir'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
@@ -93,9 +92,8 @@ def plot_smf():
     ax = fig.add_subplot(1,1,1)
     for i in range(len(model_names)):
         index = model_names[i]
-        print (gal[index]["DiskMass"]+gal[index]["BulgeMass"])
-        print gal[index]["Mvir"]
-        ax.scatter(numpy.arange(len(gal[index]["Mvir"])),1.e10*(gal[index]["DiskMass"]+gal[index]["BulgeMass"]))
+        print gal[index]["StellarMass"][numpy.where(gal[index]["StellarMass"] > 0.0)]
+        ax.scatter(numpy.arange(len(gal[index]["Mvir"])),1.e10*(gal[index]["StellarMass"]))
     ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
     ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_h/M_\odot]}$")
     ax.set_yscale("log")
