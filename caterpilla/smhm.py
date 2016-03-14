@@ -98,7 +98,7 @@ def plot_smf():
     ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_h/M_\odot]}}$")
     ax.set_yscale("log")
     ax.set_xscale("log")
-    fig.savefig("SMHM.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("SMHM.png",bbox_inches='tight',pad_inches=0)
     plt.close(fig)    
     
 def main():
