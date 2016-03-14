@@ -93,6 +93,7 @@ def plot_smf():
     ax = fig.add_subplot(1,1,1)
     for i in range(len(model_names)):
         index = model_names[i]
+        print gal[index]["Mvir"]
         ax.scatter(gal[index]["Mvir"]*1.e10,1.e10*(gal[index]["DiskMass"]+gal[index]["BulgeMass"]))
     ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
     ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_h/M_\odot]}$")
