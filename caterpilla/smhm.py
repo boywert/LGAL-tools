@@ -95,7 +95,7 @@ def plot_smf():
         index = model_names[i]
         ax.scatter(gal[index]["Mvir"],gal[index]["DiskMass"]+gal[index]["BulgeMass"])
     ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
-    ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_h/M_\odot]}}$")
+    ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_h/M_\odot]}$")
     ax.set_yscale("log")
     ax.set_xscale("log")
     fig.savefig("SMHM.png",bbox_inches='tight',pad_inches=0)
