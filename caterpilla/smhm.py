@@ -94,7 +94,7 @@ def plot_smf():
         index = model_names[i]
         pgal = numpy.where(gal[index]["StellarMass"]>0.)
         ax.scatter(1e10*gal[index]["Mvir"][pgal],1e10*gal[index]["StellarMass"][pgal])
-    ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
+    ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_{DM}/M_\odot]}$")
     ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_h/M_\odot]}$")
     ax.set_yscale("log")
     ax.set_xscale("log")
