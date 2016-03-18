@@ -7,7 +7,7 @@ import sys
 import numpy
 import os
 import matplotlib.pyplot as plt
-os.system("cp dummy_dtype.py LGalaxyStruct.py")
+os.system("touch LGalaxyStruct.py")
 import LGalaxyStruct
 #import add_observations
 sys.path.append("../python/")

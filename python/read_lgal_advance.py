@@ -96,9 +96,22 @@ def read_lgal_input_tree(folder,file_prefix,firstfile,lastfile,filter_arr,verbos
 def read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose):
     nTrees = 0
     nHalos = 0
-    nTreeHalos = numpy.array([],dtype=numpy.int32)
-    output_Halos = numpy.array([],dtype=struct_lgalinput)
-    output_HaloIDs = numpy.array([],dtype=struct_lgaldbidsinput)
+    tree_index = numpy.zeros(lastfile-firstfile+1,dtype=numpy.int32)
+    halo_index = numpy.zeros(lastfile-firstfile+1,dtype=numpy.int32)
+    i = 0
+    for ifile in range(firstfile,lastfile+1):
+        filename = folder+'/trees_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
+        f = open(filename,"rb")
+        tree_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
+        halo_index[i] = numpy.fromfile(f,numpy.int32,1)[0]
+        f.close()
+        i+=1
+    tree_findex = numpy.cumsum(tree_index)-tree_index
+    halo_findex = numpy.cumsum(halo_index)-halo_index
+    
+    nTreeHalos = numpy.array(numpy.sum(tree_index),dtype=numpy.int32)
+    output_Halos = numpy.array(numpy.sum(halo_index),dtype=struct_lgalinput)
+    output_HaloIDs = numpy.array(numpy.sum(halo_index),dtype=struct_lgaldbidsinput)
     for ifile in range(firstfile,lastfile+1):
         filename = folder+'/trees_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
         f = open(filename,"rb")
@@ -108,15 +121,15 @@ def read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose
         nHalos += this_nHalos
         if(verbose):
             print "File ", ifile," nHalos = ",this_nHalos
-        addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
-        nTreeHalos = numpy.append(nTreeHalos,addednTreeHalos)
-        this_addedHalos = numpy.fromfile(f,struct_lgalinput,this_nHalos)
-        output_Halos = numpy.append(output_Halos,this_addedHalos)
+        #addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
+        nTreeHalos[tree_findex[i]:tree_findex[i]+tree_index[i]] = numpy.fromfile(f,numpy.int32,this_nTrees)
+        #this_addedHalos = numpy.fromfile(f,struct_lgalinput,this_nHalos)
+        output_Halos[halo_findex[i]:halo_findex[i]+halo_index[i]] = numpy.fromfile(f,struct_lgalinput,this_nHalos)
         f.close()
         filename = folder+'/tree_dbids_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
         f = open(filename,"rb")
-        this_addedHalos = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
-        output_HaloIDs = numpy.append(output_HaloIDs,this_addedHalos)
+        #this_addedHalos = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
+        output_HaloIDs[halo_findex[i]:halo_findex[i]+halo_index[i]] = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
         f.close()
     return (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs)
 
