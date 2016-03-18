@@ -109,9 +109,9 @@ def read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose
     tree_findex = numpy.cumsum(tree_index)-tree_index
     halo_findex = numpy.cumsum(halo_index)-halo_index
     
-    nTreeHalos = numpy.array(numpy.sum(tree_index),dtype=numpy.int32)
-    output_Halos = numpy.array(numpy.sum(halo_index),dtype=struct_lgalinput)
-    output_HaloIDs = numpy.array(numpy.sum(halo_index),dtype=struct_lgaldbidsinput)
+    nTreeHalos = numpy.empty(numpy.sum(tree_index),dtype=numpy.int32)
+    output_Halos = numpy.empty(numpy.sum(halo_index),dtype=struct_lgalinput)
+    output_HaloIDs = numpy.empty(numpy.sum(halo_index),dtype=struct_lgaldbidsinput)
     for ifile in range(firstfile,lastfile+1):
         filename = folder+'/trees_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
         f = open(filename,"rb")
