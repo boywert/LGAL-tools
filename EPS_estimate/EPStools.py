@@ -1,6 +1,8 @@
 import matplotlib as plt
 import commah
 plt.use("pgf")
+pgf_with_rc_fonts = {"pgf.texsystem": "pdflatex"}
+plt.rcParams.update(pgf_with_rc_fonts)
 from numpy import *
 from pylab import *
 from folder import *
