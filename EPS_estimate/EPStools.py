@@ -165,16 +165,14 @@ def mz_Correa2015(m0,z0,zlist,boxsize):
 def main(argv):
     z_list_lgal = loadtxt(snapfile)
     lastsnap = len(z_list_lgal)-1
-    firstfile  = 0
-    lastfile = 7
     gadget_m_conv = 1.e10
     hubble_h = 0.7
-    m6 = [9.,10.0,10.5,11.0,11.5]
+    #m6 = [9.,10.0,10.5,11.0,11.5]
     color = ['r','r','r','r','r']
     minz = z
     maxz = 15.
     dz = 0.25
-    limit = 300
+    #limit = 300
     zlist = arange(minz,maxz,dz)
     rc('text', usetex=True)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
