@@ -1,6 +1,6 @@
 import matplotlib as plt
 import commah
-#plt.use("Agg")
+plt.use("Agg")
 from numpy import *
 from pylab import *
 from folder import *
@@ -169,7 +169,7 @@ def main(argv):
     hubble_h = 0.7
     #m6 = [9.,10.0,10.5,11.0,11.5]
     color = ['r','r','r','r','r']
-    minz = z
+    minz = z_start
     maxz = 15.
     dz = 0.25
     #limit = 300
@@ -186,7 +186,7 @@ def main(argv):
         minmass = t_m6-2.
         mbin = len(zlist)
         dm = (maxmass-minmass)/mbin
-        mz = commah.run('planck15',zi=z,Mi=10.**t_m6,z=zlist)['Mz'][0]
+        mz = commah.run('planck15',zi=z_start,Mi=10.**t_m6,z=zlist)['Mz'][0]
         mass = zeros(len(z_list_lgal),dtype=float64)
         count = zeros(len(z_list_lgal),dtype=int64)
         mask = ones(len(z_list_lgal),dtype=int32)
