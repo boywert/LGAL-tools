@@ -1,6 +1,6 @@
 import matplotlib as plt
 import commah
-plt.use("Agg")
+plt.use("pgf")
 from numpy import *
 from pylab import *
 from folder import *
