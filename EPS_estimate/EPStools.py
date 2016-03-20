@@ -3,6 +3,7 @@ import commah
 #plt.use("Agg")
 from numpy import *
 from pylab import *
+from folder import *
 from matplotlib.colors import LogNorm
 import time
 import sys
@@ -162,18 +163,13 @@ def mz_Correa2015(m0,z0,zlist,boxsize):
 #     return 0
 
 def main(argv):
-    z = 6.0
-    boxsize = 112.0 #Mpc/h
-    #folder = "/scratch/01937/cs390/test_4_1440_112/trees/treedata/"
-    folder = "/Volumes/Backup/Work/test_4_1440_112/treedata/"
-    #snapfile = "/scratch/01937/cs390/test_4_1440_112/trees/snap_z3.txt"
-    snapfile = "/Volumes/Backup/Work/test_4_1440_112/snap_z3.txt"
     z_list_lgal = loadtxt(snapfile)
+    lastsnap = len(z_list_lgal)-1
     firstfile  = 0
     lastfile = 7
     gadget_m_conv = 1.e10
     hubble_h = 0.7
-    m6 = [9.5,10.,10.5,11.0,11.5]
+    m6 = [10.,10.5,11.0,11.5]
     color = ['r','r','r','r','r']
     minz = 6.
     maxz = 15.
@@ -183,6 +179,7 @@ def main(argv):
     rc('text', usetex=True)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
+    lastleafindex = numpy.cumsum(nTreeHalos)
     for j in range(len(m6)):
         fig = figure()
         ax = fig.add_subplot(111)
@@ -199,37 +196,41 @@ def main(argv):
         l_m = t_m6-0.1
         r_m = t_m6+0.1
         stsn = 1000
-        r_list = numpy.where((log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) <=r_m) & (log10(output_Halos[rootindex]['M_Crit200']*gadget_m_conv) >=l_m) & (output_HaloIDs[rootindex]["HaloID"] == output_HaloIDs[rootindex]["FirstHaloInFOFgroup"]))[0]
-        for i in r_list:
-            root = rootindex[i]
-            M0 = output_Halos[root]["M_Crit200"]*Gadget2Msun
-            nexthaloid = output_Halos[root]['FirstProgenitor']
-            if (nexthaloid > -1) & (output_Halos[root]['Len'] >= limit):
-                bin_m = (log10(M0) - minmass)/dm
-                mass[output_Halos[root]["SnapNum"]] += M0
-                count[output_Halos[root]["SnapNum"]] += 1
-                if (bin_m < mbin) & (bin_m >= 0):
-                    z = z_list_lgal[output_Halos[root]["SnapNum"]]
-                    bin_z = (z-minz)/dz
-                    if (z >= minz) & (z < maxz):
-                        count_2d[bin_m,bin_z] += 1
-            while nexthaloid > -1:
-                nexthalo = output_Halos[root+nexthaloid]
-                if nexthalo['Len'] >= limit:
-                    mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun
-                    bin_m = (log10(nexthalo["M_Crit200"]*Gadget2Msun) - minmass)/dm
-                    count[nexthalo["SnapNum"]] += 1
+        for ii in range(len(nTreeHalos)):
+            listrange = numpy.arange(rootindex[ii],lastleafindex[ii])
+            r_list =  numpy.where((log10(output_Halos[listrange]['M_Crit200']*gadget_m_conv) <=r_m) & (log10(output_Halos[listrange]['M_Crit200']*gadget_m_conv) >=l_m) & (output_Halos[listrange]['SnapNum']==lastsnap) & (output_HaloIDs[listrange]["HaloID"] == output_HaloIDs[listrange]["FirstHaloInFOFgroup"]))[0]
+            #print "r_list",listrange[r_list]
+            for i in r_list:
+                root = listrange[i]
+                M0 = output_Halos[root]["M_Crit200"]*Gadget2Msun
+                nexthaloid = output_Halos[root]['FirstProgenitor']
+                if (nexthaloid > -1) & (output_Halos[root]['Len'] >= limit):
+                    bin_m = (log10(M0) - minmass)/dm
+                    mass[output_Halos[root]["SnapNum"]] += M0
+                    count[output_Halos[root]["SnapNum"]] += 1
                     if (bin_m < mbin) & (bin_m >= 0):
-                         z = z_list_lgal[nexthalo["SnapNum"]]
-                         bin_z = (z-minz)/dz
-                         if (z >= minz) & (z < maxz):
-                             count_2d[bin_m,bin_z] += 1
-                    nexthaloid = nexthalo['FirstProgenitor']
-                    stsn = min(stsn,nexthalo["SnapNum"])
-                else:
-                    nexthaloid = -1
+                        z = z_list_lgal[output_Halos[root]["SnapNum"]]
+                        bin_z = (z-minz)/dz
+                        if (z >= minz) & (z < maxz):
+                            count_2d[bin_m,bin_z] += 1
+                while nexthaloid > -1:
+                    nexthalo = output_Halos[rootindex[ii]+nexthaloid]
+                    if nexthalo['Len'] >= limit:
+                        mass[nexthalo["SnapNum"]] += nexthalo["M_Crit200"]*Gadget2Msun
+                        bin_m = (log10(nexthalo["M_Crit200"]*Gadget2Msun) - minmass)/dm
+                        count[nexthalo["SnapNum"]] += 1
+                        if (bin_m < mbin) & (bin_m >= 0):
+                            z = z_list_lgal[nexthalo["SnapNum"]]
+                            bin_z = (z-minz)/dz
+                            if (z >= minz) & (z < maxz):
+                                count_2d[bin_m,bin_z] += 1
+                        nexthaloid = nexthalo['FirstProgenitor']
+                        stsn = min(stsn,nexthalo["SnapNum"])
+                    else:
+                        nexthaloid = -1
         #mask = count > count[len(z_list_lgal)-1]/2
         #print count_2d
+        print count_2d
         print "min snap",stsn
         mass = mass*mask
         ax.plot(z_list_lgal,log10(mass/count), color=color[j],linestyle='--',label="Average ("+str(limit)+"+ particles)")
