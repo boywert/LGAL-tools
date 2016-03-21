@@ -176,7 +176,7 @@ def main(argv):
     dz = 0.25
     #limit = 300
     zlist = arange(minz,maxz,dz)
-    rc('text', usetex=True)
+    #rc('text', usetex=True)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     lastleafindex = numpy.cumsum(nTreeHalos)
