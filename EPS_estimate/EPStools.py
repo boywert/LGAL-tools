@@ -265,8 +265,8 @@ def main(argv):
         ax.plot(z_list_lgal,log10(mass/count), color='k',linestyle='-',label="Average ("+str(limit)+"+ particles,50\% limit)")
         extent = [minz,maxz,minmass,maxmass]
         #print extent
-        #im = ax.imshow(count_2d,origin='lower',aspect='auto',norm=LogNorm(),extent=extent,interpolation='none')
-        #fig.colorbar(im,ax=ax)
+        im = ax.imshow(count_2d,origin='lower',aspect='auto',norm=LogNorm(),extent=extent,interpolation='none')
+        fig.colorbar(im,ax=ax)
         ax.plot(zlist,log10(mz),color=color[j],linestyle = '-',label="Correa et al. (2015)")
         ax.set_xlim([minz,maxz])
         ax.set_ylim([minmass,maxmass])
