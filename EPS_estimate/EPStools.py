@@ -1,6 +1,6 @@
 import matplotlib as plt
 from numpy import *
-#plt.use("pgf")
+plt.use("pgf")
 def figsize(scale):
     fig_width_pt = 469.755                          # Get this from LaTeX using \the\textwidth
     inches_per_pt = 1.0/72.27                       # Convert pt to inch
@@ -274,7 +274,7 @@ def main(argv):
         ax.set_ylabel(r"$\log(h M_{200c}/M_\odot)$")
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
-        #fig.savefig(str(t_m6)+"_"+str(limit)+"p.pgf")
+        fig.savefig(str(t_m6)+"_"+str(limit)+"p.pgf")
         #fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
         #close(fig)
         #ax.imshow(count_2d,origin='lower')
