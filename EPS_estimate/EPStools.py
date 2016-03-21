@@ -11,7 +11,7 @@ def figsize(scale):
     return fig_size
 
 pgf_with_latex = {                      # setup matplotlib to use latex for output
-    "pgf.texsystem": "pdflatex",        # change this if using xetex or lautex
+    "pgf.texsystem": "/work/01937/cs390/local/bin/x86_64-unknown-linux-gnu/xetex",        # change this if using xetex or lautex
     "text.usetex": True,                # use LaTeX to write all text
     "font.family": "serif",
     "font.serif": [],                   # blank entries should cause plots to inherit fonts from the document
