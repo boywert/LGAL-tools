@@ -11,23 +11,23 @@ def figsize(scale):
     return fig_size
 
 pgf_with_latex = {                      # setup matplotlib to use latex for output
-"pgf.texsystem": "pdflatex",        # change this if using xetex or lautex
-"text.usetex": True,                # use LaTeX to write all text
-"font.family": "serif",
-"font.serif": [],                   # blank entries should cause plots to inherit fonts from the document
-"font.sans-serif": [],
-"font.monospace": [],
-"axes.labelsize": 10,               # LaTeX default is 10pt font.
-"text.fontsize": 10,
-"legend.fontsize": 8,               # Make the legend/label fonts a little smaller
-"xtick.labelsize": 8,
-"ytick.labelsize": 8,
-"figure.figsize": figsize(0.9),     # default fig size of 0.9 textwidth
-"pgf.preamble": [
-r"\usepackage[utf8x]{inputenc}",    # use utf8 fonts becasue your computer can handle it :)
-r"\usepackage[T1]{fontenc}",        # plots will be generated using this preamble
-        ]
-    }
+    "pgf.texsystem": "pdflatex",        # change this if using xetex or lautex
+    "text.usetex": True,                # use LaTeX to write all text
+    "font.family": "serif",
+    "font.serif": [],                   # blank entries should cause plots to inherit fonts from the document
+    "font.sans-serif": [],
+    "font.monospace": [],
+    "axes.labelsize": 10,               # LaTeX default is 10pt font.
+    "text.fontsize": 10,
+    "legend.fontsize": 8,               # Make the legend/label fonts a little smaller
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "figure.figsize": figsize(0.9),     # default fig size of 0.9 textwidth
+    "pgf.preamble": [
+        r"\usepackage[utf8x]{inputenc}",    # use utf8 fonts becasue your computer can handle it :)
+        r"\usepackage[T1]{fontenc}",        # plots will be generated using this preamble
+    ]
+}
 plt.rcParams.update(pgf_with_latex)
 import commah
 from pylab import *
@@ -274,8 +274,9 @@ def main(argv):
         ax.set_ylabel(r"$\log(h M_{200c}/M_\odot)$")
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
+        fig.savefig(str(t_m6)+"_"+str(limit)+"p.pgf")
         fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
-        #close(fig)
+        close(fig)
         #ax.imshow(count_2d,origin='lower')
         #fig.show()
     return 0
