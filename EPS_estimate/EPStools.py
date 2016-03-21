@@ -278,7 +278,7 @@ def main(argv):
         #fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
         #close(fig)
         #ax.imshow(count_2d,origin='lower')
-        fig.show()
+        #fig.show()
     return 0
 
 if __name__ == "__main__":
