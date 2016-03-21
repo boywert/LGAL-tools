@@ -248,7 +248,7 @@ def main(argv):
         ax.set_ylabel(r"$\log(h M_{200c}/M_\odot)$")
         leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
-        fig.savefig(str(t_m6)+"_"+str(limit)+"p.png")
+        fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
         #close(fig)
         #ax.imshow(count_2d,origin='lower')
         #fig.show()
