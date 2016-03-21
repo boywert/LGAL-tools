@@ -1,6 +1,6 @@
 import matplotlib as plt
 from numpy import *
-plt.use("pgf")
+plt.use("Agg")
 def figsize(scale):
     fig_width_pt = 469.755                          # Get this from LaTeX using \the\textwidth
     inches_per_pt = 1.0/72.27                       # Convert pt to inch
