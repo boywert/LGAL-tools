@@ -259,7 +259,7 @@ def main(argv):
         print count_2d
         print "min snap",stsn
         mass = mass*mask
-        ax.plot(z_list_lgal,log10(mass/count), color=color[j],linestyle='--',label="Average ("+str(limit)+"+ particles)")
+        ax.plot(z_list_lgal,log10(mass/count), color='r',linestyle='--',label="Average ("+str(limit)+"+ particles)")
         mask = count > count[len(z_list_lgal)-1]/2
         mass = mass*mask
         ax.plot(z_list_lgal,log10(mass/count), color='k',linestyle='-',label="Average ("+str(limit)+"+ particles,50\% limit)")
