@@ -196,7 +196,7 @@ def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
     #m6 = [9.,10.0,10.5,11.0,11.5]
-    color = ['r','r','r','r','r']
+    color = 'r'#['r''r','r','r','r','r']
     minz = z_start
     maxz = 15.
     dz = 0.25
@@ -267,7 +267,7 @@ def main(argv):
         #print extent
         im = ax.imshow(count_2d,origin='lower',aspect='auto',norm=LogNorm(),extent=extent,interpolation='none')
         fig.colorbar(im,ax=ax)
-        ax.plot(zlist,log10(mz),color=color[j],linestyle = '-',label="Correa et al. (2015)")
+        ax.plot(zlist,log10(mz),color='r',linestyle = '-',label="Correa et al. (2015)")
         ax.set_xlim([minz,maxz])
         ax.set_ylim([minmass,maxmass])
         ax.set_xlabel(r"$z$")
