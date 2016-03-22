@@ -31,7 +31,7 @@ pgf_with_latex = {                      # setup matplotlib to use latex for outp
 plt.rcParams.update(pgf_with_latex)
 import commah
 from pylab import *
-from folder import *
+#from folder import *
 from matplotlib.colors import LogNorm
 import time
 import sys
@@ -282,4 +282,7 @@ def main(argv):
     return 0
 
 if __name__ == "__main__":
+    from folder import *
+    main(sys.argv)
+    from folder2 import *
     main(sys.argv)
