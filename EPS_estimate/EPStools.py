@@ -256,32 +256,33 @@ def main(argv):
                         nexthaloid = -1
         #mask = count > count[len(z_list_lgal)-1]/2
         #print count_2d
-        print count_2d
+        
         numpy.savetxt("count_2D_"+str(t_m6)+"_"+str(limit)+"p.txt",count_2d)
         numpy.savetxt("summass_"+str(t_m6)+"_"+str(limit)+"p.txt",mass)
         numpy.savetxt("countcol_"+str(t_m6)+"_"+str(limit)+"p.txt",count)
         print "min snap",stsn
         #mass = mass*mask
-        ax.plot(z_list_lgal,log10(mass/count), color='r',linestyle='--',label="Average ("+str(limit)+"+ particles)")
-        mask = count > count[len(z_list_lgal)-1]/2
-        mass = mass*mask
-        ax.plot(z_list_lgal,log10(mass/count), color='k',linestyle='-',label="Average ("+str(limit)+"+ particles,50\% limit)")
-        extent = [minz,maxz,minmass,maxmass]
-        #print extent
-        im = ax.imshow(count_2d,origin='lower',aspect='auto',norm=LogNorm(),extent=extent,interpolation='none')
-        fig.colorbar(im,ax=ax)
-        ax.plot(zlist,log10(mz),color='r',linestyle = '-',label="Correa et al. (2015)")
-        ax.set_xlim([minz,maxz])
-        ax.set_ylim([minmass,maxmass])
-        ax.set_xlabel(r"$z$")
-        ax.set_ylabel(r"$\log(h M_{200c}/M_\odot)$")
-        leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-        leg.get_frame().set_linewidth(0)
-        #fig.savefig(str(t_m6)+"_"+str(limit)+"p.pgf")
-        fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
-        #close(fig)
-        #ax.imshow(count_2d,origin='lower')
-        #fig.show()
+        if numpy.sum(count) > 0:
+            ax.plot(z_list_lgal,log10(mass/count), color='r',linestyle='--',label="Average ("+str(limit)+"+ particles)")
+            mask = count > count[len(z_list_lgal)-1]/2
+            mass = mass*mask
+            ax.plot(z_list_lgal,log10(mass/count), color='k',linestyle='-',label="Average ("+str(limit)+"+ particles,50\% limit)")
+            extent = [minz,maxz,minmass,maxmass]
+            #print extent
+            im = ax.imshow(count_2d,origin='lower',aspect='auto',norm=LogNorm(),extent=extent,interpolation='none')
+            fig.colorbar(im,ax=ax)
+            ax.plot(zlist,log10(mz),color='r',linestyle = '-',label="Correa et al. (2015)")
+            ax.set_xlim([minz,maxz])
+            ax.set_ylim([minmass,maxmass])
+            ax.set_xlabel(r"$z$")
+            ax.set_ylabel(r"$\log(h M_{200c}/M_\odot)$")
+            leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+            leg.get_frame().set_linewidth(0)
+            #fig.savefig(str(t_m6)+"_"+str(limit)+"p.pgf")
+            fig.savefig(str(t_m6)+"_"+str(limit)+"p.pdf")
+            close(fig)
+            #ax.imshow(count_2d,origin='lower')
+            #fig.show()
     return 0
 
 if __name__ == "__main__":
