@@ -198,7 +198,7 @@ def main(argv):
     #m6 = [9.,10.0,10.5,11.0,11.5]
     color = 'r'#['r''r','r','r','r','r']
     minz = z_start
-    maxz = 15.
+    maxz = 30.
     dz = 0.25
     #limit = 300
     zlist = arange(minz,maxz,dz)
@@ -210,8 +210,8 @@ def main(argv):
         fig = figure()
         ax = fig.add_subplot(111)
         t_m6 = m6[j]
-        maxmass = t_m6+0.5
-        minmass = t_m6-2.
+        maxmass = 15.0
+        minmass = 9.0
         mbin = len(zlist)
         dm = (maxmass-minmass)/mbin
         mz = commah.run('planck15',zi=z_start,Mi=10.**t_m6,z=zlist)['Mz'][0]
@@ -257,8 +257,11 @@ def main(argv):
         #mask = count > count[len(z_list_lgal)-1]/2
         #print count_2d
         print count_2d
+        numpy.savetxt("count_2D_"+str(t_m6)+"_"+str(limit)+"p.txt",count_2d)
+        numpy.savetxt("summass_"+str(t_m6)+"_"+str(limit)+"p.txt",mass)
+        numpy.savetxt("countcol_"+str(t_m6)+"_"+str(limit)+"p.txt",count)
         print "min snap",stsn
-        mass = mass*mask
+        #mass = mass*mask
         ax.plot(z_list_lgal,log10(mass/count), color='r',linestyle='--',label="Average ("+str(limit)+"+ particles)")
         mask = count > count[len(z_list_lgal)-1]/2
         mass = mass*mask
