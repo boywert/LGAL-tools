@@ -21,19 +21,19 @@ def main(argv):
             for this_h in numpy.where((halos['SnapNum'] == lastsnap))[0]:
                 c_mass = halos[this_h]['M_Crit200']*gadget_m_conv
                 if (haloIDs[this_h]["HaloID"] == haloIDs[this_h]["FirstHaloInFOFgroup"]) & (c_mass == 0.0):
-                    c_mass = halos[this_h]["Len"]*mass_part
+                    c_mass = halos[this_h]["Len"]*mass_part*gadget_m_conv
                 c_prog = halos[this_h]['FirstProgenitor']
                 c_a = a_list[halos[this_h]["SnapNum"]]
                 while c_prog > -1:
                     p_mass = halos[c_prog]['M_Crit200']*gadget_m_conv
                     if (haloIDs[c_prog]["HaloID"] == haloIDs[c_prog]["FirstHaloInFOFgroup"]) & (p_mass == 0.0):
-                        p_mass = halos[c_prog]["Len"]*mass_part
+                        p_mass = halos[c_prog]["Len"]*mass_part*gadget_m_conv
                     p_prog = halos[c_prog]['FirstProgenitor']
                     p_a = a_list[halos[c_prog]["SnapNum"]]
                     if p_prog > -1:
                         pp_mass = halos[p_prog]['M_Crit200']*gadget_m_conv
                         if (haloIDs[p_prog]["HaloID"] == haloIDs[p_prog]["FirstHaloInFOFgroup"]) & (pp_mass == 0.0):
-                            pp_mass = halos[p_prog]["Len"]*mass_part
+                            pp_mass = halos[p_prog]["Len"]*mass_part*gadget_m_conv
                         pp_a = a_list[halos[p_prog]["SnapNum"]]
                         if(c_mass > 1.e12) & (p_mass > 1.e12) & (pp_mass > 1.e12):
                             alpha_a = numpy.log10(c_mass/p_mass)/numpy.log10(c_a/p_a)
