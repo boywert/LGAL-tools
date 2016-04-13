@@ -11,6 +11,10 @@ def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
     a_list = numpy.loadtxt(a_list_file)
+    num_bin = 50
+    bin_size = 2.0/num_bin
+    hist_x = numpy.linspace(-1.0, 1.0, num=num_bin, endpoint=False)
+    hist_y = numpy.zeros(num_bin,dtype=numpy.int64)
     for ifile in range(1):
         (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,ifile,ifile,verbose=True)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
@@ -40,11 +44,14 @@ def main(argv):
                         if(c_mass > 1.e8/hubble_h) & (p_mass > 1.e8/hubble_h) & (pp_mass > 1.e8/hubble_h):
                             alpha_a = numpy.log10(c_mass/p_mass)/numpy.log10(c_a/p_a)
                             alpha_b = numpy.log10(c_mass/pp_mass)/numpy.log10(c_a/pp_a)
-                            epsilon = numpy.arctan(alpha_b)-numpy.arctan(alpha_a)
-                            print epsilon/numpy.pi
+                            epsilon = (numpy.arctan(alpha_b)-numpy.arctan(alpha_a))/numpy.pi
+                            slot = (epsilon + 1.0)/bin_size
+                            if slot < num_bin:
+                                hist_y[slot] += 1
                     c_prog = p_prog
                     c_mass = p_mass
                     c_time = 0
+    print hist_y
     return 0
 
 if __name__ == "__main__":
