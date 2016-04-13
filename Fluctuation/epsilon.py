@@ -28,9 +28,9 @@ def main(argv):
                     if p_prog > -1:
                         pp_mass = halos[p_prog]['M_Crit200']
                         pp_time = 0
-                    c_prog = p_prog
-                    c_mass = p_mass
-                    c_time = 0
+                        c_prog = p_prog
+                        c_mass = p_mass
+                        c_time = 0
     return 0
 
 if __name__ == "__main__":
