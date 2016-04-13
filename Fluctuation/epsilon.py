@@ -30,7 +30,6 @@ def main(argv):
                         p_mass = halos[c_prog]["Len"]*mass_part
                     p_prog = halos[c_prog]['FirstProgenitor']
                     p_a = a_list[halos[c_prog]["SnapNum"]]
-                    print c_prog,p_prog
                     if p_prog > -1:
                         pp_mass = halos[p_prog]['M_Crit200']*gadget_m_conv
                         if (haloIDs[p_prog]["HaloID"] == haloIDs[p_prog]["FirstHaloInFOFgroup"]) & (pp_mass == 0.0):
