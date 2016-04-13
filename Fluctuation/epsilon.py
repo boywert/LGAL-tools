@@ -20,13 +20,17 @@ def main(argv):
             for this_h in numpy.where((halos['SnapNum'] == lastsnap))[0]:
                 c_mass = halos[this_h]['M_Crit200']
                 c_prog = halos[this_h]['FirstProgenitor']
+                c_time = 0
                 while c_prog > -1:
                     p_mass = halos[c_prog]['M_Crit200']
+                    #alpha_1 = numpy.arctan(numpy.log10(c_mass/p_mass)/numpy.log10(c_time/p_time))
                     p_prog = halos[c_prog]['FirstProgenitor']
                     if p_prog > -1:
                         pp_mass = halos[p_prog]['M_Crit200']
+                        pp_time = 0
                     c_prog = p_prog
-
+                    c_mass = p_mass
+                    c_time = 0
     return 0
 
 if __name__ == "__main__":
