@@ -20,11 +20,12 @@ def main(argv):
             for this_h in numpy.where((halos['SnapNum'] == lastsnap))[0]:
                 c_mass = halos[this_h]['M_Crit200']
                 c_prog = halos[this_h]['FirstProgenitor']
-                if c_prog > -1:
+                while c_prog > -1:
                     p_mass = halos[c_prog]['M_Crit200']
                     p_prog = halos[c_prog]['FirstProgenitor']
-                    if c_prog > -1:
+                    if p_prog > -1:
                         pp_mass = halos[p_prog]['M_Crit200']
+                    c_prog = p_prog
 
     return 0
 
