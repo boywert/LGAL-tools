@@ -2,6 +2,10 @@ import matplotlib as plt
 import sys
 from numpy import *
 plt.use("Agg")
+from pylab import *
+import time
+sys.path.append("../python/")
+from  read_lgal_advance import *
 
 def main(argv):
     gadget_m_conv = 1.e10
