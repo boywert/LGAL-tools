@@ -21,7 +21,7 @@ def main(argv):
             for this_h in numpy.where((halos['SnapNum'] == lastsnap))[0]:
                 c_mass = halos[this_h]['M_Crit200']*gadget_m_conv
                 if (haloIDs[this_h]["HaloID"] == haloIDs[this_h]["FirstHaloInFOFgroup"]) & (c_mass == 0.0):
-                    c_mass = halo[this_h]["Len"]*mass_part
+                    c_mass = halos[this_h]["Len"]*mass_part
                 c_prog = halos[this_h]['FirstProgenitor']
                 c_a = a_list[halos[this_h]["SnapNum"]]
                 while c_prog > -1:
