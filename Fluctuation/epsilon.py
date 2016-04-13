@@ -29,13 +29,13 @@ def main(argv):
                     if (haloIDs[c_prog]["HaloID"] == haloIDs[c_prog]["FirstHaloInFOFgroup"]) & (p_mass == 0.0):
                         p_mass = halos[c_prog]["Len"]*mass_part*gadget_m_conv
                     p_prog = halos[c_prog]['FirstProgenitor']
-                    print "%g, %g"%(p_mass,c_mass)
+                    #print "%g, %g"%(p_mass,c_mass)
                     p_a = a_list[halos[c_prog]["SnapNum"]]
                     if p_prog > -1:
                         pp_mass = halos[p_prog]['M_Crit200']*gadget_m_conv
                         if (haloIDs[p_prog]["HaloID"] == haloIDs[p_prog]["FirstHaloInFOFgroup"]) & (pp_mass == 0.0):
                             pp_mass = halos[p_prog]["Len"]*mass_part*gadget_m_conv
-                        print "%g, %g, %g"%(pp_mass,p_mass,c_mass)
+                        #print "%g, %g, %g"%(pp_mass,p_mass,c_mass)
                         pp_a = a_list[halos[p_prog]["SnapNum"]]
                         if(c_mass > 1.e8/hubble_h) & (p_mass > 1.e8/hubble_h) & (pp_mass > 1.e8/hubble_h):
                             alpha_a = numpy.log10(c_mass/p_mass)/numpy.log10(c_a/p_a)
