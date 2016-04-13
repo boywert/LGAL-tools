@@ -6,7 +6,6 @@ plt.use("Agg")
 def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
-    zlist = arange(minz,maxz,dz)
     (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose=True)
     rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
     lastleafindex = numpy.cumsum(nTreeHalos)
