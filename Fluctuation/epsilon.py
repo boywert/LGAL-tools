@@ -45,7 +45,7 @@ def main(argv):
                             alpha_a = numpy.log10(c_mass/p_mass)/numpy.log10(c_a/p_a)
                             alpha_b = numpy.log10(c_mass/pp_mass)/numpy.log10(c_a/pp_a)
                             epsilon = (numpy.arctan(alpha_b)-numpy.arctan(alpha_a))/numpy.pi
-                            print epsilon
+                            #print epsilon
                             slot = (epsilon + 1.0)/bin_size
                             hist_y[slot] += 1
                     c_prog = p_prog
