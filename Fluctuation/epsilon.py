@@ -37,7 +37,7 @@ def main(argv):
                             pp_mass = halos[p_prog]["Len"]*mass_part*gadget_m_conv
                         print "%g, %g, %g"%(pp_mass,p_mass,c_mass)
                         pp_a = a_list[halos[p_prog]["SnapNum"]]
-                        if(c_mass > 1.e12) & (p_mass > 1.e12) & (pp_mass > 1.e12):
+                        if(c_mass > 1.e8/h) & (p_mass > 1.e8/h) & (pp_mass > 1.e8/h):
                             alpha_a = numpy.log10(c_mass/p_mass)/numpy.log10(c_a/p_a)
                             alpha_b = numpy.log10(c_mass/pp_mass)/numpy.log10(c_a/pp_a)
                             epsilon = numpy.arctan(alpha_b)-numpy.arctan(alpha_a)
