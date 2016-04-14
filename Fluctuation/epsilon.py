@@ -10,8 +10,8 @@ from mpi4py import MPI
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
-pylab.rc('text', usetex=True)
-pylab.rc('lines', linewidth=2)
+plt.rc('text', usetex=True)
+plt.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 
