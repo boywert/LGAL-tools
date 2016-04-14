@@ -19,8 +19,15 @@ def main(argv):
     bin_size = 2.0/num_bin
     hist_x = numpy.linspace(-1.0, 1.0, num=num_bin, endpoint=False)
     hist_y = numpy.zeros(num_bin,dtype=numpy.int64)
-    for ifile in range(0,128):
-        if ifile == rank:
+    numfiles = lastfile - firstfile + 1
+    if rank == 0:
+        pool = numpy.arange(numfiles,type=numpy.int32)
+        pool_list = numpy.array_split(pool,size)
+    else:
+        pool_list = None
+    pool_list = comm.bcast(pool_list, root=0)
+    for ifile in range(numfiles):
+        if ifile in pool_list[rank]:
             (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,ifile,ifile,verbose=2)
             rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
             lastleafindex = numpy.cumsum(nTreeHalos)
@@ -63,6 +70,9 @@ def main(argv):
         op = MPI.SUM,
         root = 0
     )
+    if rank == 0:
+        print t_hist_y
+    comm.Barrier()
     return 0
 
 if __name__ == "__main__":
