@@ -66,6 +66,7 @@ def main(argv):
                         c_mass = p_mass
                         c_time = 0
     comm.Barrier()
+    sys.stdout.flush()
     comm.Reduce(
         [hist_y, MPI.LONG],
         [t_hist_y, MPI.LONG],
