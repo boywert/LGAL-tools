@@ -15,8 +15,8 @@ plt.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 def find_nearest(array,value):
-    idx = np.searchsorted(array, value, side="left")
-    return array[idx]
+    idx = numpy.searchsorted(array, value, side="left")
+    return idx
 def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
