@@ -83,7 +83,7 @@ def main(argv):
     )
     comm.Barrier()
     if rank == 0:
-        c = numpy.cumsum(t_hist_y,dtype=numpy.int64)/numpy.sum(t_hist_y,dtype=numpy.int64)
+        c = 1.0*numpy.cumsum(t_hist_y,dtype=numpy.int64)/numpy.sum(t_hist_y,dtype=numpy.int64)
         idx = find_nearest(c,0.05)
         a05 = hist_x[idx]
         idx = find_nearest(c,0.95)
