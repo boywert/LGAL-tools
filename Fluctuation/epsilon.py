@@ -21,7 +21,7 @@ def main(argv):
     hist_y = numpy.zeros(num_bin,dtype=numpy.int64)
     numfiles = lastfile - firstfile + 1
     if rank == 0:
-        pool = numpy.arange(numfiles,type=numpy.int32)
+        pool = numpy.arange(numfiles,dtype=numpy.int32)
         pool_list = numpy.array_split(pool,size)
     else:
         pool_list = None
