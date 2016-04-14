@@ -23,8 +23,7 @@ def main(argv):
     bin_size = 2.0/num_bin
     hist_x = numpy.linspace(-1.0, 1.0, num=num_bin, endpoint=False)
     for i in range(num_bin-1):
-        hist_x[i] = 0.5*(hist_x[i]+hist_x[i+1])
-    hist_x[num_bin-1] = (hist_x[num_bin-1]+1.0)*0.5
+        hist_x[i] += bin_size*0.5
     hist_y = numpy.zeros(num_bin,dtype=numpy.int64)
     numfiles = lastfile - firstfile + 1
     if rank == 0:
