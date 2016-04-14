@@ -19,9 +19,12 @@ def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
     a_list = numpy.loadtxt(a_list_file)
-    num_bin = 50
+    num_bin = 100
     bin_size = 2.0/num_bin
     hist_x = numpy.linspace(-1.0, 1.0, num=num_bin, endpoint=False)
+    for i in range(num_bin-1):
+        hist_x[i] = 0.5*(hist_x[i]+hist_x[i+1])
+    hist_x[num_bin-1] = (hist_x[num_bin-1]+1.0)*0.5
     hist_y = numpy.zeros(num_bin,dtype=numpy.int64)
     numfiles = lastfile - firstfile + 1
     if rank == 0:
