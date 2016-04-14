@@ -132,7 +132,7 @@ def read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose
         filename = folder+'/tree_dbids_'+"%03d"%(lastsnap)+'.'+"%d"%(ifile)
         f = open(filename,"rb")
         #this_addedHalos = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
-        output_HaloIDs[halo_findex[ifile]:halo_findex[ifile]+halo_index[ifile]] = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
+        output_HaloIDs[halo_findex[i]:halo_findex[i]+halo_index[i]] = numpy.fromfile(f,struct_lgaldbidsinput,this_nHalos)
         f.close()
         end = time.time()
         if(verbose == 2):
