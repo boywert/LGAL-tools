@@ -23,7 +23,9 @@ def main(argv):
     if rank == 0:
         pool = numpy.arange(numfiles,dtype=numpy.int32)
         pool_list = numpy.array_split(pool,size)
+        t_hist_y = numpy.zeros_like(hist_y)
     else:
+        t_hist_y = None
         pool_list = None
     pool_list = comm.bcast(pool_list, root=0)
     for ifile in range(numfiles):
@@ -63,7 +65,6 @@ def main(argv):
                         c_prog = p_prog
                         c_mass = p_mass
                         c_time = 0
-    t_hist_y = None
     comm.Barrier()
     comm.Reduce(
         [hist_y, MPI.LONG],
