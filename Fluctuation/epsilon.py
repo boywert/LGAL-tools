@@ -10,6 +10,10 @@ from mpi4py import MPI
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
+pylab.rc('text', usetex=True)
+pylab.rc('lines', linewidth=2)
+plt.rcParams['ytick.major.size'] = 8
+plt.rcParams['xtick.major.size'] = 8
 
 def main(argv):
     gadget_m_conv = 1.e10
@@ -76,6 +80,16 @@ def main(argv):
     comm.Barrier()
     if rank == 0:
         print t_hist_y
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(hist_x,t_hist_y)
+        #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        #leg.get_frame().set_linewidth(0)
+        ax.set_xlabel(r"\pi^{-1}\epsilon$")
+        ax.set_ylabel(r"$P(\epsilon)$")
+        ax.set_yscale("log")
+        fig.savefig("fluc.pdf",bbox_inches='tight',pad_inches=0.1)
+        plt.close(fig)
     comm.Barrier()
     return 0
 
