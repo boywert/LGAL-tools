@@ -2,7 +2,7 @@ import matplotlib as plt
 import sys
 from numpy import *
 plt.use("Agg")
-from pylab import *
+from pylab 
 import time
 sys.path.append("../python/")
 from  read_lgal_advance import *
