@@ -64,6 +64,7 @@ def main(argv):
                         c_mass = p_mass
                         c_time = 0
     comm.Barrier()
+    t_hist_y = None
     comm.Reduce(
         [hist_y, MPI.LONG],
         [t_hist_y, MPI.LONG],
