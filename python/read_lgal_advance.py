@@ -121,7 +121,7 @@ def read_lgal_input_fulltrees_withids(folder,lastsnap,firstfile,lastfile,verbose
         this_nHalos = numpy.fromfile(f,numpy.int32,1)[0]
         nHalos += this_nHalos
         if(verbose):
-            print "File ", ifile,"nTrees = ",this_nTrees," nHalos = ",this_nHalos
+            print "File ", ifile,filename,"nTrees = ",this_nTrees," nHalos = ",this_nHalos
         #addednTreeHalos = numpy.fromfile(f,numpy.int32,this_nTrees)
 
         nTreeHalos[tree_findex[ifile]:tree_findex[ifile]+tree_index[ifile]] = numpy.fromfile(f,numpy.int32,this_nTrees)
