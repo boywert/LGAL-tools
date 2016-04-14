@@ -16,7 +16,7 @@ def main(argv):
     hist_x = numpy.linspace(-1.0, 1.0, num=num_bin, endpoint=False)
     hist_y = numpy.zeros(num_bin,dtype=numpy.int64)
     for ifile in range(1,128):
-        (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,ifile,ifile,verbose=True)
+        (nTrees,nHalos,nTreeHalos,output_Halos,output_HaloIDs) = read_lgal_input_fulltrees_withids(folder,lastsnap,ifile,ifile,verbose=2)
         rootindex = numpy.cumsum(nTreeHalos)-nTreeHalos
         lastleafindex = numpy.cumsum(nTreeHalos)
         for i in range(len(nTreeHalos)):
