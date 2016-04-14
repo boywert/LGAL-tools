@@ -85,7 +85,7 @@ def main(argv):
         ax.plot(hist_x,t_hist_y)
         #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         #leg.get_frame().set_linewidth(0)
-        ax.set_xlabel(r"\pi^{-1}\epsilon$")
+        ax.set_xlabel(r"$\pi^{-1}\epsilon$")
         ax.set_ylabel(r"$P(\epsilon)$")
         ax.set_yscale("log")
         fig.savefig("fluc.pdf",bbox_inches='tight',pad_inches=0.1)
