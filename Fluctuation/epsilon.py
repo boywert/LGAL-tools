@@ -86,12 +86,15 @@ def main(argv):
         c = 1.0*numpy.cumsum(t_hist_y,dtype=numpy.int64)/numpy.sum(t_hist_y,dtype=numpy.int64)
         idx = find_nearest(c,0.05)
         a05 = hist_x[idx]
+        idx = find_nearest(c,0.50)
+        a50 = hist_x[idx]
         idx = find_nearest(c,0.95)
         a95 = hist_x[idx]
         fig = pylab.figure()
         ax = fig.add_subplot(111)
         ax.plot(hist_x,t_hist_y)
         ax.axvline(x = a05,color='k',ls='dashed')
+        ax.axvline(x = a50,color='k',ls='dashed')
         ax.axvline(x = a95,color='k',ls='dashed')
         #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         #leg.get_frame().set_linewidth(0)
