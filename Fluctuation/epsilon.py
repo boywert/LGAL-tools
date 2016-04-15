@@ -93,6 +93,7 @@ def main(argv):
         fig = pylab.figure()
         ax = fig.add_subplot(111)
         ax.plot(hist_x,t_hist_y)
+        ax.plot(hist_x,c*1.e7)
         ax.axvline(x = a05,color='k',ls='dashed')
         ax.axvline(x = a50,color='k',ls='dashed')
         ax.axvline(x = a95,color='k',ls='dashed')
