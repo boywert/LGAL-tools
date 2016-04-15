@@ -85,9 +85,9 @@ def main(argv):
     comm.Barrier()
     if rank == 0:
         c = 1.0*numpy.cumsum(t_hist_y,dtype=numpy.int64)/numpy.sum(t_hist_y,dtype=numpy.int64)
-        a05 = find_nearest(c,0.05)
-        a50 = find_nearest(c,0.50)
-        a95 = find_nearest(c,0.95)
+        a05 = find_nearest(c,0.05,hist_x)
+        a50 = find_nearest(c,0.50,hist_x)
+        a95 = find_nearest(c,0.95,hist_x)
         fig = pylab.figure()
         ax = fig.add_subplot(111)
         ax.plot(hist_x,t_hist_y)
