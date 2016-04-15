@@ -14,9 +14,10 @@ plt.rc('text', usetex=True)
 plt.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
-def find_nearest(array,value):
+def find_nearest(array,value,x):
     idx = numpy.searchsorted(array, value, side="left")
-    return idx
+    v = (x[idx+1]-x[idx])*(value-array[idx])/(array[idx+1]-array[idx]) + x[idx]
+    return v
 def main(argv):
     gadget_m_conv = 1.e10
     hubble_h = 0.7
@@ -84,12 +85,9 @@ def main(argv):
     comm.Barrier()
     if rank == 0:
         c = 1.0*numpy.cumsum(t_hist_y,dtype=numpy.int64)/numpy.sum(t_hist_y,dtype=numpy.int64)
-        idx = find_nearest(c,0.05)
-        a05 = hist_x[idx]
-        idx = find_nearest(c,0.50)
-        a50 = hist_x[idx]
-        idx = find_nearest(c,0.95)
-        a95 = hist_x[idx]
+        a05 = find_nearest(c,0.05)
+        a50 = find_nearest(c,0.50)
+        a95 = find_nearest(c,0.95)
         fig = pylab.figure()
         ax = fig.add_subplot(111)
         ax.plot(hist_x,t_hist_y)
