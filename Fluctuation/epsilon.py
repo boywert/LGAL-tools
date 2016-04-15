@@ -101,7 +101,7 @@ def main(argv):
         #leg.get_frame().set_linewidth(0)
         ax.set_xlabel(r"$\pi^{-1}\epsilon$")
         ax.set_ylabel(r"$P(\epsilon)$")
-        ax.set_yscale("log")
+        #ax.set_yscale("log")
         fig.savefig("fluc.pdf",bbox_inches='tight',pad_inches=0.1)
         pylab.close(fig)
     comm.Barrier()
