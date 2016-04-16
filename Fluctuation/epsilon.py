@@ -97,13 +97,13 @@ def main(argv):
         ax1 = plt.subplot(gs[1])
         plt.subplots_adjust(hspace = 0)
         
-        ax1.plot(hist_x,t_hist_y)
+        ax1.plot(hist_x,t_hist_y/bin_size)
         ax0.plot(hist_x,c)
         ax0.grid()
         ax1.grid()
-        ax1.axvline(x = a05,color='k',ls='dashed')
-        ax1.axvline(x = a50,color='k',ls='dashed')
-        ax1.axvline(x = a95,color='k',ls='dashed')
+        ax1.axvline(x = a05,color='k',linewidth=1.0,ls='dashed')
+        ax1.axvline(x = a50,color='k',linewidth=1.0,ls='dashed')
+        ax1.axvline(x = a95,color='k',linewidth=1.0,ls='dashed')
         
         ax1.set_xlabel(r"$\epsilon$")
         ax0.set_ylabel(r"$P( \le \epsilon)$")
