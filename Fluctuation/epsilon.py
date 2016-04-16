@@ -1,7 +1,7 @@
 import matplotlib 
 import sys
 from numpy import *
-plt.use("Agg")
+matplotlib.use("Agg")
 import pylab
 from matplotlib import gridspec
 import matplotlib.pyplot as plt
