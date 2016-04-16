@@ -99,6 +99,8 @@ def main(argv):
         
         ax1.plot(hist_x,t_hist_y)
         ax0.plot(hist_x,c*1.e7)
+        ax0.grid()
+        ax1.grid()
         ax1.axvline(x = a05,color='k',ls='dashed')
         ax1.axvline(x = a50,color='k',ls='dashed')
         ax1.axvline(x = a95,color='k',ls='dashed')
@@ -106,8 +108,8 @@ def main(argv):
         ax1.set_xlabel(r"$\pi^{-1}\epsilon$")
         ax0.set_ylabel(r"$P(\epsilon)$")
         ax1.set_ylabel(r"$P(\epsilon)$")
-        plt.grid()
-        #ax.set_yscale("log")
+
+        ax1.set_yscale("log")
         fig.savefig("fluc.pdf",bbox_inches='tight',pad_inches=0.1)
         plt.close(fig)
     comm.Barrier()
