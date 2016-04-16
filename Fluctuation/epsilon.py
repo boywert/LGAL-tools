@@ -1,8 +1,10 @@
-import matplotlib as plt
+import matplotlib 
 import sys
 from numpy import *
 plt.use("Agg")
-import pylab 
+import pylab
+from matplotlib import gridspec
+import matplotlib.pyplot as plt
 import time
 sys.path.append("../python/")
 from  read_lgal_advance import *
@@ -10,10 +12,10 @@ from mpi4py import MPI
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
-plt.rc('text', usetex=True)
-plt.rc('lines', linewidth=2)
-plt.rcParams['ytick.major.size'] = 8
-plt.rcParams['xtick.major.size'] = 8
+matplotlib.rc('text', usetex=True)
+matplotlib.rc('lines', linewidth=2)
+matplotlib.rcParams['ytick.major.size'] = 8
+matplotlib.rcParams['xtick.major.size'] = 8
 def find_nearest(array,value,x):
     idx = numpy.searchsorted(array, value, side="left")
     v = (x[idx+1]-x[idx])*(value-array[idx])/(array[idx+1]-array[idx]) + x[idx]
@@ -88,21 +90,26 @@ def main(argv):
         a05 = find_nearest(c,0.05,hist_x)
         a50 = find_nearest(c,0.50,hist_x)
         a95 = find_nearest(c,0.95,hist_x)
-        fig = pylab.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(hist_x,t_hist_y)
-        ax.plot(hist_x,c*1.e7)
-        ax.axvline(x = a05,color='k',ls='dashed')
-        ax.axvline(x = a50,color='k',ls='dashed')
-        ax.axvline(x = a95,color='k',ls='dashed')
-        #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-        #leg.get_frame().set_linewidth(0)
-        ax.set_xlabel(r"$\pi^{-1}\epsilon$")
-        ax.set_ylabel(r"$P(\epsilon)$")
-        pylab.grid()
+
+        fig = plt.figure(figsize=(8, 6)) 
+        gs = gridspec.GridSpec(2, 1, height_ratios=[1, 3])
+        ax0 = plt.subplot(gs[0])
+        ax1 = plt.subplot(gs[1])
+        plt.subplots_adjust(hspace = 0)
+        
+        ax1.plot(hist_x,t_hist_y)
+        ax0.plot(hist_x,c*1.e7)
+        ax1.axvline(x = a05,color='k',ls='dashed')
+        ax1.axvline(x = a50,color='k',ls='dashed')
+        ax1.axvline(x = a95,color='k',ls='dashed')
+        
+        ax1.set_xlabel(r"$\pi^{-1}\epsilon$")
+        ax0.set_ylabel(r"$P(\epsilon)$")
+        ax1.set_ylabel(r"$P(\epsilon)$")
+        plt.grid()
         #ax.set_yscale("log")
         fig.savefig("fluc.pdf",bbox_inches='tight',pad_inches=0.1)
-        pylab.close(fig)
+        plt.close(fig)
     comm.Barrier()
     return 0
 
