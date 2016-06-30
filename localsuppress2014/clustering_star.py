@@ -110,30 +110,29 @@ def plot_xi(z):
             data = comm.bcast(data,root=0)
             (r,xi[index]) = CF.calNN(data,47.0)            
         if rank == 0:
-            print "plotting figure"
-            fig = plt.figure()
-            ax = fig.add_subplot(111)
-            for i in range(len(model_names)):
-                index = model_names[i]
-                print "adding",model_labels[i]
-                ff = open(slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt","w")
-                for ii in range(len(r)):
-                    print >> ff, r[ii],xi[index][ii]-1.
-                ff.close()
-                
-                ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
-                leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-            leg.get_frame().set_linewidth(0)
-            ax.set_xlabel(r"$\mathrm{r}[h^{-1}\mathrm{Mpc}]$")
-            ax.set_ylabel(r"$\xi(\mathrm{r})$")
-            ax.set_yscale("log")
-            ax.set_xscale("log")
-            ax.text(0.1, 0.1, r'M1500 $\in$ $[%2.0f,%2.0f]$' % (mag,mag1),
-                verticalalignment='bottom', horizontalalignment='left',
-                transform=ax.transAxes, fontsize=14)
-            print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
+            # print "plotting figure"
+            # fig = plt.figure()
+            # ax = fig.add_subplot(111)
+            # for i in range(len(model_names)):
+            #     index = model_names[i]
+            #     print "adding",model_labels[i]
+            #     ff = open(slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt","w")
+            #     for ii in range(len(r)):
+            #         print >> ff, r[ii],xi[index][ii]-1.
+            #     ff.close()
+            #     ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
+            #     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+            # leg.get_frame().set_linewidth(0)
+            # ax.set_xlabel(r"$\mathrm{r}[h^{-1}\mathrm{Mpc}]$")
+            # ax.set_ylabel(r"$\xi(\mathrm{r})$")
+            # ax.set_yscale("log")
+            # ax.set_xscale("log")
+            # ax.text(0.1, 0.1, r'M1500 $\in$ $[%2.0f,%2.0f]$' % (mag,mag1),
+            #     verticalalignment='bottom', horizontalalignment='left',
+            #     transform=ax.transAxes, fontsize=14)
+            # print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
             #fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0.01)
-            pickle.dump(fig,open( slot+"_"+str(abs(mag))+"_xi"+str(z)+".pickle", "wb" ))
+            pickle.dump((r,xi[index]),open( slot+"_"+str(abs(mag))+"_xi"+str(z)+".pickle", "wb" ))
             print "done"
 def main():
     zi = sys.argv[1]
