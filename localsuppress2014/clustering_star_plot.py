@@ -14,9 +14,9 @@ import add_observations
 sys.path.append("../python/")
 sys.path.append("../clustering/")
 import read_lgal_advance as read_lgal
-import xi as CF
 import timeit
 
+rank = 0
 
 def loadfilter(structfile):
     os.system("mkdir -p ../tmp/"+str(rank))
