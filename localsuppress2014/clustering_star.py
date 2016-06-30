@@ -132,7 +132,7 @@ def plot_xi(z):
             #     transform=ax.transAxes, fontsize=14)
             # print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
             #fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0.01)
-            pickle.dump((r,xi[index]),open( slot+"_"+str(abs(mag))+"_xi"+str(z)+".pickle", "wb" ))
+            pickle.dump((r,xi),open( slot+"_"+str(abs(mag))+"_xi"+str(z)+".pickle", "wb" ))
             print "done"
 def main():
     zi = sys.argv[1]
