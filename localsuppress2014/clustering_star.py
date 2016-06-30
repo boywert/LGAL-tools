@@ -130,8 +130,8 @@ def plot_xi(z):
             ax.text(0.1, 0.1, r'M1500 $\in$ $[%2.0f,%2.0f]$' % (mag,mag1),
                 verticalalignment='bottom', horizontalalignment='left',
                 transform=ax.transAxes, fontsize=14)
-            print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
-            fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0.01)
+            #print "saving fig",slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf"
+            #fig.savefig(slot+"_"+str(abs(mag))+"_xi"+str(z)+".pdf",bbox_inches='tight',pad_inches=0.01)
             print "done"
 def main():
     zi = sys.argv[1]
