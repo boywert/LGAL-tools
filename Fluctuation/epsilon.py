@@ -101,13 +101,13 @@ def main(argv):
         ax0.plot(hist_x,c)
         ax0.grid()
         ax1.grid()
-        ax1.axvline(x = a05,color='r',linewidth=1.0,ls='dashed')
+        ax1.axvline(x = a05,color='k',linewidth=1.0,ls='dashed')
         ax1.axvline(x = a50,color='k',linewidth=1.0,ls='dashed')
-        ax1.axvline(x = a95,color='r',linewidth=1.0,ls='dashed')
+        ax1.axvline(x = a95,color='k',linewidth=1.0,ls='dashed')
         
         ax1.set_xlabel(r"$\epsilon$")
         ax0.set_ylabel(r"$P( \le \epsilon)$")
-        ax1.set_ylabel(r"$dN/d\epsilon$")
+        ax1.set_ylabel(r"$dN/d\epsilon(\epsilon)$")
 
         ax1.set_yscale("log")
         fig.savefig("fluc.pdf",bbox_inches='tight',pad_inches=0.1)
