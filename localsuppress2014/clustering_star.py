@@ -31,7 +31,7 @@ def loadfilter(structfile):
         fi = False
     filter['Type'] = True
     filter['Pos'] = True
-    filter['MagDust'] = True
+    filter['Xfrac3d'] = True
     filter['Mvir'] = True
     filter['StellarMass'] = True
     dt = LGalaxyStruct.struct_dtype
@@ -102,7 +102,7 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
+                data = gal[index][numpy.where(((gal[index]['Xfrac3d'] > 0.99) & numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
                 #data = gal[index][numpy.where((gal[index]["MagDust"][:,5]>mag) & (gal[index]["MagDust"][:,5]<mag1))]["Pos"]
             else:
                 data = None
