@@ -87,8 +87,8 @@ def read_xfrac(filename):
     return output
 
 def plot_xi(snap):
-    z = zlist[snap]
-    z3 = z3list[snap]
+    z = zlist[long(snap)]
+    z3 = z3list[long(snap)]
     file_prefix = "SA_z"+z
     xi = {}
     gal = {}
