@@ -31,8 +31,6 @@ def loadfilter(structfile):
         fi = False
     filter['Type'] = True
     filter['Pos'] = True
-    filter['Xfrac3d'] = True
-    filter['Mvir'] = True
     filter['StellarMass'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
@@ -71,12 +69,28 @@ model_paths = model_paths_tmp
 pylab.rc('text', usetex=True)
 
 zlist = open(zlistfile,"r").readlines()
-    
+z3list = open(z3listfile,"r").readlines()
 
-def plot_xi(z):
+class xfrac:
+    grid = 0
+    data = 0
+    
+def read_xfrac(filename):
+    f = open(filename,"rb")
+    output = xfrac()
+    padd = numpy.fromfile(f,numpy.int32,1)[0]
+    output.grid = numpy.fromfile(f,numpy.int32,3)
+    padd = numpy.fromfile(f,numpy.int32,1)[0]
+    padd = numpy.fromfile(f,numpy.int32,1)[0]
+    output.data = numpy.fromfile(f,numpy.float32,output.grid[0]**3).reshape(( output.grid[0], output.grid[1], output. grid[2]))
+    padd = numpy.fromfile(f,numpy.int32,1)[0]
+    return output
+
+def plot_xi(snap):
+    z = zlist[snap]
+    z3 = z3list[snap]
     file_prefix = "SA_z"+z
     xi = {}
-        
     gal = {}
     nTrees = {}
     nGals = {}
@@ -91,7 +105,7 @@ def plot_xi(z):
     comm.Barrier()
     slot = "StellarMass"
     m_i = 6.
-    m_f = 12.
+    m_f = 8.
     dm = 1.0
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
@@ -102,12 +116,21 @@ def plot_xi(z):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                data = gal[index][numpy.where(((gal[index]['Xfrac3d'] > 0.99) & numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
-                #data = gal[index][numpy.where((gal[index]["MagDust"][:,5]>mag) & (gal[index]["MagDust"][:,5]<mag1))]["Pos"]
+                filename = model_xfrac_path[i]+"xfrac3d_"+ +".bin"
+                Xfrac3d = read_xfrac()
+                data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
+                xmask = numpy.zeros(len(data),dtype=numpy.int32)
+                for iii in range(len(data)):
+                    iix =long(data[iii][Pos][0]/(sim_boxsize/Xfrac3d.grid[0]))%Xfrac3d.grid[0]
+                    iiy =long(data[iii][Pos][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
+                    iiz =long(data[iii][Pos][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
+                    iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
+                    xmask[iii] = Xfrac3d.data[iblock]
+                data = data[xmask]
             else:
                 data = None
             data = comm.bcast(data,root=0)
-            (r,xi[index]) = CF.calNN(data,47.0)            
+            (r,xi[index]) = CF.calNN(data,sim_boxsize)            
         if rank == 0:
             print "plotting figure"
             fig = plt.figure()
@@ -136,8 +159,8 @@ def plot_xi(z):
             print "done"
             plt.close(fig)
 def main():
-    zi = sys.argv[1]
-    plot_xi(zi)
+    isnap = sys.argv[1]
+    plot_xi(isnap)
 
 if __name__=="__main__":
     main()
