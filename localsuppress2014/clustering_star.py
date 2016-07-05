@@ -163,6 +163,8 @@ def plot_xi(snap):
             plt.close(fig)
 def main():
     isnap = sys.argv[1]
+    print isnap
+    exit()
     plot_xi(long(isnap))
 
 if __name__=="__main__":
