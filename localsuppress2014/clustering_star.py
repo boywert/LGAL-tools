@@ -116,8 +116,8 @@ def plot_xi(snap):
         for i in range(len(model_names)):
             index = model_names[i]
             if rank == 0:
-                filename = model_xfrac_path[i]+"xfrac3d_"+ z3 +".bin"
-                Xfrac3d = read_xfrac()
+                xfilename = model_xfrac_path[i]+"xfrac3d_"+ z3 +".bin"
+                Xfrac3d = read_xfrac(xfilename)
                 data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
                 xmask = numpy.zeros(len(data),dtype=numpy.int32)
                 for iii in range(len(data)):
