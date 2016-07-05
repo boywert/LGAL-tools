@@ -87,6 +87,7 @@ def read_xfrac(filename):
     return output
 
 def plot_xi(snap):
+    print snap
     z = zlist[long(snap)].strip()
     z3 = z3list[long(snap)].strip()
     file_prefix = "SA_z"+z
@@ -161,7 +162,7 @@ def plot_xi(snap):
             plt.close(fig)
 def main():
     isnap = sys.argv[1]
-    plot_xi(isnap)
+    plot_xi(long(isnap))
 
 if __name__=="__main__":
     main()
