@@ -35,12 +35,14 @@ def loadfilter(structfile):
         fi = False
     filter['NPhotReion'] = True
     filter['Mvir'] = True
+    filter['Rvir'] = True
     filter['HaloM_Crit200'] = True
     filter['HotGas'] = True
     filter['ColdGas'] = True
     filter['EjectedMass'] = True
     filter['StellarMass'] = True
     filter['ICM'] = True
+    filter['Pos'] = True
     filter['BlackHoleGas'] = True
     filter['BlackHoleMass'] = True
     filter['Sfr'] = True
@@ -102,12 +104,15 @@ def plot_z(z,models,ax,pos):
         bins = 40
         total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
-        cenmass = numpy.zeros(len(firstgal))
+        cenmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
         for i in range(len(firstgal)-1):
-            #print total_baryon[firstgal[i]:firstgal[i+1]]
-            cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
+            for j in range(len(total_baryon[firstgal[i]:firstgal[i+1]])):
+                #print total_baryon[firstgal[i]:firstgal[i+1]]
+                this_gal = firstgal[i]+j
+                if (gal[this_gal]['Pos'][0] - gal[firstgal[i]]['Pos'][0])**2.+(gal[this_gal]['Pos'][1] - gal[firstgal[i]]['Pos'][1])**2.+(gal[this_gal]['Pos'][2] - gal[firstgal[i]]['Pos'][2])**2. < gal[firstgal[i]['Rvir']]**2:
+                    cenmass[i] = numpy.sum(total_baryon[firstgal[i]:firstgal[i+1]])
         cenhalomass = gal[index]["Mvir"][firstgal]
-        print cenmass/cenhalomass
+        #print cenmass/cenhalomass
         cond = ~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.)
         cenmass = cenmass[cond]
         cenhalomass = cenhalomass[cond]
