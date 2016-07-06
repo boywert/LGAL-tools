@@ -121,8 +121,8 @@ def plot_z(z,models,ax,pos):
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
-        for i in range(len(sum_baryons[index][0])):
-            m200c[index].append(0.5*(sum_baryons[index][1][i]+sum_baryons[index][1][i+1]))
+        for ii in range(len(sum_baryons[index][0])):
+            m200c[index].append(0.5*(sum_baryons[index][1][ii]+sum_baryons[index][1][ii+1]))
         del(gal[index])
         del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
