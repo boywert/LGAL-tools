@@ -35,45 +35,46 @@ def loadfilter(structfile):
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
-dt = []
-filter = []
-for i in range(len(struct_file)):
-    (f,t) = loadfilter(struct_file[i])
-    filter.append(f)
-    dt.append(t)
+if rank == 0:
+    dt = []
+    filter = []
+    for i in range(len(struct_file)):
+        (f,t) = loadfilter(struct_file[i])
+        filter.append(f)
+        dt.append(t)
 
-#filter model
-filter_tmp = []
-dt_tmp = []
-model_names_tmp = []
-struct_file_tmp = []
-model_labels_tmp = []
-model_paths_tmp = []
-for i in range(len(use_model)):
-    if use_model[i]:
-        filter_tmp.append(filter[i])
-        dt_tmp.append(dt[i])
-        model_names_tmp.append(model_names[i])
-        struct_file_tmp.append(struct_file[i])
-        model_labels_tmp.append(model_labels[i])
-        model_paths_tmp.append(model_paths[i])
+        #filter model
+    filter_tmp = []
+    dt_tmp = []
+    model_names_tmp = []
+    struct_file_tmp = []
+    model_labels_tmp = []
+    model_paths_tmp = []
+    for i in range(len(use_model)):
+        if use_model[i]:
+            filter_tmp.append(filter[i])
+            dt_tmp.append(dt[i])
+            model_names_tmp.append(model_names[i])
+            struct_file_tmp.append(struct_file[i])
+            model_labels_tmp.append(model_labels[i])
+            model_paths_tmp.append(model_paths[i])
 
-filter = filter_tmp
-dt = dt_tmp
-model_names = model_names_tmp
-struct_file = struct_file_tmp
-model_labels = model_labels_tmp
-model_paths = model_paths_tmp       
+    filter = filter_tmp
+    dt = dt_tmp
+    model_names = model_names_tmp
+    struct_file = struct_file_tmp
+    model_labels = model_labels_tmp
+    model_paths = model_paths_tmp       
 
 
-pylab.rc('text', usetex=True)
+    pylab.rc('text', usetex=True)
 
-zlist = open(zlistfile,"r").readlines()
-z3list = open(z3listfile,"r").readlines()
+    zlist = open(zlistfile,"r").readlines()
+    z3list = open(z3listfile,"r").readlines()
 
-class xfrac:
-    grid = 0
-    data = 0
+    class xfrac:
+        grid = 0
+        data = 0
     
 def read_xfrac(filename):
     f = open(filename,"rb")
@@ -161,10 +162,10 @@ def plot_xi(snap):
             print "done"
             plt.close(fig)
 def main():
-    isnap = sys.argv[1]
+    isnap = int(sys.argv[1])
     print isnap
     exit()
-    plot_xi(long(isnap))
+    #plot_xi(long(isnap))
 
 if __name__=="__main__":
     main()
