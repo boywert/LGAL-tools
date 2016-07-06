@@ -35,7 +35,6 @@ def loadfilter(structfile):
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
-if rank == 0:
     dt = []
     filter = []
     for i in range(len(struct_file)):
@@ -44,38 +43,38 @@ if rank == 0:
         dt.append(t)
 
         #filter model
-    filter_tmp = []
-    dt_tmp = []
-    model_names_tmp = []
-    struct_file_tmp = []
-    model_labels_tmp = []
-    model_paths_tmp = []
-    for i in range(len(use_model)):
-        if use_model[i]:
-            filter_tmp.append(filter[i])
-            dt_tmp.append(dt[i])
-            model_names_tmp.append(model_names[i])
-            struct_file_tmp.append(struct_file[i])
-            model_labels_tmp.append(model_labels[i])
-            model_paths_tmp.append(model_paths[i])
+filter_tmp = []
+dt_tmp = []
+model_names_tmp = []
+struct_file_tmp = []
+model_labels_tmp = []
+model_paths_tmp = []
+for i in range(len(use_model)):
+    if use_model[i]:
+        filter_tmp.append(filter[i])
+        dt_tmp.append(dt[i])
+        model_names_tmp.append(model_names[i])
+        struct_file_tmp.append(struct_file[i])
+        model_labels_tmp.append(model_labels[i])
+        model_paths_tmp.append(model_paths[i])
 
-    filter = filter_tmp
-    dt = dt_tmp
-    model_names = model_names_tmp
-    struct_file = struct_file_tmp
-    model_labels = model_labels_tmp
-    model_paths = model_paths_tmp       
+filter = filter_tmp
+dt = dt_tmp
+model_names = model_names_tmp
+struct_file = struct_file_tmp
+model_labels = model_labels_tmp
+model_paths = model_paths_tmp       
 
 
-    pylab.rc('text', usetex=True)
+pylab.rc('text', usetex=True)
 
-    zlist = open(zlistfile,"r").readlines()
-    z3list = open(z3listfile,"r").readlines()
+zlist = open(zlistfile,"r").readlines()
+z3list = open(z3listfile,"r").readlines()
 
-    class xfrac:
-        grid = 0
-        data = 0
-    
+class xfrac:
+    grid = 0
+    data = 0
+        
 def read_xfrac(filename):
     f = open(filename,"rb")
     output = xfrac()
@@ -120,15 +119,15 @@ def plot_xi(snap):
             if rank == 0:
                 xfilename = model_xfrac_path[i]+"/xfrac3d_"+ z3 +".bin"
                 print xfilename
-                #Xfrac3d = read_xfrac(xfilename)
+                Xfrac3d = read_xfrac(xfilename)
                 data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
                 xmask = numpy.ones(len(data),dtype=numpy.float32)
-                # for iii in range(len(data)):
-                #     iix =long(data[iii]['Pos'][0]/(sim_boxsize/Xfrac3d.grid[0]))%Xfrac3d.grid[0]
-                #     iiy =long(data[iii]['Pos'][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
-                #     iiz =long(data[iii]['Pos'][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
-                #     iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
-                #     xmask[iii] = Xfrac3d.data[iblock]
+                for iii in range(len(data)):
+                    iix =long(data[iii]['Pos'][0]/(sim_boxsize/Xfrac3d.grid[0]))%Xfrac3d.grid[0]
+                    iiy =long(data[iii]['Pos'][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
+                    iiz =long(data[iii]['Pos'][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
+                    iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
+                    xmask[iii] = Xfrac3d.data[iblock]
                 data = data[xmask > 0.99]
             else:
                 data = None
@@ -164,7 +163,6 @@ def plot_xi(snap):
 def main():
     isnap = int(sys.argv[1])
     print isnap
-    exit()
     #plot_xi(long(isnap))
 
 if __name__=="__main__":
