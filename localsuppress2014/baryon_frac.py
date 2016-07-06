@@ -110,7 +110,7 @@ def plot_z(z,models,ax,pos):
                 #print total_baryon[firstgal[i]:firstgal[i+1]]
                 this_gal = firstgal[ii]+j
                 print ii,firstgal[ii],j,this_gal
-                if (1==1):
+                if ((gal[this_gal]['Pos'][0] > 0.0)):
                     cenmass[ii] += total_baryon[this_gal]
         cenhalomass = gal[index]["Mvir"][firstgal]
         #print cenmass/cenhalomass
