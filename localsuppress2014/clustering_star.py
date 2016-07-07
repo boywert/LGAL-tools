@@ -123,12 +123,10 @@ def plot_xi(snap):
                 Xfrac3d = read_xfrac(xfilename)
                 data = gal[index][numpy.where((numpy.log10(gal[index][slot]*1e10/hubble_h)>mag) & (numpy.log10(gal[index][slot]*1e10/hubble_h)<mag1))]["Pos"]
                 xmask = numpy.ones(len(data),dtype=numpy.float32)
-                print data
-                exit()
                 for iii in range(len(data)):
-                    iix =int(data[iii]['Pos'][0]/(sim_boxsize/Xfrac3d.grid[0]))%Xfrac3d.grid[0]
-                    iiy =int(data[iii]['Pos'][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
-                    iiz =int(data[iii]['Pos'][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
+                    iix =int(data[iii][0]/(sim_boxsize/Xfrac3d.grid[0]))%Xfrac3d.grid[0]
+                    iiy =int(data[iii][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
+                    iiz =int(data[iii][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
                     iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
                     xmask[iii] = Xfrac3d.data[iblock]
                 data = data[xmask > 0.99]
