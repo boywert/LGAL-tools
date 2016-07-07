@@ -1,3 +1,4 @@
+from math import *
 from mass_fn import *
 from globalconf import *
 import matplotlib
