@@ -88,7 +88,6 @@ def read_xfrac(filename):
     return output
 
 def plot_xi(snap):
-    print snap
     z = zlist[long(snap)].strip()
     z3 = z3list[long(snap)].strip()
     file_prefix = "SA_z"+z
