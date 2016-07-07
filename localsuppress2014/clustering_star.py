@@ -35,12 +35,12 @@ def loadfilter(structfile):
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
-    dt = []
-    filter = []
-    for i in range(len(struct_file)):
-        (f,t) = loadfilter(struct_file[i])
-        filter.append(f)
-        dt.append(t)
+dt = []
+filter = []
+for i in range(len(struct_file)):
+    (f,t) = loadfilter(struct_file[i])
+    filter.append(f)
+    dt.append(t)
 
         #filter model
 filter_tmp = []
