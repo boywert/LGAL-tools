@@ -83,7 +83,7 @@ def read_xfrac(filename):
     output.grid = numpy.fromfile(f,numpy.int32,3)
     padd = numpy.fromfile(f,numpy.int32,1)[0]
     padd = numpy.fromfile(f,numpy.int32,1)[0]
-    output.data = numpy.fromfile(f,numpy.float32,output.grid[0]**3).reshape(( output.grid[0], output.grid[1], output. grid[2]))
+    output.data = numpy.fromfile(f,numpy.float32,output.grid[0]**3) #.reshape(( output.grid[0], output.grid[1], output.grid[2]))
     padd = numpy.fromfile(f,numpy.int32,1)[0]
     return output
 
@@ -129,8 +129,7 @@ def plot_xi(snap):
                     iiy =int(data[iii][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
                     iiz =int(data[iii][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
                     iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
-                    print iix,iiy,iiz,iblock
-                    #xmask[iii] = Xfrac3d.data[iblock]
+                    xmask[iii] = Xfrac3d.data[iblock]
                 data = data[xmask > 0.99]
             else:
                 data = None
