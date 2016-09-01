@@ -23,8 +23,8 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False    
-    filter['DiskMass'] = True
-    filter['BulgeMass'] = True
+    filter['Metallicity'] = True
+
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
