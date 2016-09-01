@@ -24,7 +24,7 @@ def loadfilter(structfile):
     filter['Type'] = True
     filter['Metallicity'] = True
     filter['HaloM_Crit200'] = True
-     dt = LGalaxyStruct.struct_dtype
+    dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
 
