@@ -64,10 +64,10 @@ def metallicity_plot(z):
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
 
-        logf = -2.5*numpy.log10(gal[index]["Sfr"])
-        a = numpy.histogram(logf,bins=9,range=(-3.0,1.5))
-        x = a[1][0:len(a[1])-1]+0.25-offset
-        y = a[0]/47.**3/0.5
+        logf = numpy.log10(gal[index]["Metallicity"])
+        a = numpy.histogram(logf,bins=10,range=(-4.0,0))
+        x = numpy.arange(-4.0,0.0,10)
+        y = a[0]/47.**3
         ax.plot(x,y,model_plot_patterns[i],label=model_labels[i])
     
     leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
@@ -75,7 +75,7 @@ def metallicity_plot(z):
     ax.set_xlabel(r"M1600 - 5log(h)")
     ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1}$")
     ax.set_yscale("log")
-    fig.savefig("uv_l_z"+z+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("metal_z"+z+".pdf",bbox_inches='tight',pad_inches=0)
 
 
 
