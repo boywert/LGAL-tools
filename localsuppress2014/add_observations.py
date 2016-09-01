@@ -3,6 +3,17 @@ import numpy
 
 hubble_h = 0.7
 
+def add_obs_smf_z8(observe_folder,ax):
+    data_file = observe_folder+"/Song2016_z8.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]
+    data_y = data[:,1]
+
+    data_errorup = data[:,2]
+    data_errordown = data[:,3]
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Song et al. (2016)")
+    return ax
+
 def add_obs_uv_z8(observe_folder,ax):
     bouwens2011_file = observe_folder+"/bouwens2011_z8.txt"
     bouwens2011 = numpy.loadtxt(bouwens2011_file)
@@ -97,7 +108,6 @@ def add_obs_sfr_z7(observe_folder,ax):
     data_errorup = data[:,3]
     data_errordown = data[:,2]
     ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
-
     
 def add_obs_smf_z7(observe_folder,ax):
     data_file = observe_folder+"/gonzalez2011_z7.txt"
@@ -116,7 +126,14 @@ def add_obs_smf_z7(observe_folder,ax):
     data_errordown = data[:,2]
     ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
 
+    data_file = observe_folder+"/Song2016_z7.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]
+    data_y = data[:,1]
 
+    data_errorup = data[:,2]
+    data_errordown = data[:,3]
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Song et al. (2016)")
     
 
 #####################################################################################################################
@@ -153,7 +170,7 @@ def add_obs_uv_z6(observe_folder,ax):
     data_y = data[:,1]/hubble_h**3.
     data_error = data[:,2]/hubble_h**3.
     ax.errorbar(data_x,data_y,yerr=data_error, fmt='o',label="Bowler et al. (2014)")
-    
+
     
     return ax
 
@@ -192,7 +209,14 @@ def add_obs_smf_z6(observe_folder,ax):
     data_errordown = data[:,2]
     ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
 
+    data_file = observe_folder+"/Song2016_z6.txt"
+    data = numpy.loadtxt(data_file)
+    data_x = data[:,0]
+    data_y = data[:,1]
 
+    data_errorup = data[:,2]
+    data_errordown = data[:,3]
+    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Song et al. (2016)")
     
 
 
