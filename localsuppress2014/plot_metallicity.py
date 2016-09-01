@@ -42,7 +42,7 @@ pylab.rc('text', usetex=True)
 
 zlist = open(zlistfile,"r").readlines()
 
-def metallicity_plot(z)
+def metallicity_plot(z):
     file_prefix = "SA_z"+z
     firstfile = 0
     lastfile = 127
