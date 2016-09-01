@@ -192,22 +192,22 @@ def add_obs_sfr_z6(observe_folder,ax):
 
     
 def add_obs_smf_z6(observe_folder,ax):
-    data_file = observe_folder+"/gonzalez2011_z6.txt"
-    data = numpy.loadtxt(data_file)
-    data_x = data[:,0]
-    data_y = 10.**data[:,1]
-    data_errorup = 10.**(data[:,2]+data[:,1])-10.**data[:,1]
-    data_errordown = 10.**data[:,1] - 10.**(data[:,1]+data[:,3])
-    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Gonzalez et al. (2011)")
+    # data_file = observe_folder+"/gonzalez2011_z6.txt"
+    # data = numpy.loadtxt(data_file)
+    # data_x = data[:,0]
+    # data_y = 10.**data[:,1]
+    # data_errorup = 10.**(data[:,2]+data[:,1])-10.**data[:,1]
+    # data_errordown = 10.**data[:,1] - 10.**(data[:,1]+data[:,3])
+    # ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Gonzalez et al. (2011)")
     
-    data_file = observe_folder+"/Duncan14_MF_z6.cat"
-    data = numpy.loadtxt(data_file)
-    data_x = data[:,0]
-    data_y = data[:,1]
-    data_errorup = data[:,3]
-    data_errordown = data[:,2]
-    ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
-
+    # data_file = observe_folder+"/Duncan14_MF_z6.cat"
+    # data = numpy.loadtxt(data_file)
+    # data_x = data[:,0]
+    # data_y = data[:,1]
+    # data_errorup = data[:,3]
+    # data_errordown = data[:,2]
+    # ax.errorbar(data_x,data_y,yerr=[data_errordown,data_errorup], fmt='o',label="Duncan et al. (2014)")
+    
     data_file = observe_folder+"/song2016_z6.txt"
     data = numpy.loadtxt(data_file)
     data_x = data[:,0]
