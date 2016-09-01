@@ -26,8 +26,8 @@ def loadfilter(structfile):
     filter['DiskMass'] = True
     filter['BulgeMass'] = True
 
-    filter['MetalDiskMass'] = True
-    filter['MetalBulgeMass'] = True
+    filter['MetalsDiskMass'] = True
+    filter['MetalsBulgeMass'] = True
 
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
