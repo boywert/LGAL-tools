@@ -98,7 +98,7 @@ def plot_smf_z8(ax):
     ax.set_ylim([1.e-5,1e-1])
     ax.set_xlim([7,10])
     #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    labels = ["",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10$"]
+    labels = ["",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$"]
     ax.xaxis.set_ticklabels(labels)
     ax.set_yscale("log")     
     ax.yaxis.set_ticklabels([])
@@ -196,7 +196,7 @@ def main():
     plot_smf_z6(ax1)
     plot_smf_z8(ax2)
     #plot_smf_z8(ax3)
-    fig.savefig("SMF68.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("SMF68.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
 if __name__=="__main__":
