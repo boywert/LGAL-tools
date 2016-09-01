@@ -42,8 +42,7 @@ pylab.rc('text', usetex=True)
 
 zlist = open(zlistfile,"r").readlines()
 
-def Metallicity_plot_z6():
-    z = "6.06"
+def metallicity_plot(z)
     file_prefix = "SA_z"+z
     firstfile = 0
     lastfile = 127
@@ -76,14 +75,12 @@ def Metallicity_plot_z6():
     ax.set_xlabel(r"M1600 - 5log(h)")
     ax.set_ylabel(r"numbers $\mathrm{Mpc^{-3} Mag^-1}$")
     ax.set_yscale("log")
-    fig.savefig("uv_l_z7.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("uv_l_z"+z+".pdf",bbox_inches='tight',pad_inches=0)
 
 
 
 def main():
-    plot_uv_z6()
-    plot_uv_z7()
-    plot_uv_z8()
+    metallicity_plot("6.00")
     
 if __name__=="__main__":
     main()
