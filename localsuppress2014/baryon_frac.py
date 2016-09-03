@@ -112,11 +112,10 @@ def plot_z(z,models,ax,pos):
                 if ((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2. < gal[index][firstgal[ii]]['Rvir']**2):
                     cenmass[ii] += total_baryon[this_gal]
         cenhalomass = gal[index]["Mvir"][firstgal]
-        print cenmass/cenhalomass
         cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.))[0]
         cenmass = cenmass[cond]
         cenhalomass = cenhalomass[cond]
-        print index,len(cenmass),len(cenhalomass)
+        print index,len(cenmass),len(cenhalomass),len(firstgal)
         sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
@@ -135,7 +134,7 @@ def plot_z(z,models,ax,pos):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        print mean,sd
+        #print mean,sd
         ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
 
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
