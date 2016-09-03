@@ -113,7 +113,7 @@ def plot_z(z,models,ax,pos):
                     cenmass[ii] += total_baryon[this_gal]
         cenhalomass = gal[index]["Mvir"][firstgal]
         print cenmass/cenhalomass
-        cond = ~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.)
+        cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.))[0]
         cenmass = cenmass[cond]
         cenhalomass = cenhalomass[cond]
 
