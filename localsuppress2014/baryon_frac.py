@@ -98,6 +98,7 @@ def plot_z(z,models,ax,pos):
     m200c = {}
     for i in range(len(models.model_names)):
         index = models.model_names[i]
+        print index
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (7.5,11.5)
@@ -119,6 +120,7 @@ def plot_z(z,models,ax,pos):
         sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
+        print numpy.sum(N[index][0])
         m200c[index] = []
         for ii in range(len(sum_baryons[index][0])):
             m200c[index].append(0.5*(sum_baryons[index][1][ii]+sum_baryons[index][1][ii+1]))
