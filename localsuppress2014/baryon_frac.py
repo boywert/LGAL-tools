@@ -110,7 +110,7 @@ def plot_z(z,models,ax,pos):
             for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
                 #print total_baryon[firstgal[i]:firstgal[i+1]]
                 this_gal = firstgal[ii]+j
-                if ((j > 0) && ((gal[index][this_gal]['Type']==0))
+                if ((j > 0) & ((gal[index][this_gal]['Type']==0)):
                     break;
                 if (((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2. < gal[index][firstgal[ii]]['Rvir']**2)):
                     cenmass[ii] += total_baryon[this_gal]
