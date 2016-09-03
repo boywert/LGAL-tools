@@ -116,7 +116,7 @@ def plot_z(z,models,ax,pos):
         cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.))[0]
         cenmass = cenmass[cond]
         cenhalomass = cenhalomass[cond]
-
+        print index,len(cenmass),len(cenhalomass)
         sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
