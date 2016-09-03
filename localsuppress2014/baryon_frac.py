@@ -110,17 +110,16 @@ def plot_z(z,models,ax,pos):
             for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
                 #print total_baryon[firstgal[i]:firstgal[i+1]]
                 this_gal = firstgal[ii]+j
-                if ((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2. < gal[index][firstgal[ii]]['Rvir']**2):
+                if (((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2. < gal[index][firstgal[ii]]['Rvir']**2) &(gal[index][this_gal]['Type'] != 0)):
                     cenmass[ii] += total_baryon[this_gal]
         cenhalomass = gal[index]["Mvir"][firstgal]
-        cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & ( gal[index]["Type"][firstgal] == 0))[0]
+        cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & (gal[index]["Type"][firstgal] == 0))[0]
         cenmass = cenmass[cond]
         cenhalomass = cenhalomass[cond]
         print index,len(cenmass),len(cenhalomass),len(firstgal)
         sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
-        print numpy.sum(N[index][0])
         m200c[index] = []
         for ii in range(len(sum_baryons[index][0])):
             m200c[index].append(0.5*(sum_baryons[index][1][ii]+sum_baryons[index][1][ii+1]))
