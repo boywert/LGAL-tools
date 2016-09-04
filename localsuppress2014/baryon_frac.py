@@ -33,8 +33,6 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False
-    filter['NPhotReion'] = True
-    filter['ExcessMass'] = True
     filter['Mvir'] = True
     filter['Rvir'] = True
     filter['HaloM_Crit200'] = True
@@ -106,9 +104,9 @@ def plot_z(z,models,ax,pos):
         print index
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        rangen = (8.,11.)
+        rangen = (7.5,11.5)
         bins = 40
-        total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"]+gal[index]['ExcessMass'])
+        total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
         cenmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
         for ii in range(len(firstgal)-1):
