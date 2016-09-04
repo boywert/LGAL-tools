@@ -24,6 +24,8 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False    
     filter['Sfr'] = True
+    filter['BulgeMass'] = True
+    filter['DiskMass'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
