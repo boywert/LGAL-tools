@@ -84,7 +84,7 @@ def setfilter(models):
 # models.model_paths = models.model_paths_tmp
 def plot_z(z,models,ax,pos):
     round_z = "%4.2f" % (float(int(float(z)+0.5)))
-    fmod_file = "fmod/"+round_z+".txt"
+    fmod_file = "fmods/"+round_z+".txt"
     fmod_model = numpy.loadtxt(fmod_file)
     fmod_model[:,0] = fmod_model[:,0]/hubble_h
     dt,filter = setfilter(models)
