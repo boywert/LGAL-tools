@@ -107,7 +107,7 @@ def plot_smf_z8(ax):
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
     ax.yaxis.set_ticklabels([])
-    
+
 def plot_smf_z7(ax):
     z = "6.98"
     file_prefix = "SA_z"+z
@@ -123,30 +123,31 @@ def plot_smf_z7(ax):
         nGals = {}
         nTreeGals = {}
    
-    smf_x = {}
-    smf_y = {}
+    sfr_x = {}
+    sfr_y = {}
    
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
-
-    add_observations.add_obs_smf_z7("observations/SMF/",ax)
+        (sfr_x[index],sfr_y[index]) = sfr_density_fn(gal[index],mass_min=10**-2,mass_max=10.**2,nbins=20)
+    add_observations.add_obs_sfr_z7("observations/SFR/",ax)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-    #leg = ax.legend(loc='best', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    #leg.get_frame().set_linewidth(0)
-    #ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
-    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    ax.set_xlim([1.e-2,1e2])
-    ax.set_xlim([1e-5,10])
+        ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+
+    ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
+    ax.set_xlim([-2,2])
+    ax.set_ylim([1e-5,10])
+    labels = ["",r"$-1.5$",r"$-1.0$",r"$-0.5$",r"$0$",r"$0.5$",r"$1.0$",r"$1.5$",r"$2.0$"]
+    ax.xaxis.set_ticklabels(labels)
+    #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")     
     ax.text(0.9, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
-
+    ax.yaxis.set_ticklabels([])
+    
     
 def plot_smf_z6(ax):
     z = "6.00"
