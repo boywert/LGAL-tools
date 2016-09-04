@@ -82,7 +82,11 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax,pos):    
+def plot_z(z,models,ax,pos):
+    round_z = "%4.2f" % (float(int(float(z)+0.5)))
+    fmod_file = "fmod/"+round_z+".txt"
+    fmod_model = numpy.loadtxt(fmod_file)
+    fmod_model[:,0] = fmod_model[:,0]/hubble_h
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -127,6 +131,7 @@ def plot_z(z,models,ax,pos):
         del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
 
+    ax.plot(fmod_model[:,0],fmod_model[:,1],label="Okamoto et al. (2008)")
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         mean = sum_baryons[index][0]/N[index][0]
