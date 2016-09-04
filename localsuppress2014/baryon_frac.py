@@ -86,7 +86,7 @@ def plot_z(z,models,ax,pos):
     round_z = "%4.2f" % (float(int(float(z)+0.5)))
     fmod_file = "fmods/"+round_z+".txt"
     fmod_model = numpy.loadtxt(fmod_file)
-    fmod_model[:,0] = fmod_model[:,0]/hubble_h
+    fmod_model[:,0] = numpy.log10(fmod_model[:,0]/hubble_h)
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -105,7 +105,7 @@ def plot_z(z,models,ax,pos):
         print index
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        rangen = (7.5,11.5)
+        rangen = (8.,11.)
         bins = 40
         total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
@@ -148,7 +148,7 @@ def plot_z(z,models,ax,pos):
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
         ax.yaxis.set_ticklabels([])
-        labels = ["",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$"]
+        labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
     ax.set_ylim([0,1.4])
     ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
