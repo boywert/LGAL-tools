@@ -182,8 +182,8 @@ def plot_smf_z6(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    ax.set_xlim([-2,2])
-    ax.set_ylim([1e-5,10])
+    ax.set_xlim([-0.5,2])
+    ax.set_ylim([1e-5,1e-1])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
