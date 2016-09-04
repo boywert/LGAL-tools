@@ -131,7 +131,7 @@ def plot_z(z,models,ax,pos):
         del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
 
-    ax.plot(fmod_model[:,0],fmod_model[:,1],label="Okamoto et al. (2008)")
+    ax.plot(fmod_model[:,0],fmod_model[:,1],color="k",linestyle="--"label="Okamoto et al. (2008)")
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         mean = sum_baryons[index][0]/N[index][0]
