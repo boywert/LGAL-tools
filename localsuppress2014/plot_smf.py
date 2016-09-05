@@ -143,6 +143,7 @@ def plot_smf_z7(ax):
     ax.set_yscale("log")
     labels = ["",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$"]
     ax.xaxis.set_ticklabels(labels)
+    ax.yaxis.set_ticklabels([])
     ax.text(0.9, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
