@@ -196,7 +196,7 @@ def main():
     plot_smf_z6(ax1)
     plot_smf_z7(ax2)
     #plot_smf_z8(ax3)
-    fig.savefig("SMF68.pdf",bbox_inches='tight',pad_inches=0.1)
+    fig.savefig("SMF67.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
 if __name__=="__main__":
