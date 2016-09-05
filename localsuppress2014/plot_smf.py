@@ -194,7 +194,7 @@ def main():
     #ax3 = fig.add_subplot(3,1,3)
     plt.subplots_adjust(wspace = 0)
     plot_smf_z6(ax1)
-    plot_smf_z8(ax2)
+    plot_smf_z7(ax2)
     #plot_smf_z8(ax3)
     fig.savefig("SMF68.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
