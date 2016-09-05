@@ -113,7 +113,8 @@ def plot_z(z,models,ax,pos):
             for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
                 #print total_baryon[firstgal[i]:firstgal[i+1]]
                 this_gal = firstgal[ii]+j
-                if ( ((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2. < gal[index][firstgal[ii]]['Rvir']**2)):
+                distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
+                if ( distance < gal[index][firstgal[ii]]['Rvir']):
                     cenmass[ii] += total_baryon[this_gal]
         cenhalomass = gal[index]["Mvir"][firstgal]
         cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & (gal[index]["Type"][firstgal] == 0))[0]
