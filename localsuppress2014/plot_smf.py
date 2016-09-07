@@ -140,7 +140,7 @@ def plot_smf_z7(ax):
     #ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     # ax.set_ylim([1.e-5,1e-1])
     # ax.set_xlim([7,10])
-    # ax.set_yscale("log")
+    ax.set_yscale("log")
     # labels = ["",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$"]
     # ax.xaxis.set_ticklabels(labels)
     # ax.yaxis.set_ticklabels([])
@@ -182,8 +182,8 @@ def plot_smf_z6(ax):
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_*/M_\odot]}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
-    ax.set_ylim([1.e-5,1e-1])
-    ax.set_xlim([7,10])
+    #ax.set_ylim([1.e-5,1e-1])
+    #ax.set_xlim([7,10])
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
