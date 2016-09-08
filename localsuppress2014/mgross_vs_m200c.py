@@ -94,6 +94,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     sum_baryons_sq = {}
     sum_baryons = {}
     N = {}
+    age = {}
     m200c = {}
     for i in range(len(models.model_names)):
         index = models.model_names[i]
@@ -106,6 +107,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
 	mass = gal[index]['HaloM_Crit200']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
         sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h)**2)
+        age[index] =  sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.float64(1)*(gal[index]["MassWeightAge"]))
         N[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
@@ -113,7 +115,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         del(gal[index])
         del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
-  
+    ax3 = ax.twiny()
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         mean = sum_baryons[index][0]/N[index][0]
@@ -130,6 +132,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         elif pos == "r":
             print models.model_labels[i]
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+            ax3.plot(m200c[index],age[index]/N[index],color=models.model_plot_colors[i],linestyle="--",label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     xplot = numpy.arange(0,20.)
     ref = (-9.2+float(z)/30.)+xplot*1.6405
