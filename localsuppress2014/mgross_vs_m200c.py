@@ -131,14 +131,14 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
             print models.model_labels[i]
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
-
-    ref = (-9.2+float(z)/30.)+1.6405*m200c[index]
-    ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
+    xplot = numpy.arange(0,20.)
+    ref = (-9.2+float(z)/30.)+xplot
+    ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
   
     ax.set_ylim([3,10])
     ax.set_xlim([8.0,11.])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
-
+    
     if pos == "r":
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         ax.xaxis.set_ticklabels(labels)
