@@ -35,7 +35,7 @@ def loadfilter(structfile):
         fi = False
     filter['BulgeMass'] = True
     filter['DiskMass'] = True
-    filter['Mvir'] = True
+    filter['HaloM_Crit200'] = True
     # filter['HaloM_Crit200'] = True
     # filter['HotGas'] = True
     # filter['ColdGas'] = True
@@ -45,7 +45,7 @@ def loadfilter(structfile):
     # filter['BlackHoleGas'] = True
     # filter['BlackHoleMass'] = True
     # filter['Sfr'] = True
-    # filter['Type'] = True
+    filter['Type'] = True
     filter['CumulativeSFR'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
@@ -99,10 +99,11 @@ def plot_z(z,models,ax,pos):
         index = models.model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        rangen = (8.0,11.5)
-        bins = 40
-        gal[index] = gal[index][numpy.where(((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
-        mass = gal[index]["Mvir"] #(gal[index]["BulgeMass"]+gal[index]["DiskMass"])
+        rangen = (6.0,13)
+        bins = 50
+       	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
+        #gal[index] = gal[index][gal[index]["Type"]==0]
+	mass = gal[index]['HaloM_Crit200']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
         sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h)**2)
         N[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins)
@@ -129,51 +130,50 @@ def plot_z(z,models,ax,pos):
         else:
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
+    ref = (-9.2+float(z)/30.)+1.6405*m200c[index]
+    ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
+
     if pos == "r":
-        ref = -1.9+.92*m200c[index]
-        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{0.9}$')
-        ref = -3.58+1.08*m200c[index]
-        ax.plot(m200c[index],ref,'k-.', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.1}$')
-    else:
-        ref = -4.1+1.2*m200c[index]
-        ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.2}$')
-    leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
-    leg.get_frame().set_linewidth(0)
-    if pos == "r":
+	post = "r"
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         ax.xaxis.set_ticklabels(labels)
-    ax.set_ylim([4,11])
-    ax.set_xlim([8.25,11.5])
+    if pos == "r":
+        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
+        leg.get_frame().set_linewidth(0)
+    ax.set_ylim([3,10])
+    ax.set_xlim([8.0,11.])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
-    if pos == "l":
-        ax.text(0.9, 0.95, 'stripping 0',
-                verticalalignment='bottom', horizontalalignment='right',
-                transform=ax.transAxes, fontsize=14)
-        ax.text(0.1, 0.95, 'z = '+str(int(float(z)+0.5)),
-                verticalalignment='bottom', horizontalalignment='left',
-                transform=ax.transAxes, fontsize=14)
-    else:
-        ax.text(0.9, 0.95, 'stripping 1',
-                verticalalignment='bottom', horizontalalignment='right',
-                transform=ax.transAxes, fontsize=14)
+#     if pos == "l":
+#         ax.text(0.9, 0.95, 'stripping 0',
+#                 verticalalignment='bottom', horizontalalignment='right',
+#                 transform=ax.transAxes, fontsize=14)
+    ax.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
+            verticalalignment='bottom', horizontalalignment='center',
+            transform=ax.transAxes, fontsize=14)
+    # else:
+#         ax.text(0.9, 0.95, 'stripping 1',
+#                 verticalalignment='bottom', horizontalalignment='right',
+#                 transform=ax.transAxes, fontsize=14)
 
 
     
 def main():
     zlist = open(zlistfile).readlines()
-    zi = zlist[long(sys.argv[1])].strip()
+    #zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
     plt.subplots_adjust(wspace = 0)
     import model1 as model1
     ax1 = fig.add_subplot(121)
+    zi = zlist[49].strip()
     plot_z(zi,model1,ax1,"l")
-    import model2 as model2
+    #import model2 as model2
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
-    plot_z(zi,model2,ax2,"r")
+    zi = zlist[10].strip()
+    plot_z(zi,model1,ax2,"r")
     fig.savefig("stellar_mass_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
 
