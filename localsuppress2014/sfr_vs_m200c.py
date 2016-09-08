@@ -136,7 +136,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     #ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
     ax.set_yscale('log')
     # ax.set_ylim([3,10])
-    # ax.set_xlim([8.0,11.])
+    ax.set_xlim([8.0,11.])
     # ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     
     # if pos == "r":
