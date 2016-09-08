@@ -130,16 +130,16 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         
         #for j in range(len(m200c[index])):
         #    print m200c[index][j],mean[j]
-        if pos == "l":
-            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i])
+        #if pos == "l":
+            #ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i])
         elif pos == "r":
             print models.model_labels[i]
-            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+            #ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax3.plot(m200c[index],avage,color=models.model_plot_colors[i],linestyle="--",label=models.model_labels[i])
         #ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     xplot = numpy.arange(0,20.)
     ref = (-9.2+float(z)/30.)+xplot*1.6405
-    ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
+    #ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
     ax3.set_yscale("log")
     #ax.set_ylim([3,10])
     #ax.set_xlim([8.0,11.])
