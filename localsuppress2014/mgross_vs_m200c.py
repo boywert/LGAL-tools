@@ -140,7 +140,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     xplot = numpy.arange(0,20.)
     ref = (-9.2+float(z)/30.)+xplot*1.6405
     ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
-  
+    ax3.set_yscale("log")
     #ax.set_ylim([3,10])
     #ax.set_xlim([8.0,11.])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
