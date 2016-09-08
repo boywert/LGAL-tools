@@ -120,12 +120,14 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         mean = sum_baryons[index][0]/N[index][0]
+        avage = age[index][0]/N[index][0]
         sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
         mean = mean[cond]
+        avage = avage[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-    
+        
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         if pos == "l":
@@ -133,7 +135,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         elif pos == "r":
             print models.model_labels[i]
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
-            ax3.plot(m200c[index],age[index][0]/N[index][0],color=models.model_plot_colors[i],linestyle="--",label=models.model_labels[i])
+            ax3.plot(m200c[index],avage,color=models.model_plot_colors[i],linestyle="--",label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     xplot = numpy.arange(0,20.)
     ref = (-9.2+float(z)/30.)+xplot*1.6405
