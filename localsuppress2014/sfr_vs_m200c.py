@@ -122,7 +122,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        if index == "nore_ori":
+        if index == "nosup_infall":
             for j in range(len(m200c[index])):
                 print m200c[index][j],numpy.log10(mean[j])
         if pos == "l":
