@@ -182,7 +182,7 @@ def main():
     plt.subplots_adjust(wspace = 0,hspace = 0)
     import model2 as model1
     ax1 = fig.add_subplot(321)
-    zi = zlist[75].strip()
+    zi = zlist[74].strip()
     plot_z(zi,model1,ax1,"l",top=1)
     ax2 = fig.add_subplot(322)
     fig.canvas.draw()
