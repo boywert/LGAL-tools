@@ -113,6 +113,8 @@ def plot_z(z,models,ax,pos):
         del(gal[index])
         del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
+    ref = (-9.2+float(z)/30.)+1.6405*m200c[index]
+    ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
     
     for i in range(len(models.model_names)):
         index = models.model_names[i]
@@ -130,8 +132,6 @@ def plot_z(z,models,ax,pos):
         elif pos == "r":
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
-    ref = (-9.2+float(z)/30.)+1.6405*m200c[index]
-    ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
 
     if pos == "r":
         ax.yaxis.set_ticklabels([])
