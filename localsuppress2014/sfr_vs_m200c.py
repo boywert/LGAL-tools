@@ -131,9 +131,9 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
             print models.model_labels[i]
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
-    #xplot = numpy.arange(0,20.)
-    #ref = (-9.2+float(z)/30.)+xplot*1.6405
-    #ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
+    xplot = numpy.arange(0,20.)
+    ref = 10**(1.8269*xplot-19.231)
+    ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
     ax.set_yscale('log')
     ax.set_ylim([1e-4,10])
     ax.set_xlim([8.0,11.])
