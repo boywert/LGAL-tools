@@ -105,7 +105,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         #gal[index] = gal[index][gal[index]["Type"]==0]
 	mass = gal[index]['HaloM_Crit200']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
         sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.float64(1)*(gal[index]["MassWeightAge"]))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h)**2)
+        #sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CumulativeSFR"])*1.e10/hubble_h)**2)
         N[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
@@ -120,7 +120,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         #sd =  numpy.sqrt(numpy.fabs(sum_baryons_sq[index][0]/N[index][0] - mean**2))
         cond = ~numpy.isnan(mean)
         mean = mean[cond]
-        sd = sd[cond]
+        #sd = sd[cond]
         m200c[index] = m200c[index][cond]
     
         for j in range(len(m200c[index])):
