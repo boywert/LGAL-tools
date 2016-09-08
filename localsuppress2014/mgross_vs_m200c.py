@@ -126,7 +126,7 @@ def plot_z(z,models,ax,pos):
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         if pos == "l":
-            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="test")
+            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i])
         elif pos == "r":
             print models.model_labels[i]
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
@@ -139,9 +139,8 @@ def plot_z(z,models,ax,pos):
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         ax.xaxis.set_ticklabels(labels)
-   
-    leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
-    leg.get_frame().set_linewidth(0)
+        leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
+        leg.get_frame().set_linewidth(0)
     ax.set_ylim([3,10])
     ax.set_xlim([8.0,11.])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
