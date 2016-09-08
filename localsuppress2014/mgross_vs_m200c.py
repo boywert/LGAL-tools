@@ -145,6 +145,9 @@ def plot_z(z,models,ax,pos,label=0,bottom=0):
         ax.xaxis.set_ticklabels(labels)
     if bottom != 1:
         ax.xaxis.set_ticklabels([])
+    else:
+        labels = ["",r"$4$",r"$5$",r"$6$",r"$7$",r"$8$",r"$9$",r"$10$"]
+        ax.yaxis.set_ticklabels(labels)
     if label == 1:
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
