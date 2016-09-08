@@ -98,7 +98,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
         rangen = (6.0,13)
         bins = 50
        	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0))]
@@ -123,12 +123,12 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
         if index == "nosup_infall":
+            print z
             for j in range(len(m200c[index])):
                 print m200c[index][j],numpy.log10(mean[j])
         if pos == "l":
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i])
         elif pos == "r":
-            print models.model_labels[i]
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     xplot = numpy.arange(0,20.)
