@@ -157,7 +157,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         if pos =="r":
             labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
             ax2.xaxis.set_ticklabels(labels)
-    if top != 0:
+    if top == 0:
         labels = [r"$3$",r"$4$",r"$5$",r"$6$",r"$7$",r"$8$",r"$9$",""]
         ax.yaxis.set_ticklabels(labels)
 #     if pos == "l":
