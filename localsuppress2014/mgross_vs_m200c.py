@@ -128,7 +128,8 @@ def plot_z(z,models,ax,pos):
         if pos == "l":
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="test")
         elif pos == "r":
-            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="hoolaa")#label=models.model_labels[i])
+            print models.model_labels[i]
+            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
 
     ref = (-9.2+float(z)/30.)+1.6405*m200c[index]
