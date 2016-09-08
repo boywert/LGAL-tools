@@ -166,7 +166,7 @@ def main():
     #zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 6))
     plt.subplots_adjust(wspace = 0)
-    import model1 as model1
+    import model2 as model1
     ax1 = fig.add_subplot(121)
     zi = zlist[49].strip()
     plot_z(zi,model1,ax1,"l")
