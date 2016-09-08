@@ -81,7 +81,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax,pos):    
+def plot_z(z,models,ax,pos,label=0,bottom=0):    
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -135,15 +135,19 @@ def plot_z(z,models,ax,pos):
     ref = (-9.2+float(z)/30.)+1.6405*m200c[index]
     ax.plot(m200c[index],ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
   
+    ax.set_ylim([3,10])
+    ax.set_xlim([8.0,11.])
+    ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
+
     if pos == "r":
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         ax.xaxis.set_ticklabels(labels)
+    if bottom != 1:
+        ax.xaxis.set_ticklabels([])
+    if label == 1:
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
-    ax.set_ylim([3,10])
-    ax.set_xlim([8.0,11.])
-    ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
 #     if pos == "l":
@@ -172,7 +176,7 @@ def main():
     ax2 = fig.add_subplot(322)
     fig.canvas.draw()
     zi = zlist[49].strip()
-    plot_z(zi,model1,ax2,"r")
+    plot_z(zi,model1,ax2,"r",label=1)
     ax2 = fig.add_subplot(323)
     fig.canvas.draw()
     zi = zlist[34].strip()
@@ -184,11 +188,11 @@ def main():
     ax2 = fig.add_subplot(325)
     fig.canvas.draw()
     zi = zlist[18].strip()
-    plot_z(zi,model1,ax2,"l")
+    plot_z(zi,model1,ax2,"l",bottom=1)
     ax2 = fig.add_subplot(326)
     fig.canvas.draw()
     zi = zlist[13].strip()
-    plot_z(zi,model1,ax2,"r")
+    plot_z(zi,model1,ax2,"r",bottom=1)
     fig.savefig("mgross_m200c.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
