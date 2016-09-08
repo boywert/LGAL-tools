@@ -132,7 +132,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         #    print m200c[index][j],mean[j]
         #if pos == "l":
             #ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i])
-        elif pos == "r":
+        if pos == "r":
             print models.model_labels[i]
             #ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax3.plot(m200c[index],avage,color=models.model_plot_colors[i],linestyle="--",label=models.model_labels[i])
