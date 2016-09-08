@@ -163,18 +163,25 @@ def plot_z(z,models,ax,pos):
 def main():
     zlist = open(zlistfile).readlines()
     #zi = zlist[long(sys.argv[1])].strip()
-    fig = plt.figure(figsize=(16, 6))
-    plt.subplots_adjust(wspace = 0)
+    fig = plt.figure(figsize=(16, 12))
+    plt.subplots_adjust(wspace = 0,vspace = 0)
     import model2 as model1
-    ax1 = fig.add_subplot(121)
-    zi = zlist[49].strip()
+    ax1 = fig.add_subplot(221)
+    zi = zlist[75].strip()
     plot_z(zi,model1,ax1,"l")
-    #import model2 as model2
-    ax2 = fig.add_subplot(122)
+    ax2 = fig.add_subplot(222)
     fig.canvas.draw()
-    zi = zlist[10].strip()
+    zi = zlist[49].strip()
     plot_z(zi,model1,ax2,"r")
-    fig.savefig("stellar_mass_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
+    ax2 = fig.add_subplot(223)
+    fig.canvas.draw()
+    zi = zlist[34].strip()
+    plot_z(zi,model1,ax2,"r")
+    ax2 = fig.add_subplot(224)
+    fig.canvas.draw()
+    zi = zlist[24].strip()
+    plot_z(zi,model1,ax2,"r")
+    fig.savefig("mgross_m200c.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
