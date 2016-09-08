@@ -81,7 +81,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax,pos,label=0,bottom=0):    
+def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):    
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -181,11 +181,11 @@ def main():
     import model2 as model1
     ax1 = fig.add_subplot(321)
     zi = zlist[75].strip()
-    plot_z(zi,model1,ax1,"l")
+    plot_z(zi,model1,ax1,"l",top=1)
     ax2 = fig.add_subplot(322)
     fig.canvas.draw()
     zi = zlist[49].strip()
-    plot_z(zi,model1,ax2,"r",label=1)
+    plot_z(zi,model1,ax2,"r",label=1,top=1)
     ax2 = fig.add_subplot(323)
     fig.canvas.draw()
     zi = zlist[34].strip()
