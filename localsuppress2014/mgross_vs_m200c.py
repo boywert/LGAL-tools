@@ -126,7 +126,7 @@ def plot_z(z,models,ax,pos):
         for j in range(len(m200c[index])):
             print m200c[index][j],mean[j]
         if pos == "l":
-            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=u"สุดสวย")
+            ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="test")
         elif pos == "r":
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
