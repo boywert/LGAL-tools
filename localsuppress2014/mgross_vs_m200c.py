@@ -36,6 +36,7 @@ def loadfilter(structfile):
     filter['BulgeMass'] = True
     filter['DiskMass'] = True
     filter['HaloM_Crit200'] = True
+    filter['MassWeightAge'] = True
     # filter['HaloM_Crit200'] = True
     # filter['HotGas'] = True
     # filter['ColdGas'] = True
