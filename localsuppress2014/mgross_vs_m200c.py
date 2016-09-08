@@ -164,7 +164,7 @@ def main():
     zlist = open(zlistfile).readlines()
     #zi = zlist[long(sys.argv[1])].strip()
     fig = plt.figure(figsize=(16, 12))
-    plt.subplots_adjust(wspace = 0,vspace = 0)
+    plt.subplots_adjust(wspace = 0,hspace = 0)
     import model2 as model1
     ax1 = fig.add_subplot(221)
     zi = zlist[75].strip()
