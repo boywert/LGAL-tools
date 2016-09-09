@@ -65,6 +65,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac):
     ax = []
     im = []
     ifile = 0
+    print "finish preparing figure"
     for i in range(nrow):
         ii = i
         print "Plotiing row %d" %(ii+1)
