@@ -98,11 +98,11 @@ def plot_hotgas(z,ax,pos):
     ax.set_yscale("log")
     ax.set_ylim([1.e-1,1e2])
     ax.set_xlim([6.5,8.5])
-    ax.text(0.9, 0.9, 'z = %d'%(int(float(z)+0.5)),
-            verticalalignment='bottom', horizontalalignment='right',
+    ax.text(0.1, 0.9, 'z = %d'%(int(float(z)+0.5)),
+            verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
     if pos == 'l':
-        leg = ax.legend(loc='lower left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     if pos == 'r':
