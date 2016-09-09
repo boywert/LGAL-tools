@@ -104,6 +104,7 @@ def plot_hotgas(z,ax,pos):
     if pos == 'r':
         leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
+        leg.get_frame().set_alpha(0)
     if pos == 'l':
         ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     if pos == 'r':
