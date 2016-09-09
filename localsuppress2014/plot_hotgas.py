@@ -94,18 +94,21 @@ def plot_hotgas(z,ax):
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-    leg = ax.legend(loc='lower left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_{\rm hotgas}/M_\odot]}$")
-    ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-3,1e2])
     ax.set_xlim([6,10])
     ax.text(0.9, 0.9, 'z = %d'%(int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
-
-
+    if pos == 'l':
+        leg = ax.legend(loc='lower left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        leg.get_frame().set_linewidth(0)
+        ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
+    if pos == 'r':
+        labels = ["",r"$6.5$",r"$7.0$",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"10.0"]
+        ax.xaxis.set_ticklabels(labels)
+        ax.yaxis.set_ticklabels([])
     
 def main():
     fig = plt.figure(figsize=(16, 6))
