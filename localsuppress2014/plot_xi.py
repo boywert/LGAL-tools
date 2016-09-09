@@ -57,10 +57,10 @@ def plot_size(ax,m,z,pos):
         ax2.xaxis.set_ticklabels(labels)
     
     if (pos == 1) | (pos ==3):
-        labels = ["", r"$1$",r"$10$",r"$100$",r"$1000$"]
+        labels = ["","", r"$1$",r"$10$",r"$100$",r"$1000$"]
         ax.yaxis.set_ticklabels(labels)
     if pos == 5:
-        labels = [r"$0.1$",r"$1$",r"$10$",r"$100$",r"$1000$"]
+        labels = ["", r"$0.1$",r"$1$",r"$10$",r"$100$",r"$1000$"]
         ax.yaxis.set_ticklabels(labels)
     if pos == 5:
         labels = ["",r"$0.1$",r"$1$",r"$10$"]
