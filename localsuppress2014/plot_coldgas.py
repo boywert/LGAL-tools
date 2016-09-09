@@ -120,7 +120,7 @@ def main():
     plot_hotgas("6.00",ax1,"l")
     plot_hotgas("9.03",ax2,"r")
     #plot_smf_z8(ax3)
-    fig.savefig("HG69.pdf",bbox_inches='tight',pad_inches=0.1)
+    fig.savefig("CG69.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
 if __name__=="__main__":
