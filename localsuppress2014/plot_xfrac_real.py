@@ -52,15 +52,21 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac):
     outfile = "%3.1f_pic_%s.pdf" % (frac,suffix)
     print "plotting",outfile
     fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
+    print "a"
     plt.subplots_adjust(wspace = 0.03)
+    print "b"
     plt.subplots_adjust(hspace = 0.07)
+    print "c"
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
+    print "d"
     for i in range(nrow):
         gs_height_ratios.append(1.)
+    print "e"
     for i in range(ncol):
         gs_width_ratios.append(1.)
+    print "f"
     gs = gridspec.GridSpec(nrow, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
     ax = []
     im = []
