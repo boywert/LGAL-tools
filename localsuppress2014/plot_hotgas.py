@@ -98,7 +98,7 @@ def plot_hotgas(z,ax,pos):
     ax.set_yscale("log")
     ax.set_ylim([1.e-2,1e2])
     ax.set_xlim([6.5,8.5])
-    ax.text(0.1, 0.9, 'z = %d'%(int(float(z)+0.5)),
+    ax.text(0.1, 0.1, 'z = %d'%(int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
     if pos == 'r':
