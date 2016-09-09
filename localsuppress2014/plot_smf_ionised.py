@@ -134,7 +134,7 @@ def plot_smf_z8(ax):
     
 def plot_smf_z7(ax):
     z = "6.98"
-    z3 = ""
+    z3 = "6.981"
     file_prefix = "SA_z"+z
     #firstfile = 0
     #lastfile = 127
@@ -190,6 +190,7 @@ def plot_smf_z7(ax):
     
 def plot_smf_z6(ax):
     z = "6.00"
+    z3 = "6.000"
     file_prefix = "SA_z"+z
     #firstfile = 0
     #lastfile = 127
