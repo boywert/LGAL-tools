@@ -89,7 +89,7 @@ def read_xfrac(filename):
 
 def plot_xi(snap):
     z = zlist[long(snap)].strip()
-    z3 = z3list[long(snap)].strip()
+    z3 = z3list[long(snap)-1].strip()
     file_prefix = "SA_z"+z
     xi = {}
     gal = {}

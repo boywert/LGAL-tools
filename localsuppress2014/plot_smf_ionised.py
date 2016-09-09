@@ -226,7 +226,7 @@ def plot_smf_z6(ax):
             xmask[iii] = Xfrac3d.data[iblock]
         cond = numpy.where(xmask > 0.99)[0]
         (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index][cond],mass_min=1.e4,mass_max=1e11,nbins=40)
-        
+         
             
     add_observations.add_obs_smf_z6("observations/SMF/",ax)
     for i in range(len(model_names)):
