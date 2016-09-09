@@ -143,6 +143,9 @@ def do_plot(z_in):
     plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.7)
 
 
+def main:
+    for i in range(10):
+        do_plot(i*30)
 
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.938")
 # plot_reionized(nrow,ncol,filelist,doubleflaglist,"9.457")
