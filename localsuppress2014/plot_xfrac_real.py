@@ -82,6 +82,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac):
     plt.close(fig)
 
 def do_plot(z_in):
+    print "start",z_in
     if(z_in+33 >305):
         print "outsid box"
         return
