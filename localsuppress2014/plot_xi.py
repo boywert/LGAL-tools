@@ -23,7 +23,7 @@ os.system("mkdir -p ../tmp/"+ranki)
 pylab.rc('text', usetex=True)
 pylab.rc('lines', linewidth=1.5)
 
-plt.rcParams.update({'font.size': 22})
+plt.rcParams.update({'font.size': 20})
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 folder = "xi/"
