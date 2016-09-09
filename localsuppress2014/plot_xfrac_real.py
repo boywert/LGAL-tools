@@ -44,7 +44,10 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 
+
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac):
+    outfile = "%3.1f_pic_%s.pdf" % (frac,suffix)
+    print "plotting",outfile
     fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
     plt.subplots_adjust(wspace = 0.03)
     plt.subplots_adjust(hspace = 0.07)
@@ -77,7 +80,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac):
                 if j == 0:
                     ax[ifile].set_ylabel(r"47 Mpc/h",fontsize=10)
                 ifile += 1
-    outfile = "%3.1f_pic_%s.pdf" % (frac,suffix)
+
     fig.savefig(outfile, bbox_inches='tight')
     plt.close(fig)
 
