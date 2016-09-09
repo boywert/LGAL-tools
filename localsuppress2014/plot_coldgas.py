@@ -97,7 +97,7 @@ def plot_hotgas(z,ax,pos):
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_{\rm hotgas}/M_\odot]}$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-2,1e1])
-    ax.set_xlim([6,8])
+    ax.set_xlim([6.5,8])
     ax.text(0.9, 0.9, 'z = %d'%(int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
