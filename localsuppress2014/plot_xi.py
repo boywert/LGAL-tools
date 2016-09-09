@@ -53,13 +53,13 @@ def plot_size(ax,m,z,pos):
     if pos == 1:
         leg = ax.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':13})
         leg.get_frame().set_linewidth(0)
-    if (pos== 1) | (pos==3):
+    if (pos%2==1):
         ax.set_ylabel(r"$\xi(\mathrm{r})$")
-    if (pos== 3) | (pos==4):
-        ax.set_xlabel(r"$\mathrm{r~[h^{-1}Mpc]}$")
-    if (pos== 2) | (pos==4):
+    if (pos== 5) | (pos==6):
+        ax.set_xlabel(r"$r[h^{-1}\mathrm{Mpc}]$")
+    if (pos%2 == 0):
         ax.yaxis.set_ticklabels([])
-    if (pos== 1) | (pos==2):
+    if (pos <= 4 ):
         ax.xaxis.set_ticklabels([])
     ax.text(0.95, 0.5, r"$%2.1f < m_*/\mathrm{M_\odot} < %2.1f$" % (float(m),float(m)+1.),
             verticalalignment='bottom', horizontalalignment='right',
