@@ -37,6 +37,22 @@ def plot_size(ax,m,z,pos):
     ax.set_ylim([1e-1,1e3])
     ax.set_yscale("log")
     
+    if pos == 1:
+        ax2 = ax.twiny()
+        ax2.set_xlim([1e-1,10])
+        ax2.set_ylim([1e-1,1e3])
+        ax2.set_yscale("log")
+        ax2.set_xscale("log")
+        labels = ["",r"$0.1$",r"$1$",r"$10$"]
+        ax2.xaxis.set_ticklabels(labels)
+    if pos == 2:
+        ax2 = ax.twiny()
+        ax2.set_xlim([1e-1,10])
+        ax2.set_ylim([1e-1,1e3])
+        ax2.set_yscale("log")
+        ax2.set_xscale("log")
+        labels = ["","",r"$1$",r"$10$"]
+        ax2.xaxis.set_ticklabels(labels)
     
     if (pos == 1) | (pos ==3):
         labels = ["", r"$1$",r"$10$",r"$100$",r"$1000$"]
