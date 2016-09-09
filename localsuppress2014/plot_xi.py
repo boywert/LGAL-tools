@@ -84,8 +84,8 @@ def main():
     plot_size(ax2, "4.0","9.03", 2)
     plot_size(ax3, "6.0","6.00", 3)
     plot_size(ax4, "6.0","9.03", 4)
-    plot_size(ax3, "7.0","6.00", 5)
-    plot_size(ax4, "7.0","9.03", 6)
+    plot_size(ax5, "7.0","6.00", 5)
+    plot_size(ax6, "7.0","9.03", 6)
     fig.savefig("xi_.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
