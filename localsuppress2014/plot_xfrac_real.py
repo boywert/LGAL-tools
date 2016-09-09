@@ -160,7 +160,7 @@ def do_plot(z_in):
 
 
 def main():
-    for in range(30):
+    for i in range(30):
         do_plot(90+i)
 
 if __name__=="__main__":
