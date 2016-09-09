@@ -103,7 +103,7 @@ def do_plot(z_in):
         return
     x = (153,306)
     y = (153,306)
-    z = (z_in,z_in+33)
+    z = (z_in,z_in+15)
     suffix = "%d"%(z_in)
     nrow = 3
     ncol = 2
