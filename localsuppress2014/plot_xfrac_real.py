@@ -101,8 +101,8 @@ def do_plot(z_in):
     if(z_in+33 >305):
         print "outsid box"
         return
-    x = (0,306)
-    y = (0,306)
+    x = (153,306)
+    y = (153,306)
     z = (z_in,z_in+33)
     suffix = "%d"%(z_in)
     nrow = 3
@@ -160,8 +160,7 @@ def do_plot(z_in):
 
 
 def main():
-    for i in range(10):
-        do_plot(i*30)
+    do_plot(90)
 
 if __name__=="__main__":
     main()
