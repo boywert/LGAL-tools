@@ -90,7 +90,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
                 if j == 0:
-                    ax[ifile].set_ylabel(r"47 Mpc/h",fontsize=10)
+                    ax[ifile].set_ylabel(r"23.5 Mpc/h",fontsize=10)
                 ifile += 1
 
     fig.savefig(outfile, bbox_inches='tight')
