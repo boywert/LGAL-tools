@@ -23,6 +23,7 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False    
+    filter["Pos"] = True
     filter['DiskMass'] = True
     filter['BulgeMass'] = True
     dt = LGalaxyStruct.struct_dtype
@@ -81,6 +82,7 @@ zlist = open(zlistfile,"r").readlines()
 
 
 def plot_smf_z8(ax):
+    z3 = "000"
     z = "7.96"
     file_prefix = "SA_z"+z
     #firstfile = 0
@@ -211,7 +213,20 @@ def plot_smf_z6(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-            (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
+        xfilename = model_xfrac_path[i]+"/xfrac3d_"+ z3 +".bin"
+        print xfilename
+        Xfrac3d = read_xfrac(xfilename)
+        data = gal[index]["Pos"]
+        xmask = numpy.ones(len(data),dtype=numpy.float32)
+        for iii in range(len(data)):
+            iix =int(data[iii][0]/(sim_boxsize/Xfrac3d.grid[0]))%Xfrac3d.grid[0]
+            iiy =int(data[iii][1]/(sim_boxsize/Xfrac3d.grid[1]))%Xfrac3d.grid[1]
+            iiz =int(data[iii][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
+            iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
+            xmask[iii] = Xfrac3d.data[iblock]
+        cond = numpy.where(xmask > 0.99)[0]
+        (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index][cond],mass_min=1.e4,mass_max=1e11,nbins=40)
+        
             
     add_observations.add_obs_smf_z6("observations/SMF/",ax)
     for i in range(len(model_names)):
