@@ -128,7 +128,7 @@ def plot_smf_z7(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        gal[index]['BulgeMass'] = 0.0
+        #gal[index]['BulgeMass'] = 0.0
         (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
 
     add_observations.add_obs_smf_z7("observations/SMF/",ax)
