@@ -68,7 +68,7 @@ zlist = open(zlistfile,"r").readlines()
 
 
 
-def plot_hotgas(z,ax):
+def plot_hotgas(z,ax,pos):
     file_prefix = "SA_z"+z
     #firstfile = 0
     #lastfile = 127
@@ -97,7 +97,7 @@ def plot_hotgas(z,ax):
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_{\rm hotgas}/M_\odot]}$")
     ax.set_yscale("log")
     ax.set_ylim([1.e-3,1e2])
-    ax.set_xlim([6,10])
+    ax.set_xlim([6.5,10])
     ax.text(0.9, 0.9, 'z = %d'%(int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
@@ -116,8 +116,8 @@ def main():
     ax2 = fig.add_subplot(1,2,2)
     #ax3 = fig.add_subplot(3,1,3)
     plt.subplots_adjust(wspace = 0)
-    plot_hotgas("6.00",ax1)
-    plot_hotgas("9.03",ax2)
+    plot_hotgas("6.00",ax1,"l")
+    plot_hotgas("9.03",ax2,"r")
     #plot_smf_z8(ax3)
     fig.savefig("HG69.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
