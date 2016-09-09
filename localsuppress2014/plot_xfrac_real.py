@@ -8,6 +8,7 @@ class xfrac:
     data = 0
 
 def read_xfrac(filename,doubleflag):
+    print "reading",filename
     f = open(filename,"rb")
     output = xfrac()
     padd = numpy.fromfile(f,numpy.int32,1)[0]
@@ -22,6 +23,7 @@ def read_xfrac(filename,doubleflag):
     return output
 
 def get_space(data3d,x,y,z):
+    print "cropping"
     minx = x[0]
     maxx = x[1]
     miny = y[0]
@@ -36,6 +38,7 @@ def get_space(data3d,x,y,z):
     return b
 
 def get_plot(filename,doubleflag,x,y,z):
+    print "getting ready",filename
     xfrac = read_xfrac(filename,doubleflag)
     data_plot = get_space(xfrac.data,x,y,z) 
     return data_plot
