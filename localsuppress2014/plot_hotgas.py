@@ -108,7 +108,7 @@ def plot_hotgas(z,ax,pos):
         ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     if pos == 'r':
         labels = ["",r"$7.0$",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"10.0"]
-        #ax.xaxis.set_ticklabels(labels)
+        ax.xaxis.set_ticklabels(labels)
         ax.yaxis.set_ticklabels([])
     
 def main():
