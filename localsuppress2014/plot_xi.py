@@ -61,7 +61,7 @@ def plot_size(ax,m,z,pos):
         ax.yaxis.set_ticklabels([])
     if (pos <= 4 ):
         ax.xaxis.set_ticklabels([])
-    ax.text(0.95, 0.5, r"$%2.1f < m_*/\mathrm{M_\odot} < %2.1f$" % (float(m),float(m)+1.),
+    ax.text(0.95, 0.5, r"$10^{%2.0f} < m_*/\mathrm{M_\odot} < 10^{%2.0f}$" % (float(m),float(m)+1.),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=18)
     ax.text(0.1, 0.1, "z = %d" % (int(float(z)+0.5)),
@@ -81,11 +81,11 @@ def main():
     ax6 = fig.add_subplot(326)
     fig.canvas.draw()
     plot_size(ax1, "4.0","6.00", 1)
-    plot_size(ax2, "4.0","7.96", 2)
+    plot_size(ax2, "4.0","9.03", 2)
     plot_size(ax3, "6.0","6.00", 3)
-    plot_size(ax4, "6.0","7.96", 4)
+    plot_size(ax4, "6.0","9.03", 4)
     plot_size(ax5, "7.0","6.00", 5)
-    plot_size(ax6, "7.0","7.96", 6)
+    plot_size(ax6, "7.0","9.03", 6)
     fig.savefig("xi_.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
