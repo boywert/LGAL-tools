@@ -1,6 +1,7 @@
+import matplotlib
+matplotlib.use('Agg') 
 import numpy
 import pylab
-pylab.use('PDF') 
 from pylab import *
 from matplotlib import gridspec
 from matplotlib.colors import LogNorm
