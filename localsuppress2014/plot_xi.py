@@ -104,7 +104,7 @@ def main():
     plot_size(ax4, "6.0","9.03", 4)
     plot_size(ax5, "7.0","6.00", 5)
     plot_size(ax6, "7.0","9.03", 6)
-    fig.savefig("xi_.pdf",bbox_inches='tight',pad_inches=0.05)
+    fig.savefig("XI69.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
