@@ -24,7 +24,7 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False    
     #filter['DiskMass'] = True   
-    filter['HotGas'] = True
+    filter['ColdGas'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -89,7 +89,7 @@ def plot_hotgas(z,ax,pos):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-            (smf_x[index],smf_y[index]) = hotgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
+            (smf_x[index],smf_y[index]) = coldgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
             
     for i in range(len(model_names)):
         index = model_names[i]
@@ -119,7 +119,7 @@ def main():
     plot_hotgas("6.00",ax1,"l")
     plot_hotgas("9.03",ax2,"r")
     #plot_smf_z8(ax3)
-    fig.savefig("HG69.pdf",bbox_inches='tight',pad_inches=0.1)
+    fig.savefig("CG69.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
 if __name__=="__main__":
