@@ -41,7 +41,7 @@ def plot_size(ax,folder,pos):
 
 
     ax.set_xscale("log")
-    ax.set_xlim([1e-1,20])
+    ax.set_xlim([1e-1,30])
     ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
 
@@ -53,8 +53,8 @@ def plot_size(ax,folder,pos):
         leg = ax.legend(loc="lower left", handlelength = 5,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.9, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
-            verticalalignment='bottom', horizontalalignment='right',
+    ax.text(0.1, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+            verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=18)
     if pos != "b":
         ax.xaxis.set_ticklabels([])
