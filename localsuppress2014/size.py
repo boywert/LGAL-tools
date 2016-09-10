@@ -53,7 +53,7 @@ def plot_size(ax,folder,pos):
         leg = ax.legend(loc="lower left", handlelength = 5,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.1, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+    ax.text(0.05, 0.85, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=18)
     if pos != "b":
