@@ -121,6 +121,7 @@ def plot_z(z,models,ax,pos):
         cenmass = cenmass[cond]
         cenhalomass = cenhalomass[cond]
         print index,len(cenmass),len(cenhalomass),len(firstgal)
+	#print "min",numpy.amin(cenmass/cenhalomass/0.165), "max", numpy.amax(cenmass/cenhalomass/0.165)
         sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
         sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
@@ -140,7 +141,7 @@ def plot_z(z,models,ax,pos):
         mean = mean[cond]
         sd = sd[cond]
         m200c[index] = m200c[index][cond]
-        #print mean,sd
+        print mean,sd
         ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
 
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
@@ -155,7 +156,7 @@ def plot_z(z,models,ax,pos):
     ax.set_xlim([8,11])
     ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.set_ylabel(r"$f_{\mathrm{Baryon}}/f_b$")
+        ax.set_ylabel(r"$f_{\mathrm{baryon}}/f_b$")
     if pos == "l":
         ax.text(0.5, 0.25, 'stripping 0',
                 verticalalignment='bottom', horizontalalignment='center',
@@ -169,7 +170,6 @@ def plot_z(z,models,ax,pos):
                 transform=ax.transAxes, fontsize=14)
     ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-
     
 def main():
     zlist = open(zlistfile).readlines()
