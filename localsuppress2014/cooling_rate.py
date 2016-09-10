@@ -46,7 +46,7 @@ def loadfilter(structfile):
     # filter['BlackHoleMass'] = True
     # filter['Sfr'] = True
     filter['Type'] = True
-    filter['CoolingRate'] = True
+    filter['CoolingRate_beforeAGN'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -104,8 +104,8 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
        	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["HotGas"]) >0.))]
         #gal[index] = gal[index][gal[index]["Type"]==0]
 	mass = gal[index]['HotGas']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
-        sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate"])))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate"]))**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate_beforeAGN"])))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate_beforeAGN"]))**2)
         N[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
