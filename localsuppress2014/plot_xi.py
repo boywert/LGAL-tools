@@ -71,6 +71,7 @@ def plot_size(ax,m,z,pos):
     if pos == 1:
         leg = ax.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':13})
         leg.get_frame().set_linewidth(0)
+        leg.get_frame().set_alpha(0)
     if (pos%2==1):
         ax.set_ylabel(r"$\xi(\mathrm{r})$")
     if (pos== 5) | (pos==6):
@@ -85,7 +86,8 @@ def plot_size(ax,m,z,pos):
     ax.text(0.1, 0.1, "z = %d" % (int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=18)
-
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     
 def main():
     fig = plt.figure(figsize=(16, 18))
