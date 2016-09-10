@@ -139,6 +139,7 @@ def plot_uv_z7(ax):
         ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label="")
     leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
+    leg.get_frame().set_alpha(0)
     #ax.set_xlabel(r"M1500 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")

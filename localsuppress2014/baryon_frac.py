@@ -147,6 +147,7 @@ def plot_z(z,models,ax,pos):
     if pos == "r":
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
+        leg.get_frame().set_alpha(0)
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
         ax.xaxis.set_ticklabels(labels)
@@ -166,7 +167,8 @@ def plot_z(z,models,ax,pos):
         ax.text(0.5, 0.25, 'stripping 1',
                 verticalalignment='bottom', horizontalalignment='center',
                 transform=ax.transAxes, fontsize=14)
-
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
 
     
 def main():
