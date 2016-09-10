@@ -102,8 +102,11 @@ def plot_uv_z8(ax):
     ax.text(0.1, 0.9, 'z = 8',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+
+    ax.set_axisbelow(True)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+
 
     
 

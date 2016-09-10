@@ -168,8 +168,10 @@ def plot_z(z,models,ax,pos):
         ax.text(0.5, 0.25, 'stripping 1',
                 verticalalignment='bottom', horizontalalignment='center',
                 transform=ax.transAxes, fontsize=14)
-    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.set_axisbelow(True)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+
     
 def main():
     zlist = open(zlistfile).readlines()

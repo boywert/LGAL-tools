@@ -86,8 +86,10 @@ def plot_size(ax,m,z,pos):
     ax.text(0.1, 0.1, "z = %d" % (int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=18)
-    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.set_axisbelow(True)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+
     
 def main():
     fig = plt.figure(figsize=(16, 18))

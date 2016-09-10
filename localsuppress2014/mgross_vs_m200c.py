@@ -147,6 +147,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     if label == 1:
         leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         leg.get_frame().set_linewidth(0)
+        leg.get_frame().set_alpha(0)
     if pos == "l":
         ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
     if top == 1:
@@ -172,6 +173,12 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
 #                 verticalalignment='bottom', horizontalalignment='right',
 #                 transform=ax.transAxes, fontsize=14)
 
+    ax.set_axisbelow(True)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax2.set_axisbelow(True)
+    ax2.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax2.yaxis.grid(True,linestyle='-', color='#C0C0C0')
 
     
 def main():
