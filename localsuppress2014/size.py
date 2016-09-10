@@ -40,7 +40,7 @@ def plot_size(ax,folder,pos):
         ax.plot(x,x*data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
 
-    ax.set_xscale("log")
+    #ax.set_xscale("log")
     #ax.set_xlim([1e-1,100])
     ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
