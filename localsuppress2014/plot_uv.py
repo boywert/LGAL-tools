@@ -151,9 +151,10 @@ def plot_uv_z7(ax):
     ax.text(0.1, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
 
+    ax.set_axisbelow(True)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
     
     
 def plot_uv_z6(ax):
@@ -197,9 +198,10 @@ def plot_uv_z6(ax):
     ax.text(0.1, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
 
+    ax.set_axisbelow(True)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
 
     
 def main():
