@@ -147,7 +147,8 @@ def plot_smf_z7(ax):
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
     ax.yaxis.set_ticklabels([])
-    
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     
 def plot_smf_z6(ax):
     z = "6.00"
@@ -179,6 +180,7 @@ def plot_smf_z6(ax):
         ax.plot(sfr_x[index],sfr_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc='lower left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
+    leg.get_frame().set_alpha(0)
     ax.set_xlabel(r"$\mathrm{\log_{10} SFR(M_\odot/year)}$")
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     ax.set_yscale("log")
@@ -187,7 +189,8 @@ def plot_smf_z6(ax):
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
-
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
 
     
 def main():

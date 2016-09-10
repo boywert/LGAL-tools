@@ -111,6 +111,8 @@ def plot_hotgas(z,ax,pos):
         labels = ["",r"$6.5$",r"$7.0$",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.5$",r"10.0"]
         ax.xaxis.set_ticklabels(labels)
         ax.yaxis.set_ticklabels([])
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     
 def main():
     fig = plt.figure(figsize=(16, 6))
