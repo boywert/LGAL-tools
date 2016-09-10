@@ -31,7 +31,7 @@ def plot_size(ax,m,z,pos):
     for i in range(len(model_names)):
         index = model_names[i]
         data = numpy.loadtxt(folder+"/StellarMass_"+index+"_"+m+"_"+z+".txt")
-        ax.plot(data[:,0],data[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(data[:,0]/hubble_h,data[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
 
     ax.set_xscale("log")
