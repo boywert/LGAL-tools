@@ -36,9 +36,11 @@ def plot_xfrac():
     for i in range(len(model_names)):
         index = model_names[i]
         xfrac = numpy.loadtxt(tau_folder+"/"+model_names[i]+".log")
+        if index=="nosup_ori":
+            ref = xfrac[:,2]
         ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
         ax1.plot(xfrac[:,0],xfrac[:,2],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-        ax2.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
+        ax2.plot(xfrac[:,0], xfrac[:,2]-ref,color=model_plot_colors[i],linestyle=model_plot_patterns[i])
     leg = ax1.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
     ax2.set_xlabel(r"redshift")
@@ -46,6 +48,7 @@ def plot_xfrac():
     ax1.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle$")
     ax1.set_xlim([6,15])
     ax0.set_xlim([6,15])
+    ax2.set_xlim([6,15])
     ax0.xaxis.set_ticklabels([])
     #ax.set_xscale("log")
     ax1.set_ylim([0.0,1.0])
