@@ -58,8 +58,8 @@ def plot_size(ax,folder,pos):
             transform=ax.transAxes, fontsize=18)
     if pos != "b":
         ax.xaxis.set_ticklabels([])
-        labels = ["",r"$0.1$",r"$1.0$",r"$10^2$",r"$10^3$"]
-        ax.yaxis.set_ticklabels(labels)
+        labels = ["",r"$0.1$",r"$1.0$",r"$100$",r"$1000$"]
+        #ax.yaxis.set_ticklabels(labels)
 
     
 def main():
