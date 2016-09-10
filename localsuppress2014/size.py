@@ -31,7 +31,6 @@ def plot_size(ax,folder,pos):
         index = model_names[i]
         data = numpy.loadtxt(folder+"/"+index)
         x = data[:,0]
-        print x
         dx = numpy.zeros(len(x))
         for j in range(len(x)-1):
             dx[j] = x[j] - x[j+1]
@@ -41,7 +40,7 @@ def plot_size(ax,folder,pos):
 
 
     ax.set_xscale("log")
-    ax.set_xlim([1e-1,100])
+    #ax.set_xlim([1e-1,100])
     ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
     ax.set_xlabel(r"$\mathrm{R/Mpc}$")
