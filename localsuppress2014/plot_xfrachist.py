@@ -35,7 +35,7 @@ def plot_xfrac():
     plt.subplots_adjust(hspace = 0)
     for i in range(len(model_names)):
         index = model_names[i]
-        xfrac = numpy.loadtxt(tau_folder+"/"+model_names[i]+"_"+str(model_fesc[i])+".log")
+        xfrac = numpy.loadtxt(tau_folder+"/"+model_names[i]+".log")
         ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
         ax1.plot(xfrac[:,0],xfrac[:,2],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
         ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
