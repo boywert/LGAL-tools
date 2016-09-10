@@ -26,7 +26,7 @@ plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 
 def plot_size(ax,folder,pos):    
-
+    print folder
     for i in range(len(model_names)):
         index = model_names[i]
         data = numpy.loadtxt(folder+"/"+index)
