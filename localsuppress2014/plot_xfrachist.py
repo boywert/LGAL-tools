@@ -52,7 +52,7 @@ def plot_xfrac():
     ax0.set_xlim([6,15])
     ax2.set_xlim([6,15])
     ax2.set_ylim([-8,4])
-    ax0.xaxis.grid(True)
+    ax0.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax0.yaxis.grid(True)
     ax1.xaxis.grid(True)
     ax1.yaxis.grid(True)
