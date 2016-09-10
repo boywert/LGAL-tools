@@ -40,7 +40,7 @@ def plot_xfrac():
             ref = xfrac[:,2]
         ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
         ax1.plot(xfrac[:,0],xfrac[:,2],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-        ax2.plot(xfrac[:,0], xfrac[:,2]-ref,color=model_plot_colors[i],linestyle=model_plot_patterns[i])
+        ax2.plot(xfrac[:,0], (xfrac[:,2]-ref)/ref*100,color=model_plot_colors[i],linestyle=model_plot_patterns[i])
     leg = ax1.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
     ax2.set_xlabel(r"redshift")
