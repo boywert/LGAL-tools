@@ -18,3 +18,5 @@ hotgas:
 	python plot_hotgas.py
 coldgas:
 	python plot_coldgas.py
+xfrachist:
+	python plot_xfrachist.py
