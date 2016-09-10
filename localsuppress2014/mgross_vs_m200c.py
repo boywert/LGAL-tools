@@ -153,6 +153,9 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     if top == 1:
         ax2 = ax.twiny()
         ax2.set_xlim([8.0,11.])
+        ax2.set_axisbelow(True)
+        ax2.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+        ax2.yaxis.grid(True,linestyle='-', color='#C0C0C0')
         if pos =="r":
             labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
             ax2.xaxis.set_ticklabels(labels)
@@ -176,9 +179,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     ax.set_axisbelow(True)
     ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
     ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
-    ax2.set_axisbelow(True)
-    ax2.xaxis.grid(True,linestyle='-', color='#C0C0C0')
-    ax2.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+
 
     
 def main():
