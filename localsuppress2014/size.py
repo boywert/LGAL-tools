@@ -41,7 +41,7 @@ def plot_size(ax,folder,pos):
 
 
     ax.set_xscale("log")
-    ax.set_xlim([1e-1,100])
+    ax.set_xlim([1e-1,20])
     ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
 
