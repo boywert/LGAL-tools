@@ -52,9 +52,6 @@ def plot_xfrac():
     ax0.set_xlim([6,15])
     ax2.set_xlim([6,15])
     ax2.set_ylim([-8,4])
-    ax0.set_axis_bgcolor('white')
-    ax1.set_axis_bgcolor('white')
-    ax2.set_axis_bgcolor('white')
     ax0.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax0.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax1.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
@@ -67,7 +64,7 @@ def plot_xfrac():
     #ax.set_xscale("log")
     ax1.set_ylim([0.0,1.0])
     ax0.set_ylim([1.0,3.0])
-    fig.savefig("xfrachist.pdf",bbox_inches='tight',pad_inches=0.1)
+    fig.savefig("xfrachist.pdf",transparent=False,bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
     
 def main():
