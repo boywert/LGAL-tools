@@ -28,19 +28,20 @@ plt.rcParams['xtick.major.size'] = 8
 
 def plot_xfrac():
     fig = plt.figure(figsize=(8, 6)) 
-    gs = gridspec.GridSpec(2, 1, height_ratios=[1, 3])
+    gs = gridspec.GridSpec(3, 1, height_ratios=[1, 3, 1])
     ax0 = plt.subplot(gs[0])
     ax1 = plt.subplot(gs[1])
+    ax2 = plt.subplot(gs[2])
     plt.subplots_adjust(hspace = 0)
     for i in range(len(model_names)):
         index = model_names[i]
         xfrac = numpy.loadtxt(tau_folder+"/"+model_names[i]+"_"+str(model_fesc[i])+".log")
         ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
         ax1.plot(xfrac[:,0],xfrac[:,2],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-
+        ax0.plot(xfrac[:,0], xfrac[:,2]/xfrac[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i])
     leg = ax1.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
-    ax1.set_xlabel(r"redshift")
+    ax2.set_xlabel(r"redshift")
     ax0.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle/\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
     ax1.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle$")
     ax1.set_xlim([6,15])
