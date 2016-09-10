@@ -47,7 +47,7 @@ def plot_xfrac():
     ax2.set_xlabel(r"redshift")
     ax0.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle/\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
     ax1.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle$")
-    ax2.set_ylabel(r"$\%\Delta$")
+    ax2.set_ylabel(r"$\% \rm relative~residual$")
     ax1.set_xlim([6,15])
     ax0.set_xlim([6,15])
     ax2.set_xlim([6,15])
