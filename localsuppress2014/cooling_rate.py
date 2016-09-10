@@ -34,7 +34,7 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False
     filter['HotGas'] = True
-    filter['DiskMass'] = True
+    filter['CoolingRadius'] = True
     filter['HaloM_Crit200'] = True
     # filter['HaloM_Crit200'] = True
     # filter['HotGas'] = True
@@ -104,8 +104,8 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
        	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["HotGas"]) >0.))]
         #gal[index] = gal[index][gal[index]["Type"]==0]
 	mass = gal[index]['HotGas']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
-        sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate_beforeAGN"])))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate_beforeAGN"]))**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRadius"])))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRadius"]))**2)
         N[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
