@@ -46,7 +46,7 @@ def loadfilter(structfile):
     # filter['BlackHoleMass'] = True
     # filter['Sfr'] = True
     filter['Type'] = True
-    filter['CoolingRate_beforeAGN'] = True
+    filter['CoolingRate'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
