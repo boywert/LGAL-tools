@@ -43,7 +43,7 @@ def plot_xfrac():
         ax2.plot(xfrac[:,0], (xfrac[:,2]-ref)/ref*100,color=model_plot_colors[i],linestyle=model_plot_patterns[i])
     leg = ax1.legend(loc="upper right", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
-    leg.get_frame().set_alpha(0)
+    #leg.get_frame().set_alpha(0)
     ax2.set_xlabel(r"redshift")
     ax0.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle/\langle x^{\mathrm{v}}_{\mathrm{HII}}\rangle$")
     ax1.set_ylabel(r"$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle$")
