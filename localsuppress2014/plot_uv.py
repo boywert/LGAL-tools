@@ -102,7 +102,8 @@ def plot_uv_z8(ax):
     ax.text(0.1, 0.9, 'z = 8',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
 
 
 def plot_uv_z7(ax):
@@ -143,7 +144,8 @@ def plot_uv_z7(ax):
     ax.text(0.1, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     
 def plot_uv_z6(ax):
     z = "6.00"
@@ -177,6 +179,7 @@ def plot_uv_z6(ax):
         ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
+    leg.get_frame().set_alpha(0)
     #ax.set_xlabel(r"M1500 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
@@ -186,7 +189,8 @@ def plot_uv_z6(ax):
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
 
-
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     
 def main():
     fig = plt.figure(figsize=(8, 18))
