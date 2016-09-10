@@ -44,32 +44,34 @@ def plot_size(ax,folder,pos):
     ax.set_xlim([1e-1,100])
     ax.set_ylim([1e-2,1])
     ax.set_yscale("log")
-    ax.set_xlabel(r"$\mathrm{R/Mpc}$")
-    if pos == "l":
-        ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
-    if pos == "r":
-        leg = ax.legend(loc="lower right", handlelength = 7,ncol=1, fancybox=True, prop={'size':14})
+
+    ax.set_ylabel(r"$\mathrm{R ~dP(R)/dR}$")
+    if pos == "b":
+        ax.set_xlabel(r"$\mathrm{R/Mpc}$")
+        
+    if pos == "t":
+        leg = ax.legend(loc="lower left", handlelength = 5,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
 
-    ax.text(0.95, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
+    ax.text(0.9, 0.9, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=18)
-    if pos != "l":
-        ax.yaxis.set_ticklabels([])
+    if pos != "b":
+        ax.xaxis.set_ticklabels([])
         #labels = ["",r"$10^{0}$",r"$10^{1}$",r"$10^2$",r"$10^3$"]
         #ax.xaxis.set_ticklabels(labels)
 
     
 def main():
     fig = plt.figure(figsize=(8, 18))
-    plt.subplots_adjust(wspace = 0)
+    plt.subplots_adjust(hspace = 0)
     ax1 = fig.add_subplot(311)
     ax2 = fig.add_subplot(312)
     ax3 = fig.add_subplot(313)
     fig.canvas.draw()
-    plot_size(ax1,"0.3","l")
-    plot_size(ax2,"0.5","c")
-    plot_size(ax3,"0.7","r")
+    plot_size(ax1,"0.3","t")
+    plot_size(ax2,"0.5","m")
+    plot_size(ax3,"0.7","b")
     fig.savefig("sizedist.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
