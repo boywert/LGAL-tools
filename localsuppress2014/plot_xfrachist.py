@@ -51,6 +51,7 @@ def plot_xfrac():
     ax2.set_xlim([6,15])
     ax2.set_ylim([-8,4])
     ax0.xaxis.set_ticklabels([])
+    ax1.xaxis.set_ticklabels([])
     #ax.set_xscale("log")
     ax1.set_ylim([0.0,1.0])
     ax0.set_ylim([1.0,3.0])
