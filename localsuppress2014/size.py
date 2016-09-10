@@ -61,7 +61,7 @@ def plot_size(ax,folder,pos):
         labels = ["","",r"$0.1$",r"$1.0$"]
         ax.yaxis.set_ticklabels(labels)
     if pos == "b":
-        labels = ["","0.01",r"$0.1$",r"$1.0$"]
+        labels = ["",r"$0.01$",r"$0.1$",r"$1.0$"]
         ax.yaxis.set_ticklabels(labels)
 
     
