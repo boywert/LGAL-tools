@@ -37,7 +37,7 @@ def plot_size(ax,folder,pos):
         for j in range(len(x)-1):
             dx[j] = x[j] - x[j+1]
         dx[len(x)-1] = x[len(x)-1]
-        ax.plot(x,data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(x,x*data[:,3]/numpy.sum(data[:,3])/dx,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
 
     ax.set_xscale("log")
@@ -50,7 +50,7 @@ def plot_size(ax,folder,pos):
         ax.set_xlabel(r"$\mathrm{R/Mpc}$")
         
     if pos == "t":
-        leg = ax.legend(loc="lower left", handlelength = 5,ncol=1, fancybox=True, prop={'size':14})
+        leg = ax.legenaa11d(loc="lower left", handlelength = 5,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
 
     ax.text(0.05, 0.85, r'$\langle x^{\mathrm{m}}_{\mathrm{HII}}\rangle = %s$' %(folder),
