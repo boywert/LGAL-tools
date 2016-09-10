@@ -101,11 +101,11 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (6.0,13)
         bins = 50
-       	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["CoolingRate"]) >0.))]
+       	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["HotGas"]) >0.))]
         #gal[index] = gal[index][gal[index]["Type"]==0]
 	mass = gal[index]['HotGas']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
-        sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CoolingRate"])))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["CoolingRate"]))**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate"])))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=(numpy.float64(1)*(gal[index]["CoolingRate"]))**2)
         N[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for i in range(len(sum_baryons[index][0])):
@@ -136,9 +136,9 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
   
     #ax.set_ylim([3,10])
-    #ax.set_xlim([8.0,11.])
+    ax.set_xlim([6.5,7.5])
     ax.set_xlabel(r"$\log_{10}(M_{\mathrm{200c}}/\mathrm{M_\odot})$")
-    
+    ax.set_yscale('log')
     if pos == "r":
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.5$",r"$12.0$"]
         #ax.xaxis.set_ticklabels(labels)
@@ -203,7 +203,7 @@ def main():
     fig.canvas.draw()
     zi = zlist[13].strip()
     plot_z(zi,model1,ax2,"r",bottom=1)
-    fig.savefig("mgross_m200c.pdf",bbox_inches='tight',pad_inches=0.05)
+    fig.savefig("cr_hot.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
