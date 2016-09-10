@@ -31,6 +31,7 @@ def plot_size(ax,folder,pos):
         index = model_names[i]
         data = numpy.loadtxt(folder+"/"+index)
         x = data[:,0]
+        print x
         dx = numpy.zeros(len(x))
         for j in range(len(x)-1):
             dx[j] = x[j] - x[j+1]
@@ -60,11 +61,11 @@ def plot_size(ax,folder,pos):
 
     
 def main():
-    fig = plt.figure(figsize=(12, 3))
+    fig = plt.figure(figsize=(8, 18))
     plt.subplots_adjust(wspace = 0)
-    ax1 = fig.add_subplot(131)
-    ax2 = fig.add_subplot(132)
-    ax3 = fig.add_subplot(133)
+    ax1 = fig.add_subplot(311)
+    ax2 = fig.add_subplot(312)
+    ax3 = fig.add_subplot(313)
     fig.canvas.draw()
     plot_size(ax1,"0.3","l")
     plot_size(ax2,"0.5","c")
