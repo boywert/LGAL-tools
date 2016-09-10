@@ -99,7 +99,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         index = models.model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        rangen = (6.0,13)
+        rangen = (1.e-3,10)
         bins = 50
        	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["HotGas"]) >0.))]
         #gal[index] = gal[index][gal[index]["Type"]==0]
