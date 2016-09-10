@@ -84,7 +84,7 @@ def plot_uv_z8(ax):
     for i in range(len(model_names)):
         index = model_names[i]
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-30.,max=-13,nbins=34)
 
     
@@ -104,6 +104,8 @@ def plot_uv_z8(ax):
             transform=ax.transAxes, fontsize=15)
     ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+
+    
 
 
 def plot_uv_z7(ax):
@@ -146,6 +148,8 @@ def plot_uv_z7(ax):
             transform=ax.transAxes, fontsize=15)
     ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+
+    
     
 def plot_uv_z6(ax):
     z = "6.00"
@@ -188,9 +192,10 @@ def plot_uv_z6(ax):
     ax.text(0.1, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-
     ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+
+
     
 def main():
     fig = plt.figure(figsize=(8, 18))
@@ -201,7 +206,7 @@ def main():
     plot_uv_z6(ax1)
     plot_uv_z7(ax2)
     plot_uv_z8(ax3)
-    fig.savefig("UVLF678.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("UVLF678.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
 if __name__=="__main__":
