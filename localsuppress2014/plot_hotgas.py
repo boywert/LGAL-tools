@@ -104,12 +104,15 @@ def plot_hotgas(z,ax,pos):
     if pos == 'r':
         leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
+        leg.get_frame().set_alpha(0)
     if pos == 'l':
         ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
     if pos == 'r':
         labels = ["",r"$7.0$",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"10.0"]
         ax.xaxis.set_ticklabels(labels)
         ax.yaxis.set_ticklabels([])
+    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
+    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
     
 def main():
     fig = plt.figure(figsize=(16, 6))
