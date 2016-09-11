@@ -54,7 +54,7 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
     outfile = "%3.1f_pic.pdf" % (frac)
     print "plotting",outfile
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5+4))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5+0.4))
     print "a"
     plt.subplots_adjust(wspace = 0.03)
     print "b"
@@ -65,7 +65,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     gs_height_ratios = []
     for i in range(nrow):
         gs_height_ratios.append(1.)
-    gs_height_ratios.append(1.)
+    gs_height_ratios.append(0.1)
     for i in range(ncol):
         gs_width_ratios.append(1.)
     print "f"
@@ -94,7 +94,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                 ifile += 1
     #ax.append(pylab.subplot(gs[nrow,0]))
     #ax.append(pylab.subplot(gs[nrow,1]))
-    cax = fig.add_axes([0.27, 0.8, 0.5, 0.05])
+    cax = fig.add_axes([0.02, 0.02, 0.98,0.1])
     plt.colorbar(im[0],cax=cax,orientation='horizontal')
     fig.savefig(outfile)
     plt.close(fig)
