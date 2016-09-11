@@ -5,6 +5,7 @@ import pylab
 from pylab import *
 from matplotlib import gridspec
 from matplotlib.colors import LogNorm
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 class xfrac:
     grid = 0
     data = 0
@@ -72,6 +73,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     gs = gridspec.GridSpec(nrow, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
     ax = []
     im = []
+    cax = []
     ifile = 0
     print "finish preparing figure"
     for i in range(nrow):
@@ -89,6 +91,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
+                plt.colorbar(im[ifile])
                 if j == 0:
                     ax[ifile].set_ylabel(r"23.5 Mpc/h",fontsize=10)
                 ifile += 1
