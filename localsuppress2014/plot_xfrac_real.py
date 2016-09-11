@@ -64,19 +64,20 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     gs_width_ratios = []
     gs_height_ratios = []
     print "d"
-    for i in range(nrow):
+    gs_height_ratios.append(0.1)
+    for i in range(1,nrow):
         gs_height_ratios.append(1.)
     print "e"
     for i in range(ncol):
         gs_width_ratios.append(1.)
     print "f"
-    gs = gridspec.GridSpec(nrow, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
+    gs = gridspec.GridSpec(nrow+1, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
     ax = []
     im = []
     cax = []
     ifile = 0
     print "finish preparing figure"
-    for i in range(nrow):
+    for i in range(1,nrow):
         ii = i
         print "Plotiing row %d" %(ii+1)
         for j in range(ncol):
