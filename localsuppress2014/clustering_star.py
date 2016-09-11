@@ -95,6 +95,7 @@ def plot_xi(snap):
     gal = {}
     nTrees = {}
     nGals = {}
+    delta = {}
     nTreeGals = {}
     for i in range(len(model_names)):
         index = model_names[i]
@@ -107,7 +108,7 @@ def plot_xi(snap):
     slot = "StellarMass"
     m_i = 6.
     m_f = 8.
-    dm = 1.0
+    dm = 0.5
     mlist = numpy.arange(m_i,m_f,dm)
     for m in mlist:
         mag  = m
@@ -132,7 +133,8 @@ def plot_xi(snap):
             else:
                 data = None
             data = comm.bcast(data,root=0)
-            (r,xi[index]) = CF.calNN(data,sim_boxsize)            
+            (r,xi[index]) = CF.calNN(data,sim_boxsize)
+            delta[index] = CF.cal_error(data,sim_boxsize)
         if rank == 0:
             print "plotting figure"
             fig = plt.figure()
@@ -143,7 +145,7 @@ def plot_xi(snap):
                 ff = open(slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt","w")
                 print "creating",slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt"
                 for ii in range(len(r)):
-                    print >> ff, r[ii],xi[index][ii]-1.
+                    print >> ff, r[ii],xi[index][ii]-1.,delta[index][ii]
                 ff.close()
                 
                 ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])

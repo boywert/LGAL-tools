@@ -76,8 +76,8 @@ def cal_error(data,boxsize):
                        & (data[:][2] > k*sublength) & (data[:][2] < (k+1)*sublength)))[0]
                 ddata = data[cond]
                 (r,xi) = calNN(ddata,boxsize) 
-                xi0 += xi
-                xi2 += xi**2.
+                xi0 += xi-1.
+                xi2 += (xi-1.)**2.
     delta = numpy.sqrt((nsub**3-1)*(xi2/nsub**3-(xi0/nsub**3)**2))
     return delta
 def main():
