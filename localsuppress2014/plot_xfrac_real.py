@@ -58,7 +58,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     print "a"
     plt.subplots_adjust(wspace = 0.03)
     print "b"
-    plt.subplots_adjust(hspace = 0.1)
+    plt.subplots_adjust(hspace = 0.3)
     print "c"
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
