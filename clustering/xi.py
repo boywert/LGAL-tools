@@ -71,9 +71,8 @@ def cal_error(data,boxsize):
     for i in range(nsub):
         for j in range(nsub):
             for k in range(nsub):
-                print data[0]
-                print data[0,0]
-                print data[0][0]
+                print data[0,:]
+                print data[:,0]
                 exit()
                 cond = np.where(~((data[0,:] > i*sublength) & (data[0,:] < (i+1)*sublength) \
                        & (data[1,:] > j*sublength) & (data[1,:] < (j+1)*sublength) \
