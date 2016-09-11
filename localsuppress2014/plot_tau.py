@@ -45,10 +45,14 @@ def plot_tau():
 
     leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
     leg.get_frame().set_linewidth(0)
+    leg.get_frame().set_alpha(0)
     ax.set_xlabel(r"redshift")
     ax.set_ylabel(r"$\tau_e$")
     ax.set_xlim([6,18])
     ax.set_ylim([0.02,0.085])
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.set_axisbelow(True)
     fig.savefig("taue.pdf",bbox_inches='tight',pad_inches=0)
     plt.close(fig)
     
