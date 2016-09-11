@@ -83,7 +83,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                 ax.append(pylab.subplot(gs[ii,j]))
                 filename = filelist[ifile] #+"/xfrac3d_"+redshift+".bin"
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
-                im.append(ax[ifile].imshow(data_plot+1, cmap=plt.get_cmap("Blues"), norm=LogNorm(vmin=1.0,  vmax=2.0), extent=[x[0], x[1], y[0], y[1]]))
+                im.append(ax[ifile].imshow(data_plot+0.1, cmap=plt.get_cmap("Blues"), norm=LogNorm(vmin=1.1,  vmax=2.1), extent=[x[0], x[1], y[0], y[1]]))
                 ax[ifile].axis("on")
 		ax[ifile].set_xlabel(labellist[ifile],fontsize=10)
             	im[ifile].set_interpolation('bilinear')
@@ -95,7 +95,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     cax = pylab.subplot(gs[nrow,:])
     #ax.append(pylab.subplot(gs[nrow,1]))
     #cax = fig.add_axes([0.1, 0.1, 0.8,0.05])
-    cbar = plt.colorbar(im[0],cax=cax, ticks=[1, 2],orientation='horizontal')
+    cbar = plt.colorbar(im[0],cax=cax, ticks=[1.1, 2.1],orientation='horizontal')
     cbar.ax.set_xticklabels(['Low',, 'High'])  # horizontal colorbar
     fig.savefig(outfile,bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
