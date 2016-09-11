@@ -63,10 +63,12 @@ def plot_size(ax,folder,pos):
     if pos == "b":
         labels = ["",r"$0.01$",r"$0.1$",r"$1.0$"]
         ax.yaxis.set_ticklabels(labels)
-
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.set_axisbelow(True)
     
 def main():
-    fig = plt.figure(figsize=(8, 15))
+    fig = plt.figure(figsize=(8, 12))
     plt.subplots_adjust(hspace = 0)
     ax1 = fig.add_subplot(311)
     ax2 = fig.add_subplot(312)

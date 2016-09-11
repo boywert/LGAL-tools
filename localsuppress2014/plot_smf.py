@@ -194,9 +194,9 @@ def plot_smf_z6(ax):
     ax.text(0.9, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=15)
-    ax.xaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-    ax.yaxis.grid(True,linestyle='-', color='k',alpha=0.1)
-
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.set_axisbelow(True)
     
 def main():
     fig = plt.figure(figsize=(16, 6))
