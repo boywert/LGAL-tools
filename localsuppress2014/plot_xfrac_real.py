@@ -91,11 +91,11 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
-                plt.colorbar(im[ifile],orientation='horizontal')
                 if j == 0:
                     ax[ifile].set_ylabel(r"23.5 Mpc/h",fontsize=10)
                 ifile += 1
-
+    cax = fig.add_axes([0.27, 0.8, 0.5, 0.05])
+    plt.colorbar(im[0],cax=cax,orientation='horizontal')
     fig.savefig(outfile, bbox_inches='tight')
     plt.close(fig)
 
