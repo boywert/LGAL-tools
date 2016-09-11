@@ -66,7 +66,7 @@ def plot_size(ax,folder,pos):
 
     
 def main():
-    fig = plt.figure(figsize=(8, 18))
+    fig = plt.figure(figsize=(8, 15))
     plt.subplots_adjust(hspace = 0)
     ax1 = fig.add_subplot(311)
     ax2 = fig.add_subplot(312)
