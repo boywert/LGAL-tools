@@ -95,8 +95,8 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     cax = pylab.subplot(gs[nrow,:])
     #ax.append(pylab.subplot(gs[nrow,1]))
     #cax = fig.add_axes([0.1, 0.1, 0.8,0.05])
-    cbar = plt.colorbar(im[0],cax=cax, ticks=[0.1, 0.6,1.1],orientation='horizontal')
-    cbar.ax.set_xticklabels([r'$0.0$',r'$0.5$', r'$1.0$'])  # horizontal colorbar
+    cbar = plt.colorbar(im[0],cax=cax, ticks=[0.1,0.2, 0.3,0.6,1.1],orientation='horizontal')
+    cbar.ax.set_xticklabels([r'$0.0$',r'$0.1$',r'$0.2$',r'$0.5$', r'$1.0$'])  # horizontal colorbar
     cbar.set_label(r"$x_{\rm HII}$")
     fig.savefig(outfile,bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
