@@ -54,11 +54,11 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
     outfile = "%3.1f_pic.pdf" % (frac)
     print "plotting",outfile
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5+0.7))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5+0.2))
     print "a"
     plt.subplots_adjust(wspace = 0.03)
     print "b"
-    plt.subplots_adjust(hspace = 0.04)
+    plt.subplots_adjust(hspace = 0.08)
     print "c"
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
@@ -97,7 +97,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     #cax = fig.add_axes([0.1, 0.1, 0.8,0.05])
     cbar = plt.colorbar(im[0],cax=cax, ticks=[0.1, 0.6,1.1],orientation='horizontal')
     cbar.ax.set_xticklabels([r'$0.0$',r'$0.5$', r'$1.0$'])  # horizontal colorbar
-    cbar.set_label(r"$x^m_{\rm H_{II}}$")
+    cbar.set_label(r"$x^m_{\rm HII}$")
     fig.savefig(outfile,bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
