@@ -66,8 +66,8 @@ def calNN(data,boxsize):
 def cal_error(data,boxsize):
     nsub = 4
     sublength = boxsize/nsub
-    xi0 = np.zeros(N,dtype=numpy.float64)
-    xi2 =  np.zeros(N,dtype=numpy.float64)
+    xi0 = np.zeros(N,dtype=np.float64)
+    xi2 =  np.zeros(N,dtype=np.float64)
     for i in range(nsub):
         for j in range(nsub):
             for k in range(nsub):
