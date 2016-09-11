@@ -54,7 +54,7 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
     outfile = "%3.1f_pic.pdf" % (frac)
     print "plotting",outfile
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.9))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
     print "a"
     plt.subplots_adjust(wspace = 0.03)
     print "b"
@@ -64,9 +64,9 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     gs_width_ratios = []
     gs_height_ratios = []
     print "d"
-    gs_height_ratios.append(0.1)
-    for i in range(1,nrow):
+    for i in range(nrow):
         gs_height_ratios.append(1.)
+    gs_height_ratios.append(.1)
     print "e"
     for i in range(ncol):
         gs_width_ratios.append(1.)
@@ -74,15 +74,14 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     gs = gridspec.GridSpec(nrow+1, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
     ax = []
     im = []
-    cax = []
     ifile = 0
     print "finish preparing figure"
-    for i in range(1,nrow+1):
+    for i in range(nrow):
         ii = i
         print "Plotiing row %d" %(ii+1)
         for j in range(ncol):
             print "\tPlotiing column %d, file %d of %d" %(j+1,ii*ncol+j+1,len(filelist))
-            if((ii-1)*ncol+j < len(filelist)):
+            if(ii*ncol+j < len(filelist)):
                 ax.append(pylab.subplot(gs[ii,j]))
                 filename = filelist[ifile] #+"/xfrac3d_"+redshift+".bin"
                 data_plot = get_plot(filename,doubleflaglist[ifile],x,y,z)
