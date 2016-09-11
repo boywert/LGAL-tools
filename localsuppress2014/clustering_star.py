@@ -134,7 +134,7 @@ def plot_xi(snap):
                 data = None
             data = comm.bcast(data,root=0)
             (r,xi[index]) = CF.calNN(data,sim_boxsize)
-            delta[index] = CF.cal_error(data,sim_boxsize)
+            #delta[index] = CF.cal_error(data,sim_boxsize)
         if rank == 0:
             print "plotting figure"
             fig = plt.figure()
@@ -145,7 +145,7 @@ def plot_xi(snap):
                 ff = open(slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt","w")
                 print "creating",slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt"
                 for ii in range(len(r)):
-                    print >> ff, r[ii],xi[index][ii]-1.,delta[index][ii]
+                    print >> ff, r[ii],xi[index][ii]-1.#,delta[index][ii]
                 ff.close()
                 
                 ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
