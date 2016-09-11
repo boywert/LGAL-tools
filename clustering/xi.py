@@ -75,6 +75,8 @@ def cal_error(data,boxsize):
                        & (data[:][1] > j*sublength) & (data[:][1] < (j+1)*sublength) \
                        & (data[:][2] > k*sublength) & (data[:][2] < (k+1)*sublength)))[0]
                 ddata = data[cond]
+                if rank == 0:
+                    print ddata
                 (r,xi) = calNN(ddata,boxsize) 
                 xi0 += xi
                 xi2 += (xi)**2.
