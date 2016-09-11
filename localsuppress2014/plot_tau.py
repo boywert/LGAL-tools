@@ -44,16 +44,16 @@ def plot_tau():
         ax.plot(tau[:,0],tau[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
 
     leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
-    leg.get_frame().set_linewidth(0)
+    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax.set_axisbelow(True)
     leg.get_frame().set_alpha(0)
+    leg.get_frame().set_linewidth(0)
     ax.set_xlabel(r"redshift")
     ax.set_ylabel(r"$\tau_e$")
     ax.set_xlim([6,18])
     ax.set_ylim([0.02,0.085])
-    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
-    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
-    ax.set_axisbelow(True)
-    fig.savefig("taue.pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("taue.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
     
 def main():
