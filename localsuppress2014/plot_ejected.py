@@ -101,8 +101,8 @@ def plot_hotgas(z,ax,pos):
     ax.text(0.1, 0.1, 'z = %d'%(int(float(z)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
-    if pos == 'r':
-        leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+    if pos == 'l':
+        leg = ax.legend(loc='lower right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
         leg.get_frame().set_alpha(0)
     if pos == 'l':
