@@ -134,7 +134,7 @@ def plot_xi(snap):
                 data = None
             data = comm.bcast(data,root=0)
             (r,xi[index]) = CF.calNN(data,sim_boxsize)
-            #delta[index] = CF.cal_error(data,sim_boxsize)
+            delta[index] = CF.cal_error(data,sim_boxsize)
         if rank == 0:
             print "plotting figure"
             fig = plt.figure()
