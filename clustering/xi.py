@@ -4,11 +4,10 @@ from mpi4py import MPI
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
-
+N=20
 def calNN(data,boxsize):
     if rank ==0:
         print "calculate NN"
-    N=20
     min = boxsize/306/2.
     max = boxsize/2.-1.
     npoint = len(data)
@@ -64,6 +63,23 @@ def calNN(data,boxsize):
         #pylab.show()
     #xi = comm.bcast(xi, root=0)
     return (r,xi)
+def cal_error(data,boxsize):
+    nsub = 4
+    sublength = boxsize/nsub
+    xi0 = numpy.zeros(N,dtype=numpy.float64)
+    xi2 =  numpy.zeros(N,dtype=numpy.float64)
+    for i in range(nsub):
+        for j in range(nsub):
+            for k in range(nsub):
+                cond = numpy.where(~((data[:][0] > i*sublength) & (data[:][0] < (i+1)*sublength) \
+                       & (data[:][1] > j*sublength) & (data[:][1] < (j+1)*sublength) \
+                       & (data[:][2] > k*sublength) & (data[:][2] < (k+1)*sublength)))[0]
+                ddata = data[cond]
+                (r,xi) = calNN(ddata,boxsize) 
+                xi0 += xi
+                xi2 += xi**2.
+    delta = numpy.sqrt((nsub**3-1)*(xi2/nsub**3-(xi0/nsub**3)**2))
+    return delta
 def main():
     boxsize = 47.0
     npoint = 10000
