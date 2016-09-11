@@ -96,7 +96,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     #ax.append(pylab.subplot(gs[nrow,1]))
     cax = fig.add_axes([0.27, 0.8, 0.5, 0.05])
     plt.colorbar(im[0],cax=cax,orientation='horizontal')
-    fig.savefig(outfile, bbox_inches='tight')
+    fig.savefig(outfile)
     plt.close(fig)
 
 def do_plot(z_in):
