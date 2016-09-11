@@ -83,7 +83,7 @@ def plot_size(ax,m,z,pos):
         ax.yaxis.set_ticklabels([])
     if (pos <= 4 ):
         ax.xaxis.set_ticklabels([])
-    ax.text(0.95, 0.5, r"$10^{%2.1f} < m_*/\mathrm{M_\odot} < 10^{%2.1f}$" % (float(m),float(m)+1.),
+    ax.text(0.95, 0.5, r"$10^{%2.1f} < m_*/\mathrm{M_\odot} < 10^{%2.1f}$" % (float(m),float(m)+.5),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=18)
     ax.text(0.1, 0.1, "z = %d" % (int(float(z)+0.5)),
