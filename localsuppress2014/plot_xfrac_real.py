@@ -97,7 +97,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     #cax = fig.add_axes([0.1, 0.1, 0.8,0.05])
     cbar = plt.colorbar(im[0],cax=cax, ticks=[0.1, 0.6,1.1],orientation='horizontal')
     cbar.ax.set_xticklabels([r'$0.0$',r'$0.5$', r'$1.0$'])  # horizontal colorbar
-    cbar.set_xlabel(r"$x^m_{\rm H_{II}}$")
+    cbar.set_label(r"$x^m_{\rm H_{II}}$")
     fig.savefig(outfile,bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
