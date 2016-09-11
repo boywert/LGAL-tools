@@ -92,7 +92,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                 if j == 0:
                     ax[ifile].set_ylabel(r"23.5 Mpc/h",fontsize=10)
                 ifile += 1
-    cax.append(pylab.subplot(gs[nrow]))
+    cax = pylab.subplot(gs[nrow])
     #ax.append(pylab.subplot(gs[nrow,1]))
     #cax = fig.add_axes([0.1, 0.1, 0.8,0.05])
     plt.colorbar(im[0],cax=cax)
