@@ -31,8 +31,10 @@ def plot_size(ax,m,z,pos):
     for i in range(len(model_names)):
         index = model_names[i]
         data = numpy.loadtxt(folder+"/StellarMass_"+index+"_"+m+"_"+z+".txt")
-        print data
         ax.plot(data[:,0],data[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+    for i in range(len(model_names)):
+        index = model_names[i]
+        data = numpy.loadtxt(folder+"/StellarMass_"+index+"_"+m+"_"+z+".txt")
         ax.errorbar(data[:,0],data[:,1], yerr=data[:,2],color=model_plot_colors[i])
 
     ax.set_xscale("log")
@@ -81,7 +83,7 @@ def plot_size(ax,m,z,pos):
         ax.yaxis.set_ticklabels([])
     if (pos <= 4 ):
         ax.xaxis.set_ticklabels([])
-    ax.text(0.95, 0.5, r"$10^{%2.0f} < m_*/\mathrm{M_\odot} < 10^{%2.0f}$" % (float(m),float(m)+1.),
+    ax.text(0.95, 0.5, r"$10^{%2.1f} < m_*/\mathrm{M_\odot} < 10^{%2.1f}$" % (float(m),float(m)+1.),
             verticalalignment='bottom', horizontalalignment='right',
             transform=ax.transAxes, fontsize=18)
     ax.text(0.1, 0.1, "z = %d" % (int(float(z)+0.5)),
