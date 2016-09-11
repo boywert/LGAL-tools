@@ -66,7 +66,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     print "d"
     for i in range(nrow):
         gs_height_ratios.append(1.)
-    gs_height_ratios.append(0.1)
+    gs_height_ratios.append(1.)
     print "e"
     for i in range(ncol):
         gs_width_ratios.append(1.)
