@@ -113,7 +113,7 @@ def do_plot(z_in):
                 "/scratch/01937/cs390/data/CSFR/no_reionization_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_9.164.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto/wmap7/SEMNUM/3410.00/xfrac3d_9.164.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_9.164.bin",
-                "/scratch/01937/cs390/Hybrid/xfrac/3410.00/xfrac3d_9.164.bin",
+                "/scratch/01937/cs390/Hybrid/xfrac/3410.01/xfrac3d_9.164.bin",
                 "/scratch/01937/cs390/Hybrid/xfrac/3410.03/xfrac3d_9.164.bin"]
     labellist = ["No suppression, stripping 0",
                  "No suppression, stripping 1",
@@ -130,7 +130,7 @@ def do_plot(z_in):
                 "/scratch/01937/cs390/data/CSFR/no_reionization_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.515.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto/wmap7/SEMNUM/3410.00/xfrac3d_8.515.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.515.bin",
-                "/scratch/01937/cs390/Hybrid/xfrac/3410.00/xfrac3d_8.515.bin",
+                "/scratch/01937/cs390/Hybrid/xfrac/3410.01/xfrac3d_8.515.bin",
                 "/scratch/01937/cs390/Hybrid/xfrac/3410.03/xfrac3d_8.515.bin"]
     labellist = ["No suppression, stripping 0",
                  "No suppression, stripping 1",
@@ -146,7 +146,7 @@ def do_plot(z_in):
                 "/scratch/01937/cs390/data/CSFR/no_reionization_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.172.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto/wmap7/SEMNUM/3410.00/xfrac3d_8.172.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.172.bin",
-                "/scratch/01937/cs390/Hybrid/xfrac/3410.00/xfrac3d_8.172.bin",
+                "/scratch/01937/cs390/Hybrid/xfrac/3410.01/xfrac3d_8.172.bin",
                 "/scratch/01937/cs390/Hybrid/xfrac/3410.03/xfrac3d_8.172.bin"]
     labellist = ["No suppression, stripping 0",
                  "No suppression, stripping 1",
