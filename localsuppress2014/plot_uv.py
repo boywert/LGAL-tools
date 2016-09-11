@@ -99,7 +99,7 @@ def plot_uv_z8(ax):
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
     ax.set_xlim([-22,-6])
-    #ax.set_ylim([1e-6,1e-1])
+    ax.set_ylim([1e-6,1])
     ax.text(0.1, 0.9, 'z = 8',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
@@ -148,7 +148,7 @@ def plot_uv_z7(ax):
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
     ax.set_xlim([-22,-6])
-    #ax.set_ylim([1e-6,1e-1])
+    ax.set_ylim([1e-6,1])
     ax.text(0.1, 0.9, 'z = 7',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
@@ -195,7 +195,7 @@ def plot_uv_z6(ax):
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
     ax.set_xlim([-22.,-6])
-    #ax.set_ylim([1e-6,1e-1])
+    ax.set_ylim([1e-6,1])
     ax.text(0.1, 0.9, 'z = 6',
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
