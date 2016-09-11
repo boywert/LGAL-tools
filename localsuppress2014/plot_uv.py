@@ -85,7 +85,7 @@ def plot_uv_z8(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-22.,max=-5,nbins=34)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-5,nbins=36)
 
     
     add_observations.add_obs_uv_z8("observations/UVLF/",ax)
@@ -94,6 +94,7 @@ def plot_uv_z8(ax):
         ax.plot(luvlf_x[index],luvlf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label="")
     leg = ax.legend(loc=4, handlelength = 7,ncol=1, fancybox=True, prop={'size':10})
     leg.get_frame().set_linewidth(0)
+    leg.get_frame().set_alpha(0)
     ax.set_xlabel(r"M1500 - 5log(h)")
     ax.set_ylabel(r"$\mathrm{\Phi[Mpc^{-3} Mag^{-1}]}$")
     ax.set_yscale("log")
@@ -133,7 +134,7 @@ def plot_uv_z7(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-22.,max=-5,nbins=34)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-5,nbins=36)
      
     # UVLF
     add_observations.add_obs_uv_z7("observations/UVLF/",ax)
@@ -179,7 +180,7 @@ def plot_uv_z6(ax):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],0)
-        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-22.,max=-5,nbins=34)
+        (luvlf_x[index],luvlf_y[index]) = uv_luminosity_fn(gal[index],min=-23.,max=-5,nbins=36)
          
     # UVLF
 
