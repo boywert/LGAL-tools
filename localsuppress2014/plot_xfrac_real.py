@@ -54,7 +54,7 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
     outfile = "%3.1f_pic.pdf" % (frac)
     print "plotting",outfile
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow+2.0))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
     print "a"
     plt.subplots_adjust(wspace = 0.03)
     print "b"
@@ -66,12 +66,12 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     print "d"
     for i in range(nrow):
         gs_height_ratios.append(1.)
-    gs_height_ratios.append(1.)
+    #gs_height_ratios.append(1.)
     print "e"
     for i in range(ncol):
         gs_width_ratios.append(1.)
     print "f"
-    gs = gridspec.GridSpec(nrow+1, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
+    gs = gridspec.GridSpec(nrow, ncol, width_ratios=gs_width_ratios, height_ratios = gs_height_ratios) 
     ax = []
     im = []
     ifile = 0
