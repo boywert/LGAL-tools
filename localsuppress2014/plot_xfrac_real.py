@@ -51,7 +51,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
-    outfile = "%3.1f_pic_%s.pdf" % (frac,suffix)
+    outfile = "%3.1f_pic.pdf" % (frac)
     print "plotting",outfile
     fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
     print "a"
@@ -160,8 +160,7 @@ def do_plot(z_in):
 
 
 def main():
-    for i in range(30):
-        do_plot(90+i)
+    do_plot(104)
 
 if __name__=="__main__":
     main()
