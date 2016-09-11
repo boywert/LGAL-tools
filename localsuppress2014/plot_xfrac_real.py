@@ -63,11 +63,9 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
-    print "d"
     for i in range(nrow):
         gs_height_ratios.append(1.)
     gs_height_ratios.append(1.)
-    print "e"
     for i in range(ncol):
         gs_width_ratios.append(1.)
     print "f"
@@ -94,6 +92,8 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                 if j == 0:
                     ax[ifile].set_ylabel(r"23.5 Mpc/h",fontsize=10)
                 ifile += 1
+        ax.append(pylab.subplot(gs[nrow,0]))
+        ax.append(pylab.subplot(gs[nrow,1]))
     cax = fig.add_axes([0.27, 0.8, 0.5, 0.05])
     plt.colorbar(im[0],cax=cax,orientation='horizontal')
     fig.savefig(outfile, bbox_inches='tight')
