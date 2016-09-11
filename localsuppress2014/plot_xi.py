@@ -33,7 +33,7 @@ def plot_size(ax,m,z,pos):
         data = numpy.loadtxt(folder+"/StellarMass_"+index+"_"+m+"_"+z+".txt")
         print data
         ax.plot(data[:,0],data[:,1],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
-
+        ax.errorbar(data[:,0],data[:,1], yerr=data[:,2],color=model_plot_colors[i])
 
     ax.set_xscale("log")
     ax.set_xlim([1e-1,10])
