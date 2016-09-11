@@ -145,7 +145,7 @@ def plot_xi(snap):
                 ff = open(slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt","w")
                 print "creating",slot+"_"+model_names[i]+"_"+str(mag)+"_"+str(z)+".txt"
                 for ii in range(len(r)):
-                    print >> ff, r[ii],xi[index][ii]-1.#,delta[index][ii]
+                    print >> ff, r[ii],xi[index][ii]-1.,delta[index][ii]
                 ff.close()
                 
                 ax.plot(r[1:],xi[index][1:]-1.,model_plot_patterns[i],label=model_labels[i])
