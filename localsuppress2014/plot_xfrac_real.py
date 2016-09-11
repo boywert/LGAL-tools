@@ -65,7 +65,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     gs_height_ratios = []
     for i in range(nrow):
         gs_height_ratios.append(1.)
-    gs_height_ratios.append(0.05)
+    gs_height_ratios.append(0.03)
     for i in range(ncol):
         gs_width_ratios.append(1.)
     print "f"
@@ -95,8 +95,8 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     cax = pylab.subplot(gs[nrow,:])
     #ax.append(pylab.subplot(gs[nrow,1]))
     #cax = fig.add_axes([0.1, 0.1, 0.8,0.05])
-    cbar = plt.colorbar(im[0],cax=cax, ticks=[1.1, 2.1],orientation='horizontal')
-    cbar.ax.set_xticklabels(['Low', 'High'])  # horizontal colorbar
+    cbar = plt.colorbar(im[0],cax=cax, ticks=[0.1, 0.3,0.5,0.7,0.9,1.1],orientation='horizontal')
+    cbar.ax.set_xticklabels([r'$0.0$',r'$0.2$',r'$0.4$',r'$0.6$',r'$0.8$', r'$1.0$'])  # horizontal colorbar
     fig.savefig(outfile,bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
