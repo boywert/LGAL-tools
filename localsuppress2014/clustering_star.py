@@ -129,7 +129,7 @@ def plot_xi(snap):
                     iiz =int(data[iii][2]/(sim_boxsize/Xfrac3d.grid[2]))%Xfrac3d.grid[2]
                     iblock = iix+iiy*Xfrac3d.grid[0]+iiz*Xfrac3d.grid[0]*Xfrac3d.grid[1]
                     xmask[iii] = Xfrac3d.data[iblock]
-                data = data[xmask > 0.99]
+                data = data[xmask > 0.5]
             else:
                 data = None
             data = comm.bcast(data,root=0)
