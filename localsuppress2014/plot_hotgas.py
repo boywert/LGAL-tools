@@ -23,7 +23,7 @@ def loadfilter(structfile):
     filter = LGalaxyStruct.properties_used
     for fi in filter:
         fi = False    
-    #filter['DiskMass'] = True   
+    filter['Type'] = True   
     filter['HotGas'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
@@ -89,6 +89,7 @@ def plot_hotgas(z,ax,pos):
         index = model_names[i]
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+            gal[index] = gal[index][gal[index]['Type']==0]
             (smf_x[index],smf_y[index]) = hotgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
             
     for i in range(len(model_names)):
