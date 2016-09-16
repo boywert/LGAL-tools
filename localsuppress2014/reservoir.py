@@ -179,6 +179,7 @@ def plot_z(z,models,ax1,ax2,ax3,ax4,pos):
         ax4.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         #ax1.yaxis.set_ticklabels([])
         ax2.yaxis.set_ticklabels([r"$0.00$",r"$0.02$",r"$0.04$",r"$0.06$",r"$0.08$",r"$0.10$",r"$0.12$",""])
+        ax3.yaxis.set_ticklabels([r"$0.00$",r"$0.01$",r"$0.02$",r"$0.03$",r"$0.04$",r"$0.05$",""])
         ax4.yaxis.set_ticklabels([r"$0.0$",r"$0.2$",r"$0.4$",r"$0.6$",r"$0.8$",""])
     if pos == "r":
         leg = ax1.legend(loc="center left", handlelength = 7,ncol=1, fancybox=True, prop={'size':14})
