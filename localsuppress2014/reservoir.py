@@ -221,9 +221,9 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         
 def main():
     import globalconf as model1
-    zi = "6.00"
     fig = plt.figure(figsize=(16, 18))
     plt.subplots_adjust(wspace = 0)
+    plt.subplots_adjust(hspace = 0)
     ax1 = fig.add_subplot(321)
     ax2 = fig.add_subplot(322)
     ax3 = fig.add_subplot(323)
@@ -232,7 +232,6 @@ def main():
     ax6 = fig.add_subplot(326)
     zi = "6.00"
     plot_z(zi,model1,ax1,ax3,ax5,"l")
-    ax2 = fig.add_subplot(122)
     #fig.canvas.draw()
     zi = "9.03"
     plot_z(zi,model1,ax2,ax4,ax6,"r")
