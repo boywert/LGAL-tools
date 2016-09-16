@@ -81,7 +81,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax,pos):
+def plot_z(z,models,ax1,ax2,ax3,pos):
     round_z = "%4.2f" % (float(int(float(z)+0.5)))
     #fmod_file = "fmods/"+round_z+".txt"
     #fmod_model = numpy.loadtxt(fmod_file)
@@ -153,49 +153,77 @@ def plot_z(z,models,ax,pos):
         mean_coldgas = mean_coldgas[cond]
         mean_ejectedmass = mean_ejectedmass[cond]
         m200c[index] = m200c[index][cond]
-        ax.plot(m200c[index],mean_hotgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Hot "+models.model_labels[i])
-        ax.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Cold "+models.model_labels[i])
-        ax.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Ejected "+models.model_labels[i])
+        ax1.plot(m200c[index],mean_hotgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Hot "+models.model_labels[i])
+        ax2.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Cold "+models.model_labels[i])
+        ax3.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Ejected "+models.model_labels[i])
     if pos == "r":
         # leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         # leg.get_frame().set_linewidth(0)
         # leg.get_frame().set_alpha(0)
-        ax.yaxis.set_ticklabels([])
+        ax1.yaxis.set_ticklabels([])
+        ax2.yaxis.set_ticklabels([])
+        ax3.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
-        #ax.xaxis.set_ticklabels(labels)
-    ax.set_ylim([0,1.0])
+        ax1.xaxis.set_ticklabels(labels)
+        ax2.xaxis.set_ticklabels(labels)
+        ax3.xaxis.set_ticklabels(labels)
+    ax1.set_ylim([0,1.0])
+    ax2.set_ylim([0,1.0])
+    ax3.set_ylim([0,1.0])
     #ax.set_yscale('log')
-    ax.set_xlim([8,11])
-    ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
+    ax1.set_xlim([8,11])
+    ax2.set_xlim([8,11])
+    ax3.set_xlim([8,11])
+    ax3.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax.set_ylabel(r"$f_{\mathrm{baryon}}/f_b$")
-    if pos == "l":
-        ax.text(0.5, 0.25, 'stripping 0',
-                verticalalignment='bottom', horizontalalignment='center',
-                transform=ax.transAxes, fontsize=14)
-        ax.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
-                verticalalignment='bottom', horizontalalignment='center',
-                transform=ax.transAxes, fontsize=14)
-    else:
-        ax.text(0.5, 0.25, 'stripping 1',
-                verticalalignment='bottom', horizontalalignment='center',
-                transform=ax.transAxes, fontsize=14)
-    ax.set_axisbelow(True)
-    ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
-    ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+        ax1.set_ylabel(r"$m_{\mathrm{hot}}/M_{\rm 200c}f_b$")
+        ax2.set_ylabel(r"$m_{\mathrm{cold}}/M_{\rm 200c}f_b$")
+        ax3.set_ylabel(r"$m_{\mathrm{eject}}/M_{\rm 200c}f_b$")
+    i
+        # ax.text(0.5, 0.25, r'$z=%s$'%(round_z),
+        #         verticalalignment='bottom', horizontalalignment='center',
+        #         transform=ax.transAxes, fontsize=14)
+    ax1.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
+             verticalalignment='bottom', horizontalalignment='center',
+             transform=ax1.transAxes, fontsize=14)
+    ax2.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
+             verticalalignment='bottom', horizontalalignment='center',
+             transform=ax2.transAxes, fontsize=14)
+    ax3.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
+             verticalalignment='bottom', horizontalalignment='center',
+             transform=ax3.transAxes, fontsize=14)
+  
+        # ax.text(0.5, 0.25, 'stripping 1',
+        #         verticalalignment='bottom', horizontalalignment='center',
+        #         transform=ax.transAxes, fontsize=14)
+    ax1.set_axisbelow(True)
+    ax1.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax1.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax2.set_axisbelow(True)
+    ax2.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax2.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax3.set_axisbelow(True)
+    ax3.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax3.yaxis.grid(True,linestyle='-', color='#C0C0C0')
 
         
 def main():
     import globalconf as model1
     zi = "6.00"
-    fig = plt.figure(figsize=(16, 6))
+    fig = plt.figure(figsize=(16, 18))
     plt.subplots_adjust(wspace = 0)
-    ax1 = fig.add_subplot(121)
-    plot_z(zi,model1,ax1,"l")
+    ax1 = fig.add_subplot(321)
+    ax2 = fig.add_subplot(322)
+    ax3 = fig.add_subplot(323)
+    ax4 = fig.add_subplot(324)
+    ax5 = fig.add_subplot(325)
+    ax6 = fig.add_subplot(326)
+    zi = "6.00"
+    plot_z(zi,model1,ax1,ax3,ax5"l")
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
     zi = "9.03"
-    plot_z(zi,model1,ax2,"r")
+    plot_z(zi,model1,ax2,ax4,ax6,"r")
     fig.savefig("reservoir69.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
