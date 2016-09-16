@@ -153,9 +153,9 @@ def plot_z(z,models,ax,pos):
         mean_coldgas = mean_coldgas[cond]
         mean_ejectedmass = mean_ejectedmass[cond]
         m200c[index] = m200c[index][cond]
-        ax.plot(m200c[index],mean_hotgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
-        ax.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
-        ax.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+        ax.plot(m200c[index],mean_hotgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Hot "+models.model_labels[i])
+        ax.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Cold "+models.model_labels[i])
+        ax.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],"Ejected "+label=models.model_labels[i])
     if pos == "r":
         # leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         # leg.get_frame().set_linewidth(0)
@@ -163,8 +163,8 @@ def plot_z(z,models,ax,pos):
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
         #ax.xaxis.set_ticklabels(labels)
-    #ax.set_ylim([0,1.4])
-    ax.set_yscale('log')
+    ax.set_ylim([0,1.0])
+    #ax.set_yscale('log')
     ax.set_xlim([8,11])
     ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
