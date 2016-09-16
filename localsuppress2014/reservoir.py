@@ -194,6 +194,7 @@ def main():
     plot_z(zi,model1,ax1,"l")
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
+    zi = "9.03"
     plot_z(zi,model1,ax2,"r")
     fig.savefig("reservoir69.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
