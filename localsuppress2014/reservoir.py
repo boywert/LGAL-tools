@@ -170,7 +170,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         ax2.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax3.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
     if pos == "r":
-        leg = ax1.legend(loc="center left", handlelength = 7,ncol=1, fancybox=True, prop={'size':12})
+        leg = ax1.legend(loc="center left", handlelength = 7,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
         leg.get_frame().set_alpha(0)
         ax1.yaxis.set_ticklabels([])
