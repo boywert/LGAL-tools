@@ -112,7 +112,7 @@ def plot_z(z,models,ax,pos):
         cenmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
         hotgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
         coldgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
-        ejecedmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
+        ejectedmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
         for ii in range(len(firstgal)-1):
             for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
                 #print total_baryon[firstgal[i]:firstgal[i+1]]
@@ -122,7 +122,7 @@ def plot_z(z,models,ax,pos):
                     cenmass[ii] += total_baryon[this_gal]
                     hotgas[ii] += numpy.float64(1)*gal[index][this_gal]['HotGas']
                     coldgas[ii] += numpy.float64(1)*gal[index][this_gal]['ColdGas']
-                    ejecedmass[ii] += numpy.float64(1)*gal[index][this_gal]['EjectedMass']
+                    ejectedmass[ii] += numpy.float64(1)*gal[index][this_gal]['EjectedMass']
         cenhalomass = gal[index]["Mvir"][firstgal]
         cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & (gal[index]["Type"][firstgal] == 0))[0]
         cenmass = cenmass[cond]
@@ -184,19 +184,18 @@ def plot_z(z,models,ax,pos):
     ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
     ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
 
-    
+        
 def main():
-    zlist = open(zlistfile).readlines()
-    zi = zlist[long(sys.argv[1])].strip()
+    import globalconf as model1
+    zi = "6.00"
     fig = plt.figure(figsize=(16, 6))
     plt.subplots_adjust(wspace = 0)
-    import globalconf as model1
     ax1 = fig.add_subplot(121)
     plot_z(zi,model1,ax1,"l")
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
     plot_z(zi,model1,ax2,"r")
-    fig.savefig("reservoir_"+zi+".pdf",bbox_inches='tight',pad_inches=0)
+    fig.savefig("reservoir69.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
