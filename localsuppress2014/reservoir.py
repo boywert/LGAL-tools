@@ -153,7 +153,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
             fp.close()
         else:
             fp = open(cachefile,'rb')
-            (sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]) = pickle.dump(fp)
+            (sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]) = pickle.load(fp)
             fp.close()           
 
     for i in range(len(models.model_names)):
