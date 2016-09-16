@@ -108,7 +108,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         index = models.model_names[i]
         print index
         cachefile = index+"_"+round_z+"_baryon.pickle"
-        if ~os.path.isfile(cachefile): 
+        if !os.path.isfile(cachefile): 
             if not index in gal:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
             rangen = (7.5,11.5)
