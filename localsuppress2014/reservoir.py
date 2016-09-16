@@ -179,10 +179,10 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         ax1.yaxis.set_ticklabels([])
         ax2.yaxis.set_ticklabels([])
         ax3.yaxis.set_ticklabels([])
-        labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
-        ax1.xaxis.set_ticklabels([])
-        ax2.xaxis.set_ticklabels([])
-        ax3.xaxis.set_ticklabels(labels)
+    labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
+    ax1.xaxis.set_ticklabels([])
+    ax2.xaxis.set_ticklabels([])
+    ax3.xaxis.set_ticklabels(labels)
     ax1.set_ylim([0,1.0])
     ax2.set_ylim([0,0.14])
     ax3.set_ylim([0,1.0])
