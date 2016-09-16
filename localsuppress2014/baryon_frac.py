@@ -24,7 +24,7 @@ pylab.rc('text', usetex=True)
 pylab.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
-
+baryon_fraction = 0.163
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+ranki)
     os.system("cp "+structfile+" ../tmp/"+ranki+"/LGalaxyStruct.py")
@@ -122,8 +122,8 @@ def plot_z(z,models,ax,pos):
         cenhalomass = cenhalomass[cond]
         print index,len(cenmass),len(cenhalomass),len(firstgal)
 	#print "min",numpy.amin(cenmass/cenhalomass/0.165), "max", numpy.amax(cenmass/cenhalomass/0.165)
-        sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165))
-        sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/0.165)**2)
+        sum_baryons[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/baryon_fraction))
+        sum_baryons_sq[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(cenmass/cenhalomass/baryon_fraction)**2)
         N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
         m200c[index] = []
         for ii in range(len(sum_baryons[index][0])):
