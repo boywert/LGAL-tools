@@ -179,7 +179,6 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         ax1.set_ylabel(r"$m_{\mathrm{hot}}/M_{\rm 200c}f_b$")
         ax2.set_ylabel(r"$m_{\mathrm{cold}}/M_{\rm 200c}f_b$")
         ax3.set_ylabel(r"$m_{\mathrm{eject}}/M_{\rm 200c}f_b$")
-    i
         # ax.text(0.5, 0.25, r'$z=%s$'%(round_z),
         #         verticalalignment='bottom', horizontalalignment='center',
         #         transform=ax.transAxes, fontsize=14)
