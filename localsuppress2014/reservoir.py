@@ -148,7 +148,7 @@ def plot_z(z,models,ax,pos):
         mean_hotgas = sum_hotgas[index][0]/N[index][0]
         mean_coldgas = sum_coldgas[index][0]/N[index][0]
         mean_ejectedmass = sum_ejectedmass[index][0]/N[index][0]
-        cond = ~numpy.isnan(mean)
+        cond = ~numpy.isnan(1./N[index][0])
         mean_hotgas = mean_hotgas[cond]
         mean_coldgas = mean_coldgas[cond]
         mean_ejectedmass = mean_ejectedmass[cond]
