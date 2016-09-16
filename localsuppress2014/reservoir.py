@@ -14,6 +14,10 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
 import random
+try:
+   import cPickle as pickle
+except:
+   import pickle
 rank = "0"
 SEC_PER_YEAR = 3600*24*365.25
 Msun2kg = 1.989e30
@@ -103,45 +107,54 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         print index
-        if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-        rangen = (7.5,11.5)
-        bins = 40
-        total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
-        firstgal = numpy.where(gal[index]["Type"] == 0)[0]
-        cenmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
-        hotgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
-        coldgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
-        ejectedmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
-        for ii in range(len(firstgal)-1):
-            for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
-                #print total_baryon[firstgal[i]:firstgal[i+1]]
-                this_gal = firstgal[ii]+j
-                distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
-                if ( distance < gal[index][firstgal[ii]]['Rvir']):
-                    cenmass[ii] += total_baryon[this_gal]
-                    hotgas[ii] += numpy.float64(1)*gal[index][this_gal]['HotGas']
-                    coldgas[ii] += numpy.float64(1)*gal[index][this_gal]['ColdGas']
-                    ejectedmass[ii] += numpy.float64(1)*gal[index][this_gal]['EjectedMass']
-        cenhalomass = gal[index]["Mvir"][firstgal]
-        cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & (gal[index]["Type"][firstgal] == 0))[0]
-        cenmass = cenmass[cond]
-        cenhalomass = cenhalomass[cond]
-        hotgas = hotgas[cond]
-        coldgas = coldgas[cond]
-        ejectedmass = ejectedmass[cond]
-        print index,len(cenmass),len(cenhalomass),len(firstgal)
-	#print "min",numpy.amin(cenmass/cenhalomass/0.165), "max", numpy.amax(cenmass/cenhalomass/0.165)
-        sum_hotgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(hotgas/cenhalomass/0.165))
-        sum_coldgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(coldgas/cenhalomass/0.165))
-        sum_ejectedmass[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.165))
-        N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
-        m200c[index] = []
-        for ii in range(len(N[index][0])):
-            m200c[index].append(0.5*(N[index][1][ii]+N[index][1][ii+1]))
-        del(gal[index])
-        del(nTreeGals[index])
-        m200c[index] = numpy.array(m200c[index])
+        cachefile = index+"_"+round_z+"_baryon.pickle"
+        if ~os.path.isfile(cachefile): 
+            if not index in gal:
+                (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+            rangen = (7.5,11.5)
+            bins = 40
+            total_baryon = numpy.float64(1)*(gal[index]["StellarMass"]+gal[index]["EjectedMass"]+gal[index]["ColdGas"]+gal[index]['HotGas']+gal[index]["ICM"]+gal[index]["BlackHoleMass"]+gal[index]["BlackHoleGas"])
+            firstgal = numpy.where(gal[index]["Type"] == 0)[0]
+            cenmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
+            hotgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
+            coldgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
+            ejectedmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
+            for ii in range(len(firstgal)-1):
+                for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
+                    #print total_baryon[firstgal[i]:firstgal[i+1]]
+                    this_gal = firstgal[ii]+j
+                    distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
+                    if ( distance < gal[index][firstgal[ii]]['Rvir']):
+                        cenmass[ii] += total_baryon[this_gal]
+                        hotgas[ii] += numpy.float64(1)*gal[index][this_gal]['HotGas']
+                        coldgas[ii] += numpy.float64(1)*gal[index][this_gal]['ColdGas']
+                        ejectedmass[ii] += numpy.float64(1)*gal[index][this_gal]['EjectedMass']
+            cenhalomass = gal[index]["Mvir"][firstgal]
+            cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & (gal[index]["Type"][firstgal] == 0))[0]
+            cenmass = cenmass[cond]
+            cenhalomass = cenhalomass[cond]
+            hotgas = hotgas[cond]
+            coldgas = coldgas[cond]
+            ejectedmass = ejectedmass[cond]
+            print index,len(cenmass),len(cenhalomass),len(firstgal)
+	    #print "min",numpy.amin(cenmass/cenhalomass/0.165), "max", numpy.amax(cenmass/cenhalomass/0.165)
+            sum_hotgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(hotgas/cenhalomass/0.165))
+            sum_coldgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(coldgas/cenhalomass/0.165))
+            sum_ejectedmass[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.165))
+            N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
+            m200c[index] = []
+            for ii in range(len(N[index][0])):
+                m200c[index].append(0.5*(N[index][1][ii]+N[index][1][ii+1]))
+                del(gal[index])
+                del(nTreeGals[index])
+            m200c[index] = numpy.array(m200c[index])
+            fp = open(cachefile,'wb')
+            pickle.dump((sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]),fp)
+            fp.close()
+        else:
+            fp = open(cachefile,'rb')
+            (sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]) = pickle.dump(fp)
+            fp.close()           
 
     for i in range(len(models.model_names)):
         index = models.model_names[i]
