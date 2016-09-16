@@ -85,7 +85,7 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax1,ax2,ax3,pos):
+def plot_z(z,models,ax1,ax2,ax3,ax4,pos):
     round_z = "%4.2f" % (float(int(float(z)+0.5)))
     #fmod_file = "fmods/"+round_z+".txt"
     #fmod_model = numpy.loadtxt(fmod_file)
@@ -102,6 +102,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
     sum_hotgas = {}
     sum_coldgas = {}
     sum_ejectedmass = {}
+    sum_star = {}
     N = {}
     m200c = {}
     for i in range(len(models.model_names)):
@@ -119,6 +120,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
             hotgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
             coldgas = numpy.zeros(len(firstgal),dtype=numpy.float64)
             ejectedmass = numpy.zeros(len(firstgal),dtype=numpy.float64)
+            star = numpy.zeros(len(firstgal),dtype=numpy.float64)
             for ii in range(len(firstgal)-1):
                 for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
                     #print total_baryon[firstgal[i]:firstgal[i+1]]
@@ -129,6 +131,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
                         hotgas[ii] += numpy.float64(1)*gal[index][this_gal]['HotGas']
                         coldgas[ii] += numpy.float64(1)*gal[index][this_gal]['ColdGas']
                         ejectedmass[ii] += numpy.float64(1)*gal[index][this_gal]['EjectedMass']
+                        star[ii] += numpy.float64(1)*gal[index][this_gal]['StellarMass']
             cenhalomass = gal[index]["Mvir"][firstgal]
             cond = numpy.where(~numpy.isnan(cenmass) & ~numpy.isnan(cenhalomass) & (cenhalomass > 0.) & (gal[index]["Type"][firstgal] == 0))[0]
             cenmass = cenmass[cond]
@@ -136,11 +139,13 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
             hotgas = hotgas[cond]
             coldgas = coldgas[cond]
             ejectedmass = ejectedmass[cond]
+            star = star[cond]
             print index,len(cenmass),len(cenhalomass),len(firstgal)
 	    #print "min",numpy.amin(cenmass/cenhalomass/0.165), "max", numpy.amax(cenmass/cenhalomass/0.165)
-            sum_hotgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(hotgas/cenhalomass/0.165))
-            sum_coldgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(coldgas/cenhalomass/0.165))
-            sum_ejectedmass[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.165))
+            sum_hotgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(hotgas/cenhalomass/0.163))
+            sum_coldgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(coldgas/cenhalomass/0.163))
+            sum_ejectedmass[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.163))
+            sum_star[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.163))
             N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
             m200c[index] = []
             for ii in range(len(N[index][0])):
@@ -149,11 +154,11 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
             del(nTreeGals[index])
             m200c[index] = numpy.array(m200c[index])
             fp = open(cachefile,'wb')
-            pickle.dump((sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]),fp)
+            pickle.dump((sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],sum_star[index],N[index],m200c[index]),fp)
             fp.close()
         else:
             fp = open(cachefile,'rb')
-            (sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]) = pickle.load(fp)
+            (sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],sum_star[index],N[index],m200c[index]) = pickle.load(fp)
             fp.close()           
 
     for i in range(len(models.model_names)):
@@ -161,17 +166,20 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         mean_hotgas = sum_hotgas[index][0]/N[index][0]
         mean_coldgas = sum_coldgas[index][0]/N[index][0]
         mean_ejectedmass = sum_ejectedmass[index][0]/N[index][0]
+        mean_star = sum_star[index][0]/N[index][0]
         cond = ~numpy.isnan(1./N[index][0])
         mean_hotgas = mean_hotgas[cond]
         mean_coldgas = mean_coldgas[cond]
         mean_ejectedmass = mean_ejectedmass[cond]
+        mean_star = mean_star[cond]
         m200c[index] = m200c[index][cond]
         ax1.plot(m200c[index],mean_hotgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax2.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
-        ax3.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+        ax3.plot(m200c[index],mean_star,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+        ax4.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         #ax1.yaxis.set_ticklabels([])
         ax2.yaxis.set_ticklabels([r"$0.00$",r"$0.02$",r"$0.04$",r"$0.06$",r"$0.08$",r"$0.10$",r"$0.12$",""])
-        ax3.yaxis.set_ticklabels([r"$0.0$",r"$0.2$",r"$0.4$",r"$0.6$",r"$0.8$",""])
+        ax4.yaxis.set_ticklabels([r"$0.0$",r"$0.2$",r"$0.4$",r"$0.6$",r"$0.8$",""])
     if pos == "r":
         leg = ax1.legend(loc="center left", handlelength = 7,ncol=1, fancybox=True, prop={'size':14})
         leg.get_frame().set_linewidth(0)
@@ -179,27 +187,32 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         ax1.yaxis.set_ticklabels([])
         ax2.yaxis.set_ticklabels([])
         ax3.yaxis.set_ticklabels([])
+        ax4.yaxis.set_ticklabels([])
     
     ax1.xaxis.set_ticklabels([])
     ax2.xaxis.set_ticklabels([])
+    ax3.xaxis.set_ticklabels([])
     if pos == "r":
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
-        ax3.xaxis.set_ticklabels(labels)
+        ax4.xaxis.set_ticklabels(labels)
     if pos == "l":
         labels = [r"$8.0$",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
-        ax3.xaxis.set_ticklabels(labels)
+        ax4.xaxis.set_ticklabels(labels)
     ax1.set_ylim([0,1.0])
     ax2.set_ylim([0,0.14])
-    ax3.set_ylim([0,1.0])
+    ax3.set_ylim([0,0.14])
+    ax4.set_ylim([0,1.0])
     #ax.set_yscale('log')
     ax1.set_xlim([8,11])
     ax2.set_xlim([8,11])
     ax3.set_xlim([8,11])
-    ax3.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
+    ax4.set_xlim([8,11])
+    ax4.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
         ax1.set_ylabel(r"$m_{\mathrm{hot}}/M_{\rm 200c}f_b$")
         ax2.set_ylabel(r"$m_{\mathrm{cold}}/M_{\rm 200c}f_b$")
-        ax3.set_ylabel(r"$m_{\mathrm{eject}}/M_{\rm 200c}f_b$")
+        ax3.set_ylabel(r"$m_{\mathrm{*}}/M_{\rm 200c}f_b$")
+        ax4.set_ylabel(r"$m_{\mathrm{eject}}/M_{\rm 200c}f_b$")
         # ax.text(0.5, 0.25, r'$z=%s$'%(round_z),
         #         verticalalignment='bottom', horizontalalignment='center',
         #         transform=ax.transAxes, fontsize=14)
@@ -211,7 +224,10 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
              transform=ax2.transAxes, fontsize=14)
     ax3.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
              verticalalignment='bottom', horizontalalignment='center',
-             transform=ax3.transAxes, fontsize=14)
+             transform=ax2.transAxes, fontsize=14)
+    ax4.text(0.5, 0.9, 'z = '+str(int(float(z)+0.5)),
+             verticalalignment='bottom', horizontalalignment='center',
+             transform=ax4.transAxes, fontsize=14)
   
         # ax.text(0.5, 0.25, 'stripping 1',
         #         verticalalignment='bottom', horizontalalignment='center',
@@ -225,25 +241,30 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
     ax3.set_axisbelow(True)
     ax3.xaxis.grid(True,linestyle='-', color='#C0C0C0')
     ax3.yaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax4.set_axisbelow(True)
+    ax4.xaxis.grid(True,linestyle='-', color='#C0C0C0')
+    ax4.yaxis.grid(True,linestyle='-', color='#C0C0C0')
 
         
 def main():
     import globalconf as model1
-    fig = plt.figure(figsize=(16, 18))
+    fig = plt.figure(figsize=(16, 22))
     plt.subplots_adjust(wspace = 0)
     plt.subplots_adjust(hspace = 0)
-    ax1 = fig.add_subplot(321)
-    ax2 = fig.add_subplot(322)
-    ax3 = fig.add_subplot(323)
-    ax4 = fig.add_subplot(324)
-    ax5 = fig.add_subplot(325)
-    ax6 = fig.add_subplot(326)
+    ax1 = fig.add_subplot(421)
+    ax2 = fig.add_subplot(422)
+    ax3 = fig.add_subplot(423)
+    ax4 = fig.add_subplot(424)
+    ax5 = fig.add_subplot(425)
+    ax6 = fig.add_subplot(426)
+    ax7 = fig.add_subplot(427)
+    ax8 = fig.add_subplot(428)
     zi = "6.00"
-    plot_z(zi,model1,ax1,ax3,ax5,"l")
+    plot_z(zi,model1,ax1,ax3,ax5,ax7,"l")
     #fig.canvas.draw()
     zi = "7.96"
-    plot_z(zi,model1,ax2,ax4,ax6,"r")
-    fig.savefig("reservoir69.pdf",bbox_inches='tight',pad_inches=0.05)
+    plot_z(zi,model1,ax2,ax4,ax6,ax8,"r")
+    fig.savefig("reservoir68.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
