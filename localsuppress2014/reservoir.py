@@ -241,7 +241,7 @@ def main():
     zi = "6.00"
     plot_z(zi,model1,ax1,ax3,ax5,"l")
     #fig.canvas.draw()
-    zi = "9.03"
+    zi = "7.96"
     plot_z(zi,model1,ax2,ax4,ax6,"r")
     fig.savefig("reservoir69.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
