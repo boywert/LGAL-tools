@@ -155,7 +155,7 @@ def plot_z(z,models,ax,pos):
         m200c[index] = m200c[index][cond]
         ax.plot(m200c[index],mean_hotgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Hot "+models.model_labels[i])
         ax.plot(m200c[index],mean_coldgas,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Cold "+models.model_labels[i])
-        ax.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],"Ejected "+label=models.model_labels[i])
+        ax.plot(m200c[index],mean_ejectedmass,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label="Ejected "+models.model_labels[i])
     if pos == "r":
         # leg = ax.legend(loc=4, handlelength = 10,ncol=1, fancybox=True, prop={'size':12})
         # leg.get_frame().set_linewidth(0)
