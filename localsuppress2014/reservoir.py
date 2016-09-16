@@ -210,10 +210,10 @@ def plot_z(z,models,ax1,ax2,ax3,ax4,pos):
     ax4.set_xlim([8,11])
     ax4.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
-        ax1.set_ylabel(r"$m_{\mathrm{hot}}/M_{\rm 200c}f_b$")
-        ax2.set_ylabel(r"$m_{\mathrm{cold}}/M_{\rm 200c}f_b$")
-        ax3.set_ylabel(r"$m_{\mathrm{*}}/M_{\rm 200c}f_b$")
-        ax4.set_ylabel(r"$m_{\mathrm{ejected}}/M_{\rm 200c}f_b$")
+        ax1.set_ylabel(r"$m_{\mathrm{hot}}\Omega_m/f_b \Omega_b M_{\rm 200c}$")
+        ax2.set_ylabel(r"$m_{\mathrm{cold}}\Omega_m/f_b \Omega_bM_{\rm 200c}f_b$")
+        ax3.set_ylabel(r"$m_{\mathrm{*}}\Omega_m/f_b \Omega_bM_{\rm 200c}f_b$")
+        ax4.set_ylabel(r"$m_{\mathrm{ejected}}\Omega_m/f_b \Omega_bM_{\rm 200c}f_b$")
         # ax.text(0.5, 0.25, r'$z=%s$'%(round_z),
         #         verticalalignment='bottom', horizontalalignment='center',
         #         transform=ax.transAxes, fontsize=14)
