@@ -219,7 +219,7 @@ def main():
     ax5 = fig.add_subplot(325)
     ax6 = fig.add_subplot(326)
     zi = "6.00"
-    plot_z(zi,model1,ax1,ax3,ax5"l")
+    plot_z(zi,model1,ax1,ax3,ax5,"l")
     ax2 = fig.add_subplot(122)
     fig.canvas.draw()
     zi = "9.03"
