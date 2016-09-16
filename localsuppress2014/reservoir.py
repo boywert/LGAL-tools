@@ -181,7 +181,7 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
         ax2.xaxis.set_ticklabels(labels)
         ax3.xaxis.set_ticklabels(labels)
     ax1.set_ylim([0,1.0])
-    ax2.set_ylim([0,0.15])
+    ax2.set_ylim([0,0.14])
     ax3.set_ylim([0,1.0])
     #ax.set_yscale('log')
     ax1.set_xlim([8,11])
