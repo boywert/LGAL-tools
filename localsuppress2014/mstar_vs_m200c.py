@@ -132,8 +132,8 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
             ax.plot(m200c[index],mean,color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
         ax.fill_between(m200c[index], mean - sd, mean + sd, alpha=0.25, edgecolor='#CC4F1B', facecolor=models.model_plot_colors[i],linewidth=0)
     xplot = numpy.arange(0,20.)
-    ref = (-9.25+float(z)/24)+xplot*1.7-0.8
-    ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*,gross}} \propto M_{\mathrm{200c}}^{1.64}$')
+    ref = (-9.25+float(z)/24)+xplot*(5./3.)-0.8
+    ax.plot(xplot,ref,'k--', label = r'$m_{\mathrm{*}} \propto M_{\mathrm{200c}}^{1.7}$')
   
     ax.set_ylim([3,10])
     ax.set_xlim([8.0,11.])
@@ -149,7 +149,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         leg.get_frame().set_linewidth(0)
         leg.get_frame().set_alpha(0)
     if pos == "l":
-        ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*,gross}}/\mathrm{M_\odot})$")
+        ax.set_ylabel(r"$\log_{10}(m_{\mathrm{*}}/\mathrm{M_\odot})$")
     if top == 1:
         ax2 = ax.twiny()
         ax2.set_xlim([8.0,11.])
@@ -161,7 +161,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
             ax2.xaxis.set_ticklabels(labels)
     if top == 0:
         labels = [r"$3$",r"$4$",r"$5$",r"$6$",r"$7$",r"$8$",r"$9$",""]
-        #ax.yaxis.set_ticklabels(labels)
+        ax.yaxis.set_ticklabels(labels)
     if pos == "r":
         ax.yaxis.set_ticklabels([])
 #     if pos == "l":
