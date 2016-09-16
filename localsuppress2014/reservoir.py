@@ -163,7 +163,8 @@ def plot_z(z,models,ax,pos):
         ax.yaxis.set_ticklabels([])
         labels = ["",r"$8.5$",r"$9.0$",r"$9.5$",r"$10.0$",r"$10.5$",r"$11.0$",r"$11.0$",r"$11.5$"]
         #ax.xaxis.set_ticklabels(labels)
-    ax.set_ylim([0,1.4])
+    #ax.set_ylim([0,1.4])
+    ax.set_yscale('log')
     ax.set_xlim([8,11])
     ax.set_xlabel(r"$\log_{10}(M_{200c}/\mathrm{M_\odot})$")
     if pos == "l":
