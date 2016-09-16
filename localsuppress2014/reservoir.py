@@ -145,7 +145,7 @@ def plot_z(z,models,ax1,ax2,ax3,ax4,pos):
             sum_hotgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(hotgas/cenhalomass/0.163))
             sum_coldgas[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(coldgas/cenhalomass/0.163))
             sum_ejectedmass[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.163))
-            sum_star[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(ejectedmass/cenhalomass/0.163))
+            sum_star[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins,weights=(star/cenhalomass/0.163))
             N[index] = numpy.histogram(numpy.log10(cenhalomass*1.e10/hubble_h),range=rangen,bins=bins)
             m200c[index] = []
             for ii in range(len(N[index][0])):
