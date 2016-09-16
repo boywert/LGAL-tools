@@ -145,8 +145,8 @@ def plot_z(z,models,ax1,ax2,ax3,pos):
             m200c[index] = []
             for ii in range(len(N[index][0])):
                 m200c[index].append(0.5*(N[index][1][ii]+N[index][1][ii+1]))
-                del(gal[index])
-                del(nTreeGals[index])
+            del(gal[index])
+            del(nTreeGals[index])
             m200c[index] = numpy.array(m200c[index])
             fp = open(cachefile,'wb')
             pickle.dump((sum_hotgas[index],sum_coldgas[index],sum_ejectedmass[index],N[index],m200c[index]),fp)
