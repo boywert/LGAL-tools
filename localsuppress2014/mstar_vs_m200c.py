@@ -14,6 +14,10 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
 import random
+try:
+   import cPickle as pickle
+except:
+   import pickle
 rank = "0"
 SEC_PER_YEAR = 3600*24*365.25
 Msun2kg = 1.989e30
