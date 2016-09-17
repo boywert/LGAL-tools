@@ -103,11 +103,12 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     for i in range(len(models.model_names)):
         index = models.model_names[i]
         cachefile = index+"_"+round_z+"_gal.pickle"
+        rangen = (6.0,13)
+        bins = 50
         if os.path.isfile(cachefile) == False: 
             if not index in gal:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-            rangen = (6.0,13)
-            bins = 50
+
             firstgal = numpy.where(gal[index]["Type"] == 0)[0]
             star = numpy.zeros(len(firstgal),dtype=numpy.float64)
             stargross =  numpy.zeros(len(firstgal),dtype=numpy.float64)

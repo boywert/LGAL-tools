@@ -14,6 +14,10 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
 import random
+try:
+   import cPickle as pickle
+except:
+   import pickle
 rank = "0"
 SEC_PER_YEAR = 3600*24*365.25
 Msun2kg = 1.989e30
@@ -36,17 +40,17 @@ def loadfilter(structfile):
     filter['BulgeMass'] = True
     filter['DiskMass'] = True
     filter['HaloM_Crit200'] = True
-    # filter['HaloM_Crit200'] = True
-    # filter['HotGas'] = True
-    # filter['ColdGas'] = True
-    # filter['EjectedMass'] = True
+    filter['Rvir'] = True
+    filter['Pos'] = True
+    filter['Mvir'] = True
+    filter['CumulativeSFR'] = True
     # filter['StellarMass'] = True
     # filter['ICM'] = True
     # filter['BlackHoleGas'] = True
     # filter['BlackHoleMass'] = True
     # filter['Sfr'] = True
     filter['Type'] = True
-    filter['CumulativeSFR'] = True
+    filter['StellarMass'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -81,7 +85,8 @@ def setfilter(models):
 # struct_file = struct_file_tmp
 # model_labels = models.model_labels_tmp
 # models.model_paths = models.model_paths_tmp
-def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):    
+def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
+    round_z = "%4.2f" % (float(int(float(z)+0.5)))
     dt,filter = setfilter(models)
     file_prefix = "SA_z"+z
     try:
@@ -97,8 +102,30 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
     m200c = {}
     for i in range(len(models.model_names)):
         index = models.model_names[i]
-        if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+        cachefile = index+"_"+round_z+"_gal.pickle"
+        if os.path.isfile(cachefile) == False: 
+            if not index in gal:
+                (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+            firstgal = numpy.where(gal[index]["Type"] == 0)[0]
+            star = numpy.zeros(len(firstgal),dtype=numpy.float64)
+            stargross =  numpy.zeros(len(firstgal),dtype=numpy.float64)
+            for ii in range(len(firstgal)-1):
+                for j in range(firstgal[ii+1]-firstgal[ii]):
+                    #print total_baryon[firstgal[i]:firstgal[i+1]]
+                    this_gal = firstgal[ii]+j
+                    distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
+                    if ( distance < gal[index][firstgal[ii]]['Rvir']):
+                        star[ii] += gal[index][this_gal]['StellarMass']
+                        stargross[ii] += gal[index][this_gal]['CumulativeSFR']
+            gal[index][firstgal]['StellarMass'] = star
+            gal[index][firstgal]['CumulativeSFR'] = stargross
+            fp = open(cachefile,'wb')
+            pickle.dump(gal[index],fp)
+            fp.close()
+        else:
+            fp = open(cachefile,'rb')
+            gal[index] = pickle.load(fp)
+            fp.close()
         rangen = (6.0,13)
         bins = 50
        	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
@@ -211,7 +238,7 @@ def main():
     fig.canvas.draw()
     zi = zlist[13].strip()
     plot_z(zi,model1,ax2,"r",bottom=1)
-    fig.savefig("mgross_m200c.pdf",bbox_inches='tight',pad_inches=0.05)
+    fig.savefig("mgross_m200c2.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
