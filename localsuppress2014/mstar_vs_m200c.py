@@ -221,7 +221,7 @@ def main():
     fig.canvas.draw()
     zi = zlist[13].strip()
     plot_z(zi,model1,ax2,"r",bottom=1)
-    fig.savefig("mstar_m200c.pdf",bbox_inches='tight',pad_inches=0.05)
+    fig.savefig("mstar_m200c2.pdf",bbox_inches='tight',pad_inches=0.05)
     plt.close(fig)
 
 if __name__=="__main__":
