@@ -139,7 +139,7 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
         for i in range(len(sum_baryons[index][0])):
             m200c[index].append(0.5*(sum_baryons[index][1][i]+sum_baryons[index][1][i+1]))
         del(gal[index])
-        del(nTreeGals[index])
+        #del(nTreeGals[index])
         m200c[index] = numpy.array(m200c[index])
   
     for i in range(len(models.model_names)):
