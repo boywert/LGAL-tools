@@ -36,9 +36,9 @@ def loadfilter(structfile):
     filter['BulgeMass'] = True
     filter['DiskMass'] = True
     filter['HaloM_Crit200'] = True
-    # filter['HaloM_Crit200'] = True
-    # filter['HotGas'] = True
-    # filter['ColdGas'] = True
+    filter['Rvir'] = True
+    filter['Pos'] = True
+    filter['Mvir'] = True
     # filter['EjectedMass'] = True
     # filter['StellarMass'] = True
     # filter['ICM'] = True
@@ -101,7 +101,17 @@ def plot_z(z,models,ax,pos,label=0,bottom=0,top=0):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(models.model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
         rangen = (6.0,13)
         bins = 50
-       	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["BulgeMass"]+gal[index]["DiskMass"]) >0.))]
+        firstgal = numpy.where(gal[index]["Type"] == 0)[0]
+        star = numpy.zeros(len(firstgal),dtype=numpy.float64)
+        for ii in range(len(firstgal)-1):
+            for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
+                #print total_baryon[firstgal[i]:firstgal[i+1]]
+                this_gal = firstgal[ii]+j
+                distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
+                if ( distance < gal[index][firstgal[ii]]['Rvir']):
+                    star[ii] += gal[index][this_gal]['StellarMass']
+        gal[index][firstgal]['StellarMass'] = star
+       	gal[index] = gal[index][numpy.where((gal[index]["Type"]==0)&((gal[index]["StellarMass"]) >0.))]
         #gal[index] = gal[index][gal[index]["Type"]==0]
 	mass = gal[index]['HaloM_Crit200']# (gal[index]["BulgeMass"]+gal[index]["DiskMass"])
         sum_baryons[index] = numpy.histogram(numpy.log10(mass*1.e10/hubble_h),range=rangen,bins=bins,weights=numpy.log10(numpy.float64(1)*(gal[index]["StellarMass"])*1.e10/hubble_h))
