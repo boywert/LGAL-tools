@@ -106,7 +106,7 @@ def plot_smf():
     ax = fig.add_subplot(1,1,1)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(count[index],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+        ax.plot(count[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     #ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
     #ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_{DM}/M_\odot]}$")
     
