@@ -27,7 +27,6 @@ def loadfilter(structfile):
     filter['Mvir'] = True
     filter['Type'] = True
     filter['Pos'] = True
-    filter[]
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
