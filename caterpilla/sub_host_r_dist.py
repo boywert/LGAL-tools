@@ -110,7 +110,7 @@ def plot_smf():
         index = model_names[i]
         ax.plot(count[index].astype(numpy.float64)/numpy.sum(count[index])/step,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     ax.set_xlabel(r"$r/R_{200c}$")
-    ax.set_ylabel(r"$\mathrm{pdf}/\Delta r$")
+    ax.set_ylabel(r"$\mathrm{pdf}/(\Delta r/R_{200c})$")
     
     fig.savefig("r_dist.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)   
