@@ -93,7 +93,7 @@ def plot_smf():
 
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
-        print gal[index][:]['Pos'][0]
+        print gal[index]['Pos'][0]
         ax.scatter(gal[index]['Pos'][0],gal[index]['Pos'][1])
         # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         # leg.get_frame().set_linewidth(0)
