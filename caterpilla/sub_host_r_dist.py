@@ -74,6 +74,7 @@ def plot_smf():
     z = "0.00"
     file_prefix = "SA_z"+z
     config = {}
+    count = {}
     try:
         gal
     except NameError:
@@ -91,7 +92,7 @@ def plot_smf():
         rangen = (0,1.)
         bins = 100
         step = (rangen[1]-rangen[0])/bins
-        count = numpy.arange(rangen[0],rangen[1],bins,dtype=numpy.int64)
+        count[index] = numpy.zeros(bins,dtype=numpy.int64)
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
         for ii in range(len(firstgal)-1):
             for j in range(firstgal[ii+1]-firstgal[ii]+1):
@@ -99,19 +100,18 @@ def plot_smf():
                 distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
                 if ((distance < gal[index][firstgal[ii]]['Rvir']) & (gal[index][this_gal]["Type"] > 0)):
                     slot = int(distance/gal[index][firstgal[ii]]['Rvir']/step)
-                    print distance,slot
+                    count[slot]+=1
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(1,1,1)
-    # for i in range(len(model_names)):
-    #     index = model_names[i]
-    #     pgal = numpy.where(gal[index]["StellarMass"]>0.)
-    #     ax.scatter(numpy.log10(1e10*gal[index]["Mvir"][pgal]),numpy.log10(1e10*gal[index]["StellarMass"][pgal]))
-    # ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
-    # ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_{DM}/M_\odot]}$")
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    for i in range(len(model_names)):
+        index = model_names[i]
+        ax.plot(count[index],color=models.model_plot_colors[i],linestyle=models.model_plot_patterns[i],label=models.model_labels[i])
+    #ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
+    #ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_{DM}/M_\odot]}$")
     
-    # fig.savefig("SMHM.png",bbox_inches='tight',pad_inches=0.1)
-    # plt.close(fig)   
+    fig.savefig("r_dist.pdf",bbox_inches='tight',pad_inches=0.1)
+    plt.close(fig)   
     
     
 def main():
