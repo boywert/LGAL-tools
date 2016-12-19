@@ -95,10 +95,12 @@ def plot_smf():
         #gal[index] = gal[index][numpy.where(gal[index]['Pos'][:,2] <51.80275192)]
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
-        sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['StellarMass']*1e10),norm=colors.LogNorm(vmin=4,vmax=10),cmap='Reds')
-        cbar = fig.colorbar(sc)
+        sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['StellarMass']*1e10),cmap='Reds')
+        #cbar = fig.colorbar(sc)
         ax.set_xlim([47,54])
         ax.set_ylim([43,49])
+        cbar = plt.colorbar.ColorbarBase(sc, cmap='Reds',
+                       norm=plt.colors.Normalize(vmin=4, vmax=10))
         # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         # leg.get_frame().set_linewidth(0)
         fig.savefig("xy_plane_"+str(i)+".png",bbox_inches='tight',pad_inches=0.1)
