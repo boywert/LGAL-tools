@@ -75,6 +75,7 @@ def plot_smf():
     file_prefix = "SA_z"+z
     config = {}
     count = {}
+
     try:
         gal
     except NameError:
@@ -82,7 +83,7 @@ def plot_smf():
         nTrees = {}
         nGals = {}
         nTreeGals = {}
-
+    
    
     for i in range(len(model_names)):
         index = model_names[i]
@@ -93,6 +94,7 @@ def plot_smf():
         bins = 20
         step = (rangen[1]-rangen[0])/bins
         count[index] = numpy.zeros(bins,dtype=numpy.int64)
+        total = long(0)
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
         for ii in range(len(firstgal)-1):
             for j in range(firstgal[ii+1]-firstgal[ii]+1):
@@ -106,7 +108,7 @@ def plot_smf():
     ax = fig.add_subplot(1,1,1)
     for i in range(len(model_names)):
         index = model_names[i]
-        ax.plot(count[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
+        ax.plot(float(count[index])/numpy.sum(count[index]),color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     #ax.set_ylabel(r"$\mathrm{\log_{10}[h^{-1}M_*/M_\odot]}$")
     #ax.set_xlabel(r"$\mathrm{\log_{10}[h^{-1}M_{DM}/M_\odot]}$")
     
