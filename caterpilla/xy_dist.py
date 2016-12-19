@@ -96,7 +96,7 @@ def plot_smf():
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
         sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['StellarMass']*1e10),cmap='Reds')
-        cbar = fig.colorbar(sc,boundaries=np.linspace(4,11,100))
+        cbar = fig.colorbar(sc,boundaries=numpy.linspace(4,11,100))
         ax.set_xlim([47,54])
         ax.set_ylim([43,49])
 
