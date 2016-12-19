@@ -108,7 +108,7 @@ def plot_smf():
     ax = fig.add_subplot(1,1,1)
     for i in range(len(model_names)):
         index = model_names[i]
-        r = numpy.arange(0,1,1./bins)
+        r = numpy.arange(0,1,1./bins)+1./bins/2.
         ax.plot(r,count[index].astype(numpy.float64)/numpy.sum(count[index])/step,color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     ax.set_xlabel(r"$r/R_{200c}$")
     ax.set_ylabel(r"$\mathrm{pdf}/(\Delta r/R_{200c})$")
