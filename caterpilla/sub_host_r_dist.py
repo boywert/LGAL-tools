@@ -24,6 +24,7 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False    
     filter['StellarMass'] = True
+    filter['Rvir'] = True
     filter['Mvir'] = True
     filter['Type'] = True
     filter['Pos'] = True
