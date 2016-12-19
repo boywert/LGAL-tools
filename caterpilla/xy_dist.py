@@ -96,7 +96,8 @@ def plot_smf():
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
         ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['StellarMass']),cmap='hot')
-        
+        ax.set_xlim([47,54])
+        ax.set_xlim([43,59])
         # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         # leg.get_frame().set_linewidth(0)
         fig.savefig("xy_plane_"+str(i)+".png",bbox_inches='tight',pad_inches=0.1)
