@@ -90,7 +90,7 @@ def plot_smf():
         print index
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile[i],lastfile[i],filter[i],dt[i],1)
-        gal[index] = gal[index][numpy.where(gal[index]['Pos'][:,3] >51.65275192 & gal[index]['Pos'][:,3] < 51.85275192)]
+        gal[index] = gal[index][numpy.where(gal[index]['Pos'][:,2] >51.65275192 & gal[index]['Pos'][:,2] < 51.85275192)]
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
         ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1])
