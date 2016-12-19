@@ -90,7 +90,7 @@ def plot_smf():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile[i],lastfile[i],filter[i],dt[i],1)
         rangen = (0,1.)
-        bins = 100
+        bins = 20
         step = (rangen[1]-rangen[0])/bins
         count[index] = numpy.zeros(bins,dtype=numpy.int64)
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
