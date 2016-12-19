@@ -99,7 +99,7 @@ def plot_smf():
         cbar = fig.colorbar(sc,boundaries=numpy.linspace(4,11,100))
         ax.set_xlim([47,54])
         ax.set_ylim([43,49])
-
+        ax.set_title(model_labels[i])
         # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         # leg.get_frame().set_linewidth(0)
         fig.savefig("xy_plane_"+str(i)+".png",bbox_inches='tight',pad_inches=0.1)
