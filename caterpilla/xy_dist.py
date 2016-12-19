@@ -7,7 +7,7 @@ import sys
 import numpy
 import os
 import matplotlib.pyplot as plt
-os.system("cp dummy_dtype.py LGalaxyStruct.py")
+os.system("touch LGalaxyStruct.py")
 import LGalaxyStruct
 #import add_observations
 sys.path.append("../python/")
@@ -24,7 +24,10 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False    
     filter['StellarMass'] = True
+    filter['Rvir'] = True
     filter['Mvir'] = True
+    filter['Type'] = True
+    filter['Pos'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -71,6 +74,8 @@ def plot_smf():
     z = "0.00"
     file_prefix = "SA_z"+z
     config = {}
+    count = {}
+
     try:
         gal
     except NameError:
@@ -78,9 +83,7 @@ def plot_smf():
         nTrees = {}
         nGals = {}
         nTreeGals = {}
-   
-    smf_x = {}
-    smf_y = {}
+    
    
     for i in range(len(model_names)):
         index = model_names[i]
@@ -88,33 +91,15 @@ def plot_smf():
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile[i],lastfile[i],filter[i],dt[i],1)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-    for i in range(len(model_names)):
-        index = model_names[i]
-	print index, len(gal[index])
-        pgal = numpy.where(gal[index]["StellarMass"]>0.)[0]
-	print len(pgal),len(gal[index]["StellarMass"])
-        ax.scatter(numpy.log10(1e10*gal[index]["Mvir"][pgal]/hubble_h),numpy.log10(1e10*gal[index]["StellarMass"][pgal]/hubble_h),s=3,color=model_plot_colors[i],label=model_labels[i])
-    xmin, xmax = ax.get_xlim()
-    ymin, ymax = ax.get_ylim()
-    x = numpy.arange(xmin,xmax,0.1)
-    A = numpy.log10(1.0e2/4.0e10)/numpy.log10(2.0e6/2.0e12)
-    B = numpy.log10(1.0e2)-A*numpy.log10(2.0e6)
-    y = A*x+B
-    ax.plot(x,y,'k--',linewidth=1,label="Behroozi+ (2013)")
-    A = numpy.log10(1.0e2/4.0e10)/numpy.log10(5.0e7/2.0e12)
-    B = numpy.log10(1.0e2)-A*numpy.log10(5.0e7)
-    y = A*x+B
-    ax.plot(x,y,'k.',linewidth=1,label="Garrison-Kimmel+ (2014)")
-    ax.set_ylabel(r"$\mathrm{\log_{10}[M_*/M_\odot]}$")
-    ax.set_xlabel(r"$\mathrm{\log_{10}[M_{DM}/M_\odot]}$")
-    leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
-    leg.get_frame().set_linewidth(0)
-    ax.set_xlim([xmin,xmax])
-    ax.set_ylim([ymin,ymax])
-    fig.savefig("SMHM.png",bbox_inches='tight',pad_inches=0.1)
-    plt.close(fig)    
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1,1,1)
+    
+        fig.savefig("r_dist.pdf",bbox_inches='tight',pad_inches=0.1)
+        plt.close(fig)   
+
+
+    
     
 def main():
     plot_smf()
@@ -122,3 +107,4 @@ def main():
 
 if __name__=="__main__":
     main()
+    
