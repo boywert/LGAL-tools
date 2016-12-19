@@ -97,7 +97,7 @@ def plot_smf():
         ax.scatter(gal[index]['Pos'][0],gal[index]['Pos'][0])
         leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         leg.get_frame().set_linewidth(0)
-        fig.savefig("xy_plane_"+str(i)+".pdf",bbox_inches='tight',pad_inches=0.1)
+        fig.savefig("xy_plane_"+str(i)+".png",bbox_inches='tight',pad_inches=0.1)
         plt.close(fig)   
 
 
