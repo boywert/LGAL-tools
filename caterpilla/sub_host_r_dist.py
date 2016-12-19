@@ -93,7 +93,7 @@ def plot_smf():
         count = numpy.arange(rangen[0],rangen[1],bins,dtype=numpy.int64)
         firstgal = numpy.where(gal[index]["Type"] == 0)[0]
         for ii in range(len(firstgal)-1):
-            for j in range(len(total_baryon[firstgal[ii]:firstgal[ii+1]])):
+            for j in range(firstgal[ii+1]-firstgal[ii]+1):
                 this_gal = firstgal[ii]+j
                 distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
                 if (distance < gal[index][firstgal[ii]]['Rvir']):
