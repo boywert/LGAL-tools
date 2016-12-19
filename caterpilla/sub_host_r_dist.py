@@ -80,15 +80,13 @@ def plot_smf():
         nTrees = {}
         nGals = {}
         nTreeGals = {}
-   
-    smf_x = {}
-    smf_y = {}
+
    
     for i in range(len(model_names)):
         index = model_names[i]
         print index
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile[i],lastfile[i],filter[i],dt[i],1)
         rangen = (0,1.)
         bins = 40
         step = (rangen[1]-rangen[0])/bins
