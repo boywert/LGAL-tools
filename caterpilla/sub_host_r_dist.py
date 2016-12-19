@@ -99,7 +99,7 @@ def plot_smf():
                 distance = numpy.sqrt((gal[index][this_gal]['Pos'][0] - gal[index][firstgal[ii]]['Pos'][0])**2.+(gal[index][this_gal]['Pos'][1] - gal[index][firstgal[ii]]['Pos'][1])**2.+(gal[index][this_gal]['Pos'][2] - gal[index][firstgal[ii]]['Pos'][2])**2.)/(1.+float(z))
                 if (distance < gal[index][firstgal[ii]]['Rvir']):
                     slot = int(distance/gal[index][firstgal[ii]]['Rvir']/step)
-                    print distance/gal[index][firstgal[ii]]['Rvir'],slot
+                    print distance,slot
 
     # fig = plt.figure()
     # ax = fig.add_subplot(1,1,1)
