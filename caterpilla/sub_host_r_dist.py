@@ -125,7 +125,7 @@ def plot_smf():
     ax.set_xlabel(r"$r/R_{200c}$")
     ax.set_ylabel(r"$N/(\Delta r/R_{200c})$")
     
-    fig.savefig("r_dist.pdf",bbox_inches='tight',pad_inches=0.1)
+    fig.savefig("r_dist_total.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)   
     
     
