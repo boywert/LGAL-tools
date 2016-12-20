@@ -114,7 +114,7 @@ def plot_smf():
         gal[index] = gal[index][numpy.where(numpy.log10(gal[index]['Mvir']*1e10) > 4)]
         gal[index] = gal[index][numpy.where(numpy.log10(gal[index]['Mvir']*1e10) < 13)]
         sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['Mvir']*1e10),cmap='Reds')
-        cbar = fig.colorbar(sc,boundaries=num)
+        cbar = fig.colorbar(sc)
         ax.set_xlim([47,54])
         ax.set_ylim([43,49])
         ax.set_title(model_labels[i])
