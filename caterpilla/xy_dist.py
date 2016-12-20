@@ -1,4 +1,5 @@
 import matplotlib.cm as cm
+import matplotlib.colors as colors
 from mass_fn import *
 from globalconf import *
 import matplotlib
@@ -113,8 +114,8 @@ def plot_smf():
         gal[index] = gal[index][numpy.where(gal[index]['Pos'][:,2] <51.805275192)]
         gal[index] = gal[index][numpy.where(numpy.log10(gal[index]['Mvir']*1e10) > 5)]
         gal[index] = gal[index][numpy.where(numpy.log10(gal[index]['Mvir']*1e10) < 9)]
-        sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['Mvir']*1e10),cmap='Reds')
-        cbar = fig.colorbar(sc,boundaries=numpy.linspace(5,9,100))
+        sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['Mvir']*1e10),norm=colors.SymNorm(linscale=0.01,vmin=5, vmax=9),cmap='Reds')
+        cbar = fig.colorbar(sc)#,boundaries=numpy.linspace(5,9,100))
         ax.set_xlim([47,54])
         ax.set_ylim([43,49])
         ax.set_title(model_labels[i])
