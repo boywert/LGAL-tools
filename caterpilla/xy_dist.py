@@ -109,6 +109,8 @@ def plot_smf():
 
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
+        gal[index] = gal[index][numpy.where(gal[index]['Pos'][:,2] >51.75275192)]
+        gal[index] = gal[index][numpy.where(gal[index]['Pos'][:,2] <51.80275192)]
         sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['Mvir']*1e10),cmap='Reds')
         cbar = fig.colorbar(sc,boundaries=numpy.linspace(4,13,100))
         ax.set_xlim([47,54])
