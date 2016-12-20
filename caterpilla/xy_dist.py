@@ -25,6 +25,7 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False    
     filter['StellarMass'] = True
+    filter['Mvir'] = True
     filter['Rvir'] = True
     filter['Len'] = True
     filter['Type'] = True
@@ -104,6 +105,18 @@ def plot_smf():
         # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
         # leg.get_frame().set_linewidth(0)
         fig.savefig("xy_plane_"+str(i)+".png",bbox_inches='tight',pad_inches=0.1)
+        plt.close(fig)
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1,1,1)
+        sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['Mvir']*1e10),cmap='Reds')
+        cbar = fig.colorbar(sc,boundaries=numpy.linspace(4,13,100))
+        ax.set_xlim([47,54])
+        ax.set_ylim([43,49])
+        ax.set_title(model_labels[i])
+        # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
+        # leg.get_frame().set_linewidth(0)
+        fig.savefig("xy_plane_halos_"+str(i)+".png",bbox_inches='tight',pad_inches=0.1)
         plt.close(fig)   
 
 
