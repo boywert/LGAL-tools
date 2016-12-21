@@ -117,6 +117,7 @@ def plot_smf():
         sc = ax.scatter(gal[index]['Pos'][:,0],gal[index]['Pos'][:,1],c=numpy.log10(gal[index]['Mvir']*1e10),norm=colors.SymLogNorm(linscale=0.01,vmin=5, vmax=9),cmap='Reds')
         cbar = fig.colorbar(sc)#,boundaries=numpy.linspace(5,9,100))
         ax.set_xlim([47,54])
+        
         ax.set_ylim([43,49])
         ax.set_title(model_labels[i])
         # leg = ax.legend(loc='upper left', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
