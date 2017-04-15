@@ -52,7 +52,7 @@ def get_plot(filename,doubleflag,x,y,z):
 
 
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
-    outfile = "%3.1f_pic.pdf" % (frac)
+    outfile = "%3.1f_pic_%d.pdf" % (frac,z)
     print "plotting",outfile
     fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5+0.5))
     print "a"
@@ -103,7 +103,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
 
 def do_plot(z_in):
     print "start",z_in
-    if(z_in+33 >305):
+    if(z_in+15 >305):
         print "outsid box"
         return
     x = (153,306)
@@ -165,7 +165,8 @@ def do_plot(z_in):
 
 
 def main():
-    do_plot(104)
+    for i in range(0,300,5):
+        do_plot(i)
 
 if __name__=="__main__":
     main()
