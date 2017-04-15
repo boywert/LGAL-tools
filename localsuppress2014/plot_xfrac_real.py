@@ -103,12 +103,12 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
 
 def do_plot(z_in):
     print "start",z_in
-    if(z_in+15 >305):
+    if(z_in+7 >305):
         print "outsid box"
         return
     x = (153,306)
     y = (153,306)
-    z = (z_in,z_in+15)
+    z = (z_in,z_in+7)
     suffix = "%d"%(z_in)
     nrow = 3
     ncol = 2
