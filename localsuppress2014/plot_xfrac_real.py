@@ -165,8 +165,8 @@ def do_plot(z_in):
 
 
 def main():
-    for i in range(0,300,5):
-        do_plot(i)
+   
+    do_plot(110)
 
 if __name__=="__main__":
     main()
