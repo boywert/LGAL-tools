@@ -63,8 +63,9 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
-    for i in range(nrow):
+    for i in range(nrow-1):
         gs_height_ratios.append(1.)
+    gs_height_ratios.append(1.1)
     gs_height_ratios.append(0.03)
     for i in range(ncol):
         gs_width_ratios.append(1.)
