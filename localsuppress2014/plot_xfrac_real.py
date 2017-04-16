@@ -101,7 +101,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                     elif i == 2:
                         xmf = "0.7"
                     ax[ifile].yaxis.set_label_position("right")
-                    ax[ifile].set_ylabel(r"$<x^m_{\rm HI}> = "+xmf+"$",fontsize=10)
+                    ax[ifile].set_ylabel(r"$<x^m_{\rm HII}> = "+xmf+"$",fontsize=10,rotation=180)
                 ifile += 1
     cax = pylab.subplot(gs[nrow,:])
     #ax.append(pylab.subplot(gs[nrow,1]))
