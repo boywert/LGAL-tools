@@ -172,7 +172,7 @@ def do_plot(z_in):
     filelist.append(filelist3[1])
     filelist.append(filelist3[2])
     doubleflaglist = [0,0,0,0,0,0,0,0,0]
-    labellist = ["","","","","",""
+    labellist = ["","","","","","",
                  "No suppression, stripping 1",
                  #"Homogeneous, stripping 0",
                  "Homogeneous, stripping 1",
