@@ -54,7 +54,7 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
     outfile = "%3.1f_pic_%d.pdf" % (frac,z[0])
     print "plotting",outfile
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.2))
     print "a"
     plt.subplots_adjust(wspace = 0.02)
     print "b"
@@ -174,9 +174,9 @@ def do_plot(z_in):
     filelist.append(filelist3[1])
     filelist.append(filelist3[2])
     doubleflaglist = [0,0,0,0,0,0,0,0,0]
-    labellist = ["No suppression, stripping 1",
-                "Homogeneous, stripping 1",
-                 "Patchy suppression, stripping 1",
+    labellist = ["No suppression",
+                 "Homogeneous",
+                 "Patchy suppression",
                  "","","","","",""]
     plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.7,x,y,z)
 
