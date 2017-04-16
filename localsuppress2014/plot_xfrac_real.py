@@ -128,7 +128,7 @@ def do_plot(z_in):
                  "Patchy suppression, stripping 1"]
 
     doubleflaglist =[0,0,0]
-    plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.3,x,y,z)
+    #plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.3,x,y,z)
 
     # 50%
     filelist2 = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_8.515.bin",
@@ -144,7 +144,7 @@ def do_plot(z_in):
                  #"Patchy suppression, stripping 0",
                  "Patchy suppression, stripping 1"]
     doubleflaglist2 =[0,0,0]
-    plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.5,x,y,z)
+    #plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.5,x,y,z)
 
     # 70%
     filelist3 = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_8.172.bin",
