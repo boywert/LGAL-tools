@@ -54,11 +54,11 @@ def get_plot(filename,doubleflag,x,y,z):
 def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z):
     outfile = "%3.1f_pic_%d.pdf" % (frac,z[0])
     print "plotting",outfile
-    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5+0.5))
+    fig = pylab.figure(figsize=(4*ncol, 4*nrow+0.5))
     print "a"
-    plt.subplots_adjust(wspace = 0.03)
+    plt.subplots_adjust(wspace = 0.0)
     print "b"
-    plt.subplots_adjust(hspace = 0.03)
+    plt.subplots_adjust(hspace = 0.0)
     print "c"
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
