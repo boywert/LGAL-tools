@@ -92,7 +92,10 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
                 ax[ifile].xaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_label_coords(0.5, 1.05)
                 if j == 0:
-                    ax[ifile].set_ylabel(r"$ 33.5 \rm Mpc$",fontsize=10)
+                    ax[ifile].set_ylabel("17 Mpc",fontsize=10)
+                if j == 2:
+                    ax[ifile].yaxis.set_label_position(r"$test$")
+                    ax[ifile].set_ylabel("17 Mpc",fontsize=10)
                 ifile += 1
     cax = pylab.subplot(gs[nrow,:])
     #ax.append(pylab.subplot(gs[nrow,1]))
