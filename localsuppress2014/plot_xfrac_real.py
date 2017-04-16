@@ -111,16 +111,16 @@ def do_plot(z_in):
     z = (z_in,z_in+7)
     suffix = "%d"%(z_in)
     nrow = 3
-    ncol = 1
+    ncol = 3
 
     # 30%
-    filelist = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_9.164.bin",
+    filelist1 = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_9.164.bin",
                 "/scratch/01937/cs390/data/CSFR/no_reionization_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_9.164.bin",
                 #"/scratch/01937/cs390/data/CSFR/okamoto/wmap7/SEMNUM/3410.00/xfrac3d_9.164.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_9.164.bin",
                 #"/scratch/01937/cs390/Hybrid/xfrac/3410.01/xfrac3d_9.164.bin",
                 "/scratch/01937/cs390/Hybrid/xfrac/3410.03/xfrac3d_9.164.bin"]
-    labellist = [#"No suppression, stripping 0",
+    labellist1 = [#"No suppression, stripping 0",
                  "No suppression, stripping 1",
                  #"Homogeneous, stripping 0",
                  "Homogeneous, stripping 1",
@@ -131,36 +131,53 @@ def do_plot(z_in):
     plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.3,x,y,z)
 
     # 50%
-    filelist = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_8.515.bin",
+    filelist2 = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_8.515.bin",
                 "/scratch/01937/cs390/data/CSFR/no_reionization_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.515.bin",
                 #"/scratch/01937/cs390/data/CSFR/okamoto/wmap7/SEMNUM/3410.00/xfrac3d_8.515.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.515.bin",
                 #"/scratch/01937/cs390/Hybrid/xfrac/3410.01/xfrac3d_8.515.bin",
                 "/scratch/01937/cs390/Hybrid/xfrac/3410.03/xfrac3d_8.515.bin"]
-    labellist = [#"No suppression, stripping 0",
+    labellist2 = [#"No suppression, stripping 0",
                  "No suppression, stripping 1",
                  #"Homogeneous, stripping 0",
                  "Homogeneous, stripping 1",
                  #"Patchy suppression, stripping 0",
                  "Patchy suppression, stripping 1"]
-    doubleflaglist =[0,0,0]
+    doubleflaglist2 =[0,0,0]
     plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.5,x,y,z)
 
     # 70%
-    filelist = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_8.172.bin",
+    filelist3 = [#"/scratch/01937/cs390/data/CSFR/no_reionization/wmap7/SEMNUM/3410.00/xfrac3d_8.172.bin",
                 "/scratch/01937/cs390/data/CSFR/no_reionization_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.172.bin",
                 #"/scratch/01937/cs390/data/CSFR/okamoto/wmap7/SEMNUM/3410.00/xfrac3d_8.172.bin",
                 "/scratch/01937/cs390/data/CSFR/okamoto_infall/wmap7_test/SEMNUM/3410.00/xfrac3d_8.172.bin",
                 #"/scratch/01937/cs390/Hybrid/xfrac/3410.01/xfrac3d_8.172.bin",
                 "/scratch/01937/cs390/Hybrid/xfrac/3410.03/xfrac3d_8.172.bin"]
-    labellist = [#"No suppression, stripping 0",
+    labellist3 = [#"No suppression, stripping 0",
                  "No suppression, stripping 1",
                  #"Homogeneous, stripping 0",
                  "Homogeneous, stripping 1",
                  #"Patchy suppression, stripping 0",
                  "Patchy suppression, stripping 1"]
 
-    doubleflaglist =[0,0,0]
+    doubleflaglist3 =[0,0,0]
+    filelist = []
+    filelist.append(filelist1[0])
+    filelist.append(filelist1[1])
+    filelist.append(filelist1[2])
+    filelist.append(filelist2[0])
+    filelist.append(filelist2[1])
+    filelist.append(filelist2[2])
+    filelist.append(filelist3[0])
+    filelist.append(filelist3[1])
+    filelist.append(filelist3[2])
+    doubleflaglist = [0,0,0,0,0,0,0,0,0]
+    labellist = ["","","","","",""
+                 "No suppression, stripping 1",
+                 #"Homogeneous, stripping 0",
+                 "Homogeneous, stripping 1",
+                 #"Patchy suppression, stripping 0",
+                 "Patchy suppression, stripping 1"]
     plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.7,x,y,z)
 
 
