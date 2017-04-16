@@ -90,7 +90,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
-                ax[ifile].xaxis.set_ticks_position('top')
+                ax[ifile].xaxis.set_label_coords(0.5, 1.05)
                 if j == 0:
                     ax[ifile].set_ylabel(r"$ 33.5 \rm Mpc$",fontsize=10)
                 ifile += 1
