@@ -63,9 +63,9 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
     #fig.suptitle(r"$x_{\mathrm{HII}} = %3.1f$" % (frac))
     gs_width_ratios = []
     gs_height_ratios = []
-    for i in range(nrow-1):
+    for i in range(nrow):
         gs_height_ratios.append(1.)        
-    gs_height_ratios.append(1.05)
+    #gs_height_ratios.append(1.05)
     gs_height_ratios.append(0.03)
     for i in range(ncol):
         gs_width_ratios.append(1.)
@@ -90,6 +90,7 @@ def plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,frac,x,y,z
             	im[ifile].set_interpolation('bilinear')
                 ax[ifile].yaxis.set_ticklabels([])
                 ax[ifile].xaxis.set_ticklabels([])
+                ax[ifile].xaxis.set_ticks_position('top')
                 if j == 0:
                     ax[ifile].set_ylabel(r"$ 33.5 \rm Mpc$",fontsize=10)
                 ifile += 1
@@ -173,12 +174,10 @@ def do_plot(z_in):
     filelist.append(filelist3[1])
     filelist.append(filelist3[2])
     doubleflaglist = [0,0,0,0,0,0,0,0,0]
-    labellist = ["","","","","","",
-                 "No suppression, stripping 1",
-                 #"Homogeneous, stripping 0",
-                 "Homogeneous, stripping 1",
-                 #"Patchy suppression, stripping 0",
-                 "Patchy suppression, stripping 1"]
+    labellist = ["No suppression, stripping 1",
+                "Homogeneous, stripping 1",
+                 "Patchy suppression, stripping 1",
+                 "","","","","",""]
     plot_reionized(suffix,nrow,ncol,filelist,labellist,doubleflaglist,0.7,x,y,z)
 
 
