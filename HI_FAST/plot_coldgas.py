@@ -93,7 +93,7 @@ def plot_coldgas(z,ax,sam):
             z = "%10.2f"%(z)
         elif index[:4] == "sage":
             z = "%10.3f"%(z)
-        file_prefix = "model_z"+z
+        file_prefix = "model_z"+z.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
             (smf_x[index],smf_y[index]) = coldgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
