@@ -90,10 +90,10 @@ def plot_coldgas(z,ax,sam):
     for i in range(len(model_names)):
         index = model_names[i]
         if index[:4] == "lgal":
-            z = "%10.2f"%(z)
+            zz = "%10.2f"%(z)
         elif index[:4] == "sage":
-            z = "%10.3f"%(z)
-        file_prefix = "model_z"+z.strip()
+            zz = "%10.3f"%(z)
+        file_prefix = "model_z"+zz.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
             (smf_x[index],smf_y[index]) = coldgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
@@ -105,7 +105,7 @@ def plot_coldgas(z,ax,sam):
     ax.set_yscale("log")
     ax.set_ylim([1.e-2,1e1])
     ax.set_xlim([6,8])
-    ax.text(0.1, 0.1, 'z = %d'%(int(float(z)+0.5)),
+    ax.text(0.1, 0.1, 'z = %d'%(int(float(zz)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
     leg = ax.legend(loc='upper right', handlelength = 10,ncol=1, fancybox=True, prop={'size':10})
