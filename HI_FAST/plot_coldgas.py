@@ -67,12 +67,12 @@ pylab.rc('text', usetex=True)
 pylab.rc('lines', linewidth=2)
 plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
-zlist = open(zlistfile,"r").readlines()
+#zlist = open(zlistfile,"r").readlines()
 
 
 
 def plot_coldgas(z,ax,pos):
-    file_prefix = "SA_z"+z
+    file_prefix = "model_z"+z
     #firstfile = 0
     #lastfile = 127
     config = {}
