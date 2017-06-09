@@ -72,13 +72,6 @@ plt.rcParams['xtick.major.size'] = 8
 
 
 def plot_coldgas(z,ax,sam):
-    if sam == "lgal":
-        z = "%10.2f"%(z)
-    elif sam == "sage":
-        z = "%10.3f"%(z)
-    else:
-        return 0
-    file_prefix = "model_z"+z
     #firstfile = 0
     #lastfile = 127
     config = {}
@@ -96,6 +89,11 @@ def plot_coldgas(z,ax,sam):
 
     for i in range(len(model_names)):
         index = model_names[i]
+        if index[:4] == "lgal":
+            z = "%10.2f"%(z)
+        elif index[:4] == "sage":
+            z = "%10.3f"%(z)
+        file_prefix = "model_z"+z
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
             (smf_x[index],smf_y[index]) = coldgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
