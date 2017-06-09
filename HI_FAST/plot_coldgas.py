@@ -71,7 +71,13 @@ plt.rcParams['xtick.major.size'] = 8
 
 
 
-def plot_coldgas(z,ax,pos):
+def plot_coldgas(z,ax,sam):
+    if sam == "lgal":
+        z = "%10.2f"%(z)
+    elif sam == "sage":
+        z = "%10.3f"%(z)
+    else:
+        return 0
     file_prefix = "model_z"+z
     #firstfile = 0
     #lastfile = 127
@@ -120,7 +126,7 @@ def main():
     fig = plt.figure(figsize=(8, 6))
     ax1 = fig.add_subplot(1,1,1)
     #ax3 = fig.add_subplot(3,1,3)
-    plot_coldgas("0.00",ax1,"l")
+    plot_coldgas(0.0,ax1,"l")
     fig.savefig("CG00.pdf",bbox_inches='tight',pad_inches=0.1)
     plt.close(fig)
 
