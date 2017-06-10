@@ -97,7 +97,7 @@ def plot_coldgas(z,ax,sam):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1,cache_on=False)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1,cache_on=True)
             (smf_x[index],smf_y[index]) = stellar_mass_fn(gal[index],mass_min=1.e4,mass_max=1e15,nbins=40)
             
     for i in range(len(model_names)):
