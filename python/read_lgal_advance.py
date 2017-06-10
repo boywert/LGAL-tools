@@ -3,9 +3,10 @@ import numpy
 import os
 import sys
 import time
-import cPickle as pickle
+import Pickle as pickle
 import os.path
 import hashlib
+import gc
 
 struct_lgalinput = numpy.dtype([
     ('Descendant',numpy.int32,1),
@@ -224,6 +225,7 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
     if cache_on is True:
         if os.path.isfile(cache_filename):
             print "Read data from Pickled file: "+cache_filename
+            gc.disable()
             (nTrees,nHalos,nTreeHalos,output_Galaxy) = pickle.load( open( cache_filename, "rb" ) )
             endx = time.time()
             if(verbose > 0):
