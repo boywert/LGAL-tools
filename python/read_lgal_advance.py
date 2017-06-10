@@ -3,7 +3,7 @@ import numpy
 import os
 import sys
 import time
-import Pickle as pickle
+import cPickle as pickle
 import os.path
 import hashlib
 import gc
