@@ -49,7 +49,7 @@ struct_dtype = np.dtype([
 ('infallMvir'                   , np.float32),
 ('infallVvir'                   , np.float32),
 ('infallVmax'                   , np.float32)
-])
+],align=True)
 properties_used = {}
 for el in struct_dtype.names:
     properties_used[el] = False
