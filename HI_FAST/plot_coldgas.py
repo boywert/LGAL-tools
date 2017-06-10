@@ -24,8 +24,8 @@ def loadfilter(structfile):
     for fi in filter:
         fi = False    
     filter['ColdGas'] = True
-    filter['DiskMass'] = True
-    filter['BulgeMass'] = True
+    filter['StellarMass'] = True
+
     filter['Pos'] = True
     filter['Vel'] = True
     filter['Spin'] = True

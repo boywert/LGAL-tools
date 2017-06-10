@@ -72,7 +72,7 @@ def M200c_mass_fn_gal(gal,mass_min=1e8,mass_max=1.e15,nbins=20):
     return (massftn_x,massftn_y)
 
 def stellar_mass_fn(gal,mass_min=1.,mass_max=1.e20,nbins=20):
-    massf = numpy.log10(gadget2msun*(gal['DiskMass']+gal['BulgeMass'])/hubble_h)
+    massf = numpy.log10(gadget2msun*(gal['StellarMass'])/hubble_h)
     stellarmass = numpy.histogram(massf,nbins,(numpy.log10(mass_min),numpy.log10(mass_max)))
     massftn_y = stellarmass[0]/(boxsize/hubble_h)**3/(numpy.log10(mass_max/mass_min)/nbins)
     massftn_x = []
