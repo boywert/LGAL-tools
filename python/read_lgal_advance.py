@@ -3,6 +3,9 @@ import numpy
 import os
 import sys
 import time
+import cPickle as pickle
+import os.path
+
 struct_lgalinput = numpy.dtype([
     ('Descendant',numpy.int32,1),
     ('FirstProgenitor',numpy.int32,1),
@@ -202,11 +205,28 @@ def read_lgaltree_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
 
     return (nHalos,output_Galaxy)
 
-# This function return (nTrees,nHalos,nTreeHalos,Galaxy)
-# The input are (folder,file_prefix,firstfile,lastfile [,filter_arr])
 
-def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose=1):
+
+def get_filter_array_to_string(filter_arr,dt):
+    string = ""
+    for prop in dt.names:
+        if(filter_arr[prop] is True):
+            string = string+"1"
+        else:
+            string = string+"0"
+    return string
+
+# This function return (nTrees,nHalos,nTreeHalos,Galaxy)
+def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose=1,cache_on=False):
     startx = time.time()
+    cache_filename = folder+"_"+file_prefix+"_"+str(firstfile)+"_"+str(lastfile)+"_"+ get_filter_array_to_string(filter_arr,dt) +".pickle"
+    if cache_on is True:
+        if os.path.isfile(cache_filename):
+            (nTrees,nHalos,nTreeHalos,output_Galaxy) = pickle.load( open( cache_filename, "rb" ) )
+            endx = time.time()
+            if(verbose > 0):
+                print "Read ",folder,"file",firstfile,"-",lastfile,":",endx-startx,"s"
+            return (nTrees,nHalos,nTreeHalos,output_Galaxy)
     nTrees = 0
     nHalos = 0
     filter_tuple = []
@@ -255,8 +275,9 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
         if(verbose == 2):
             print end-start,"s"
     endx = time.time()
+    pickle.dump( (nTrees,nHalos,nTreeHalos,output_Galaxy), open( cache_filename, "wb" ))
     if(verbose > 0):
-        print "Read ",folder,"file",firstfile,"-",lastfile,":",endx-startx,"s"  
+        print "Read ",folder,"file",firstfile,"-",lastfile,":",endx-startx,"s"
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
 
 
