@@ -228,7 +228,7 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
             endx = time.time()
             if(verbose > 0):
                 print "Read ",folder,"file",firstfile,"-",lastfile,":",endx-startx,"s"
-                return (nTrees,nHalos,nTreeHalos,output_Galaxy)
+            return (nTrees,nHalos,nTreeHalos,output_Galaxy)
     nTrees = 0
     nHalos = 0
     filter_tuple = []
