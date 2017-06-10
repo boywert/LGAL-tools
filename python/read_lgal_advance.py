@@ -5,6 +5,7 @@ import sys
 import time
 import cPickle as pickle
 import os.path
+import hashlib
 
 struct_lgalinput = numpy.dtype([
     ('Descendant',numpy.int32,1),
@@ -219,14 +220,14 @@ def get_filter_array_to_string(filter_arr,dt):
 # This function return (nTrees,nHalos,nTreeHalos,Galaxy)
 def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,verbose=1,cache_on=False):
     startx = time.time()
-    cache_filename = folder+"_"+file_prefix+"_"+str(firstfile)+"_"+str(lastfile)+"_"+ get_filter_array_to_string(filter_arr,dt) +".pickle"
+    cache_filename = hashlib.sha1(folder+"_"+file_prefix).hexdigest()+"_"+str(firstfile)+"_"+str(lastfile)+"_"+ get_filter_array_to_string(filter_arr,dt) +".pickle"
     if cache_on is True:
         if os.path.isfile(cache_filename):
             (nTrees,nHalos,nTreeHalos,output_Galaxy) = pickle.load( open( cache_filename, "rb" ) )
             endx = time.time()
             if(verbose > 0):
                 print "Read ",folder,"file",firstfile,"-",lastfile,":",endx-startx,"s"
-            return (nTrees,nHalos,nTreeHalos,output_Galaxy)
+                return (nTrees,nHalos,nTreeHalos,output_Galaxy)
     nTrees = 0
     nHalos = 0
     filter_tuple = []
