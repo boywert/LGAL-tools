@@ -112,9 +112,9 @@ def plot_coldgas(z,ax,sam):
     leg.get_frame().set_linewidth(0)
     leg.get_frame().set_alpha(0)
     ax.set_ylabel(r"$\mathrm{\Phi(Mpc^{-3} dex^{-1}})$")
-    labels = ["",r"$6.5$",r"$7.0$",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.5$",r"10.0"]
-    ax.xaxis.set_ticklabels(labels)
-    ax.yaxis.set_ticklabels([])
+    #labels = ["",r"$6.5$",r"$7.0$",r"$7.5$",r"$8.0$",r"$8.5$",r"$9.5$",r"10.0"]
+    #ax.xaxis.set_ticklabels(labels)
+    #ax.yaxis.set_ticklabels([])
     ax.set_axisbelow(True)
     ax.xaxis.grid(True,linestyle='-', color='#C0C0C0')
     ax.yaxis.grid(True,linestyle='-', color='#C0C0C0')
