@@ -223,6 +223,7 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
     cache_filename = hashlib.sha1(folder+"_"+file_prefix).hexdigest()+"_"+str(firstfile)+"_"+str(lastfile)+"_"+ str(int(get_filter_array_to_string(filter_arr,dt),2)) +".pickle"
     if cache_on is True:
         if os.path.isfile(cache_filename):
+            print "Read data from Pickled file: "+cache_filename
             (nTrees,nHalos,nTreeHalos,output_Galaxy) = pickle.load( open( cache_filename, "rb" ) )
             endx = time.time()
             if(verbose > 0):
