@@ -96,15 +96,15 @@ def plot_coldgas(z,ax,sam):
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
-            (smf_x[index],smf_y[index]) = coldgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e11,nbins=40)
+            (smf_x[index],smf_y[index]) = coldgas_mass_fn(gal[index],mass_min=1.e4,mass_max=1e15,nbins=40)
             
     for i in range(len(model_names)):
         index = model_names[i]
         ax.plot(smf_x[index],smf_y[index],color=model_plot_colors[i],linestyle=model_plot_patterns[i],label=model_labels[i])
     ax.set_xlabel(r"$\mathrm{\log_{10}[m_{\rm cold}/M_\odot]}$")
     ax.set_yscale("log")
-    ax.set_ylim([1.e-2,1e1])
-    ax.set_xlim([6,8])
+    #ax.set_ylim([1.e-2,1e1])
+    #ax.set_xlim([6,8])
     ax.text(0.1, 0.1, 'z = %d'%(int(float(zz)+0.5)),
             verticalalignment='bottom', horizontalalignment='left',
             transform=ax.transAxes, fontsize=15)
