@@ -69,8 +69,8 @@ model_paths = model_paths_tmp
 
 pylab.rc('text', usetex=True)
 
-zlist = open(zlistfile,"r").readlines()
-z3list = open(z3listfile,"r").readlines()
+#zlist = open(zlistfile,"r").readlines()
+#z3list = open(z3listfile,"r").readlines()
 
 class xfrac:
     grid = 0
