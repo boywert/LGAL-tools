@@ -1,22 +1,22 @@
 #!/lustre/HI_FAST/Intel_Python/intelpython2/envs/pcs_theano_2/bin/python
-from math import *
-from mass_fn import *
-from globalconf import *
-import matplotlib
-matplotlib.use('Agg') 
-import pylab
-import sys
-import numpy
-import os
-import matplotlib.pyplot as plt
-os.system("cp dummy_dtype.py LGalaxyStruct.py")
-import LGalaxyStruct
-import add_observations
-sys.path.append("../python/")
-sys.path.append("../clustering/")
-import read_lgal_advance as read_lgal
-import xi as CF
-import timeit
+# from math import *
+# from mass_fn import *
+# from globalconf import *
+# import matplotlib
+# matplotlib.use('Agg') 
+# import pylab
+# import sys
+# import numpy
+# import os
+# import matplotlib.pyplot as plt
+# os.system("cp dummy_dtype.py LGalaxyStruct.py")
+# import LGalaxyStruct
+# import add_observations
+# sys.path.append("../python/")
+# sys.path.append("../clustering/")
+# import read_lgal_advance as read_lgal
+# import xi as CF
+# import timeit
 from mpi4py import MPI
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
