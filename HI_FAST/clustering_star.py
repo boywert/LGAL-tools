@@ -87,10 +87,9 @@ def read_xfrac(filename):
     padd = numpy.fromfile(f,numpy.int32,1)[0]
     return output
 
-def plot_xi(snap):
-    z = zlist[long(snap)].strip()
-    z3 = z3list[long(snap)-1].strip()
-    file_prefix = "SA_z"+z
+def plot_xi(z):
+ #   z = zlist[long(snap)].strip()
+ #   z3 = z3list[long(snap)-1].strip()
     xi = {}
     gal = {}
     nTrees = {}
@@ -99,6 +98,11 @@ def plot_xi(snap):
     nTreeGals = {}
     for i in range(len(model_names)):
         index = model_names[i]
+        if index[:4] == "lgal":
+            zz = "%10.2f"%(z)
+        elif index[:4] == "sage":
+            zz = "%10.3f"%(z)
+        file_prefix = "model_z"+zz.strip()
         if not index in gal:
             if rank == 0:
                 (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,firstfile,lastfile,filter[i],dt[i],1)
@@ -152,8 +156,8 @@ def plot_xi(snap):
             print "done"
             plt.close(fig)
 def main():
-    isnap = int(sys.argv[1])
-    plot_xi(long(isnap))
+    z = float(sys.argv[1])
+    plot_xi(z)
 
 if __name__=="__main__":
     main()
