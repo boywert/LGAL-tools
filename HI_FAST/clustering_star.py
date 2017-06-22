@@ -21,7 +21,7 @@ comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
 print size, rank
-exit()
+
 
 def loadfilter(structfile):
     os.system("mkdir -p ../tmp/"+str(rank))
