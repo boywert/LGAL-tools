@@ -63,15 +63,14 @@ def calNN(data,boxsize):
         #pylab.show()
     #xi = comm.bcast(xi, root=0)
     return (r,xi)
-def cal_error(data,boxsize):
-    nsub = 4
+def cal_error(data,boxsize,nsub):
     sublength = boxsize/nsub
     xi0 = np.zeros(N+1,dtype=np.float64)
     xi2 =  np.zeros(N+1,dtype=np.float64)
     for i in range(nsub):
         for j in range(nsub):
             for k in range(nsub):
-                
+                print "calculate error",i,j,k 
                 cond = np.where(~((data[:,0] > i*sublength) & (data[:,0] < (i+1)*sublength) \
                        & (data[:,1] > j*sublength) & (data[:,1] < (j+1)*sublength) \
                        & (data[:,2] > k*sublength) & (data[:,2] < (k+1)*sublength)))[0]

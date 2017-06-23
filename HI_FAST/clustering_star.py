@@ -129,7 +129,7 @@ def plot_xi(z):
                 data = None
             data = comm.bcast(data,root=0)
             (r,xi[index]) = CF.calNN(data,sim_boxsize)
-            delta[index] = CF.cal_error(data,sim_boxsize)
+            delta[index] = CF.cal_error(data,sim_boxsize,32)
         if rank == 0:
             print "plotting figure"
             fig = plt.figure()
