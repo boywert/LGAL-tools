@@ -70,7 +70,8 @@ def cal_error(data,boxsize,nsub):
     for i in range(nsub):
         for j in range(nsub):
             for k in range(nsub):
-                print "calculate error",i,j,k 
+                if rank == 0:
+                    print "calculate error",i,j,k 
                 cond = np.where(~((data[:,0] > i*sublength) & (data[:,0] < (i+1)*sublength) \
                        & (data[:,1] > j*sublength) & (data[:,1] < (j+1)*sublength) \
                        & (data[:,2] > k*sublength) & (data[:,2] < (k+1)*sublength)))[0]
@@ -78,20 +79,20 @@ def cal_error(data,boxsize,nsub):
                 if rank == 0:
                     print cond
                     print ddata
-                (r,xi) = calNN(ddata,boxsize) 
+                (r,xi) = calNN(ddata,sublength) 
                 xi0 += xi
                 xi2 += (xi)**2.
     delta = np.sqrt((nsub**3-1)*(xi2/nsub**3-(xi0/nsub**3)**2))
     return delta
-def main():
-    boxsize = 47.0
-    npoint = 10000
-    if rank == 0:
-        data = boxsize*np.random.rand(npoint, 3)
-    else:
-        data = None
-    data = comm.bcast(data, root=0)
-    (r,xi) = calNN(data,boxsize)
-    print xi
-if __name__ == "__main__":
-    main()    
+# def main():
+#     boxsize = 47.0
+#     npoint = 10000
+#     if rank == 0:
+#         data = boxsize*np.random.rand(npoint, 3)
+#     else:
+#         data = None
+#     data = comm.bcast(data, root=0)
+#     (r,xi) = calNN(data,boxsize)
+#     print xi
+# if __name__ == "__main__":
+#     main()    
