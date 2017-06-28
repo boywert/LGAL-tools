@@ -79,7 +79,7 @@ def cal_error(data,boxsize,nsub):
                 if rank == 0:
                     print cond
                     print ddata
-                (r,xi) = calNN(ddata,sublength) 
+                    (r,xi) = calNN(ddata,boxsize) 
                 xi0 += xi
                 xi2 += (xi)**2.
     delta = np.sqrt((nsub**3-1)*(xi2/nsub**3-(xi0/nsub**3)**2))
