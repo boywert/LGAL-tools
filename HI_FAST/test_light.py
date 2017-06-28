@@ -13,6 +13,7 @@ import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
+from scipy.linalg import blas
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
@@ -98,7 +99,7 @@ def plot_coldgas(z):
             
     for i in range(len(model_names)):
         index = model_names[i]
-        print gal[index]['Pos'][:,0]
+        print blas.ddot(nGals[index],gal[index]['Pos'][:,0:3],gal[index]['Pos'][:,0:3])
 
     
 def main():
