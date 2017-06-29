@@ -99,7 +99,7 @@ def plot_coldgas(z):
             
     for i in range(len(model_names)):
         index = model_names[i]
-        print blas.sdot(gal[index]['Pos'][:][0],gal[index]['Pos'][:][0],1)
+        print blas.sdot(gal[index]['Pos'][:][0],gal[index]['Pos'][:][0],10)
 
     
 def main():
