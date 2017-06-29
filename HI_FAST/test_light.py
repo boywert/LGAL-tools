@@ -96,7 +96,7 @@ def plot_coldgas(z):
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
 
-            
+    print blas_3dvsdot.__doc__
     for i in range(len(model_names)):
         index = model_names[i]
         c = numpy.empty(nGals[index],dtype=numpy.float32)
