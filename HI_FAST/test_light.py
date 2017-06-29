@@ -99,7 +99,7 @@ def plot_coldgas(z):
             
     for i in range(len(model_names)):
         index = model_names[i]
-        print gal[index]['Pos'][:][1]
+        print gal[index]['Pos'][11][1]
 
     
 def main():
