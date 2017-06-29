@@ -5,4 +5,4 @@ subroutine blas_3dvsdot(N,A,B)
   integer :: N
   real (kind=4) :: A(3,N),B(N)
   B(:) =  dsqrt(ddot(3, A(1:3,:),1, A(1:3,:), 1))
-end subroutine blas_sdot  
+end subroutine blas_3dvsdot
