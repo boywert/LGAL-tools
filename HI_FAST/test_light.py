@@ -13,7 +13,8 @@ import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
-from mymodule import *
+from ctypes import CDLL, POINTER, c_int, c_float
+mymodule = CDLL('./test.so')
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
@@ -100,8 +101,8 @@ def plot_coldgas(z):
     for i in range(len(model_names)):
         index = model_names[i]
         c = numpy.empty(nGals[index],dtype=numpy.float32)
-        blas_3dvsdot(nGals[index],gal[index]['Pos'],c)
-        
+        mymodule.blas_3dvsdot(c_int(nGals[index]),gal[index]['Pos'].ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
+        print c
 
     
 def main():
