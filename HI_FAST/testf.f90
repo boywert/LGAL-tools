@@ -25,8 +25,8 @@ contains
        end do
     end do
     print*,"endloop"
-    deallocate(AC)
     call cart2sphere1(8*N,AC,B)
+    deallocate(AC)
     print *, "ready"
   end subroutine make_sphere
 
