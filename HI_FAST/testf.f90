@@ -12,7 +12,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   real (c_float) :: C(3,8*N)
   integer :: i,j,k,l,index
 
-  allocate(AC(3,N))
+  !allocate(AC(3,N))
   ! do all 8 quadrants
   ! do i=1,2
   !    do j=1,2
@@ -25,11 +25,11 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   !    end do
   ! end do
 
-  AC = A
-  B(1,:) = sqrt(AC(1,:)*AC(1,:)+AC(2,:)*AC(2,:)+AC(3,:)*AC(3,:))
-  B(2,:) = acos(AC(3,:)/B(1,:))
-  B(3,:) = atan(AC(2,:)/AC(1,:))
-  deallocate(AC)
+  !AC = A
+  B(1,:) = sqrt(A(1,:)*A(1,:)+A(2,:)*A(2,:)+A(3,:)*A(3,:))
+  B(2,:) = acos(A(3,:)/B(1,:))
+  B(3,:) = atan(A(2,:)/A(1,:))
+  !deallocate(AC)
   print *, "ready"
 end subroutine make_sphere
 
