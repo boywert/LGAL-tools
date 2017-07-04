@@ -113,8 +113,8 @@ def plot_coldgas(z):
         #     i += 1
         # end = timer()
         # print "Python:", (end - start)/100.0
-        timeit.timeit('mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))', setup = "from ctypes import CDLL; mymodule = CDLL('./test.so');")
-        timeit.timeit('mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))',setup="from ctypes import CDLL; mymodule = CDLL('./test.so');")
+        timeit.timeit('mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))', setup = "from ctypes import CDLL,c_int,c_float,POINTER; mymodule = CDLL('./test.so');")
+        timeit.timeit('mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))',setup="from ctypes import CDLL,c_int,c_float,POINTER; mymodule = CDLL('./test.so');")
     
 
 def main():
