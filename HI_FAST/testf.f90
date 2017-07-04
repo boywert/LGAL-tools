@@ -26,8 +26,8 @@ subroutine cart2sphere2(N,A,B) bind (c,name='cart2sphere2')
 end subroutine cart2sphere2
 
 subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
-  implicit none
   use iso_c_binding
+  implicit none
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN) :: boxsize
   real (c_float), intent(IN):: A(3,N)
