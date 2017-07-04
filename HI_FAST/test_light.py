@@ -102,7 +102,7 @@ def plot_coldgas(z):
         pos =  gal[index]['Pos']
         
         mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
-        print pos_sphere
+        #print pos_sphere
         
 
 def main():
