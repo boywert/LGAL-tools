@@ -102,7 +102,7 @@ def plot_coldgas(z):
         pos_sphere = numpy.empty((nGals[index],3),dtype=numpy.float32)
         pos =  gal[index]['Pos']
         
-        mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
         #print pos_sphere
         
 
