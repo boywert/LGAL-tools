@@ -98,14 +98,11 @@ def plot_coldgas(z):
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,5,filter[i],dt[i],1)
-        pos_sphere = numpy.empty((nGals[index],3),dtype=numpy.float32)
+        pos_sphere = numpy.empty((8*nGals[index],3),dtype=numpy.float32)
         pos =  gal[index]['Pos']
-        if nGals[index] > 200000:
-            mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
-        else:
-            mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
-
         
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
+        print pos_sphere
         
 
 def main():

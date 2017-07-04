@@ -2,10 +2,9 @@ subroutine cart2sphere(N,A,B) bind (c,name='cart2sphere')
   use iso_c_binding
 end subroutine cart2sphere
 
+
 subroutine cart2sphere1(N,A,B) bind (c,name='cart2sphere1')
   use iso_c_binding
-  include 'mkl_blas.fi'
-  include 'mkl_vml.f90'
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN):: A(3,N)
   real (c_float), intent(OUT):: B(3,N)
@@ -26,3 +25,23 @@ subroutine cart2sphere2(N,A,B) bind (c,name='cart2sphere2')
   call vsatan(N,A(2,:)/A(1,:),B(3,:))
 end subroutine cart2sphere2
 
+subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
+  implicit none
+  use iso_c_binding
+  integer (c_int), intent(in), value :: N
+  real (c_float), intent(IN) :: boxsize
+  real (c_float), intent(IN):: A(3,N)
+  real (c_float) :: AC(3,8*N)
+  real (c_float), intent(OUT):: B(3,8*N)
+  integer :: i,j,k,index
+  ! do all 8 quadrants
+  do i=1,2
+     do j=1,2
+        do k=1,2
+           index = (i-1)*3*3 + (j-1)*3 + k
+           AC(1:3,index:index+N-1) = A(1:3,1:N) - (/ (i-1), (j-1), (k-1) /)*boxsize
+        end do
+     end do
+  end do
+  call cart2sphere1(8*N,AC,B) 
+end subroutine make_sphere
