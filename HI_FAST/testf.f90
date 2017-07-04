@@ -25,7 +25,9 @@ contains
        end do
     end do
     print*,"endloop"
-    call cart2sphere1(8*N,AC,B)
+    B(1,:) = sqrt(AC(1,:)*AC(1,:)+AC(2,:)*AC(2,:)+AC(3,:)*AC(3,:))
+    B(2,:) = acos(AC(3,:)/B(1,:))
+    B(3,:) = atan(AC(2,:)/AC(1,:))
     deallocate(AC)
     print *, "ready"
   end subroutine make_sphere
