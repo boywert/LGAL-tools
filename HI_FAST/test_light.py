@@ -15,8 +15,7 @@ sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
-mymodule2 = CDLL('./test.so')
-mymodule = mymodule2
+mymodule = CDLL('./test.so')
 from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
@@ -114,8 +113,8 @@ def plot_coldgas(z):
         #     i += 1
         # end = timer()
         # print "Python:", (end - start)/100.0
-        timeit.timeit('mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))')
-        timeit.timeit('mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))')
+        timeit.timeit('mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))', setup = "mymodule = CDLL('./test.so')")
+        timeit.timeit('mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))',setup="mymodule = CDLL('./test.so')")
     
 
 def main():
