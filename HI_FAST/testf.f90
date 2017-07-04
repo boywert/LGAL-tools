@@ -3,7 +3,7 @@
 
 subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   use iso_c_binding
-  implicit none
+  !implicit none
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN) :: boxsize
   real (c_float), intent(IN):: A(3,N)
@@ -17,7 +17,6 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
      do j=1,2
         do k=1,2
            index = (i-1)*2*2 + (j-1)*2 + k - 1
-           print *, i,j,k,index
            do l=1,N
               AC(1:3,index*N+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
            end do
