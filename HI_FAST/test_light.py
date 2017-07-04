@@ -101,9 +101,8 @@ def plot_coldgas(z):
         index = model_names[i]
         c = numpy.empty(nGals[index],dtype=numpy.float32)
         pos =  numpy.asfortranarray(gal[index]['Pos'])
-        print pos
         mymodule.blas_3dvsdot(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
-        
+        print c
 
     
 def main():
