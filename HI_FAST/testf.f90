@@ -16,10 +16,11 @@ contains
        do j=1,2
           do k=1,2
              index = (i-1)*3*3 + (j-1)*3 + k
-             do l=1,N
-                print *, i,j,k
+             print *, i,j,k,index
+             !do l=1,N
+                
                 !AC(1:3,index+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
-             end do
+             !end do
           end do
        end do
     end do
