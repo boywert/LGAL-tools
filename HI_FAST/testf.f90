@@ -5,7 +5,6 @@ subroutine cart2sphere1(N,A,B) bind (c,name='cart2sphere1')
   integer :: i 
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN):: A(3,N)
-  real (c_float) :: AA(3,N)
   real (c_float), intent(OUT):: B(3,N)
   do i = 1,100
      B(1,:) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
@@ -20,7 +19,6 @@ subroutine cart2sphere2(N,A,B) bind (c,name='cart2sphere2')
   integer :: i 
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN):: A(3,N)
-  real (c_float) :: AA(N)
   real (c_float), intent(OUT):: B(3,N)
   do i = 1,100
      call vssqrt(N,A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N),B(1,:))
