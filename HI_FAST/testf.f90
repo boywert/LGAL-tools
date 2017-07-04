@@ -40,7 +40,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
         do k=1,2
            index = (i-1)*3*3 + (j-1)*3 + k
            do l=1,N
-              AC(:,index:index+l-1) = A(:,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
+              AC(:,index+l) = A(:,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
            end do
         end do
      end do
