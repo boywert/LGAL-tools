@@ -24,6 +24,8 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
      end do
   end do
   print*,"endloop"
+  B(1,:) = 0.
+  print*,"test"
   B(1,:) = sqrt(AC(1,:)*AC(1,:)+AC(2,:)*AC(2,:)+AC(3,:)*AC(3,:))
   B(2,:) = acos(AC(3,:)/B(1,:))
   B(3,:) = atan(AC(2,:)/AC(1,:))
