@@ -24,6 +24,7 @@ contains
           end do
        end do
     end do
+    B(:,:) = 0.
     !call cart2sphere1(8*N,AC,B) 
   end subroutine make_sphere
 
