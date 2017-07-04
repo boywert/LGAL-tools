@@ -17,14 +17,14 @@ contains
           do k=1,2
              index = (i-1)*2*2 + (j-1)*2 + k
              print *, i,j,k,index
-             !do l=1,N
+             do l=1,N
                 
-                !AC(1:3,index+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
-             !end do
+                AC(1:3,index+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
+             end do
           end do
        end do
     end do
-    call cart2sphere1(8*N,AC,B) 
+    !call cart2sphere1(8*N,AC,B) 
   end subroutine make_sphere
 
 
