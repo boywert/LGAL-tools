@@ -97,11 +97,11 @@ def plot_coldgas(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,5,filter[i],dt[i],1)
 
     for i in range(len(model_names)):
         index = model_names[i]
-        print model_labels[i]
+        print model_labels[i],nGals[index],"objects"
         pos =  gal[index]['Pos'].astype(numpy.float32)
         c = numpy.empty((nGals[index],3),dtype=numpy.float32)
         # start = timer()
