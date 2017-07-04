@@ -8,25 +8,24 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   real (c_float), intent(IN) :: boxsize
   real (c_float), intent(IN):: A(3,N)
   real (c_float), allocatable :: AC(:,:)
-  real (c_float), intent(OUT):: B(3,8*N)
+  real (c_float), intent(OUT):: B(3,N)
   real (c_float) :: C(3,8*N)
   integer :: i,j,k,l,index
 
-  allocate(AC(3,8*N))
+  allocate(AC(3,N))
   ! do all 8 quadrants
-  do i=1,2
-     do j=1,2
-        do k=1,2
-           index = (i-1)*2*2 + (j-1)*2 + k - 1
-           do l=1,N
-              AC(1:3,index*N+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
-           end do
-        end do
-     end do
-  end do
-  print*,"endloop"
-  C(1,:) = 0.
-  print*,"test"
+  ! do i=1,2
+  !    do j=1,2
+  !       do k=1,2
+  !          index = (i-1)*2*2 + (j-1)*2 + k - 1
+  !          do l=1,N
+  !             AC(1:3,index*N+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
+  !          end do
+  !       end do
+  !    end do
+  ! end do
+
+  AC = A
   B(1,:) = sqrt(AC(1,:)*AC(1,:)+AC(2,:)*AC(2,:)+AC(3,:)*AC(3,:))
   B(2,:) = acos(AC(3,:)/B(1,:))
   B(3,:) = atan(AC(2,:)/AC(1,:))
