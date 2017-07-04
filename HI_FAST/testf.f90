@@ -7,11 +7,12 @@ contains
     integer (c_int), intent(in), value :: N
     real (c_float), intent(IN) :: boxsize
     real (c_float), intent(IN):: A(3,N)
-    real (c_float) :: AC(3,8*N)
+    real (c_float), allocatable :: AC(:,:)
     real (c_float), intent(OUT):: B(3,8*N)
     integer :: i,j,k,l,index
+
+    allocate(AC(3,8*N))
     ! do all 8 quadrants
-    print *,"test"
     do i=1,2
        do j=1,2
           do k=1,2
@@ -23,7 +24,7 @@ contains
           end do
        end do
     end do
-    print *,"end loop"
+    deallocate(AC)
     B(1,1) = 0.
     !call cart2sphere1(8*N,AC,B) 
   end subroutine make_sphere
