@@ -8,5 +8,5 @@ subroutine blas_3dvsdot(N,A,B) bind (c,name='blas_3dvsdot')
   real (c_double), intent(OUT):: B(N)
   call vdabs( N, A(:,1:3), B(:) ) 
   print *, A(1:10,:)
-  print *, B(1:10,:)
+  print *, B(1:10)
 end subroutine blas_3dvsdot
