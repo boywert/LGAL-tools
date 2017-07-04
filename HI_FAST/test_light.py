@@ -106,21 +106,21 @@ def plot_coldgas(z):
         c = numpy.empty((nGals[index],3),dtype=numpy.float32)
         start = timer()
         i = 0
-        while i<1000:
+        while i<100:
             c[:,0] = numpy.sqrt(pos[:,0]*pos[:,0]+pos[:,1]*pos[:,1]+pos[:,2]*pos[:,2])
             c[:,1] = numpy.arccos(pos[:,2]/c[:,0])
             c[:,2] = numpy.arctan(pos[:,1]/pos[:,0])
             i += 1
         end = timer()
-        print "Python:", (end - start)/1000.0
+        print "Python:", (end - start)/100.0
         start = timer()
         mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
-        print "fortran:", (end - start)/1000.0
+        print "fortran:", (end - start)/100.0
         start = timer()
         mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
-        print "mkl vector fortran:", (end - start)/1000.0
+        print "mkl vector fortran:", (end - start)/100.0
 
 def main():
     plot_coldgas(0.0)
