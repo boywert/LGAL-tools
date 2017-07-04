@@ -15,7 +15,7 @@ contains
     do i=1,2
        do j=1,2
           do k=1,2
-             index = (i-1)*3*3 + (j-1)*3 + k
+             index = (i-1)*2*2 + (j-1)*2 + k
              print *, i,j,k,index
              !do l=1,N
                 
