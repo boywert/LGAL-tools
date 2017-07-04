@@ -41,7 +41,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   B(1,:) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
   B(2,:) = acos(A(3,:)/B(1,:))
   B(3,:) = atan(A(2,:)/A(1,:))
-end subroutine cart2sphere1
+end subroutine make_sphere
 
 subroutine cart2sphere1(N,A,B) bind (c,name='cart2sphere1')
   use iso_c_binding
