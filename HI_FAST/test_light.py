@@ -71,7 +71,7 @@ plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 #zlist = open(zlistfile,"r").readlines()
 
-
+import timeit
 
 def plot_coldgas(z):
     #firstfile = 0
@@ -113,14 +113,9 @@ def plot_coldgas(z):
         #     i += 1
         # end = timer()
         # print "Python:", (end - start)/100.0
-        start = timer()
-        mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
-        end = timer()
-        print "vector fortran:", (end - start)
-        start = timer()
-        mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
-        end = timer()
-        print "mkl vector fortran:", (end - start)
+        timeit.timeit('mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))')
+        timeit.timeit('mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))')
+    
 
 def main():
     plot_coldgas(0.0)
