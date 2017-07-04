@@ -15,6 +15,7 @@ import read_lgal_advance as read_lgal
 import timeit
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
 mymodule = CDLL('./test.so')
+rom timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
@@ -99,12 +100,15 @@ def plot_coldgas(z):
 
     for i in range(len(model_names)):
         index = model_names[i]
-        c = numpy.empty(nGals[index],dtype=numpy.float64)
+        start = timer()
+        # ...
+
+        c = numpy.empty((nGals[index],3),dtype=numpy.float64)
         pos =  gal[index]['Pos'].astype(numpy.float64)
         print "Python",pos
         mymodule.blas_3dvsdot(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_double)),c.ctypes.data_as(POINTER(c_double)))
-        print c
-
+        end = timer()
+        print(end - start)  
     
 def main():
     plot_coldgas(0.0)
