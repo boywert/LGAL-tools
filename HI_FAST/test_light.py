@@ -100,11 +100,17 @@ def plot_coldgas(z):
 
     for i in range(len(model_names)):
         index = model_names[i]
-        
-        # ...
-
-        c = numpy.empty((nGals[index],3),dtype=numpy.float32)
         pos =  gal[index]['Pos'].astype(numpy.float32)
+        c = numpy.empty((nGals[index],3),dtype=numpy.float32)
+        start = timer()
+        i = 0
+        while i<1000:
+            c[:,0] = sqrt(pos[:,0]*pos[:,0]+pos[:,1]*pos[:,1]+pos[:,2]*pos[:,2])
+            c[:,1] = acos(pos[:,2]/c[:,0])
+            c[:,2] = atan(pos[:,1]/pos[:,0])
+            i += 1
+        end = timer()
+        print "Python:", (end - start)/1000.0
         start = timer()
         mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
