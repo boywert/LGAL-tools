@@ -13,7 +13,7 @@ import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
-from ctypes import CDLL, POINTER, c_int, c_float
+from ctypes import CDLL, POINTER, c_int, c_float, c_double
 mymodule = CDLL('./test.so')
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
@@ -101,7 +101,7 @@ def plot_coldgas(z):
         index = model_names[i]
         c = numpy.empty(nGals[index],dtype=numpy.float64)
         pos =  numpy.asfortranarray(gal[index]['Pos'].astype(numpy.float64))
-        mymodule.blas_3dvsdot(c_int(nGals[index]),pos.ctypes.data_as(POINTER(ctypes.c_double)),c.ctypes.data_as(POINTER(ctypes.c_double)))
+        mymodule.blas_3dvsdot(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_double)),c.ctypes.data_as(POINTER(c_double)))
         print c
 
     
