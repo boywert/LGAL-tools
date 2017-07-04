@@ -23,6 +23,7 @@ contains
           end do
        end do
     end do
+    print *,"end loop"
     B(1,1) = 0.
     !call cart2sphere1(8*N,AC,B) 
   end subroutine make_sphere
