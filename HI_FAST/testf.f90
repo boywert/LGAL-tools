@@ -10,5 +10,6 @@ subroutine blas_3dvsdot(N,A,B) bind (c,name='blas_3dvsdot')
   call vdabs( 1, A(1:3,2), B(2) ) 
   print *, A(1:3,1:2)
   print *, ""
-  print *, B(1:2)
+  print *, B(1),dsqrt(A(1,1)*A(1,1)+A(2,1)*A(2,1)+A(3,1)*A(3,1))
+  print *, B(2),dsqrt(A(1,2)*A(1,2)+A(2,2)*A(2,2)+A(3,2)*A(3,2))
 end subroutine blas_3dvsdot
