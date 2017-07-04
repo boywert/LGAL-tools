@@ -71,7 +71,7 @@ plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 #zlist = open(zlistfile,"r").readlines()
 
-import timeit
+
 
 def plot_coldgas(z):
     #firstfile = 0
