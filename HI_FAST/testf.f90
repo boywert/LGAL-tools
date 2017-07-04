@@ -18,13 +18,12 @@ contains
              index = (i-1)*2*2 + (j-1)*2 + k - 1
              print *, i,j,k,index
              do l=1,N
-                print *,index*N+l,8*N
                 AC(1:3,index*N+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
              end do
           end do
        end do
     end do
-    B(:,:) = 0.
+    B(1,1) = 0.
     !call cart2sphere1(8*N,AC,B) 
   end subroutine make_sphere
 
