@@ -106,9 +106,9 @@ def plot_coldgas(z):
         start = timer()
         i = 0
         while i<1000:
-            c[:,0] = sqrt(pos[:,0]*pos[:,0]+pos[:,1]*pos[:,1]+pos[:,2]*pos[:,2])
-            c[:,1] = acos(pos[:,2]/c[:,0])
-            c[:,2] = atan(pos[:,1]/pos[:,0])
+            c[:,0] = numpy.sqrt(pos[:,0]*pos[:,0]+pos[:,1]*pos[:,1]+pos[:,2]*pos[:,2])
+            c[:,1] = numpy.acos(pos[:,2]/c[:,0])
+            c[:,2] = numpy.atan(pos[:,1]/pos[:,0])
             i += 1
         end = timer()
         print "Python:", (end - start)/1000.0
