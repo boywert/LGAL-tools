@@ -103,14 +103,14 @@ def plot_coldgas(z):
         
         # ...
 
-        c = numpy.empty((nGals[index],3),dtype=numpy.float64)
-        pos =  gal[index]['Pos'].astype(numpy.float64)
+        c = numpy.empty((nGals[index],3),dtype=numpy.float32)
+        pos =  gal[index]['Pos'].astype(numpy.float32)
         start = timer()
-        mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_double)),c.ctypes.data_as(POINTER(c_double)))
+        mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
         print "fortran:", (end - start)/1000.0
         start = timer()
-        mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_double)),c.ctypes.data_as(POINTER(c_double)))
+        mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
         print "mkl vector fortran:", (end - start)/1000.0
         
