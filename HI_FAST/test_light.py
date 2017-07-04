@@ -104,7 +104,9 @@ def plot_coldgas(z):
             mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         else:
             mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
+        print pos
         print c
+        
 
 def main():
     plot_coldgas(0.0)
