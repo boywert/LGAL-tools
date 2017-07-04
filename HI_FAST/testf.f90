@@ -33,13 +33,14 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   real (c_float), intent(IN):: A(3,N)
   real (c_float) :: AC(3,8*N)
   real (c_float), intent(OUT):: B(3,8*N)
-  integer :: i,j,k,index
+  integer :: i,j,k,l,index
   ! do all 8 quadrants
   do i=1,2
      do j=1,2
         do k=1,2
            index = (i-1)*3*3 + (j-1)*3 + k
-           AC(1:3,index:index+N-1) = A(1:3,1:N) - (/ (i-1), (j-1), (k-1) /)*boxsize
+           do l=1,N
+              AC(:,index:index+l-1) = A(:,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
         end do
      end do
   end do
