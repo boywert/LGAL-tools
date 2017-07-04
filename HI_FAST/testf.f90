@@ -9,6 +9,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   real (c_float), intent(IN):: A(3,N)
   real (c_float), allocatable :: AC(:,:)
   real (c_float), intent(OUT):: B(3,8*N)
+  real (c_float) :: C(3,8*N)
   integer :: i,j,k,l,index
 
   allocate(AC(3,8*N))
@@ -24,7 +25,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
      end do
   end do
   print*,"endloop"
-  B(1,:) = 0.
+  C(1,:) = 0.
   print*,"test"
   B(1,:) = sqrt(AC(1,:)*AC(1,:)+AC(2,:)*AC(2,:)+AC(3,:)*AC(3,:))
   B(2,:) = acos(AC(3,:)/B(1,:))
