@@ -98,24 +98,13 @@ def plot_coldgas(z):
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,8,filter[i],dt[i],1)
-
-    for i in range(len(model_names)):
-        index = model_names[i]
-        print model_labels[i],nGals[index],"objects"
+        c = numpy.empty((nGals[index],3),dtype=numpy.float32)
         pos =  gal[index]['Pos']
-        c = numpy.ones((nGals[index],3),dtype=numpy.float32)
-        # start = timer()
-        # i = 0
-        # while i<100:
-        #     c[:,0] = numpy.sqrt(pos[:,0]*pos[:,0]+pos[:,1]*pos[:,1]+pos[:,2]*pos[:,2])
-        #     c[:,1] = numpy.arccos(pos[:,2]/c[:,0])
-        #     c[:,2] = numpy.arctan(pos[:,1]/pos[:,0])
-        #     i += 1
-        # end = timer()
-        # print "Python:", (end - start)/100.0
-        timeit.timeit('mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))', setup = "from ctypes import CDLL,c_int,c_float,POINTER; mymodule = CDLL('./test.so');")
-        timeit.timeit('mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))',setup="from ctypes import CDLL,c_int,c_float,POINTER; mymodule = CDLL('./test.so');")
-    
+        if nGals[index] > 200000:
+            mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
+        else:
+            mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
+        print c
 
 def main():
     plot_coldgas(0.0)
