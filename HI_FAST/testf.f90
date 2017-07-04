@@ -7,10 +7,9 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN) :: boxsize
   real (c_float), intent(IN):: A(3,N)
-  real (c_float), allocatable :: AC(:,:)
+  !real (c_float), allocatable :: AC(:,:)
   real (c_float), intent(OUT):: B(3,N)
-  real (c_float) :: C(3,8*N)
-  integer :: i,j,k,l,index
+  !integer  :: i,j,k,l,index
 
   !allocate(AC(3,N))
   ! do all 8 quadrants
