@@ -97,7 +97,7 @@ def plot_coldgas(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,0,filter[i],dt[i],1)
 
     for i in range(len(model_names)):
         index = model_names[i]
@@ -116,7 +116,7 @@ def plot_coldgas(z):
         start = timer()
         mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
-        print "fortran:", (end - start)/100.0
+
         start = timer()
         mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
