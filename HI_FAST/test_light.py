@@ -101,6 +101,7 @@ def plot_coldgas(z):
 
     for i in range(len(model_names)):
         index = model_names[i]
+        print model_labels[i]
         pos =  gal[index]['Pos'].astype(numpy.float32)
         c = numpy.empty((nGals[index],3),dtype=numpy.float32)
         start = timer()
