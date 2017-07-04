@@ -11,12 +11,13 @@ contains
     real (c_float), intent(OUT):: B(3,8*N)
     integer :: i,j,k,l,index
     ! do all 8 quadrants
+    print *,"test"
     do i=1,2
        do j=1,2
           do k=1,2
              index = (i-1)*3*3 + (j-1)*3 + k
              do l=1,N
-                AC(:,index+l) = A(:,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
+                AC(1:3,index+l) = A(1:3,l) - (/ (i-1), (j-1), (k-1) /)*boxsize
              end do
           end do
        end do
