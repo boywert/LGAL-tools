@@ -36,14 +36,15 @@ subroutine cart2sphere3(N,A,B) bind (c,name='cart2sphere3')
   integer :: i 
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN):: A(3,N)
-  real (c_float) :: X(N),Y(N),Z(N)
+  real (c_float) :: X(N),Y(N),Z(N),R(N)
   real (c_float), intent(OUT):: B(3,N)
-  X = A(1,:)
-  Y = A(2,:)
-  Z = A(3,:)
   do i = 1,1000
-     call vssqrt(N,X*X+Y*Y+Z*Z,B(1,:))
+     X = A(1,:)
+     Y = A(2,:)
+     Z = A(3,:)
+     call vssqrt(N,X*X+Y*Y+Z*Z,R)
      call vsacos(N,Z/B(1,:),B(2,:))
      call vsatan(N,Y/X,B(3,:))
+     B(1,:) = R(:)
   end do
 end subroutine cart2sphere3
