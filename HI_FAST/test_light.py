@@ -116,11 +116,11 @@ def plot_coldgas(z):
         start = timer()
         mymodule.cart2sphere1(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
-
+        print "vector fortran:", (end - start)
         start = timer()
         mymodule.cart2sphere2(c_int(nGals[index]),pos.ctypes.data_as(POINTER(c_float)),c.ctypes.data_as(POINTER(c_float)))
         end = timer()
-        print "mkl vector fortran:", (end - start)/100.0
+        print "mkl vector fortran:", (end - start)
 
 def main():
     plot_coldgas(0.0)
