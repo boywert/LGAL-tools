@@ -103,7 +103,7 @@ def plot_coldgas(z):
         index = model_names[i]
         print model_labels[i],nGals[index],"objects"
         pos =  gal[index]['Pos']
-        c = numpy.empty((nGals[index],3),dtype=numpy.float32)
+        c = numpy.ones((nGals[index],3),dtype=numpy.float32)
         # start = timer()
         # i = 0
         # while i<100:
