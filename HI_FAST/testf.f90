@@ -13,7 +13,7 @@ subroutine cart2sphere1(N,A,B) bind (c,name='cart2sphere1')
      B(3,:) = atan(A(2,:)/A(1,:))
   end do
 end subroutine cart2sphere1
-subroutine cart2sphere2(N,A,B) bind (c,name='cart2sphere1')
+subroutine cart2sphere2(N,A,B) bind (c,name='cart2sphere2')
   use iso_c_binding
   include 'mkl_blas.fi'
   include 'mkl_vml.f90'
