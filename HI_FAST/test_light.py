@@ -15,7 +15,7 @@ import read_lgal_advance as read_lgal
 import timeit
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
 mymodule = CDLL('./test.so')
-rom timeit import default_timer as timer
+from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 def loadfilter(structfile):
