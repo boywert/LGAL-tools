@@ -1,3 +1,7 @@
+subroutine cart2sphere(N,A,B) bind (c,name='cart2sphere')
+  use iso_c_binding
+end subroutine cart2sphere
+
 subroutine cart2sphere1(N,A,B) bind (c,name='cart2sphere1')
   use iso_c_binding
   include 'mkl_blas.fi'
