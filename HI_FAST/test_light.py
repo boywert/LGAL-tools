@@ -100,7 +100,7 @@ def plot_coldgas(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,5,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
 
         R = numpy.empty(nGals[index]*8,dtype=c_float)
         pix = numpy.empty(nGals[index]*8,dtype=numpy.int64)
@@ -124,7 +124,7 @@ def plot_coldgas(z):
                             pixmap[pix[index_out]] += 1.0
                         index_in += 1
                         index_out += 1
-        healpy.write_map("my_map.fits", pixmap/numpy.sum(pixmap))
+        healpy.write_map("my_map_full.fits", pixmap/numpy.sum(pixmap))
         
         
         #mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
