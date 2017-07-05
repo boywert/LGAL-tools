@@ -43,7 +43,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   print *, N,boxsize
   print *, A(1:3,1)
   print *, A(1:3,2)
-  print *, A(1:3,3)
+  print *, A(1:3,N)
   allocate(AC(3,8*N))
   do i=1,2
      do j=1,2
