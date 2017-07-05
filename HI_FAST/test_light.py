@@ -107,7 +107,7 @@ def plot_coldgas(z):
 
         pos =  gal[index]['Pos']
         print pos
-        index = 0
+        index_out = 0
         N = nGals[index]
         print N
         for i in range(2):
@@ -117,9 +117,9 @@ def plot_coldgas(z):
                     
                     while (index_in < N):
                         #print pos_tmp[index][0:3] , pos[index_in][0:3]
-                        pos_tmp[index,0:3] = pos[index_in,0:3]-500.*numpy.array([i,j,k])
+                        pos_tmp[index_out,0:3] = pos[index_in,0:3]-500.*numpy.array([i,j,k])
                         index_in += 1
-                        index += 1
+                        index_out += 1
         print pos_tmp
         #mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
         print pos_sphere
