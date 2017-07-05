@@ -18,7 +18,7 @@ from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
 mymodule.make_sphere.argtypes = [c_int, c_float, POINTER(c_float),POINTER(c_float)]
-
+import healpy
 from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
@@ -74,7 +74,7 @@ plt.rcParams['ytick.major.size'] = 8
 plt.rcParams['xtick.major.size'] = 8
 #zlist = open(zlistfile,"r").readlines()
 
-
+NSIDE = 2048
 
 def plot_coldgas(z):
     #firstfile = 0
@@ -102,9 +102,9 @@ def plot_coldgas(z):
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
 
-        pos_sphere = numpy.empty((nGals[index]*8,3),dtype=c_float)
-        pos_tmp = numpy.empty((nGals[index]*8,3),dtype=c_float)
-
+        R = numpy.empty(nGals[index]*8,dtype=c_float)
+        pix = numpy.empty(nGals[index]*8,dtype=numpy.int64)
+        pixmap = numpy.zeros(healpy.nside2npix(NSIDE),dtype=numpy.float64)
         pos =  gal[index]['Pos']
         print pos
         index_out = 0
@@ -117,15 +117,26 @@ def plot_coldgas(z):
                     
                     while (index_in < N):
                         #print pos_tmp[index][0:3] , pos[index_in][0:3]
-                        pos_tmp[index_out,0:3] = pos[index_in,0:3]-500.*numpy.array([i,j,k])
+                        pos_tmp = pos[index_in,0:3]-500.*numpy.array([i,j,k])
+                        R[index_out] = numpy.sqrt(pos_tmp[index_out,0]*pos_tmp[index_out,0]+pos_tmp[index_out,1]*pos_tmp[index_out,1]+pos_tmp[index_out,2]*pos_tmp[index_out,2])
+                        pix[index_out] = healpy.pixelfunc.vec2pix(NSIDE,pos_tmp[0],pos_tmp[1],pos_tmp[2])
+                        pixmap[pix[index_out]] += 1.0
                         index_in += 1
                         index_out += 1
-        print pos_tmp
+        print R
+        print pix
+        
+        
+        
         #mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
-        pos_sphere[:,0] = numpy.sqrt(pos_tmp[:,0]*pos_tmp[:,0]+pos_tmp[:,1]*pos_tmp[:,1]+pos_tmp[:,2]*pos_tmp[:,2])
-        pos_sphere[:,1] = numpy.arccos(pos_tmp[:,2]/pos_sphere[:,0])
-        pos_sphere[:,2] = numpy.arctan(pos_tmp[:,1]/pos_tmp[:,0])
-        print pos_sphere
+        # pos_sphere[:,0] = numpy.sqrt(pos_tmp[:,0]*pos_tmp[:,0]+pos_tmp[:,1]*pos_tmp[:,1]+pos_tmp[:,2]*pos_tmp[:,2]) 
+        # pos_sphere[:,1] = numpy.arccos(pos_tmp[:,2]/pos_sphere[:,0])
+        # pos_sphere[:,2] = numpy.arctan(pos_tmp[:,1]/pos_tmp[:,0])
+        #print pos_sphere
+
+        #healpix
+        
+        
         
 
 def main():
