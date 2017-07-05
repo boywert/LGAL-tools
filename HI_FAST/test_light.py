@@ -17,7 +17,7 @@ import timeit
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
-mymodule.make_sphere.argtypes = [POINTER(c_int), POINTER(c_float), POINTER(c_float),POINTER(c_float)]
+mymodule.make_sphere.argtypes = [c_int, c_float, POINTER(c_float),POINTER(c_float)]
 
 from timeit import default_timer as timer
 rank = "0"
