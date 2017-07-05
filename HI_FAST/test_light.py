@@ -100,7 +100,8 @@ def plot_coldgas(z):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,8,filter[i],dt[i],1)
 
         pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
-        pos =  gal[index]['Pos'][:][0:3]
+        pos =  gal[index]['Pos']
+        print pos
         
         mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
         print pos_sphere
