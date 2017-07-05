@@ -118,7 +118,7 @@ def plot_coldgas(z):
                     while (index_in < N):
                         #print pos_tmp[index][0:3] , pos[index_in][0:3]
                         pos_tmp = pos[index_in,0:3]-500.*numpy.array([i,j,k])
-                        R[index_out] = numpy.sqrt(pos_tmp[index_out,0]*pos_tmp[index_out,0]+pos_tmp[index_out,1]*pos_tmp[index_out,1]+pos_tmp[index_out,2]*pos_tmp[index_out,2])
+                        R[index_out] = numpy.sqrt(pos_tmp[0]*pos_tmp[0]+pos_tmp[1]*pos_tmp[1]+pos_tmp[2]*pos_tmp[2])
                         pix[index_out] = healpy.pixelfunc.vec2pix(NSIDE,pos_tmp[0],pos_tmp[1],pos_tmp[2])
                         pixmap[pix[index_out]] += 1.0
                         index_in += 1
