@@ -122,6 +122,9 @@ def plot_coldgas(z):
                         index_out += 1
         print pos_tmp
         #mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
+        pos_sphere[:,0] = numpy.sqrt(pos_tmp[:,0]*pos_tmp[:,0]+pos_tmp[:,1]*pos_tmp[:,1]+pos_tmp[:,2]*pos_tmp[:,2])
+        pos_sphere[:,1] = numpy.arccos(pos_tmp[:,2]/pos_sphere[:,0])
+        pos_sphere[:,2] = numpy.arctan(pos_tmp[:,1]/pos_tmp[:,0])
         print pos_sphere
         
 
