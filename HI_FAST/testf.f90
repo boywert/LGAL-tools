@@ -36,16 +36,16 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   use iso_c_binding
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN), value :: boxsize
-  real (c_float), intent(IN):: A(N,3)
+  real (c_float), intent(IN):: A(3,N)
   real (c_float), intent(OUT):: B(8*N,3)
   real (c_float), allocatable :: AC(:,:)
   integer :: i,j,k,l
   print *, N,boxsize
-  print *, A(1,1:3)
-  print *, A(2,1:3)
-  print *, A(3,1:3)
-  print *, A(N-1,1:3)
-  print *, A(N,1:3)
+  print *, A(1:3,1)
+  print *, A(1:3,2)
+  print *, A(1:3,3)
+  print *, A(1:3,N-1)
+  print *, A(1:3,N)
   ! allocate(AC(8*N,3))
   ! do i=1,2
   !    do j=1,2
