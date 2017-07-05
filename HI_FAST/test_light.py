@@ -113,7 +113,8 @@ def plot_coldgas(z):
                 for k in range(2):
                     index_in = 0
                     while (index_in < 500):
-                        pos_tmp[index,1:3] = pos[index_in,1:3]-500.*numpy.array([i,j,k])
+                        print pos_tmp[index][1:3] , pos[index_in][1:3]
+                        #pos_tmp[index,1:3] = pos[index_in,1:3]-500.*numpy.array([i,j,k])
                         index_in += 1
                         index += 1
         print pos_tmp
