@@ -124,7 +124,7 @@ def plot_coldgas(z):
                             pixmap[pix[index_out]] += 1.0
                         index_in += 1
                         index_out += 1
-        
+        healpy.write_map("my_map.fits", pixmap/numpy.sum(pixmap))
         
         
         #mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
