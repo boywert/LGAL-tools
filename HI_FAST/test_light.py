@@ -18,7 +18,7 @@ from numpy.ctypeslib import ndpointer
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
-_twodimpp = ndpointer(dtype=c_float,ndim=2)
+_twodimp = ndpointer(dtype=c_float,ndim=2,flags='C_CONTIGUOUS')
 arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
 mymodule.make_sphere.argtypes = [c_int, c_float, _twodimpp, _twodimpp]
@@ -117,7 +117,7 @@ def plot_coldgas(z):
         index_out = 0
         N = nGals[index]
         print N
-        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(_twodimpp),pos_sphere.ctypes.data_as(_twodimpp))
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
         return 
         for i in range(2):
             for j in range(2):
