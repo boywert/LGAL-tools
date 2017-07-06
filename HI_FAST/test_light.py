@@ -18,7 +18,7 @@ from numpy.ctypeslib import ndpointer
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
-_twodimp = ndpointer(dtype=c_float,ndim=2,flags='C_CONTIGUOUS')
+_twodimp = ndpointer(dtype=c_float,ndim=2)
 arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
 mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp]
