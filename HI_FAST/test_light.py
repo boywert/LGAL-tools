@@ -21,7 +21,7 @@ mymodule = CDLL('./test.so')
 _twodimp = ndpointer(dtype=c_float,ndim=2,flags='C_CONTIGUOUS')
 arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
-mymodule.make_sphere.argtypes = [c_int, c_float, _twodimpp, _twodimpp]
+mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp]
 import healpy
 from timeit import default_timer as timer
 rank = "0"
