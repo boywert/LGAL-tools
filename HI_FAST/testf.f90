@@ -48,16 +48,16 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
         do k=1,2
            index = (i-1)*2*2 + (j-1)*2 + k - 1
            if ((i .eq. 1) .and. (j .eq. 1) .and. (k .eq. 1)) then
-              B(1,index*N+1:index*N+N)) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
-              B(2,index*N+1:index*N+N)) = acos(A(3,:)/B(1,:))
-              B(3,index*N+1:index*N+N)) = atan(A(2,:)/A(1,:))
+              B(1,index*N+1:index*N+N) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
+              B(2,index*N+1:index*N+N) = acos(A(3,:)/B(1,:))
+              B(3,index*N+1:index*N+N) = atan(A(2,:)/A(1,:))
            else
               AC(1,:) = A(1,:) - (i-1)*boxsize
               AC(2,:) = A(2,:) - (j-1)*boxsize
               AC(3,:) = A(3,:) - (k-1)*boxsize
-              B(1,index*N+1:index*N+N)) = sqrt(AC(1,1:N)*AC(1,1:N)+AC(2,1:N)*AC(2,1:N)+AC(3,1:N)*AC(3,1:N))
-              B(2,index*N+1:index*N+N)) = acos(AC(3,:)/B(1,:))
-              B(3,index*N+1:index*N+N)) = atan(AC(2,:)/AC(1,:))
+              B(1,index*N+1:index*N+N) = sqrt(AC(1,1:N)*AC(1,1:N)+AC(2,1:N)*AC(2,1:N)+AC(3,1:N)*AC(3,1:N))
+              B(2,index*N+1:index*N+N) = acos(AC(3,:)/B(1,:))
+              B(3,index*N+1:index*N+N) = atan(AC(2,:)/AC(1,:))
            end if
         end do
      end do
