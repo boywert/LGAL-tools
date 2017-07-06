@@ -47,6 +47,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
      do j=1,2
         do k=1,2
            index = (i-1)*2*2 + (j-1)*2 + k - 1
+           print *, "start",index
            if ((i .eq. 1) .and. (j .eq. 1) .and. (k .eq. 1)) then
               B(1,index*N+1:index*N+N) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
               B(2,index*N+1:index*N+N) = acos(A(3,:)/B(1,:))
@@ -59,6 +60,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
               B(2,index*N+1:index*N+N) = acos(AC(3,:)/B(1,:))
               B(3,index*N+1:index*N+N) = atan(AC(2,:)/AC(1,:))
            end if
+           print *, "finish",index
         end do
      end do
   end do
