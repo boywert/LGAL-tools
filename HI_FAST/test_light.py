@@ -114,8 +114,7 @@ def plot_coldgas(z):
         pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32,order='C')
         print pos.flags
         print pos_sphere.flags
-        print pos[5]
-        print pos[6]
+        print pos
         index_out = 0
         N = nGals[index]
         print N

@@ -41,11 +41,8 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   real (c_float), allocatable :: AC(:,:)
   integer :: i,j,k,l
   print *, N,boxsize
-  print *, A(1:3,11)
-  print *, A(1:3,13)
-  print *, A(1:3,3)
-  print *, A(1:3,N-1)
-  print *, A(1:3,N)
+  print *, A(1:3,1:10)
+
   ! allocate(AC(8*N,3))
   ! do i=1,2
   !    do j=1,2
