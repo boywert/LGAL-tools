@@ -14,7 +14,8 @@ import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
-from ctypes import CDLL, POINTER, c_int, c_float, c_double, ndpointer
+from numpy.ctypeslib import ndpointer
+from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
 _twodimpp = ndpointer(dtype=c_float,ndim=2)
