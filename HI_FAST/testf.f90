@@ -1,5 +1,5 @@
-! module test
-! contains
+module test
+contains
 
 ! subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
 !   use iso_c_binding
@@ -84,4 +84,4 @@ end subroutine cart2sphere1
   !   call vsatan(N,A(2,:)/A(1,:),B(3,:))
   ! end subroutine cart2sphere2
 
-! end module test                 
+end module test                 
