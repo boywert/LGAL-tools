@@ -113,7 +113,7 @@ def plot_coldgas(z):
         # I want the array to be Fortran-like array
         # to be used as ([x],[y],[z]) in Fortran code
         pos = numpy.asfortranarray(gal[index]['Pos'])
-        pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32,order='C')
+        pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32,order='F')
         print pos.flags
         print pos_sphere.flags
         print pos
@@ -121,6 +121,7 @@ def plot_coldgas(z):
         N = nGals[index]
         print N
         mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,pos_sphere)
+        print pos_sphere 
         return 
         for i in range(2):
             for j in range(2):
