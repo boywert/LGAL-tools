@@ -110,7 +110,7 @@ def plot_coldgas(z):
         R = numpy.empty(nGals[index]*8,dtype=c_float)
         pix = numpy.empty(nGals[index]*8,dtype=numpy.int64)
         pixmap = numpy.zeros(healpy.nside2npix(NSIDE),dtype=numpy.float64)
-        pos =  gal[index]['Pos']
+        pos = numpy.ascontiguousarray(gal[index]['Pos'])
         pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32,order='C')
         print pos.flags
         print pos_sphere.flags
