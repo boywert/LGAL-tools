@@ -120,11 +120,11 @@ def plot_coldgas(z):
                         pos_tmp = pos[index_in,0:3]-500.*numpy.array([i,j,k])
                         R[index_out] = numpy.sqrt(pos_tmp[0]*pos_tmp[0]+pos_tmp[1]*pos_tmp[1]+pos_tmp[2]*pos_tmp[2])
                         pix[index_out] = healpy.pixelfunc.vec2pix(NSIDE,pos_tmp[0],pos_tmp[1],pos_tmp[2])
-                        if ((R[index_out] >35) & (R[index_out] < 70)):
+                        if ((R[index_out] >1) & (R[index_out] < 500.0)):
                             pixmap[pix[index_out]] += 1.0
                         index_in += 1
                         index_out += 1
-        healpy.write_map("my_map_full.fits", pixmap/numpy.sum(pixmap))
+        healpy.write_map("my_map_full_500.fits", pixmap/numpy.sum(pixmap))
         
         
         #mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
