@@ -37,7 +37,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN), value :: boxsize
   real (c_float), intent(IN):: A(3,N)
-  real (c_float), intent(OUT):: B(N,3)
+  real (c_float), intent(OUT):: B(8*N,3)
   real (c_float), allocatable :: AC(:,:)
   integer :: i,j,k,l
   print *, N,boxsize
@@ -49,9 +49,9 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
            index = (i-1)*2*2 + (j-1)*2 + k - 1
            print *, "start",index
            if ((i .eq. 1) .and. (j .eq. 1) .and. (k .eq. 1)) then
-              !B(1,index*N+1:index*N+N) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
-              !B(2,index*N+1:index*N+N) = acos(A(3,:)/B(1,:))
-              !B(3,index*N+1:index*N+N) = atan(A(2,:)/A(1,:))
+              B(1,index*N+1:index*N+N) = sqrt(A(1,1:N)*A(1,1:N)+A(2,1:N)*A(2,1:N)+A(3,1:N)*A(3,1:N))
+              B(2,index*N+1:index*N+N) = acos(A(3,:)/B(1,:))
+              B(3,index*N+1:index*N+N) = atan(A(2,:)/A(1,:))
            else
               AC(1,:) = A(1,:) - (i-1)*boxsize
               AC(2,:) = A(2,:) - (j-1)*boxsize
