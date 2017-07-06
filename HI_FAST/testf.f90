@@ -37,7 +37,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   integer (c_int), intent(in), value :: N
   real (c_float), intent(IN), value :: boxsize
   real (c_float), intent(IN):: A(3,N)
-  real (c_float), intent(OUT):: B(8*N,3)
+  real (c_float), intent(OUT):: B(3,8*N)
   real (c_float), allocatable :: AC(:,:)
   integer :: i,j,k,l
   print *, N,boxsize
