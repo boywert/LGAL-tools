@@ -117,7 +117,7 @@ def plot_coldgas(z):
         index_out = 0
         N = nGals[index]
         print N
-        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data,pos_sphere.ctypes.data)
         return 
         for i in range(2):
             for j in range(2):
