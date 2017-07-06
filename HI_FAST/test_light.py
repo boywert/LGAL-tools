@@ -100,16 +100,20 @@ def plot_coldgas(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
-
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,5,filter[i],dt[i],1)
+        
+    
         R = numpy.empty(nGals[index]*8,dtype=c_float)
         pix = numpy.empty(nGals[index]*8,dtype=numpy.int64)
         pixmap = numpy.zeros(healpy.nside2npix(NSIDE),dtype=numpy.float64)
         pos =  gal[index]['Pos']
+        pos_sphere = numpy.empty(nGals[index]*8,dtype=numpy.float32)
         print pos
         index_out = 0
         N = nGals[index]
         print N
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
+        return 
         for i in range(2):
             for j in range(2):
                 for k in range(2):
