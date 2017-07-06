@@ -14,10 +14,13 @@ import add_observations
 sys.path.append("../python/")
 import read_lgal_advance as read_lgal
 import timeit
-from ctypes import CDLL, POINTER, c_int, c_float, c_double
+from ctypes import CDLL, POINTER, c_int, c_float, c_double, ndpointer
 #import test as mymodule
 mymodule = CDLL('./test.so')
-mymodule.make_sphere.argtypes = [c_int, c_float, POINTER(c_float), POINTER(c_float)]
+_twodimpp = ndpointer(dtype=c_float,ndim=2)
+arg2 = ndpointer(ndim=2)
+arg3 = ndpointer(shape=(10,10))
+mymodule.make_sphere.argtypes = [c_int, c_float, _twodimpp, _twodimpp]
 import healpy
 from timeit import default_timer as timer
 rank = "0"
@@ -113,7 +116,7 @@ def plot_coldgas(z):
         index_out = 0
         N = nGals[index]
         print N
-        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(POINTER(c_float)))
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(_twodimpp),pos_sphere.ctypes.data_as(_twodimpp))
         return 
         for i in range(2):
             for j in range(2):
