@@ -17,7 +17,7 @@ import timeit
 from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
-mymodule.make_sphere.argtypes = [c_int, c_float, c_float,c_float]
+mymodule.make_sphere.argtypes = [c_int, c_float, POINTER(c_float),c_float]
 import healpy
 from timeit import default_timer as timer
 rank = "0"
@@ -112,7 +112,7 @@ def plot_coldgas(z):
         index_out = 0
         N = nGals[index]
         print N
-        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(c_float),pos_sphere.ctypes.data_as(c_float))
+        mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos.ctypes.data_as(POINTER(c_float)),pos_sphere.ctypes.data_as(c_float))
         return 
         for i in range(2):
             for j in range(2):
