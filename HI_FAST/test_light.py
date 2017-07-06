@@ -108,8 +108,8 @@ def plot_coldgas(z):
         pixmap = numpy.zeros(healpy.nside2npix(NSIDE),dtype=numpy.float64)
         pos =  gal[index]['Pos']
         pos_sphere = numpy.empty(nGals[index]*8,dtype=numpy.float32)
-        print pos[20]
-        print pos[21]
+        print pos[5]
+        print pos[6]
         index_out = 0
         N = nGals[index]
         print N
