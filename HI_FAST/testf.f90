@@ -42,7 +42,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
   integer :: i,j,k,l
   print *, N,boxsize
   print *, A(1:3,11)
-  print *, A(1:3,23)
+  print *, A(1:3,13)
   print *, A(1:3,3)
   print *, A(1:3,N-1)
   print *, A(1:3,N)
