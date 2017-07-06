@@ -112,8 +112,8 @@ def plot_coldgas(z):
         pixmap = numpy.zeros(healpy.nside2npix(NSIDE),dtype=numpy.float64)
         # I want the array to be Fortran-like array
         # to be used as ([x],[y],[z]) in Fortran code
-        pos = numpy.asfortranarray(gal[index]['Pos'])
-        pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32,order='F')
+        pos = numpy.ascontiguousarray(gal[index]['Pos'])
+        pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32,order='C')
         print pos.flags
         print pos_sphere.flags
         print pos
