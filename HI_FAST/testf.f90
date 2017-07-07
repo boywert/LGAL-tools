@@ -55,7 +55,7 @@ subroutine make_sphere(N,boxsize,A,B) bind (c,name='make_sphere')
            AC(3,:) = A(3,:) - (k-1)*boxsize
            B(1,index*N+1:index*N+N) = sqrt(AC(1,1:N)*AC(1,1:N)+AC(2,1:N)*AC(2,1:N)+AC(3,1:N)*AC(3,1:N))
            B(2,index*N+1:index*N+N) = acos(AC(3,:)/B(1,:))
-           B(3,index*N+1:index*N+N) = atan2(AC(2,:),AC(1,:)) + PI
+           B(3,index*N+1:index*N+N) = mod((atan2(AC(2,:),AC(1,:)) + 2*PI),2*PI)
            print *, "finish",index
         end do
      end do
