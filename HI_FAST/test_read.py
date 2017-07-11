@@ -170,7 +170,7 @@ def main():
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
     conn = sqlite3.connect('example.db')
     c = conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS Onion (Frequeny real, X real, Y real, Z real, R real, polar real, azim real, Vx real, Vy real, Vz real, Vr real, StellarMass real, ColdGas real, Mvir real);")
+    c.execute('''CREATE TABLE IF NOT EXISTS Onion (Frequeny real);''') #, X real, Y real, Z real, R real, polar real, azim real, Vx real, Vy real, Vz real, Vr real, StellarMass real, ColdGas real, Mvir real);")
     conn.commit()
     for i in range(len(Rb_list)-1):
         r_check = len(alist_distance)-1
