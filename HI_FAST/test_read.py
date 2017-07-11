@@ -141,7 +141,7 @@ def main():
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
     alist = numpy.loadtxt(alist_file)
-    i_a = (alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))
+    i_a = numpy.where(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))
     print i_a
     return
     #alist = numpy.append(alist1,alist[])     
