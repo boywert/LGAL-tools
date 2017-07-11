@@ -108,6 +108,10 @@ def readgal(z):
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
+            pos = numpy.ascontiguousarray(gal[index]['Pos'])
+            pos_sphere = numpy.ascontiguousarray(numpy.empty(nGals[index],dtype=numpy.float32))
+            mymodule.make_sphere(nGals[index],boxsize,pos,pos_sphere)
+            gal[index]['Pos'] = pos_sphere
         return gal[index]
 def nu_from_a(a): #MHz
     return a*f21cm
@@ -145,11 +149,8 @@ def main():
         id = igal['FileUniqueGalID']
         isnap = len(gal)-2
         while (id > -1) & (isnap > -1):
-            print id
             listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
-            if len(listgal) == 1:
-                id = listgal[0]['FileUniqueGalID']
-            elif len(listgal) == 0:
+            if len(listgal) == 0:
                 id = -1
             else:
                 print "something wrong"
