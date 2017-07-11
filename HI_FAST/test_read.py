@@ -150,7 +150,6 @@ def main():
     #track gals backward
     for igal in gal[len(gal)-1]:
         id = igal['FileUniqueGalID']
-        cid = igal['FileUniqueCentralGalID']
         isnap = len(gal)-2
         while (id > -1) & (isnap > -1):
             listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
