@@ -114,7 +114,7 @@ def readgal(z):
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
             vel_R = numpy.empty(nGals[index]*8,dtype=numpy.float32)
             mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,vel,pos_sphere,vel_R)
-        return gal[index]
+        return gal[index],pos_sphere,vel_R
 def nu_from_a(a): #MHz
     return a*f21cm
 def a_from_nu(f):
@@ -141,27 +141,38 @@ def main():
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
     alist = numpy.loadtxt(alist_file)
-    i_a = numpy.where((alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z)))
-    print i_a
-    return
-    #alist = numpy.append(alist1,alist[])     
+    alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
+      
     f_step = 0.5 #MHz
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
     for i in range(len(fc_list)-1):
         fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
     
-    gal = []
+    gal=[]
+    pos=[]
+    R=[]
     alist_distance = numpy.empty(len(alist),dtype = numpy.float32)
     for i in range(len(alist)):
         a = alist[i]
         z = "%10.3f" % (z_from_a(a))
-        gal.append(readgal(float(z)))
+        gal_i,pos_sphere_i,vel_R_i = readgal(float(z))
+        gal.append(gal_i)
+        pos.append(pos_i)
+        R.append(R_i)
         alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
-    print alist_distance
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
-        
+    for i in range(len(Rb_list)-1):
+        r_check = len(alist_distance)-1
+        toggle = 0
+        while (toggle==0) & (r_check >= 0):
+            if alist_distance[r_check] > Rb_list[i]:
+                toggle = 1
+                break
+            r_check -= 1
+        list = numpy.where((R[r_check] >= Rb_list[i]) & (R[r_check] <= Rb_list[i+1]))
+        print list
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
