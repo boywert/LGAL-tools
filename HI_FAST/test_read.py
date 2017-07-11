@@ -127,7 +127,7 @@ def z_from_a(z):
     return 1./a - 1.0
 def main():
     first_z = 0.0
-    last_z = 0.20
+    last_z = 0.18
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
