@@ -155,7 +155,7 @@ def main():
         a = alist[i]
         z = "%10.3f" % (z_from_a(a))
         gal.append(readgal(float(z)))
-        alist_distance[i] = cosmo.comoving_distance(1./a-1)
+        alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
     print alist_distance
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
