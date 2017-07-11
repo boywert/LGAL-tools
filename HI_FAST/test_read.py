@@ -125,11 +125,16 @@ def a_from_z(z):
     return 1./(z+1.)
 def z_from_a(z):
     return 1./a - 1.0
+
+alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
 def main():
     first_z = 0.0
     last_z = 0.18
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
+    alist = numpy.loadtxt(alist_file)
+    alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
+    print alist
 if __name__ == "__main__":
     main()
