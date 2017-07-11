@@ -119,6 +119,8 @@ def z_from_nu(f):
     return f21cm/f - 1.0
 def t_from_a(a):
     return cosmo.age(1./a - 1.0)
+def t_from_z(z):
+    return cosmo.age(z)
 def a_from_z(z):
     return 1./(z+1.)
 def z_from_a(z):
@@ -128,5 +130,6 @@ def main():
     last_z = 0.20
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
+    print "t", t_from_z(first_z), t_from_z(last_z)
 if __name__ == "__main__":
     main()
