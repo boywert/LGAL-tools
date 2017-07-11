@@ -108,3 +108,9 @@ def readgal(z):
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
             return gal[index]
         
+def main():
+    g0 = readgal(0.0)
+    g0
+
+if __name__ == "__main__":
+    main()
