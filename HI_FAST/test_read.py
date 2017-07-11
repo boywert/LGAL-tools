@@ -144,7 +144,7 @@ def main():
     i_a = (alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))
     print i_a
     return
-    alist = numpy.append(alist1,alist[])     
+    #alist = numpy.append(alist1,alist[])     
     f_step = 0.5 #MHz
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
