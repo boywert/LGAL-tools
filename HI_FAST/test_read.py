@@ -110,7 +110,7 @@ def readgal(z):
         
 def main():
     g0 = readgal(0.0)
-    g0
+    print g0['FileUniqueGalCentralID']
 
 if __name__ == "__main__":
     main()
