@@ -127,6 +127,7 @@ def z_from_a(a):
     return 1./a - 1.0
 
 alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
+
 def main():
     first_z = 0.0
     last_z = 0.18
@@ -140,16 +141,17 @@ def main():
         z = "%10.3f" % (z_from_a(a))
         gal.append(readgal(float(z)))
     #track gals backward
-    for igal in gal[0]:
+    for igal in gal[len(gal)-1]:
         id = igal['FileUniqueGalID']
-        listgal = gal[1][gal[1]['FileUniqueGalID'] == id]
-        if len(listgal) == 1:
-            i = 0
-            #print 1
-        elif len(listgal) == 0:
-            i = 0
-            #print "no prog"
-        else:
-            print "something wrong"
+        isnap = len(gal)-2
+        while (id > -1) & (isnap > -1):
+            listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
+            if len(listgal) == 1:
+                id = listgal[0]['FileUniqueGalID']
+            elif len(listgal) == 0:
+                id = -1
+            else:
+                print "something wrong"
+            isnap -= 1
 if __name__ == "__main__":
     main()
