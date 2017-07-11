@@ -151,7 +151,7 @@ def main():
     f_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z),-1*f_step)
     R_list = []
     for i in range(len(f_list)):
-        R_list.append(z_from_nu(f_list[i]))
+        R_list.append(cosmo.comoving_distance(z_from_nu(f_list[i])))
     print R_list
     # #track gals backward
     # for igal in gal[len(gal)-1]:
