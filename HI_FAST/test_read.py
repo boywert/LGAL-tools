@@ -26,6 +26,7 @@ arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
 mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp, _twodimp, _onedimp]
 import healpy
+import sqlite3
 from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
@@ -39,8 +40,11 @@ def loadfilter(structfile):
         fi = False    
     filter['Pos'] = True
     filter['Vel'] = True
-    filter['FileUniqueGalID'] = True
-    filter['FileUniqueGalCentralID'] = True
+    filter['StellarMass'] = True
+    filter['ColdGas'] = True
+    filter['Mvir'] = True
+    #filter['FileUniqueGalID'] = True
+    #filter['FileUniqueGalCentralID'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
@@ -163,6 +167,11 @@ def main():
         alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
+    conn = sqlite3.connect('example.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXIST Onion
+    ( Frequeny real, X real, Y real, Z real, R real, polar real, azim real, Vx real, Vy real, Vz real, Vr real, StellarMass real, ColdGas real, Mvir real)''')
+    conn.commit()
     for i in range(len(Rb_list)-1):
         r_check = len(alist_distance)-1
         toggle = 0
@@ -171,8 +180,8 @@ def main():
                 toggle = 1
                 break
             r_check -= 1
-        list = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
-        print len(list)
+        gallist = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
+    conn.close()
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
