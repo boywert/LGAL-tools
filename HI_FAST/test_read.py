@@ -148,7 +148,7 @@ def main():
         gal.append(readgal(float(z)))
 
     f_step = 0.5 #MHz
-    f_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z),f_step)
+    f_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z),-1*f_step)
     R_list = []
     for i in range(len(f_list)):
         R_list.append(z_from_nu(f_list[i]))
