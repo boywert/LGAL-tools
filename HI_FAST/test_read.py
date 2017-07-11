@@ -136,7 +136,7 @@ def main():
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
     for a in alist:
-        z = "%10.3f" % (a)
+        z = "%10.3f" % (z_from_a(a))
         print z
 if __name__ == "__main__":
     main()
