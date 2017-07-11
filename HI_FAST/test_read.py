@@ -144,8 +144,10 @@ def main():
         id = igal['FileUniqueGalID']
         listgal = gal[1][gal[1]['FileUniqueGalID'] == id]
         if len(listgal) == 1:
+            i = 0
             #print 1
         elif len(listgal) == 0:
+            i = 0
             #print "no prog"
         else:
             print "something wrong"
