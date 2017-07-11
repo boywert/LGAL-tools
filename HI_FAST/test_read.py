@@ -114,7 +114,6 @@ def readgal(z):
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
             vel_R = numpy.empty(nGals[index]*8,dtype=numpy.float32)
             mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,vel,pos_sphere,vel_R)
-            # gal[index]['Pos'] = pos_sphere
         return gal[index]
 def nu_from_a(a): #MHz
     return a*f21cm
@@ -155,8 +154,6 @@ def main():
             listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
             if len(listgal) == 0:
                 id = -1
-            else:
-                print "something wrong"
             isnap -= 1
 if __name__ == "__main__":
     main()
