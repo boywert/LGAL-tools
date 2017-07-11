@@ -137,6 +137,6 @@ def main():
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
     for a in alist:
         z = "%10.3f" % (z_from_a(a))
-        print z
+        gal = readgal(float(z))
 if __name__ == "__main__":
     main()
