@@ -145,6 +145,7 @@ def main():
         id = igal['FileUniqueGalID']
         isnap = len(gal)-2
         while (id > -1) & (isnap > -1):
+            print id
             listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
             if len(listgal) == 1:
                 id = listgal[0]['FileUniqueGalID']
