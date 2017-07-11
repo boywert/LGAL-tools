@@ -1,3 +1,5 @@
+from astropy.cosmology import FlatLambdaCDM
+cosmo = FlatLambdaCDM(H0=73, Om0=0.25, Tcmb0=2.725)
 from mass_fn import *
 from globalconf import *
 from math import *
@@ -80,7 +82,7 @@ plt.rcParams['xtick.major.size'] = 8
 #zlist = open(zlistfile,"r").readlines()
 
 NSIDE = 2048
-
+f21cm  = 1420.4057517667 #MHz
 def readgal(z):
     #firstfile = 0
     #lastfile = 127
@@ -106,13 +108,25 @@ def readgal(z):
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
-            return gal[index]
-        
+        return gal[index]
+def nu_from_a(a): #MHz
+    return a*f21cm
+def a_from_nu(f):
+    return f/f21cm
+def nu_from_z(z):
+    return f21cm/(1.+z)
+def z_from_nu(f):
+    return f21cm/f - 1.0
+def t_from_a(a):
+    return cosmo.age(1./a - 1.0)
+def a_from_z(z):
+    return 1./(z+1.)
+def z_from_a(z):
+    return 1./a - 1.0
 def main():
-    g0 = readgal(0.0)
-    print g0['FileUniqueGalID'][:10]
-    print g0['FileUniqueGalCentralID'][:10]
-    print numpy.where(g0['FileUniqueGalCentralID'] != g0['FileUniqueGalID'])
-
+    first_z = 0.0
+    last_z = 0.20
+    print "a", a_from_z(first_z), a_from_z(last_z)
+    print "f", nu_from_z(first_z), nu_from_z(last_z)
 if __name__ == "__main__":
     main()
