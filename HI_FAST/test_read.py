@@ -135,8 +135,13 @@ def main():
     print "t", t_from_z(first_z), t_from_z(last_z)
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
+    gal = []
     for a in alist:
         z = "%10.3f" % (z_from_a(a))
-        gal = readgal(float(z))
+        gal.append(readgal(float(z)))
+    #track gals backward
+    for igal in gal[0]:
+        print igal['FileUniqueGalID']
+        
 if __name__ == "__main__":
     main()
