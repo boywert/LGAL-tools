@@ -149,7 +149,7 @@ def main():
 
     f_step = 0.5 #MHz
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
-    Rc_list = numpy.empty(len(fc_list),dtype = numpy.int32)
+    Rc_list = numpy.empty(len(fc_list),dtype = numpy.float32)
     for i in range(len(Rc_list)):
         Rc_list[i] = cosmo.comoving_distance(z_from_nu(fc_list[i])).value*0.73
     print Rc_list
