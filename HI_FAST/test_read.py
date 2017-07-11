@@ -123,7 +123,7 @@ def t_from_z(z):
     return cosmo.age(z)
 def a_from_z(z):
     return 1./(z+1.)
-def z_from_a(z):
+def z_from_a(a):
     return 1./a - 1.0
 
 alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
