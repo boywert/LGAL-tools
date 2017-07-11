@@ -172,7 +172,7 @@ def main():
                 break
             r_check -= 1
         list = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
-        print list
+        print len(list)
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
