@@ -152,7 +152,7 @@ def main():
     Rc_list = numpy.empty(len(fc_list),dtype = numpy.int32)
     for i in range(len(Rc_list)):
         Rc_list[i] = cosmo.comoving_distance(z_from_nu(fc_list[i])).value*0.73
-    print R_list
+    print Rc_list
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
