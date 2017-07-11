@@ -110,8 +110,8 @@ def readgal(z):
         
 def main():
     g0 = readgal(0.0)
-    print g0['FileUniqueGalID']
-    print g0['FileUniqueGalCentralID']
+    print g0['FileUniqueGalID'][:10]
+    print g0['FileUniqueGalCentralID'][:10]
     print numpy.where(g0['FileUniqueGalCentralID'] != g0['FileUniqueGalID'])
 
 if __name__ == "__main__":
