@@ -149,9 +149,14 @@ def main():
 
     f_step = 0.5 #MHz
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
-    Rc_list = numpy.empty(len(fc_list),dtype = numpy.float32)
-    Rc_list[:] = cosmo.comoving_distance(z_from_nu(fc_list[:])).value*0.73
-    print Rc_list
+    fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
+    for i in range(len(fc_list)-1):
+        fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
+
+    
+    Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
+    Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
+    print 
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
