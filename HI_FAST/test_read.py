@@ -146,14 +146,21 @@ def main():
     for a in alist:
         z = "%10.3f" % (z_from_a(a))
         gal.append(readgal(float(z)))
-    #track gals backward
-    for igal in gal[len(gal)-1]:
-        id = igal['FileUniqueGalID']
-        isnap = len(gal)-2
-        while (id > -1) & (isnap > -1):
-            listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
-            if len(listgal) == 0:
-                id = -1
-            isnap -= 1
+
+    f_step = 0.5 #MHz
+    f_list = range(nu_from_z(first_z),nu_from_z(last_z),f_step)
+    R_list = []
+    for i in range(len(f_list)):
+        R_list.append(z_from_nu(f_list[i]))
+    print R_list
+    # #track gals backward
+    # for igal in gal[len(gal)-1]:
+    #     id = igal['FileUniqueGalID']
+    #     isnap = len(gal)-2
+    #     while (id > -1) & (isnap > -1):
+    #         listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
+    #         if len(listgal) == 0:
+    #             id = -1
+    #         isnap -= 1
 if __name__ == "__main__":
     main()
