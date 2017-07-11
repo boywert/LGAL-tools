@@ -151,9 +151,8 @@ def main():
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
     R_list = numpy.empty(len(fc_list),dtype = numpy.int32)
     R_list[:] = cosmo.comoving_distance(z_from_nu(fc_list[:])).value*0.73
+    print R_list
 
-    for i in range(len(f_list)-1):
-        Rc_list[i] = R_
     # #track gals backward
     # for igal in gal[len(gal)-1]:
     #     id = igal['FileUniqueGalID']
