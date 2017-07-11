@@ -142,6 +142,6 @@ def main():
     #track gals backward
     for igal in gal[0]:
         id = igal['FileUniqueGalID']
-        print gal[1][gal[1]['FileUniqueGalID'] == id]
+        print len(gal[1][gal[1]['FileUniqueGalID'] == id])
 if __name__ == "__main__":
     main()
