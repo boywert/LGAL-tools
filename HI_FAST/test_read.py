@@ -152,6 +152,7 @@ def main():
     R_list = []
     for i in range(len(f_list)):
         R_list.append(cosmo.comoving_distance(z_from_nu(f_list[i])).value*0.73)
+    print R_list
     # #track gals backward
     # for igal in gal[len(gal)-1]:
     #     id = igal['FileUniqueGalID']
