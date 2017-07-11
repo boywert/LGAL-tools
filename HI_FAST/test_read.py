@@ -109,7 +109,7 @@ def readgal(z):
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
             pos = numpy.ascontiguousarray(gal[index]['Pos'])
-            pos_sphere = numpy.ascontiguousarray((numpy.empty(nGals[index],3),dtype=numpy.float32))
+            pos_sphere = numpy.ascontiguousarray(numpy.empty((nGals[index],3),dtype=numpy.float32))
             mymodule.make_sphere(nGals[index],boxsize,pos,pos_sphere)
             gal[index]['Pos'] = pos_sphere
         return gal[index]
