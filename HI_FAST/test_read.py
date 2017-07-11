@@ -21,9 +21,10 @@ from ctypes import CDLL, POINTER, c_int, c_float, c_double
 #import test as mymodule
 mymodule = CDLL('./test.so')
 _twodimp = ndpointer(dtype=c_float,ndim=2)
+_onedimp = ndpointer(dtype=c_float,ndim=1)
 arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
-mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp]
+mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp, _twodimp, _onedimp]
 import healpy
 from timeit import default_timer as timer
 rank = "0"
@@ -109,9 +110,11 @@ def readgal(z):
         if not index in gal:
             (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
             pos = numpy.ascontiguousarray(gal[index]['Pos'])
+            vel = numpy.ascontiguousarray(gal[index]['Vel'])
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
-            mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,pos_sphere)
-            gal[index]['Pos'] = pos_sphere
+            vel_R = numpy.empty(nGals[index]*8,dtype=numpy.float32)
+            mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,vel,pos_sphere,vel_R)
+            # gal[index]['Pos'] = pos_sphere
         return gal[index]
 def nu_from_a(a): #MHz
     return a*f21cm
@@ -147,6 +150,7 @@ def main():
     #track gals backward
     for igal in gal[len(gal)-1]:
         id = igal['FileUniqueGalID']
+        cid = igal['FileUniqueCentralGalID']
         isnap = len(gal)-2
         while (id > -1) & (isnap > -1):
             listgal = gal[isnap][gal[isnap]['FileUniqueGalID'] == id]
