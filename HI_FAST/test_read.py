@@ -151,7 +151,7 @@ def main():
     
     gal=[]
     pos=[]
-    R=[]
+    vR=[]
     alist_distance = numpy.empty(len(alist),dtype = numpy.float32)
     for i in range(len(alist)):
         a = alist[i]
