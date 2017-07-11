@@ -36,7 +36,8 @@ def loadfilter(structfile):
         fi = False    
     filter['Pos'] = True
     filter['Vel'] = True
-    
+    filter['FileUniqueGalID'] = True
+    filter['FileUniqueCentralGalID'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
 
