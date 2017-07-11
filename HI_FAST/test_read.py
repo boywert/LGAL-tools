@@ -156,10 +156,10 @@ def main():
     for i in range(len(alist)):
         a = alist[i]
         z = "%10.3f" % (z_from_a(a))
-        gal_i,pos_sphere_i,vel_R_i = readgal(float(z))
+        gal_i,pos_i,vR_i = readgal(float(z))
         gal.append(gal_i)
         pos.append(pos_i)
-        R.append(R_i)
+        vR.append(vR_i)
         alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
@@ -171,7 +171,7 @@ def main():
                 toggle = 1
                 break
             r_check -= 1
-        list = numpy.where((R[r_check] >= Rb_list[i]) & (R[r_check] <= Rb_list[i+1]))
+        list = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
         print list
 
     # #track gals backward
