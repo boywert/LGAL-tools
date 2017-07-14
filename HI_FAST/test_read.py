@@ -158,7 +158,7 @@ def main():
     
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
-      
+    alist = alist[::-1]
     
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
@@ -166,8 +166,8 @@ def main():
         fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
     
     start_r = 0.0
-    for i in reversed(range(len(alist))):
-        a = alist[i]
+    for i in range(len(alist)-1):
+        a = alist[i+1]
         z = "%10.3f" % (z_from_a(a))
         alist_distance = cosmo.comoving_distance(z_from_a(a)).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
