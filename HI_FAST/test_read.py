@@ -148,12 +148,14 @@ def main():
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
+    #construct table for lookup f-d
     f_array = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-0.1)
     d_array = numpy.empty(len(f_array),dtype=numpy.float32)
     d_array[:] = cosmo.comoving_distance(z_from_nu(f_array[:]))
     print f_array
     print d_array
-    return
+
+    
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
       
@@ -175,10 +177,8 @@ def main():
         alist_distance = cosmo.comoving_distance(z_from_a(a)).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
         gallist = numpy.where((pos[r_check][:,0] >= start_r) & (pos[r_check][:,0] <= alist_distance))[0]
-
+        print len(gallist)
         
-        pos.append(pos_i)
-        vR.append(vR_i)
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
 
