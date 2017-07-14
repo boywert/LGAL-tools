@@ -150,7 +150,7 @@ def main():
     print "t", t_from_z(first_z), t_from_z(last_z)
     f_array = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-0.1)
     d_array = numpy.empty(len(f_array),dtype=numpy.float32)
-    d_array[:] = cosmo.comoving_distance(f_array[:])
+    d_array[:] = cosmo.comoving_distance(z_from_nu(f_array[:]))
     print f_array
     print d_array
     return
