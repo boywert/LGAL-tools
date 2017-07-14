@@ -144,6 +144,7 @@ def main():
     
     first_z = 0.0
     last_z = z_from_nu(1230.0)
+    f_step = 0.5 #MHz
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
@@ -156,7 +157,7 @@ def main():
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
       
-    f_step = 0.5 #MHz
+    
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
     for i in range(len(fc_list)-1):
