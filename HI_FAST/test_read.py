@@ -180,7 +180,7 @@ def main():
         vR.append(vR_i)
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
-    for i in rage
+
     for i in range(len(Rb_list)-1):
         r_check = len(alist_distance)-1
         toggle = 0
