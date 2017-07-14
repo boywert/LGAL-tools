@@ -165,11 +165,6 @@ def main():
     for i in range(len(fc_list)-1):
         fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
     
-    gal=[]
-    pos=[]
-    vR=[]
-    alist_distance = numpy.empty(len(alist),dtype = numpy.float32)
-
     start_r = 0.0
     for i in reversed(range(len(alist))):
         a = alist[i]
@@ -178,7 +173,10 @@ def main():
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
         gallist = numpy.where((pos[i][:,0] >= start_r) & (pos[i][:,0] <= alist_distance))[0]
         print len(gallist)
-    
+        start_r = alist_distance
+    return
+
+
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
 
