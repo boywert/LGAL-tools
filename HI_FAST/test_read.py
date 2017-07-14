@@ -176,9 +176,9 @@ def main():
         z = "%10.3f" % (z_from_a(a))
         alist_distance = cosmo.comoving_distance(z_from_a(a)).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
-        gallist = numpy.where((pos[r_check][:,0] >= start_r) & (pos[r_check][:,0] <= alist_distance))[0]
+        gallist = numpy.where((pos[i][:,0] >= start_r) & (pos[i][:,0] <= alist_distance))[0]
         print len(gallist)
-        
+    
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
 
