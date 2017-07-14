@@ -119,7 +119,7 @@ def readgal(z):
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
             vel_R = numpy.empty(nGals[index]*8,dtype=numpy.float32)
             mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,vel,pos_sphere,vel_R)
-        return gal[index],pos_sphere,vel_R
+        return nGals[index],gal[index],pos_sphere,vel_R
 def nu_from_a(a): #MHz
     return a*f21cm
 def a_from_nu(f):
@@ -147,6 +147,12 @@ def main():
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
+    f_array = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-0.1)
+    d_array = numpy.empty(len(f_array),dtype=numpy.float32)
+    d_array[:] = cosmo.comoving_distance(f_array[:])
+    print f_array
+    print d_array
+    return
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
       
@@ -160,21 +166,21 @@ def main():
     pos=[]
     vR=[]
     alist_distance = numpy.empty(len(alist),dtype = numpy.float32)
-    for i in range(len(alist)):
+
+    start_r = 0.0
+    for i in reverse(range(len(alist))):
         a = alist[i]
         z = "%10.3f" % (z_from_a(a))
-        gal_i,pos_i,vR_i = readgal(float(z))
-        gal.append(gal_i)
+        alist_distance = cosmo.comoving_distance(z_from_a(a)).value*0.73
+        ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
+        gallist = numpy.where((pos[r_check][:,0] >= start_r) & (pos[r_check][:,0] <= alist_distance))[0]
+
+        
         pos.append(pos_i)
         vR.append(vR_i)
-        alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
-        print 'gal',sys.getsizeof(gal)
-        print 'pos',sys.getsizeof(pos)
-        print 'vR',sys.getsizeof(vR)
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
-    
-    
+    for i in rage
     for i in range(len(Rb_list)-1):
         r_check = len(alist_distance)-1
         toggle = 0
