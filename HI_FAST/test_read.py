@@ -113,7 +113,7 @@ def readgal(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
             pos = numpy.ascontiguousarray(gal[index]['Pos'])
             vel = numpy.ascontiguousarray(gal[index]['Vel'])
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
@@ -139,7 +139,9 @@ def z_from_a(a):
 
 alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
 
+
 def main():
+    
     first_z = 0.0
     last_z = z_from_nu(1230.0)
     print "a", a_from_z(first_z), a_from_z(last_z)
@@ -168,10 +170,8 @@ def main():
         alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
-    conn = sqlite3.connect('example.db')
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS Onion (Frequeny real);''') #, X real, Y real, Z real, R real, polar real, azim real, Vx real, Vy real, Vz real, Vr real, StellarMass real, ColdGas real, Mvir real);")
-    conn.commit()
+    
+    
     for i in range(len(Rb_list)-1):
         r_check = len(alist_distance)-1
         toggle = 0
@@ -181,7 +181,6 @@ def main():
                 break
             r_check -= 1
         gallist = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
-    conn.close()
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
