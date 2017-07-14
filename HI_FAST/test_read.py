@@ -171,7 +171,7 @@ def main():
     alist_distance = numpy.empty(len(alist),dtype = numpy.float32)
 
     start_r = 0.0
-    for i in reverse(range(len(alist))):
+    for i in reversed(range(len(alist))):
         a = alist[i]
         z = "%10.3f" % (z_from_a(a))
         alist_distance = cosmo.comoving_distance(z_from_a(a)).value*0.73
