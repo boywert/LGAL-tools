@@ -168,6 +168,9 @@ def main():
         pos.append(pos_i)
         vR.append(vR_i)
         alist_distance[i] = cosmo.comoving_distance(z_from_a(a)).value*0.73
+        print 'gal',sys.getsizeof(gal)
+        print 'pos',sys.getsizeof(pos)
+        print 'vR',sys.getsizeof(vR)
     Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
     Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
     
