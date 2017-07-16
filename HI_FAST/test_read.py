@@ -113,7 +113,7 @@ def readgal(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,5,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
             pos = numpy.ascontiguousarray(gal[index]['Pos'])
             vel = numpy.ascontiguousarray(gal[index]['Vel'])
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
@@ -167,7 +167,10 @@ def main():
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
     for i in range(len(fc_list)-1):
         fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
-        
+    ngals = []
+    gals = []
+    pos = []
+    vR = []
     start_r = 0.0
     for i in range(len(alist)):
         z = "%10.3f" % (z_from_a(alist[i]))
@@ -176,11 +179,19 @@ def main():
         else:
             alist_distance = cosmo.comoving_distance(last_z).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
+        ngals.append(ngal_i)
+        pos.append(pos_i)
+        vR.append(vR_i)
+        gals.append(numpy.empty(ngal_i*8,dtype = gal_i.dtype))
+        for j = range(8):
+            gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i
+            if "FileUniqueGalID" in gal_i.dtype.names:
+                gals[i][ngal_i*j:ngal_i*(j+1)]['FileUniqueGalID'] += ngal_i*j 
         
         gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
         print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
         start_r = alist_distance
-        print gallist
+        
     return
 
 
