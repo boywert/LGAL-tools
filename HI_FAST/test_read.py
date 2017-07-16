@@ -205,12 +205,15 @@ def main():
         ogal['VelX'] = fullgal['Vel'][gallist,0]
         ogal['VelY'] = fullgal['Vel'][gallist,1]
         ogal['VelZ'] = fullgal['Vel'][gallist,2]
+        ogal['StellarMass'] = fullgal['StellarMass'][gallist]
+        ogal['ColdGas'] = fullgal['ColdGas'][gallist]
         ogal['PosR'] = pos_i[gallist,0]
         ogal['PosTheta'] = pos_i[gallist,1]
         ogal['PosPhi'] = pos_i[gallist,2]
         ogal['VelR'] = vR_i[gallist,0]
         ogal['VelTheta'] = vR_i[gallist,1]
         ogal['VelPhi'] = vR_i[gallist,2]
+        
         start_r = alist_distance
         
     return
