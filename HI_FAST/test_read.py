@@ -148,7 +148,7 @@ def main():
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
-    print "d", cosmo.comoving_distance(first_z),cosmo.comoving_distance(last_z)
+    print "d", cosmo.comoving_distance(first_z)*.73,cosmo.comoving_distance(last_z)*.73
     #construct table for lookup f-d
     f_array = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-0.1)
     d_array = numpy.empty(len(f_array),dtype=numpy.float32)
