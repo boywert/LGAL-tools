@@ -183,10 +183,13 @@ def main():
         pos.append(pos_i)
         vR.append(vR_i)
         gals.append(numpy.empty(ngal_i*8,dtype = gal_i.dtype))
-        for j in range(8):
-            gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i
-            if "FileUniqueGalID" in gal_i.dtype.names:
-                gals[i][ngal_i*j:ngal_i*(j+1)]['FileUniqueGalID'] += ngal_i*j 
+        if "FileUniqueGalID" in gal_i.dtype.names:
+            for j in range(8):
+                gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i
+                gals[i][ngal_i*j:ngal_i*(j+1)]['FileUniqueGalID'] += ngal_i*j
+        else:
+            for j in range(8):
+                gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i      
         
         gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
         print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
