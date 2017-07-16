@@ -120,11 +120,11 @@ def readgal(z,i_model,i_file):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         (nTrees,nGals,nTreeGals,gal) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,i_file,i_file,filter[i],dt[i],1)
-            pos = numpy.ascontiguousarray(ga['Pos'])
-            vel = numpy.ascontiguousarray(gal['Vel'])
-            pos_sphere = numpy.empty((nGals*8,3),dtype=numpy.float32)
-            vel_R = numpy.empty((nGals*8,3),dtype=numpy.float32)
-            mymodule.make_sphere(c_int(nGals),c_float(500.0),pos,vel,pos_sphere,vel_R)
+        pos = numpy.ascontiguousarray(ga['Pos'])
+        vel = numpy.ascontiguousarray(gal['Vel'])
+        pos_sphere = numpy.empty((nGals*8,3),dtype=numpy.float32)
+        vel_R = numpy.empty((nGals*8,3),dtype=numpy.float32)
+        mymodule.make_sphere(c_int(nGals),c_float(500.0),pos,vel,pos_sphere,vel_R)
         return nGals[index],gal[index],pos_sphere,vel_R
 def nu_from_a(a): #MHz
     return a*f21cm
