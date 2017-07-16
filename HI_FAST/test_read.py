@@ -182,7 +182,7 @@ def main():
             alist_distance = cosmo.comoving_distance(z_from_a(alist[i+1])).value*0.73
         else:
             alist_distance = cosmo.comoving_distance(last_z).value*0.73
-        ngal_i,gal_i,pos_i,vR_i = readgal(float(z),5,'lgal_w1')
+        ngal_i,gal_i,pos_i,vR_i = readgal(float(z),'lgal_w1',5)
         #ngals.append(ngal_i)
         #pos.append(pos_i)
         #vR.append(vR_i)
