@@ -113,7 +113,7 @@ def readgal(z):
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
         if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,511,filter[i],dt[i],1)
+            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,0,5,filter[i],dt[i],1)
             pos = numpy.ascontiguousarray(gal[index]['Pos'])
             vel = numpy.ascontiguousarray(gal[index]['Vel'])
             pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
@@ -164,7 +164,7 @@ def main():
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
     for i in range(len(fc_list)-1):
         fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
-    
+        
     start_r = 0.0
     for i in range(len(alist)-1):
         a = alist[i+1]
