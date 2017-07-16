@@ -25,7 +25,7 @@ _twodimp = ndpointer(dtype=c_float,ndim=2)
 _onedimp = ndpointer(dtype=c_float,ndim=1)
 arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
-mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp, _twodimp, _onedimp]
+mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp, _twodimp, _twodimp]
 import healpy
 import sqlite3
 from timeit import default_timer as timer

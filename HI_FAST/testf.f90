@@ -38,7 +38,7 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
   real (c_float), intent(IN), value :: boxsize
   real (c_float), intent(IN):: A1(3,N),A2(3,N)
   real (c_float), intent(OUT):: B1(3,8*N)
-  real (c_float), intent(OUT):: B2(8*N)
+  real (c_float), intent(OUT):: B2(3,8*N)
   real (c_float), allocatable :: AC(:,:)
   real (c_float) :: PI 
   integer :: i,j,k,l
@@ -50,19 +50,18 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
      do j=1,2
         do k=1,2
            index = (i-1)*2*2 + (j-1)*2 + k - 1
-           print *, "start",index
            AC(1,:) = A1(1,:) - (i-1)*boxsize
            AC(2,:) = A1(2,:) - (j-1)*boxsize
            AC(3,:) = A1(3,:) - (k-1)*boxsize
            B1(1,index*N+1:index*N+N) = sqrt(AC(1,1:N)*AC(1,1:N)+AC(2,1:N)*AC(2,1:N)+AC(3,1:N)*AC(3,1:N))
            B1(2,index*N+1:index*N+N) = acos(AC(3,:)/B1(1,:))
            B1(3,index*N+1:index*N+N) = mod((atan2(AC(2,:),AC(1,:)) + 2*PI),2*PI)
-           B2(index*N+1:index*N+N) = (A1(1,:)*A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
-           print *, "finish",index
+           B2(1,index*N+1:index*N+N) = (A1(1,:)*A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
+           B2(2,index*N+1:index*N+N) = (*A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
+           B2(3,index*N+1:index*N+N) = (-1*sin(B1(3,:))*A2(1,:)+cos(B1(3,:))*A2(2,:))
         end do
      end do
   end do
-
   deallocate(AC)
 end subroutine make_sphere
 
