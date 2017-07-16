@@ -31,6 +31,26 @@ import sqlite3
 from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
+db_struct = numpy.dtype([
+('PosX'                      , numpy.float32),
+('PosY'                      , numpy.float32),
+('PosZ'                      , numpy.float32),
+('PosR'                      , numpy.float32),
+('PosTheta'                  , numpy.float32),
+('PosPhi'                    , numpy.float32),
+('VelX'                      , numpy.float32),
+('VelY'                      , numpy.float32),
+('VelZ'                      , numpy.float32),
+('VelR'                      , numpy.float32),
+('VelTheta'                  , numpy.float32),
+('VelPhi'                    , numpy.float32),
+('StellarMass'               , numpy.float32),
+('ColdGas'                   , numpy.float32), 
+('Healpix'                   , numpy.int32),
+('Luminosity'                , numpy.float32),
+('LuminosityDistance'        , numpy.float32),
+('Intensity'                 , numpy.float32)])
+
 def loadfilter(structfile):
     sys.path.insert(0,"../tmp/"+rank)
     os.system("cp "+structfile+" ../tmp/"+rank+"/LGalaxyStruct.py")
@@ -89,36 +109,22 @@ plt.rcParams['xtick.major.size'] = 8
 
 NSIDE = 2048
 f21cm  = 1420.4057517667 #MHz
-def readgal(z):
-    #firstfile = 0
-    #lastfile = 127
-    config = {}
+def readgal(z,i_model,i_file):
 
-    try:
-        gal
-    except NameError:
-        gal = {}
-        nTrees = {}
-        nGals = {}
-        nTreeGals = {}
 
-    r = {}
-    theta = {}
-    phi = {}
-    for i in range(len(model_names)):
+        i = i_model
         index = model_names[i]
         if index[:4] == "lgal":
             zz = "%10.2f"%(z)
         elif index[:4] == "sage":
             zz = "%10.3f"%(z)
         file_prefix = "model_z"+zz.strip()
-        if not index in gal:
-            (nTrees[index],nGals[index],nTreeGals[index],gal[index]) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,5,5,filter[i],dt[i],1)
-            pos = numpy.ascontiguousarray(gal[index]['Pos'])
-            vel = numpy.ascontiguousarray(gal[index]['Vel'])
-            pos_sphere = numpy.empty((nGals[index]*8,3),dtype=numpy.float32)
-            vel_R = numpy.empty(nGals[index]*8,dtype=numpy.float32)
-            mymodule.make_sphere(c_int(nGals[index]),c_float(500.0),pos,vel,pos_sphere,vel_R)
+        (nTrees,nGals,nTreeGals,gal) = read_lgal.readsnap_lgal_advance(model_paths[i],file_prefix,i_file,i_file,filter[i],dt[i],1)
+            pos = numpy.ascontiguousarray(ga['Pos'])
+            vel = numpy.ascontiguousarray(gal['Vel'])
+            pos_sphere = numpy.empty((nGals*8,3),dtype=numpy.float32)
+            vel_R = numpy.empty((nGals*8,3),dtype=numpy.float32)
+            mymodule.make_sphere(c_int(nGals),c_float(500.0),pos,vel,pos_sphere,vel_R)
         return nGals[index],gal[index],pos_sphere,vel_R
 def nu_from_a(a): #MHz
     return a*f21cm
@@ -169,8 +175,6 @@ def main():
         fb_list[i] = 0.5*(fc_list[i]+fc_list[i+1])
     ngals = []
     gals = []
-    pos = []
-    vR = []
     start_r = 0.0
     for i in range(len(alist)):
         z = "%10.3f" % (z_from_a(alist[i]))
@@ -179,20 +183,27 @@ def main():
         else:
             alist_distance = cosmo.comoving_distance(last_z).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
-        ngals.append(ngal_i)
-        pos.append(pos_i)
-        vR.append(vR_i)
-        gals.append(numpy.empty(ngal_i*8,dtype = gal_i.dtype))
+        #ngals.append(ngal_i)
+        #pos.append(pos_i)
+        #vR.append(vR_i)
+        fullgal = numpy.empty(ngal_i*8,dtype = gal_i.dtype)
         if "FileUniqueGalID" in gal_i.dtype.names:
             for j in range(8):
-                gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i
-                gals[i][ngal_i*j:ngal_i*(j+1)]['FileUniqueGalID'] += ngal_i*j
+                fullgal[ngal_i*j:ngal_i*(j+1)] = gal_i
+                fullgal[ngal_i*j:ngal_i*(j+1)]['FileUniqueGalID'] += ngal_i*j
+
         else:
             for j in range(8):
-                gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i      
+                fullgal[ngal_i*j:ngal_i*(j+1)] = gal_i      
+
         
         gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
         print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
+        #store data
+        ogal = numpy.empty(len(gallist),dtype=db_struct)
+        ogal['PosX'] = fullgal['Pos'][gallist,0]
+        ogal['PosY'] = fullgal['Pos'][gallist,1]
+        ogal['PosZ'] = fullgal['Pos'][gallist,2]
         start_r = alist_distance
         
     return
