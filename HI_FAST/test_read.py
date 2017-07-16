@@ -123,7 +123,7 @@ def readgal(z,i_model,i_file):
         pos_sphere = numpy.empty((nGals*8,3),dtype=numpy.float32)
         vel_R = numpy.empty((nGals*8,3),dtype=numpy.float32)
         mymodule.make_sphere(c_int(nGals),c_float(500.0),pos,vel,pos_sphere,vel_R)
-        return nGals[index],gal[index],pos_sphere,vel_R
+        return nGals,gal,pos_sphere,vel_R
 def nu_from_a(a): #MHz
     return a*f21cm
 def a_from_nu(f):
