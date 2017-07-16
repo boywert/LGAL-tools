@@ -158,8 +158,9 @@ def main():
     
     alist = numpy.loadtxt(alist_file)
     alist = alist[(alist >= a_from_z(last_z)) & (alist <= a_from_z(first_z))]
+    alist.sort()
     alist = alist[::-1]
-    
+    print alist,a_from_z(last_z),a_from_z(first_z)
     fc_list = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-1*f_step)
     fb_list = numpy.empty(len(fc_list)-1,dtype = numpy.float32)
     for i in range(len(fc_list)-1):
