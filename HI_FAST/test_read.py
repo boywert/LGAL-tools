@@ -110,8 +110,6 @@ plt.rcParams['xtick.major.size'] = 8
 NSIDE = 2048
 f21cm  = 1420.4057517667 #MHz
 def readgal(z,i_model,i_file):
-
-
         i = i_model
         index = model_names[i]
         if index[:4] == "lgal":
@@ -182,7 +180,7 @@ def main():
             alist_distance = cosmo.comoving_distance(z_from_a(alist[i+1])).value*0.73
         else:
             alist_distance = cosmo.comoving_distance(last_z).value*0.73
-        ngal_i,gal_i,pos_i,vR_i = readgal(float(z),'lgal_w1',5)
+        ngal_i,gal_i,pos_i,vR_i = readgal(float(z),0,5)
         #ngals.append(ngal_i)
         #pos.append(pos_i)
         #vR.append(vR_i)
