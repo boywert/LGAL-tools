@@ -143,7 +143,7 @@ alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
 def main():
     
     first_z = 0.0
-    last_z = z_from_nu(1205.0)
+    last_z = z_from_nu(1210.0)
     f_step = 0.5 #MHz
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
