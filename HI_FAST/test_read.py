@@ -172,7 +172,7 @@ def main():
         alist_distance = cosmo.comoving_distance(z_from_a(a)).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
         gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
-        print len(gallist)
+        print "z = ",z,"( r )",start_r,"-",alist_distance
         start_r = alist_distance
     return
 
