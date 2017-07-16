@@ -183,7 +183,7 @@ def main():
         pos.append(pos_i)
         vR.append(vR_i)
         gals.append(numpy.empty(ngal_i*8,dtype = gal_i.dtype))
-        for j = range(8):
+        for j in range(8):
             gals[i][ngal_i*j:ngal_i*(j+1)] = gal_i
             if "FileUniqueGalID" in gal_i.dtype.names:
                 gals[i][ngal_i*j:ngal_i*(j+1)]['FileUniqueGalID'] += ngal_i*j 
