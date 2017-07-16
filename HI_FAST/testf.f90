@@ -57,7 +57,7 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
            B1(2,index*N+1:index*N+N) = acos(AC(3,:)/B1(1,:))
            B1(3,index*N+1:index*N+N) = mod((atan2(AC(2,:),AC(1,:)) + 2*PI),2*PI)
            B2(1,index*N+1:index*N+N) = (A1(1,:)*A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
-           B2(2,index*N+1:index*N+N) = (*A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
+           B2(2,index*N+1:index*N+N) = (A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
            B2(3,index*N+1:index*N+N) = (-1*sin(B1(3,:))*A2(1,:)+cos(B1(3,:))*A2(2,:))
         end do
      end do
