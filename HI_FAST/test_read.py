@@ -194,7 +194,7 @@ def main():
             for j in range(8):
                 fullgal[ngal_i*j:ngal_i*(j+1)] = gal_i      
 
-        
+        del(gal_i)
         gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
         print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
         #store data
@@ -202,6 +202,15 @@ def main():
         ogal['PosX'] = fullgal['Pos'][gallist,0]
         ogal['PosY'] = fullgal['Pos'][gallist,1]
         ogal['PosZ'] = fullgal['Pos'][gallist,2]
+        ogal['VelX'] = fullgal['Vel'][gallist,0]
+        ogal['VelY'] = fullgal['Vel'][gallist,1]
+        ogal['VelZ'] = fullgal['Vel'][gallist,2]
+        ogal['PosR'] = pos_i[gallist,0]
+        ogal['PosTheta'] = pos_i[gallist,1]
+        ogal['PosPhi'] = pos_i[gallist,2]
+        ogal['VelR'] = vR_i[gallist,0]
+        ogal['VelTheta'] = vR_i[gallist,1]
+        ogal['VelPhi'] = vR_i[gallist,2]
         start_r = alist_distance
         
     return
