@@ -44,7 +44,7 @@ def loadfilter(structfile):
     filter['StellarMass'] = True
     filter['ColdGas'] = True
     filter['Mvir'] = True
-    #filter['FileUniqueGalID'] = True
+    filter['FileUniqueGalID'] = True
     #filter['FileUniqueGalCentralID'] = True
     dt = LGalaxyStruct.struct_dtype
     return (filter,dt)
@@ -176,10 +176,21 @@ def main():
         else:
             alist_distance = cosmo.comoving_distance(last_z).value*0.73
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
+        
         gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
         print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
         start_r = alist_distance
+        print gallist
+    return
 
+
+    i = len(alist)-1
+    z = "%10.3f" % (z_from_a(alist[i]))
+    
+    ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
+    gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
+    print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
+    start_r = alist_distance
     
                         
     return
