@@ -47,8 +47,9 @@ db_struct = numpy.dtype([
 ('StellarMass'               , numpy.float32),
 ('ColdGas'                   , numpy.float32), 
 ('Healpix'                   , numpy.int32),
-('Luminosity'                , numpy.float32),
+('Frequency'                 , numpy.float32),
 ('LuminosityDistance'        , numpy.float32),
+('NeutralH'                  , numpy.float32),
 ('Intensity'                 , numpy.float32)])
 
 def loadfilter(structfile):
@@ -156,7 +157,7 @@ def main():
     #construct table for lookup f-d
     f_array = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-0.1)
     d_array = numpy.empty(len(f_array),dtype=numpy.float32)
-    d_array[:] = cosmo.comoving_distance(z_from_nu(f_array[:]))
+    d_array[:] = cosmo.comoving_distance(z_from_nu(f_array[:])).value*0.73
     print f_array
     print d_array
 
@@ -207,13 +208,17 @@ def main():
         ogal['VelZ'] = fullgal['Vel'][gallist,2]
         ogal['StellarMass'] = fullgal['StellarMass'][gallist]
         ogal['ColdGas'] = fullgal['ColdGas'][gallist]
+        coldtostellar =  ogal['ColdGas']/ogal['StellarMass']
         ogal['PosR'] = pos_i[gallist,0]
         ogal['PosTheta'] = pos_i[gallist,1]
         ogal['PosPhi'] = pos_i[gallist,2]
         ogal['VelR'] = vR_i[gallist,0]
         ogal['VelTheta'] = vR_i[gallist,1]
         ogal['VelPhi'] = vR_i[gallist,2]
-        
+        ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
+        ogal['LuminosityDistance'] = cosmo.luminosity_distance(z_from_nu(ogal['Frequency'])).value
+        ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
+        ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
         start_r = alist_distance
         
     return
