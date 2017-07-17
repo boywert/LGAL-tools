@@ -143,7 +143,7 @@ def z_from_a(a):
 alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
 
 
-def main():
+def gen_lightcone(dataset,file):
     
     first_z = 0.0
     last_z = z_from_nu(1220.0)
@@ -180,7 +180,7 @@ def main():
             alist_distance = cosmo.comoving_distance(z_from_a(alist[i+1])).value*0.73
         else:
             alist_distance = cosmo.comoving_distance(last_z).value*0.73
-        ngal_i,gal_i,pos_i,vR_i = readgal(float(z),0,5)
+        ngal_i,gal_i,pos_i,vR_i = readgal(float(z),dataset,file)
         #ngals.append(ngal_i)
         #pos.append(pos_i)
         #vR.append(vR_i)
@@ -231,7 +231,7 @@ def main():
     for i in range(len(gals)):
         db_gal[first_gal:first_gal+totalNgals[i]] = gals[i]
         first_gal += totalNgals[i]
-    print db_gal
+    
     return
 
 
@@ -270,5 +270,9 @@ def main():
     #         if len(listgal) == 0:
     #             id = -1
     #         isnap -= 1
+def main():
+     file = int(sys.argv[0])
+     for i in range(len(model_names)):
+         gen_lightcone(i,file)
 if __name__ == "__main__":
     main()
