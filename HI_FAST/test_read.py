@@ -212,8 +212,9 @@ def main():
             ogal['PosR'] = pos_i[gallist,0]
             ogal['PosTheta'] = pos_i[gallist,1]
             ogal['PosPhi'] = pos_i[gallist,2]
-            print ogal[(ogal['PosTheta'] < 0.) | (ogal['PosTheta'] > numpy.pi)] 
-            ogal['Healpix'][:] = healpy.pixelfunc.ang2pix(NSIDE, ogal['PosTheta'][:], ogal['PosPhi'][:])
+            print 'err theta',(ogal['PosTheta'] < 0.)
+            print 'err phi',(ogal['PosPhi'] > numpy.pi) 
+            ogal['Healpix'] = healpy.pixelfunc.ang2pix(NSIDE, ogal['PosTheta'], ogal['PosPhi'])
             ogal['VelR'] = vR_i[gallist,0]
             ogal['VelTheta'] = vR_i[gallist,1]
             ogal['VelPhi'] = vR_i[gallist,2]
