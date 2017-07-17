@@ -52,7 +52,7 @@ db_struct = numpy.dtype([
 
 def loadfilter(structfile):
     from random import randint
-    ranki = randint(0,1000000000)
+    ranki = str(randint(0,1000000000))
     sys.path.insert(0,"../tmp/"+ranki)
     os.system("cp "+structfile+" ../tmp/"+ranki+"/LGalaxyStruct.py")
     os.system("rm -f ../tmp/"+ranki+"/LGalaxyStruct.pyc")
