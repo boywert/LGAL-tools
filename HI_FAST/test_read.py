@@ -199,27 +199,28 @@ def main():
         print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
         #store data
         ogal = numpy.empty(len(gallist),dtype=db_struct)
-        ogal['PosX'] = fullgal['Pos'][gallist,0]
-        ogal['PosY'] = fullgal['Pos'][gallist,1]
-        ogal['PosZ'] = fullgal['Pos'][gallist,2]
-        ogal['VelX'] = fullgal['Vel'][gallist,0]
-        ogal['VelY'] = fullgal['Vel'][gallist,1]
-        ogal['VelZ'] = fullgal['Vel'][gallist,2]
-        ogal['StellarMass'] = fullgal['StellarMass'][gallist]
-        ogal['ColdGas'] = fullgal['ColdGas'][gallist]
-        coldtostellar =  ogal['ColdGas']/ogal['StellarMass']
-        ogal['PosR'] = pos_i[gallist,0]
-        ogal['PosTheta'] = pos_i[gallist,1]
-        ogal['PosPhi'] = pos_i[gallist,2]
-        print ogal[(ogal['PosTheta'] < 0.) | (ogal['PosTheta'] > numpy.pi)] 
-        ogal['Healpix'] = healpy.pixelfunc.ang2pix(NSIDE, ogal['PosTheta'][:], ogal['PosPhi'][:])
-        ogal['VelR'] = vR_i[gallist,0]
-        ogal['VelTheta'] = vR_i[gallist,1]
-        ogal['VelPhi'] = vR_i[gallist,2]
-        ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
-        ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
-        ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
-        ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
+        if (len(gallist) > 0):
+            ogal['PosX'] = fullgal['Pos'][gallist,0]
+            ogal['PosY'] = fullgal['Pos'][gallist,1]
+            ogal['PosZ'] = fullgal['Pos'][gallist,2]
+            ogal['VelX'] = fullgal['Vel'][gallist,0]
+            ogal['VelY'] = fullgal['Vel'][gallist,1]
+            ogal['VelZ'] = fullgal['Vel'][gallist,2]
+            ogal['StellarMass'] = fullgal['StellarMass'][gallist]
+            ogal['ColdGas'] = fullgal['ColdGas'][gallist]
+            coldtostellar =  ogal['ColdGas']/ogal['StellarMass']
+            ogal['PosR'] = pos_i[gallist,0]
+            ogal['PosTheta'] = pos_i[gallist,1]
+            ogal['PosPhi'] = pos_i[gallist,2]
+            print ogal[(ogal['PosTheta'] < 0.) | (ogal['PosTheta'] > numpy.pi)] 
+            ogal['Healpix'] = healpy.pixelfunc.ang2pix(NSIDE, ogal['PosTheta'][:], ogal['PosPhi'][:])
+            ogal['VelR'] = vR_i[gallist,0]
+            ogal['VelTheta'] = vR_i[gallist,1]
+            ogal['VelPhi'] = vR_i[gallist,2]
+            ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
+            ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
+            ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
+            ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
         gals.append(ogal)
         start_r = alist_distance
         totalNgals.append(len(gallist))
