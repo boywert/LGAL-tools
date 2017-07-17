@@ -174,6 +174,6 @@ def main():
                           gal['StellarMass'],gal['ColdGas'],
                           gal['Healpix'], \
                           gal['Frequency'], \
-                          gal['Luminosity'],gal['NeutralH'],gal['Intensity'])
+                          gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity'])
 if __name__ == "__main__":
     main()
