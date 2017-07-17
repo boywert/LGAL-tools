@@ -167,13 +167,13 @@ def main():
         for file in range(512):
             gal = read_lightcone(i,model_names[i],file)
             c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', \
-                          gal['PosX'], gal['PosY'],gal['PosZ'], \
+                          (gal['PosX'], gal['PosY'],gal['PosZ'], \
                           gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
                           gal['VelX'],gal['VelX'],gal['VelX'], \
                           gal['VelR'],gal['VelTheta'],gal['VelPhi'], \
                           gal['StellarMass'],gal['ColdGas'],
                           gal['Healpix'], \
                           gal['Frequency'], \
-                          gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity'])
+                          gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity']))
 if __name__ == "__main__":
     main()
