@@ -1,5 +1,4 @@
 from astropy.cosmology import FlatLambdaCDM
-import sqlite3
 cosmo = FlatLambdaCDM(H0=73, Om0=0.25, Tcmb0=2.725)
 from mass_fn import *
 from globalconf import *
@@ -27,7 +26,6 @@ arg2 = ndpointer(ndim=2)
 arg3 = ndpointer(shape=(10,10))
 mymodule.make_sphere.argtypes = [c_int, c_float, _twodimp, _twodimp, _twodimp, _twodimp]
 import healpy
-import sqlite3
 from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
@@ -213,6 +211,7 @@ def main():
         ogal['PosR'] = pos_i[gallist,0]
         ogal['PosTheta'] = pos_i[gallist,1]
         ogal['PosPhi'] = pos_i[gallist,2]
+        ogal['Healpix'] = healpy.pixelfunc.ang2pix(NSIDE, ogal['PosTheta'][:], ogal['PosPhi'][:])
         ogal['VelR'] = vR_i[gallist,0]
         ogal['VelTheta'] = vR_i[gallist,1]
         ogal['VelPhi'] = vR_i[gallist,2]
