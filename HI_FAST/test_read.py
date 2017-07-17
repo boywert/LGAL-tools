@@ -271,7 +271,7 @@ def gen_lightcone(dataset,file):
     #             id = -1
     #         isnap -= 1
 def main():
-     file = int(sys.argv[0])
+     file = int(sys.argv[1])
      for i in range(len(model_names)):
          gen_lightcone(i,file)
 if __name__ == "__main__":
