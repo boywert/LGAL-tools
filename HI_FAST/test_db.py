@@ -177,5 +177,6 @@ def main():
                           # gal['Healpix'], \
                           # gal['Frequency'], \
                           # gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity']));
+            flush()
 if __name__ == "__main__":
     main()
