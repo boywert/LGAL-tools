@@ -164,15 +164,16 @@ def main():
     LuminosityDistance real, NeutralH real, Intensity real)''')
     
     for i in range(len(model_names)):
-        gal = read_lightcone(i,model_names[i],file)
-        c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', \
-                      gal['PosX'], gal['PosY'],gal['PosZ'], \
-                      gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
-                      gal['VelX'],gal['VelX'],gal['VelX'], \
-                      gal['VelR'],gal['VelTheta'],gal['VelPhi'], \
-                      gal['StellarMass'],gal['ColdGas'],
-                      gal['Healpix'], \
-                      gal['Frequency'], \
-                      gal['Luminosity'],gal['NeutralH'],gal['Intensity'])
+        for file in range(512):
+            gal = read_lightcone(i,model_names[i],file)
+            c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', \
+                          gal['PosX'], gal['PosY'],gal['PosZ'], \
+                          gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
+                          gal['VelX'],gal['VelX'],gal['VelX'], \
+                          gal['VelR'],gal['VelTheta'],gal['VelPhi'], \
+                          gal['StellarMass'],gal['ColdGas'],
+                          gal['Healpix'], \
+                          gal['Frequency'], \
+                          gal['Luminosity'],gal['NeutralH'],gal['Intensity'])
 if __name__ == "__main__":
     main()
