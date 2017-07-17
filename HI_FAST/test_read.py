@@ -226,7 +226,7 @@ def main():
     totalNgals = numpy.array(totalNgals)
     db_gal = numpy.empty(numpy.sum(totalNgals),dtype=db_struct)
     first_gal = 0
-    for i in range(len(gal)):
+    for i in range(len(gals)):
         db_gal[first_gal:first_gal+totalNgals[i]] = gals[i]
         first_gal += totalNgals[i]
     print db_gal
