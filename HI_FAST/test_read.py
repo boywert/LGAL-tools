@@ -52,10 +52,12 @@ db_struct = numpy.dtype([
 
 def loadfilter(structfile):
     from random import randint
-    ranki = str(randint(0,1000000000))
-    sys.path.insert(0,"../tmp/"+ranki)
-    os.system("cp "+structfile+" ../tmp/"+ranki+"/LGalaxyStruct.py")
-    os.system("rm -f ../tmp/"+ranki+"/LGalaxyStruct.pyc")
+    ranki = str(randint(0,1024))
+    rankj = str(randint(0,1024))
+    os.system("mkdir -p ../tmp/"+ranki+"/"+rankj)
+    sys.path.insert(0,"../tmp/"+ranki+"/"+rankj)
+    os.system("cp "+structfile+" ../tmp/"+ranki+"/"+rankj+"/LGalaxyStruct.py")
+    os.system("rm -f ../tmp/"+ranki+"/"+rankj+"/LGalaxyStruct.pyc")
     reload(LGalaxyStruct)
     filter = LGalaxyStruct.properties_used
     for fi in filter:
