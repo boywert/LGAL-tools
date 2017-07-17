@@ -216,7 +216,7 @@ def main():
         ogal['VelTheta'] = vR_i[gallist,1]
         ogal['VelPhi'] = vR_i[gallist,2]
         ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
-        ogal['LuminosityDistance'] = cosmo.luminosity_distance(z_from_nu(ogal['Frequency'][:])).value
+        ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
         ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
         ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
         start_r = alist_distance
