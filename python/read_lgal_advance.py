@@ -279,7 +279,8 @@ def readsnap_lgal_advance(folder,file_prefix,firstfile,lastfile,filter_arr,dt,ve
         if(verbose == 2):
             print end-start,"s"
     endx = time.time()
-    pickle.dump( (nTrees,nHalos,nTreeHalos,output_Galaxy), open( cache_filename, "wb" ))
+    if cache_on is True:
+        pickle.dump( (nTrees,nHalos,nTreeHalos,output_Galaxy), open( cache_filename, "wb" ))
     if(verbose > 0):
         print "Read ",folder,"file",firstfile,"-",lastfile,":",endx-startx,"s"
     return (nTrees,nHalos,nTreeHalos,output_Galaxy)
