@@ -220,14 +220,14 @@ def main():
         ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
         ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
         ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
-        gal.append(ogal)
+        gals.append(ogal)
         start_r = alist_distance
         totalNgals.append(len(gallist))
     totalNgals = numpy.array(totalNgals)
     db_gal = numpy.empty(numpy.sum(totalNgals),dtype=db_struct)
     first_gal = 0
     for i in range(len(gal)):
-        db_gal[first_gal:first_gal+totalNgals[i]] = gal[i]
+        db_gal[first_gal:first_gal+totalNgals[i]] = gals[i]
         first_gal += totalNgals[i]
     print db_gal
     return
