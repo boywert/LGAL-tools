@@ -153,7 +153,7 @@ def main():
     import sqlite3
     conn = sqlite3.connect('/data1/example.db')
     c = conn.cursor()
-    c.execute('''CREATE TABLE lightcone
+    c.execute('''CREATE TABLE IF not exists lightcone
     (PosX real, PosY real, PosZ real, 
     PosR real, PosTheta real, PosPhi reak,
     VelX real, VelY real, VelZ real,
