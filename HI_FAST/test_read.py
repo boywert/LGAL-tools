@@ -232,6 +232,7 @@ def gen_lightcone(dataset,dataname,file):
         db_gal[first_gal:first_gal+totalNgals[i]] = gals[i]
         first_gal += totalNgals[i]
     numpy.save('model_%s_%d.npy'%(dataname,file),db_gal)
+    flush()
     return
 
 
