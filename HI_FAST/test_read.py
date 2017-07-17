@@ -143,7 +143,7 @@ def z_from_a(a):
 alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
 
 
-def gen_lightcone(dataset,file):
+def gen_lightcone(dataset,dataname,file):
     
     first_z = 0.0
     last_z = z_from_nu(1220.0)
@@ -231,7 +231,7 @@ def gen_lightcone(dataset,file):
     for i in range(len(gals)):
         db_gal[first_gal:first_gal+totalNgals[i]] = gals[i]
         first_gal += totalNgals[i]
-    numpy.save('model_%d_%d.npy'%(dataset,file),db_gal)
+    numpy.save('model_%s_%d.npy'%(dataset,file),db_gal)
     return
 
 
@@ -273,6 +273,6 @@ def gen_lightcone(dataset,file):
 def main():
      file = int(sys.argv[1])
      for i in range(len(model_names)):
-         gen_lightcone(i,file)
+         gen_lightcone(i,model_names[i],file)
 if __name__ == "__main__":
     main()
