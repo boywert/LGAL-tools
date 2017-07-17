@@ -175,6 +175,7 @@ def main():
     ngals = []
     gals = []
     start_r = 0.0
+    totalNgals = []
     for i in range(len(alist)):
         z = "%10.3f" % (z_from_a(alist[i]))
         if i < len(alist)-1:
@@ -219,36 +220,44 @@ def main():
         ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
         ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
         ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
+        gal.append(ogal)
         start_r = alist_distance
-        
+        totalNgals.append(len(gallist))
+    totalNgals = numpy.array(totalNgals)
+    db_gal = numpy.empty(numpy.sum(totalNgals),dtype=db_struct)
+    first_gal = 0
+    for i in range(len(gal)):
+        db_gal[first_gal:first_gal+totalNgals[i]] = gal[i]
+        first_gal += totalNgals[i]
+    print db_gal
     return
 
 
-    i = len(alist)-1
-    z = "%10.3f" % (z_from_a(alist[i]))
+    # i = len(alist)-1
+    # z = "%10.3f" % (z_from_a(alist[i]))
     
-    ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
-    gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
-    print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
-    start_r = alist_distance
+    # ngal_i,gal_i,pos_i,vR_i = readgal(float(z))
+    # gallist = numpy.where((pos_i[:,0] >= start_r) & (pos_i[:,0] <= alist_distance))[0]
+    # print "z = ",z,"a=",alist[i],"r = ",start_r,"-",alist_distance
+    # start_r = alist_distance
     
                         
-    return
+    # return
 
 
-    Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
-    Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
+    # Rb_list = numpy.empty(len(fb_list),dtype = numpy.float32)
+    # Rb_list[:] = cosmo.comoving_distance(z_from_nu(fb_list[:])).value*0.73
 
-    for i in range(len(Rb_list)-1):
-        r_check = len(alist_distance)-1
-        toggle = 0
-        while (toggle==0) & (r_check >= 0):
-            if alist_distance[r_check] > Rb_list[i]:
-                toggle = 1
-                break
-            r_check -= 1
-        gallist = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
-        print len(gallist)
+    # for i in range(len(Rb_list)-1):
+    #     r_check = len(alist_distance)-1
+    #     toggle = 0
+    #     while (toggle==0) & (r_check >= 0):
+    #         if alist_distance[r_check] > Rb_list[i]:
+    #             toggle = 1
+    #             break
+    #         r_check -= 1
+    #     gallist = numpy.where((pos[r_check][:,0] >= Rb_list[i]) & (pos[r_check][:,0] <= Rb_list[i+1]))[0]
+    #     print len(gallist)
 
     # #track gals backward
     # for igal in gal[len(gal)-1]:
