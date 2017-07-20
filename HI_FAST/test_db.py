@@ -157,38 +157,38 @@ def dtype_struct_to_descr(dtype):
     return desc
 def main():
     import sqlite3
-    # print "Creating SQLite3 table"
-    # start = timer()
-    # conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
-    # c = conn.cursor()
-    # c.execute('''CREATE TABLE IF not exists lightcone
-    # (PosX real, PosY real, PosZ real, 
-    # PosR real, PosTheta real, PosPhi real,
-    # VelX real, VelY real, VelZ real,
-    # VelR real, VelTheta real, VelPhi real,
-    # StellarMass real, ColdGas real,
-    # Healpix int,
-    # Frequency real,
-    # LuminosityDistance real, NeutralH real, Intensity real)''')
+    print "Creating SQLite3 table"
+    start = timer()
+    conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF not exists lightcone
+    (PosX real, PosY real, PosZ real, 
+    PosR real, PosTheta real, PosPhi real,
+    VelX real, VelY real, VelZ real,
+    VelR real, VelTheta real, VelPhi real,
+    StellarMass real, ColdGas real,
+    Healpix int,
+    Frequency real,
+    LuminosityDistance real, NeutralH real, Intensity real)''')
     
-    # for i in range(len(model_names)):
-    #     for file in range(512):
-    #         gal = read_lightcone(i,model_names[i],file)
-    #         c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',map(tuple, gal.tolist()))
-    #                      # \
-    #                       # (gal['PosX'], gal['PosY'],gal['PosZ'], \
-    #                       # gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
-    #                       # gal['VelX'],gal['VelX'],gal['VelX'], \
-    #                       # gal['VelR'],gal['VelTheta'],gal['VelPhi'], \
-    #                       # gal['StellarMass'],gal['ColdGas'],
-    #                       # gal['Healpix'], \
-    #                       # gal['Frequency'], \
-    #                       # gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity']));
-    #         conn.commit()
+    for i in range(len(model_names)):
+        for file in range(512):
+            gal = read_lightcone(i,model_names[i],file)
+            c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',map(tuple, gal.tolist()))
+                         # \
+                          # (gal['PosX'], gal['PosY'],gal['PosZ'], \
+                          # gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
+                          # gal['VelX'],gal['VelX'],gal['VelX'], \
+                          # gal['VelR'],gal['VelTheta'],gal['VelPhi'], \
+                          # gal['StellarMass'],gal['ColdGas'],
+                          # gal['Healpix'], \
+                          # gal['Frequency'], \
+                          # gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity']));
+            conn.commit()
             
-    # conn.close()
-    # end = timer()
-    # print "sqlite uses ",end-start
+    conn.close()
+    end = timer()
+    print "sqlite uses ",end-start
     print "Creating PyTables HDF5 file"
     start = timer()
     h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'w')
