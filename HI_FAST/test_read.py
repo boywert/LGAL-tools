@@ -48,7 +48,7 @@ db_struct = numpy.dtype([
 ('Frequency'                 , numpy.float32),
 ('LuminosityDistance'        , numpy.float32),
 ('NeutralH'                  , numpy.float32),
-('Intensity'                 , numpy.float32)])
+('Flux'                 , numpy.float32)])
 
 def loadfilter(structfile):
     from random import randint
@@ -216,8 +216,6 @@ def gen_lightcone(dataset,dataname,file):
             ogal['PosR'] = pos_i[gallist,0]
             ogal['PosTheta'] = pos_i[gallist,1]
             ogal['PosPhi'] = pos_i[gallist,2]
-        
-            print 'err theta',numpy.isnan(ogal['PosTheta'])
             ogal['Healpix'] = healpy.pixelfunc.ang2pix(NSIDE, ogal['PosTheta'], ogal['PosPhi'])
             ogal['VelR'] = vR_i[gallist,0]
             ogal['VelTheta'] = vR_i[gallist,1]
@@ -225,7 +223,7 @@ def gen_lightcone(dataset,dataname,file):
             ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
             ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
             ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
-            ogal['Intensity'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
+            ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
         gals.append(ogal)
         start_r = alist_distance
         totalNgals.append(len(gallist))

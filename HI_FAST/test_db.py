@@ -1,5 +1,6 @@
 from astropy.cosmology import FlatLambdaCDM
 cosmo = FlatLambdaCDM(H0=73, Om0=0.25, Tcmb0=2.725)
+import tables
 from mass_fn import *
 from globalconf import *
 from math import *
@@ -147,15 +148,15 @@ def read_lightcone(dataset,dataname,file):
     gal = numpy.load('model_%s_%d.npy'%(dataname,file))
     return gal
 
-
-
 def main():
     import sqlite3
-    conn = sqlite3.connect('/data1/example.db')
+    print "Creating SQLite3 table"
+    start = timer()
+    conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF not exists lightcone
     (PosX real, PosY real, PosZ real, 
-    PosR real, PosTheta real, PosPhi reak,
+    PosR real, PosTheta real, PosPhi real,
     VelX real, VelY real, VelZ real,
     VelR real, VelTheta real, VelPhi real,
     StellarMass real, ColdGas real,
@@ -165,7 +166,6 @@ def main():
     
     for i in range(len(model_names)):
         for file in range(512):
-            print "doing", file
             gal = read_lightcone(i,model_names[i],file)
             c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',map(tuple, gal.tolist()))
                          # \
@@ -178,6 +178,23 @@ def main():
                           # gal['Frequency'], \
                           # gal['LuminosityDistance'],gal['NeutralH'],gal['Intensity']));
             conn.commit()
+            
     conn.close()
+    end = timer()
+    print "sqlite uses ",end-start
+    print "Creating PyTables HDF5 file"
+    start = timer()
+    h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.db', 'w')
+    db_desc = tables.descr_from_dtype(db_struct)
+    tbl = h5f.create_table('/', 'table_name', db_desc)
+    for i in range(len(model_names)):
+        for file in range(512):
+            gal = read_lightcone(i,model_names[i],file)
+            tbl.append(gal)
+            tbl.flush()
+    h5f.flush()
+    h5f.close()
+    end = timer()
+    print "pytables uses ",end-start 
 if __name__ == "__main__":
     main()
