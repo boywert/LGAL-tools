@@ -184,7 +184,7 @@ def main():
     print "sqlite uses ",end-start
     print "Creating PyTables HDF5 file"
     start = timer()
-    h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.db', 'w')
+    h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'w')
     db_desc = tables.descr_from_dtype(db_struct)
     tbl = h5f.create_table('/', 'table_name', db_desc)
     for i in range(len(model_names)):
