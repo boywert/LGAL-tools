@@ -147,7 +147,14 @@ alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
 def read_lightcone(dataset,dataname,file):
     gal = numpy.load('model_%s_%d.npy'%(dataname,file))
     return gal
-
+def dtype_struct_to_descr(dtype):
+    desc = {}
+    for element in dtype.descr:
+        if element[1] == "<f4":
+            desc[element[0]] = tables.Float32Col()
+        if element[1] == "<i4":
+            desc[element[0]] = tables.Int32Col()
+    return desc
 def main():
     import sqlite3
     # print "Creating SQLite3 table"
@@ -185,12 +192,12 @@ def main():
     print "Creating PyTables HDF5 file"
     start = timer()
     h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'w')
-    db_desc = tables.descr_from_dtype(db_struct)
+    db_desc = dtype_struct_to_descr(db_struct)
     tbl = h5f.create_table('/', 'table_name', db_desc)
     for i in range(len(model_names)):
         for file in range(512):
             gal = read_lightcone(i,model_names[i],file)
-            tbl.append(gal)
+            tbl.append(gal.tolist())
             tbl.flush()
     h5f.flush()
     h5f.close()
