@@ -163,8 +163,9 @@ def main():
     c = conn.cursor()
     c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
  
-    rows = c.fetchall()
-    print "len = ", len(rows)
+    for a in c.fetchone():
+        i = a
+        
     conn.close()
     end = timer()
     print "sqlite uses ",end-start
@@ -175,8 +176,9 @@ def main():
     h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'w')
    
     tbl = h5f.root.detector.table_name
-    rows = tbl.read_where('(PosPhi > %f)' % (numpy.pi/2))
-    print "len = ", len(rows)
+    for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
+        i = row
+
     h5f.close()
     end = timer()
     print "/share/data2 uses ",(end-start)
@@ -186,8 +188,8 @@ def main():
     h5f = tables.open_file('/lustre/HI_FAST/VIMALA/Lightcone/example.hdf5', 'w')
 
     tbl = h5f.root.detector.table_name
-    rows = tbl.read_where('(PosPhi > %f)' % (numpy.pi/2))
-    print "len = ", len(rows)
+    for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
+        i = row
     h5f.close()
     end = timer()
     print "/lustre uses ",(end-start)
