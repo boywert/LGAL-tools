@@ -163,8 +163,8 @@ def main():
     c = conn.cursor()
     c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
  
-    rows = cur.fetchall()
-            
+    rows = c.fetchall()
+    print "len = ", len(rows)
     conn.close()
     end = timer()
     print "sqlite uses ",end-start
@@ -176,7 +176,7 @@ def main():
    
     tbl = h5f.root.detector.table_name
     rows = tbl.read_where('(PosPhi > %f)' % (numpy.pi/2))
-
+    print "len = ", len(rows)
     h5f.close()
     end = timer()
     print "/share/data2 uses ",(end-start)
@@ -187,7 +187,7 @@ def main():
 
     tbl = h5f.root.detector.table_name
     rows = tbl.read_where('(PosPhi > %f)' % (numpy.pi/2))
-
+    print "len = ", len(rows)
     h5f.close()
     end = timer()
     print "/lustre uses ",(end-start)
