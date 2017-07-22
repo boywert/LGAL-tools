@@ -156,20 +156,20 @@ def dtype_struct_to_descr(dtype):
             desc[element[0]] = tables.Int32Col()
     return desc
 def main():
-    # import sqlite3
-    # print "Reading SQLite3 table"
-    # start = timer()
-    # conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
-    # c = conn.cursor()
-    # c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
+    import sqlite3
+    print "Reading SQLite3 table"
+    start = timer()
+    conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
 
-    # a = c.fetchone()
-    # while (a != None):
-    #     a = c.fetchone()
+    a = c.fetchone()
+    while (a != None):
+        a = c.fetchone()
         
-    # conn.close()
-    # end = timer()
-    # print "sqlite uses ",end-start
+    conn.close()
+    end = timer()
+    print "sqlite uses ",end-start
 
     db_desc = dtype_struct_to_descr(db_struct)
     print "PyTables HDF5 file"
@@ -177,7 +177,7 @@ def main():
     h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'r')
     tbl = h5f.root.table_name
     for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
-        print row[:]
+        a =  row[:]
     h5f.close()
     end = timer()
     print "/share/data2 uses ",(end-start)
@@ -188,7 +188,7 @@ def main():
 
     tbl = h5f.root.table_name
     for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
-         print row[:]
+         a =  row[:]
     h5f.close()
     end = timer()
     print "/lustre uses ",(end-start)
