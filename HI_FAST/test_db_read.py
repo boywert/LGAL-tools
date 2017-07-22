@@ -188,7 +188,7 @@ def main():
 
     tbl = h5f.root.table_name
     for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
-        print row['ColdGas']
+        print tbl[row]
     h5f.close()
     end = timer()
     print "/lustre uses ",(end-start)
