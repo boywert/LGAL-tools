@@ -165,7 +165,6 @@ def main():
 
     a = c.fetchone()
     while (a != None):
-        print a
         a = c.fetchone()
         
     conn.close()
