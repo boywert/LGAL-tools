@@ -163,7 +163,7 @@ def main():
     c = conn.cursor()
     c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
  
-    while (a = c.fetchone()) != None:
+    while ((a = c.fetchone()) != None):
         print a
         
     conn.close()
