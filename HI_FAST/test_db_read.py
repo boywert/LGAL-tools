@@ -177,7 +177,7 @@ def main():
     h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'r')
     tbl = h5f.root.table_name
     for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
-        print row
+        print row[:]
     h5f.close()
     end = timer()
     print "/share/data2 uses ",(end-start)
@@ -188,7 +188,7 @@ def main():
 
     tbl = h5f.root.table_name
     for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
-        print tbl[row]
+         print row[:]
     h5f.close()
     end = timer()
     print "/lustre uses ",(end-start)
