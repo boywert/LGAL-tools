@@ -161,7 +161,7 @@ def main():
     start = timer()
     conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM lightcone WHERE PosPhi > ?",numpy.pi/2)
+    c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
  
     rows = cur.fetchall()
             
