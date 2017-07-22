@@ -162,9 +162,11 @@ def main():
     conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
     c = conn.cursor()
     c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
- 
-    while ((a = c.fetchone()) != None):
+
+    a = c.fetchone()
+    while (a != None):
         print a
+        a = c.fetchone()
         
     conn.close()
     end = timer()
