@@ -161,7 +161,7 @@ def main():
     start = timer()
     conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/2))
+    c.execute("SELECT * FROM lightcone WHERE PosPhi > %f" %(numpy.pi/4))
 
     a = c.fetchone()
     while (a != None):
@@ -176,7 +176,7 @@ def main():
     start = timer()
     h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'r')
     tbl = h5f.root.table_name
-    for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
+    for row in tbl.where('(PosPhi > %f)' % (numpy.pi/4)):
         a =  row[:]
     h5f.close()
     end = timer()
@@ -187,7 +187,7 @@ def main():
     h5f = tables.open_file('/lustre/HI_FAST/VIMALA/Lightcone/example.hdf5', 'r')
 
     tbl = h5f.root.table_name
-    for row in tbl.where('(PosPhi > %f)' % (numpy.pi/2)):
+    for row in tbl.where('(PosPhi > %f)' % (numpy.pi/4)):
          a =  row[:]
     h5f.close()
     end = timer()
