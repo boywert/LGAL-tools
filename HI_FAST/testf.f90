@@ -53,13 +53,12 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
            AC(1,:) = A1(1,:) - (i-1)*boxsize
            AC(2,:) = A1(2,:) - (j-1)*boxsize
            AC(3,:) = A1(3,:) - (k-1)*boxsize
-           B1(1,index*N+1:index*N+N) = sqrt(AC(1,1:N)*AC(1,1:N)+AC(2,1:N)*AC(2,1:N)+AC(3,1:N)*AC(3,1:N))
+           B1(1,index*N+1:index*N+N) = sqrt(AC(1,1:N)*AC(1,1:N) + AC(2,1:N)*AC(2,1:N) + AC(3,1:N)*AC(3,1:N))
            B1(2,index*N+1:index*N+N) = acos(max(-1.0,min(1.0,AC(3,:)/B1(1,:))))
            B1(3,index*N+1:index*N+N) = mod((atan2(AC(2,:),AC(1,:)) + 2*PI),2*PI)
-           B2(1,index*N+1:index*N+N) = (A1(1,:)*A2(1,:)+A1(2,:)*A2(2,:)+A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
-           e = 1.0*cos(theta)*cos(phi), 1.0*sin(theta)*cos(phi), -sin(phi) 
-           B2(2,index*N+1:index*N+N) = (A2(1,:)*cos(B1(2,:))*cos(B1(3,:))+A1(2,:)*sin(B1(2,:))*cos(B1(3,:))-A1(3,:)*sin(B1(3,:)))/sqrt(A1(1,:)*A1(1,:)+A1(2,:)*A1(2,:)+A1(3,:)*A1(3,:))
-           B2(3,index*N+1:index*N+N) = (-1*sin(B1(3,:))*A2(1,:)+cos(B1(3,:))*A2(2,:))
+           B2(1,index*N+1:index*N+N) = (A1(1,:)*A2(1,:) + A1(2,:)*A2(2,:) + A1(3,:)*A2(3,:))/sqrt(A1(1,:)*A1(1,:) + A1(2,:)*A1(2,:) + A1(3,:)*A1(3,:))
+           B2(2,index*N+1:index*N+N) = (A2(1,:)*cos(B1(2,:))*cos(B1(3,:)) + A1(2,:)*sin(B1(2,:))*cos(B1(3,:)) - A1(3,:)*sin(B1(3,:)))/sqrt(A1(1,:)*A1(1,:) + A1(2,:)*A1(2,:) + A1(3,:)*A1(3,:))
+           B2(3,index*N+1:index*N+N) = (-1*sin(B1(3,:))*A2(1,:) + cos(B1(3,:))*A2(2,:))/sqrt(A2(1,:)*A2(1,:) + A2(2,:)*A2(2,:) + A2(3,:)*A2(3,:))
         end do
      end do
   end do
