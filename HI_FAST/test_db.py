@@ -190,34 +190,34 @@ def main():
     end = timer()
     print "sqlite uses ",end-start
     
-    print "Creating PyTables HDF5 file"
-    start = timer()
-    h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'w')
-    db_desc = dtype_struct_to_descr(db_struct)
-    tbl = h5f.create_table('/', 'table_name', db_desc)
-    for i in range(len(model_names)):
-        for file in range(512):
-            gal = read_lightcone(i,model_names[i],file)
-            tbl.append(gal.tolist())
-            tbl.flush()
-    h5f.flush()
-    h5f.close()
-    end = timer()
-    print "/share/data2 uses ",(end-start)
+    # print "Creating PyTables HDF5 file"
+    # start = timer()
+    # h5f = tables.open_file('/share/data2/VIMALA/Lightcone/example.hdf5', 'w')
+    # db_desc = dtype_struct_to_descr(db_struct)
+    # tbl = h5f.create_table('/', 'table_name', db_desc)
+    # for i in range(len(model_names)):
+    #     for file in range(512):
+    #         gal = read_lightcone(i,model_names[i],file)
+    #         tbl.append(gal.tolist())
+    #         tbl.flush()
+    # h5f.flush()
+    # h5f.close()
+    # end = timer()
+    # print "/share/data2 uses ",(end-start)
     
-    print "Creating PyTables HDF5 file"
-    start = timer()
-    h5f = tables.open_file('/lustre/HI_FAST/VIMALA/Lightcone/example.hdf5', 'w')
-    db_desc = dtype_struct_to_descr(db_struct)
-    tbl = h5f.create_table('/', 'table_name', db_desc)
-    for i in range(len(model_names)):
-        for file in range(512):
-            gal = read_lightcone(i,model_names[i],file)
-            tbl.append(gal.tolist())
-            tbl.flush()
-    h5f.flush()
-    h5f.close()
-    end = timer()
-    print "/lustre uses ",(end-start)
+    # print "Creating PyTables HDF5 file"
+    # start = timer()
+    # h5f = tables.open_file('/lustre/HI_FAST/VIMALA/Lightcone/example.hdf5', 'w')
+    # db_desc = dtype_struct_to_descr(db_struct)
+    # tbl = h5f.create_table('/', 'table_name', db_desc)
+    # for i in range(len(model_names)):
+    #     for file in range(512):
+    #         gal = read_lightcone(i,model_names[i],file)
+    #         tbl.append(gal.tolist())
+    #         tbl.flush()
+    # h5f.flush()
+    # h5f.close()
+    # end = timer()
+    # print "/lustre uses ",(end-start)
 if __name__ == "__main__":
     main()
