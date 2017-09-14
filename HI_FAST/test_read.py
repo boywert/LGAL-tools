@@ -226,7 +226,7 @@ def gen_lightcone(dataset,dataname,file):
             ogal['VelPhi'] = vR_i[gallist,2]
             ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
             ogal['Redshift'] = z_from_nu(ogal['Frequency'][:])
-            ogal['DeltaFrequency'] = 1000.0*fullgal['Vvir'][gallist]/3e8*f21cm
+            ogal['DeltaFrequency'] = 1000.0*fullgal['Vvir'][gallist]/3e8*f21cm*1e6
             ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
             ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))
             ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
