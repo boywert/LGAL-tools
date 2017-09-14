@@ -178,7 +178,7 @@ def main():
     for i in range(len(model_names)):
         for file in range(512):
             gal = read_lightcone(i,model_names[i],file)
-            c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',map(tuple, gal.tolist()))
+            c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',map(tuple, gal.tolist()))
                          # \
                           # (gal['PosX'], gal['PosY'],gal['PosZ'], \
                           # gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
