@@ -210,8 +210,8 @@ def gen_lightcone(dataset,dataname,file):
             ogal['VelX'] = fullgal['Vel'][gallist,0]
             ogal['VelY'] = fullgal['Vel'][gallist,1]
             ogal['VelZ'] = fullgal['Vel'][gallist,2]
-            ogal['StellarMass'] = fullgal['StellarMass'][gallist]*1e10
-            ogal['ColdGas'] = fullgal['ColdGas'][gallist]*1e10
+            ogal['StellarMass'] = fullgal['StellarMass'][gallist]*1e10/0.7
+            ogal['ColdGas'] = fullgal['ColdGas'][gallist]*1e10/0.7
             coldtostellar =  ogal['ColdGas']/ogal['StellarMass']
             ogal['PosR'] = pos_i[gallist,0]
             ogal['PosTheta'] = pos_i[gallist,1]
@@ -222,7 +222,7 @@ def gen_lightcone(dataset,dataname,file):
             ogal['VelPhi'] = vR_i[gallist,2]
             ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
             ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
-            ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))/0.73
+            ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))
             ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
         gals.append(ogal)
         start_r = alist_distance
