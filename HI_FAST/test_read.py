@@ -30,25 +30,28 @@ from timeit import default_timer as timer
 rank = "0"
 os.system("mkdir -p ../tmp/"+rank)
 db_struct = numpy.dtype([
-('PosX'                      , numpy.float32),
-('PosY'                      , numpy.float32),
-('PosZ'                      , numpy.float32),
-('PosR'                      , numpy.float32),
-('PosTheta'                  , numpy.float32),
-('PosPhi'                    , numpy.float32),
-('VelX'                      , numpy.float32),
-('VelY'                      , numpy.float32),
-('VelZ'                      , numpy.float32),
-('VelR'                      , numpy.float32),
-('VelTheta'                  , numpy.float32),
-('VelPhi'                    , numpy.float32),
-('StellarMass'               , numpy.float32),
-('ColdGas'                   , numpy.float32), 
-('Healpix'                   , numpy.int32),
-('Frequency'                 , numpy.float32),
-('LuminosityDistance'        , numpy.float32),
-('NeutralH'                  , numpy.float32),
-('Flux'                 , numpy.float32)])
+    ('PosX'                      , numpy.float32),
+    ('PosY'                      , numpy.float32),
+    ('PosZ'                      , numpy.float32),
+    ('PosR'                      , numpy.float32),
+    ('PosTheta'                  , numpy.float32),
+    ('PosPhi'                    , numpy.float32),
+    ('VelX'                      , numpy.float32),
+    ('VelY'                      , numpy.float32),
+    ('VelZ'                      , numpy.float32),
+    ('VelR'                      , numpy.float32),
+    ('VelTheta'                  , numpy.float32),
+    ('VelPhi'                    , numpy.float32),
+    ('StellarMass'               , numpy.float32),
+    ('ColdGas'                   , numpy.float32), 
+    ('Healpix'                   , numpy.int32),
+    ('Frequency'                 , numpy.float32),
+    ('LuminosityDistance'        , numpy.float32),
+    ('Redshift'                  , numpy.float32),
+    ('NeutralH'                  , numpy.float32),
+    ('DeltaFrequency'            , numpy.float32),
+    ('FluxDensity'               , numpy.float32),
+    ('Flux'                 , numpy.float32)])
 
 def loadfilter(structfile):
     from random import randint
@@ -67,6 +70,7 @@ def loadfilter(structfile):
     filter['StellarMass'] = True
     filter['ColdGas'] = True
     filter['Mvir'] = True
+    filter['Vvir'] = True
     filter['FileUniqueGalID'] = True
     #filter['FileUniqueGalCentralID'] = True
     dt = LGalaxyStruct.struct_dtype
@@ -221,9 +225,12 @@ def gen_lightcone(dataset,dataname,file):
             ogal['VelTheta'] = vR_i[gallist,1]
             ogal['VelPhi'] = vR_i[gallist,2]
             ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
+            ogal['Redshift'] = z_from_nu(ogal['Frequency'][:])
+            ogal['DeltaFrequency'] = fullgal['Vvir']/3e8*f21cm
             ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
             ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))
             ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
+            ogal['FluxDensity'] = ogal['Flux']/ogal['DeltaFrequency']
         gals.append(ogal)
         start_r = alist_distance
         totalNgals.append(len(gallist))
