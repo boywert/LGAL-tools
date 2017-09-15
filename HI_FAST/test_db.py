@@ -180,8 +180,6 @@ def main():
             return 1
     extend = ",".join(createdbsql)
     sql = "CREATE TABLE IF not exists lightcone ("+ extend +")"
-    print sql
-    return 0
     c.execute(sql)
     extend = ",".join(questionmarksql)
     for i in range(len(model_names)):
