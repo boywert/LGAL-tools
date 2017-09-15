@@ -163,7 +163,7 @@ def main():
     print "Creating SQLite3 table"
     start = timer()
     dbfile = '/share/data2/VIMALA/Lightcone/example.db'
-    os.delete(dbfile)
+    os.unlink(dbfile)
     conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
     c = conn.cursor()
     #build sql command
