@@ -162,23 +162,32 @@ def main():
     import sqlite3
     print "Creating SQLite3 table"
     start = timer()
+    dbfile = '/share/data2/VIMALA/Lightcone/example.db'
+    os.delete(dbfile)
     conn = sqlite3.connect('/share/data2/VIMALA/Lightcone/example.db')
     c = conn.cursor()
-    c.execute('''CREATE TABLE IF not exists lightcone
-    (PosX real, PosY real, PosZ real, 
-    PosR real, PosTheta real, PosPhi real,
-    VelX real, VelY real, VelZ real,
-    VelR real, VelTheta real, VelPhi real,
-    StellarMass real, ColdGas real,
-    Healpix int,
-    Frequency real,
-    LuminosityDistance real, Redshift real, NeutralH real, 
-    DeltaFrequency real, FluxDensity real, Flux real)''')
-    
+    #build sql command
+    createdbsql = []
+    questionmarksql = []
+    for field in db_struct.names:
+        questionmarksql.append('?')
+        if db_struct[field].type == numpy.float32:
+            createdbsql.append(field+' real')
+        elif db_struct[field].type == numpy.int32:
+            createdbsql.append(field+' int')
+        else:
+            print "check numpy type in strunct"
+            return 1
+    extend = ",".join(createdbsql)
+    sql = "CREATE TABLE IF not exists lightcone ("+ extend +")"
+    print sql
+    return 0
+    c.execute(sql)
+    extend = ",".join(questionmarksql)
     for i in range(len(model_names)):
         for file in range(512):
             gal = read_lightcone(i,model_names[i],file)
-            c.executemany('INSERT INTO lightcone VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',map(tuple, gal.tolist()))
+            c.executemany('INSERT INTO lightcone VALUES ('+ extend +')',map(tuple, gal.tolist()))
                          # \
                           # (gal['PosX'], gal['PosY'],gal['PosZ'], \
                           # gal['PosR'],gal['PosTheta'],gal['PosPhi'], \
