@@ -229,7 +229,7 @@ def gen_lightcone(dataset,dataname,file):
             ogal['DeltaFrequency'] = 1000.0*fullgal['Vvir'][gallist]/3e8*f21cm*1e6
             ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
             ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))
-            ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
+            ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance']/0.73,-2)
             ogal['FluxDensity'] = ogal['Flux']/ogal['DeltaFrequency']
         gals.append(ogal)
         start_r = alist_distance
