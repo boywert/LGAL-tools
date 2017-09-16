@@ -44,12 +44,11 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
   integer :: i,j,k,l
   PI = 4.0*atan(1.0)
   print *, N,boxsize
-  k = 1
   allocate(AC(3,N))
   do i=1,2
      do j=1,2
-        do kkk=1,2
-           index = (i-1)*2*2 + (j-1)*2 + kkk - 1
+        do k=1,2
+           index = (i-1)*2*2 + (j-1)*2 + k - 1
            AC(1,1:N) = A1(1,1:N) - (i-1)*boxsize
            AC(2,1:N) = A1(2,1:N) - (j-1)*boxsize
            AC(3,1:N) = A1(3,1:N) - (k-1)*boxsize
