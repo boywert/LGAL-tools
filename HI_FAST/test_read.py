@@ -1,5 +1,8 @@
 from astropy.cosmology import FlatLambdaCDM
-cosmo = FlatLambdaCDM(H0=68.3, Om0=0.315)
+OmegaM = 0.315
+hubble_h = 0.683
+boxsize = 480.279
+cosmo = FlatLambdaCDM(H0=hubble_h*100.0, Om0=OmegaM)
 from mass_fn import *
 from globalconf import *
 from math import *
@@ -129,7 +132,7 @@ def readgal(z,i_model,i_file):
         vel = numpy.ascontiguousarray(gal['Vel'])
         pos_sphere = numpy.empty((nGals*8,3),dtype=numpy.float32)
         vel_R = numpy.empty((nGals*8,3),dtype=numpy.float32)
-        mymodule.make_sphere(c_int(nGals),c_float(500.0),pos,vel,pos_sphere,vel_R)
+        mymodule.make_sphere(c_int(nGals),c_float(boxsize),pos,vel,pos_sphere,vel_R)
         return nGals,gal,pos_sphere,vel_R
 def nu_from_a(a): #MHz
     return a*f21cm
