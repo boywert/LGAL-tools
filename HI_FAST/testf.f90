@@ -48,7 +48,7 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
   allocate(AC(3,N))
   do i=1,2
      do j=1,2
-        
+        do kkk=1,2
            index = (i-1)*2*2 + (j-1)*2 + k - 1
            AC(1,1:N) = A1(1,1:N) - (i-1)*boxsize
            AC(2,1:N) = A1(2,1:N) - (j-1)*boxsize
@@ -59,7 +59,7 @@ subroutine make_sphere(N,boxsize,A1,A2,B1,B2) bind (c,name='make_sphere')
            B2(1,index*N+1:index*N+N) = (AC(1,1:N)*A2(1,1:N) + AC(2,1:N)*A2(2,1:N) + AC(3,1:N)*A2(3,1:N))/B1(1,index*N+1:index*N+N)
            B2(2,index*N+1:index*N+N) = (A2(1,1:N)*cos(B1(3,index*N+1:index*N+N))*cos(B1(2,index*N+1:index*N+N))*-1.0 + A2(2,1:N)*sin(B1(3,index*N+1:index*N+N))*cos(B1(2,index*N+1:index*N+N)) - A2(3,1:N)*sin(B1(2,index*N+1:index*N+N)))/B1(1,index*N+1:index*N+N)
            B2(3,index*N+1:index*N+N) = (-1*sin(B1(3,index*N+1:index*N+N))*A2(1,:) + cos(B1(3,index*N+1:index*N+N))*A2(2,:))/B1(1,index*N+1:index*N+N)/cos(B1(2,index*N+1:index*N+N))
-        
+        end do
      end do
   end do
   deallocate(AC)
