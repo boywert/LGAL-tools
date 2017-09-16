@@ -148,8 +148,9 @@ def a_from_z(z):
 def z_from_a(a):
     return 1./a - 1.0
 
-alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_MR.txt"
+alist_file =  "/lustre/HI_FAST/SAM_code/LGAL/input/zlists/zlist_planck_MR.txt"
 
+hubble_h=0.683
 
 def gen_lightcone(dataset,dataname,file):
     
@@ -159,11 +160,11 @@ def gen_lightcone(dataset,dataname,file):
     print "a", a_from_z(first_z), a_from_z(last_z)
     print "f", nu_from_z(first_z), nu_from_z(last_z)
     print "t", t_from_z(first_z), t_from_z(last_z)
-    print "d", cosmo.comoving_distance(first_z)*.73,cosmo.comoving_distance(last_z)*.73
+    print "d", cosmo.comoving_distance(first_z)*.73,cosmo.comoving_distance(last_z)*hubble_h
     #construct table for lookup f-d
     f_array = numpy.arange(nu_from_z(first_z),nu_from_z(last_z)-f_step,-0.1)
     d_array = numpy.empty(len(f_array),dtype=numpy.float32)
-    d_array[:] = cosmo.comoving_distance(z_from_nu(f_array[:])).value*0.73
+    d_array[:] = cosmo.comoving_distance(z_from_nu(f_array[:])).value*hubble_h
     print f_array
     print d_array
 
@@ -185,9 +186,9 @@ def gen_lightcone(dataset,dataname,file):
     for i in range(len(alist)):
         z = "%10.3f" % (z_from_a(alist[i]))
         if i < len(alist)-1:
-            alist_distance = cosmo.comoving_distance(z_from_a(alist[i+1])).value*0.73
+            alist_distance = cosmo.comoving_distance(z_from_a(alist[i+1])).value*hubble_h
         else:
-            alist_distance = cosmo.comoving_distance(last_z).value*0.73
+            alist_distance = cosmo.comoving_distance(last_z).value*hubble_h
         ngal_i,gal_i,pos_i,vR_i = readgal(float(z),dataset,file)
         #ngals.append(ngal_i)
         #pos.append(pos_i)
@@ -208,14 +209,14 @@ def gen_lightcone(dataset,dataname,file):
         #store data
         ogal = numpy.empty(len(gallist),dtype=db_struct)
         if (len(gallist) > 0):
-            ogal['PosX'] = fullgal['Pos'][gallist,0]
-            ogal['PosY'] = fullgal['Pos'][gallist,1]
-            ogal['PosZ'] = fullgal['Pos'][gallist,2]
+            ogal['PosX'] = fullgal['Pos'][gallist,0]/hubble_h
+            ogal['PosY'] = fullgal['Pos'][gallist,1]/hubble_h
+            ogal['PosZ'] = fullgal['Pos'][gallist,2]/hubble_h
             ogal['VelX'] = fullgal['Vel'][gallist,0]
             ogal['VelY'] = fullgal['Vel'][gallist,1]
             ogal['VelZ'] = fullgal['Vel'][gallist,2]
-            ogal['StellarMass'] = fullgal['StellarMass'][gallist]*1e10/0.7
-            ogal['ColdGas'] = fullgal['ColdGas'][gallist]*1e10/0.7
+            ogal['StellarMass'] = fullgal['StellarMass'][gallist]*1e10/hubble_h
+            ogal['ColdGas'] = fullgal['ColdGas'][gallist]*1e10/hubble_h
             coldtostellar =  ogal['ColdGas']/ogal['StellarMass']
             ogal['PosR'] = pos_i[gallist,0]
             ogal['PosTheta'] = pos_i[gallist,1]
@@ -227,9 +228,10 @@ def gen_lightcone(dataset,dataname,file):
             ogal['Frequency'] = numpy.interp(ogal['PosR'],d_array,f_array)
             ogal['Redshift'] = z_from_nu(ogal['Frequency'][:])
             ogal['DeltaFrequency'] = 1000.0*fullgal['Vvir'][gallist]/3e8*f21cm*1e6
+            ogal['PosR'] = pos_i[gallist,0]/hubble_h
             ogal['LuminosityDistance'] = ogal['PosR']*(z_from_nu(ogal['Frequency'][:])+1)
             ogal['NeutralH'] = ogal['ColdGas']*0.41/(numpy.power(coldtostellar,-0.52)+numpy.power(coldtostellar,0.56))
-            ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance']/0.73,-2)
+            ogal['Flux'] = ogal['NeutralH']/49.8*numpy.power(ogal['LuminosityDistance'],-2)
             ogal['FluxDensity'] = ogal['Flux']/ogal['DeltaFrequency']
         gals.append(ogal)
         start_r = alist_distance
