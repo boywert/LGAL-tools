@@ -1,5 +1,5 @@
 from astropy.cosmology import FlatLambdaCDM
-cosmo = FlatLambdaCDM(H0=683, Om0=0.315)
+cosmo = FlatLambdaCDM(H0=68.3, Om0=0.315)
 from mass_fn import *
 from globalconf import *
 from math import *
