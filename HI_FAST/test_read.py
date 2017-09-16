@@ -1,10 +1,8 @@
-from astropy.cosmology import FlatLambdaCDM
-OmegaM = 0.315
-hubble_h = 0.683
-boxsize = 480.279
-cosmo = FlatLambdaCDM(H0=hubble_h*100.0, Om0=OmegaM)
 from mass_fn import *
 from globalconf import *
+from astropy.cosmology import FlatLambdaCDM
+cosmo = FlatLambdaCDM(H0=hubble_h*100.0, Om0=OmegaM)
+
 from math import *
 import matplotlib
 matplotlib.use('Agg') 

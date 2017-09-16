@@ -1,9 +1,9 @@
 import numpy
 
 gadget2msun=1.e10
-boxsize = 47.0
-hubble_h = 0.7
-
+boxsize = 480.279
+hubble_h = 0.683
+OmegaM = 0.315
 
 def uv_luminosity_fn(gal,min=-23.,max=-17.,nbins=12):
     massf = gal["MagDust"][:,5] - 5.*numpy.log10(hubble_h)
